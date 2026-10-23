@@ -36,6 +36,10 @@ For EVERY deal, return how worth-alerting it is:
 - Premium brands (listed in premium_brands) are the shopper's priority: a
   genuine discount on one deserves a higher score than a similar discount on
   an everyday brand.
+- Sanity-check prices: if a price is implausibly low for the product (e.g. a
+  genuine Omega Speedmaster or Louis Vuitton bag for a few hundred dollars),
+  it is probably a misread price, a part or accessory, a replica, or a scam:
+  score it 0.1 and say why.
 - Penalize: vague listings, accessories posing as the main product, refurbished
   or used unless the item says so, likely-expired posts, inflated "list price"
   discounts, and gifts that only loosely fit an interest.

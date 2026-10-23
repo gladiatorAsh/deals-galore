@@ -35,7 +35,7 @@ def _alert_from_scored(s: Scored) -> Alert:
 
 
 # Bump when scoring logic changes in a way that should re-check recent posts.
-SCORING_VERSION = 9
+SCORING_VERSION = 10
 
 
 def config_fingerprint(cfg: Config) -> str:
@@ -92,13 +92,13 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
     # Record every evaluated item so it isn't re-processed until config changes.
     for d in unique.values():
         if store.seen(d.id):
-            store.mark(d.id, fp=fp, store=d.store, price=d.price, score=0.0, watch_item=None, gift_match=False,
+            store.mark(d.id, fp=fp, store=d.store, title=d.title, url=d.url, price=d.price, score=0.0, watch_item=None, gift_match=False,
                        reason="", price_note="", candidate=False)
         else:
             store.add_deal(d.id, {"title": d.title, "url": d.url, "source": d.source,
                                   "price": d.price, "score": 0.0, "fp": fp, "store": d.store})
 
-    for s in sorted(scored, key=lambda x: (bool(x.premium), x.score), reverse=True):
+    for s in sorted(scored, key=lambda x: x.score, reverse=True):  # premium boost already applied
         d = s.deal
         store.mark(
             d.id,

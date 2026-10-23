@@ -144,10 +144,8 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
         elif not browse_only_matches and browse_sources and v.get("source") in browse_sources \
                 and v.get("price") is not None:
             rows[k] = v
-    # Top picks first; within them premium brands first; then by score and recency.
-    ordered = sorted(rows.values(), key=lambda v: (
-        (v.get("score") or 0) >= min_score, bool(v.get("premium")), v.get("score") or 0, v["first_seen"],
-    ), reverse=True)
+    # Best score first (premium brands already carry a score boost), then newest.
+    ordered = sorted(rows.values(), key=lambda v: (v.get("score") or 0, v["first_seen"]), reverse=True)
     ordered = ordered[: max_items + browse_items]
 
     cards, counts = [], {}

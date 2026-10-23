@@ -14,7 +14,8 @@ settings:
   exclude_keywords: ["for parts", "expired", "dead deal", "[wtb]", "[wtt]",
                      # accessories / fakes that look like watch or bag deals
                      "watch band", "watch strap", "replacement band", "screen protector",
-                     "replica", "dupe", "inspired by"]
+                     "replica", "dupe", "inspired by",
+                     "bag charm", "key holder", "keychain", "key ring", "strap only"]
 
 # Free, OpenAI-compatible providers, tried in order. Each needs a free API key
 # saved as a repository secret; you only need one. Without any key, scoring
