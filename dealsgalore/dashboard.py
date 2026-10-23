@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import html
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from typing import Any
 
@@ -27,93 +28,145 @@ PAGE = """<!doctype html>
 *{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}}
 main{{max-width:860px;margin:0 auto;padding:28px 16px 60px}}
 h1{{font-size:28px;margin:0 0 4px;letter-spacing:-.02em}}.sub{{color:var(--muted);margin:0 0 20px}}
-.filters{{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}}
-.filters button{{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;font:inherit;font-size:13px}}
-.filters button.on{{background:var(--ink);color:var(--bg);border-color:var(--ink)}}
+.bar{{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}}
+.chip{{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;font:inherit;font-size:13px}}
+.chip.on{{background:var(--ink);color:var(--bg);border-color:var(--ink)}}
+.toggle{{margin-left:auto;display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);cursor:pointer;user-select:none}}
+.toggle input{{accent-color:var(--accent);width:16px;height:16px}}
 .deal{{display:grid;grid-template-columns:72px 1fr;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px}}
+.deal.top{{border-color:var(--good)}}
 .price{{font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}}.score{{font-size:12px;color:var(--good)}}
-.deal a{{color:var(--ink);text-decoration:none;font-weight:600}}.deal a:hover{{color:var(--accent)}}
-.meta{{color:var(--muted);font-size:13px;margin-top:4px}}.tag{{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:2px}}
+.deal a.t{{color:var(--ink);text-decoration:none;font-weight:600}}.deal a.t:hover{{color:var(--accent)}}
+.meta{{color:var(--muted);font-size:13px;margin-top:4px}}
+.tag{{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:2px}}
+.tag.top::before{{content:"\2605 Top pick · ";color:var(--good)}}
 .empty{{color:var(--muted);padding:40px 0;text-align:center}}
 .row{{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}}
-.watch{{flex:none;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;color:var(--muted)!important;text-decoration:none;white-space:nowrap}}
-.watch:hover{{color:var(--accent)!important;border-color:var(--accent)}}
-.hint{{color:var(--muted);font-size:13px;margin:-8px 0 16px}}
+.watch{{flex:none;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;white-space:nowrap}}
+.watch:hover{{color:var(--accent);border-color:var(--accent)}}
+.hint{{color:var(--muted);font-size:13px;margin:24px 0 0}}
 </style></head><body><main>
 <h1>Deals Galore</h1>
-<p class="sub">{count} picks for you · {browse_count} recent deals to browse · updated {updated} UTC</p>
-<div class="filters">
-<button data-f="mine">For you ({count})</button><button data-f="watch">Watchlist</button>
-<button data-f="gift">Gift ideas</button><button data-f="browse">Browse all ({browse_count})</button></div>
-<p class="hint">Tap <b>Watch</b> on any deal to add it to your watchlist (opens a pre-filled GitHub issue; submit it and the next scan starts watching).</p>
-<p class="empty" id="none" hidden>Nothing here yet. Matches appear as new deals are posted.</p>
+<p class="sub">{total} deals · {top} top picks · updated {updated}</p>
+<div class="bar">{chips}<label class="toggle"><input type="checkbox" id="toponly">Top picks only</label></div>
+<p class="empty" id="none" hidden>Nothing here right now. New matches appear as deals are posted.</p>
 <div id="list">{items}</div>
+<p class="hint">Tap <b>Watch</b> on a deal to track that exact item at a target price (opens a pre-filled GitHub issue; submit it and the next scan starts watching).</p>
 </main><script>
-function show(f){{
-document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x.dataset.f===f));
-let n=0;document.querySelectorAll('.deal').forEach(d=>{{const k=d.dataset.kind;
-const v=f==='mine'?k!=='browse':k===f;d.hidden=!v;n+=v;}});
-document.getElementById('none').hidden=n>0;}}
-document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>show(b.dataset.f));
-show({default_tab});
+let cat='all';const top=document.getElementById('toponly');
+function render(){{let n=0;
+document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.c===cat));
+document.querySelectorAll('.deal').forEach(d=>{{const v=(cat==='all'||d.dataset.c===cat)&&(!top.checked||d.dataset.top==='1');
+d.hidden=!v;n+=v;}});document.getElementById('none').hidden=n>0;}}
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{{cat=c.dataset.c;render();}});
+top.onchange=render;render();
 </script></body></html>
 """
 
+DEFAULT_TZ = "America/Los_Angeles"
 
-def _item(rec: dict[str, Any], browse: bool = False, repo: str | None = None) -> str:
+
+def _tz(name: str | None):
+    try:
+        return ZoneInfo(name or DEFAULT_TZ)
+    except Exception:
+        return timezone.utc
+
+
+def _local(ts: str, tz) -> str:
+    try:
+        dt = datetime.fromisoformat(ts).astimezone(tz)
+    except ValueError:
+        return ts[:16]
+    return dt.strftime("%b %-d, %-I:%M %p")
+
+
+def _category(rec: dict[str, Any]) -> str:
+    if rec.get("candidate") or rec.get("score"):
+        if rec.get("watch_item"):
+            return rec["watch_item"]
+        hint = rec.get("match_hint")
+        if hint and hint != "Gift idea":
+            return hint
+        if rec.get("gift_match") or hint == "Gift idea":
+            return "Gift ideas"
+    return "Other deals"
+
+
+def _item(rec: dict[str, Any], cat: str, is_top: bool, repo: str | None, tz) -> str:
     price = f"${rec['price']:,.0f}" if rec.get("price") is not None else "—"
-    if browse:
-        kind, tag = "browse", rec.get("match_hint") or "Deal"
-    elif rec.get("watch_item"):
-        kind, tag = "watch", f"Watchlist · {rec['watch_item']}"
-    else:
-        kind, tag = "gift", "Gift idea"
-    meta = " · ".join(
-        x for x in ((f"at {rec['store']}" if rec.get("store") else None), rec.get("source"), rec.get("reason"), rec.get("price_note"), rec["first_seen"][:16].replace("T", " ")) if x
-    )
-    score = "" if browse else f'<div class="score">score {rec.get("score", 0):.2f}</div>'
+    meta = " · ".join(x for x in (
+        f"at {rec['store']}" if rec.get("store") else None,
+        rec.get("source"), rec.get("reason"), rec.get("price_note"),
+        _local(rec["first_seen"], tz),
+    ) if x)
+    scored = rec.get("candidate") or rec.get("score")
+    score = f'<div class="score">score {rec.get("score", 0):.2f}</div>' if scored else ""
     watch = ""
-    if repo and kind != "watch":
+    if repo:
         url = new_issue_url(repo, rec["title"], rec.get("price"))
         watch = (f'<a class="watch" href="{html.escape(url)}" target="_blank" rel="noopener" '
-                 f'title="Add to watchlist">{STAR}Watch</a>')
+                 f'title="Track this exact item at a target price">{STAR}Watch</a>')
     return (
-        f'<div class="deal" data-kind="{kind}"><div><div class="price">{html.escape(price)}</div>'
-        f'{score}</div><div>'
-        f'<div class="row"><div class="tag">{html.escape(tag)}</div>{watch}</div>'
-        f'<a href="{html.escape(rec["url"])}" target="_blank" rel="noopener">{html.escape(rec["title"])}</a>'
-        f'<div class="meta">{html.escape(meta)}</div></div></div>'
+        f'<div class="deal{" top" if is_top else ""}" data-c="{html.escape(cat)}" '
+        f'data-top="{int(is_top)}"><div><div class="price">{html.escape(price)}</div>{score}</div><div>'
+        f'<div class="row"><div class="tag{" top" if is_top else ""}">{html.escape(cat)}</div>{watch}</div>'
+        f'<a class="t" href="{html.escape(rec["url"])}" target="_blank" rel="noopener">'
+        f'{html.escape(rec["title"])}</a><div class="meta">{html.escape(meta)}</div></div></div>'
     )
 
 
 def render(store: Store, output: str | Path, min_score: float, max_items: int,
            fp: str | None = None, browse_sources: list[str] | None = None,
            browse_hours: float = 48, browse_items: int = 80, repo: str | None = None,
-           browse_only_matches: bool = False) -> Path:
-    """Picks = deals scored under the current config (fp); Browse = latest posts
-    from curated feeds such as the Slickdeals front page, newest first."""
-    picks = [(k, v) for k, v in store.recent(min_score) if fp is None or v.get("fp") == fp][:max_items]
-    picked = {k for k, _ in picks}
-    browse = []
-    if browse_only_matches:
-        # Every recent post that matched your watchlist/gift keywords, any score.
-        browse = [
-            (k, v) for k, v in store.recent(0.0, browse_hours)
-            if v.get("candidate") and v.get("fp") == fp and k not in picked
-        ][:browse_items]
-    elif browse_sources:
-        browse = [
-            (k, v) for k, v in store.recent(0.0, browse_hours)
-            if v.get("source") in browse_sources and k not in picked and v.get("price") is not None
-        ][:browse_items]
-    items = "".join(_item(rec, repo=repo) for _, rec in picks) + "".join(
-        _item(rec, True, repo) for _, rec in browse)
+           browse_only_matches: bool = False, timezone_name: str | None = None) -> Path:
+    """One list, best first, with a filter chip per category actually present.
+
+    Included: deals scored at/above min_score under the current config (fp), plus
+    recent keyword matches of any score, plus (unless browse_only_matches) recent
+    priced deals from browse_sources. Top picks are those at/above min_score.
+    """
+    tz = _tz(timezone_name)
+    current = lambda v: fp is None or v.get("fp") == fp  # noqa: E731
+    rows: dict[str, dict[str, Any]] = {}
+    for k, v in store.recent(min_score):
+        if current(v):
+            rows[k] = v
+    for k, v in store.recent(0.0, browse_hours):
+        if k in rows:
+            continue
+        if v.get("candidate"):
+            if current(v):  # scores from an older config are stale
+                rows[k] = v
+        elif not browse_only_matches and browse_sources and v.get("source") in browse_sources \
+                and v.get("price") is not None:
+            rows[k] = v
+    ordered = sorted(rows.values(), key=lambda v: (v.get("score") or 0, v["first_seen"]), reverse=True)
+    ordered = ordered[: max_items + browse_items]
+
+    cards, counts = [], {}
+    n_top = 0
+    for rec in ordered:
+        cat = _category(rec)
+        is_top = (rec.get("score") or 0) >= min_score
+        n_top += is_top
+        counts[cat] = counts.get(cat, 0) + 1
+        cards.append(_item(rec, cat, is_top, repo, tz))
+
+    # "All" plus one chip per category present (largest first); a lone category
+    # needs no chip of its own.
+    chips = [f'<button class="chip" data-c="all">All ({len(ordered)})</button>']
+    if len(counts) > 1:
+        for cat, n in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0])):
+            chips.append(f'<button class="chip" data-c="{html.escape(cat)}">{html.escape(cat)} ({n})</button>')
+
+    now = datetime.now(timezone.utc).astimezone(tz)
     page = PAGE.format(
-        count=len(picks),
-        browse_count=len(browse),
-        default_tab="'mine'" if picks or not browse else "'browse'",
-        updated=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"),
-        items=items,
+        total=len(ordered),
+        top=n_top,
+        updated=now.strftime("%b %-d, %-I:%M %p %Z"),
+        chips="".join(chips),
+        items="".join(cards),
     )
     out = Path(output)
     out.parent.mkdir(parents=True, exist_ok=True)

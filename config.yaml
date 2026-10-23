@@ -85,7 +85,7 @@ sources:
 #   max_price: alert at or below this price (omit to let the scorer judge value)
 # The dashboard's Watch button adds specific items here.
 watchlist:
-  - item: Watch from a good brand
+  - item: Watches
     search: false              # covered by the brand searches above
     any_of:
       - [seiko, grand seiko, tissot, citizen, hamilton, longines, omega, tag heuer, tudor,
@@ -93,7 +93,7 @@ watchlist:
          sinn, victorinox, breitling, cartier]
       - [watch, chronograph, timepiece, diver, automatic]
 
-  - item: Designer purse or handbag
+  - item: Designer purses
     search: false
     any_of:
       - [coach, kate spade, michael kors, tory burch, marc jacobs, longchamp, furla,
@@ -143,13 +143,14 @@ only_stores: []   # e.g. [Costco, Walmart, Nordstrom Rack]
 
 dashboard:
   enabled: true
-  min_score: 0.5          # "For you" tab: watchlist and gift matches at or above this
+  min_score: 0.5          # deals at or above this score are marked Top pick
   max_items: 100
   output: docs/index.html
-  # "Browse all" tab: every recent post matching the watchlist, any score (no alerts).
-  # Set browse_only_matches: false to browse the whole Slickdeals front page instead.
+  # Also list recent watchlist matches of any score. Set browse_only_matches: false
+  # to add the whole Slickdeals front page as "Other deals".
   browse_only_matches: true
   browse_sources: [slickdeals:frontpage, slickdeals:popular]
   browse_hours: 48
   browse_items: 80
   repo: gladiatorAsh/deals-galore   # where the dashboard's Watch button opens issues
+  timezone: America/Los_Angeles     # times on the dashboard (Pacific)

@@ -75,5 +75,10 @@ def test_dashboard_has_watch_buttons(tmp_path):
                       "score": 0.9, "watch_item": "Dyson V15 Detect", "fp": "f"})
     out = dashboard.render(st, tmp_path / "i.html", 0.5, 10, fp="f",
                            browse_sources=["slickdeals:frontpage"], repo="me/repo").read_text()
-    assert out.count('class="watch"') == 1  # browse deal only; already-watched item has none
+    assert out.count('class="watch"') == 2
     assert "https://github.com/me/repo/issues/new?title=Watch%3A%20KitchenAid" in out
+    # one list: top pick first, then other deals; chips only for categories present
+    assert out.index("Dyson V15 $449") < out.index("KitchenAid")
+    assert 'data-c="Dyson V15 Detect"' in out and 'data-c="Other deals"' in out
+    assert "Gift ideas" not in out
+    assert "PDT" in out or "PST" in out

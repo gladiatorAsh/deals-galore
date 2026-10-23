@@ -127,6 +127,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             browse_hours=cfg.dashboard.get("browse_hours", 48),
             browse_items=cfg.dashboard.get("browse_items", 80),
             browse_only_matches=cfg.dashboard.get("browse_only_matches", False),
+            timezone_name=cfg.dashboard.get("timezone"),
             repo=cfg.dashboard.get("repo") or os.environ.get("GITHUB_REPOSITORY"),
         )
     store.save()
