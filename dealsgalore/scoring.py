@@ -26,6 +26,9 @@ For EVERY deal, return how worth-alerting it is:
 - score 0.0-1.0. 0.85+ = genuinely great: matches a watchlist item at/below its
   target, or an excellent, specific gift fit for someone at a real discount.
   0.5-0.8 = decent, worth a digest line. Below 0.4 = noise.
+- Respect a profile's occasion: a wedding gift for a couple should be something
+  both share and that feels gift-worthy (quality home, kitchen, experiences),
+  not a single-person or utilitarian item.
 - Penalize: vague listings, accessories posing as the main product, refurbished
   or used unless the item says so, likely-expired posts, inflated "list price"
   discounts, and gifts that only loosely fit an interest.
@@ -46,6 +49,8 @@ def _profiles_block(profiles: list[GiftProfile]) -> list[dict]:
             "name": p.name,
             "interests": p.interests,
             "budget_usd": list(p.budget) if p.budget else None,
+            "occasion": p.occasion or None,
+            "buy_by": p.until.isoformat() if p.until else None,
             "notes": p.notes,
         }
         for p in profiles

@@ -29,8 +29,9 @@ def _stem(word: str) -> str:
 
 
 def interest_terms(profile: GiftProfile) -> list[str]:
+    """Loose, stemmed single words from `interests` (keywords match as phrases)."""
     terms: set[str] = set()
-    for phrase in profile.interests + profile.keywords:
+    for phrase in profile.interests:
         for word in re.findall(r"[a-z0-9]+", phrase.lower()):
             if len(word) >= 4 and word not in STOPWORDS:
                 terms.add(_stem(word))
@@ -56,9 +57,20 @@ def match_watch(deal: Deal, item: WatchItem) -> bool:
     return True
 
 
+def _has_phrase(text: str, phrase: str) -> bool:
+    words = [re.escape(w) for w in re.findall(r"[a-z0-9']+", phrase.lower())]
+    if not words:
+        return False
+    # "dutch oven" also matches "Dutch-Oven" / "dutch  ovens"
+    return re.search(r"\b" + r"[\s\-]+".join(words) + r"(?:e?s)?\b", text) is not None
+
+
 def match_profile(deal: Deal, profile: GiftProfile) -> bool:
     text = _norm(f"{deal.title} {deal.summary}")
-    if not any(_has_term(text, t) for t in interest_terms(profile)):
+    hit = any(_has_phrase(text, k) for k in profile.keywords) or any(
+        _has_term(text, t) for t in interest_terms(profile)
+    )
+    if not hit:
         return False
     if profile.budget and deal.price is not None:
         lo, hi = profile.budget

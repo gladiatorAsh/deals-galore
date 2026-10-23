@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 import os
 from dataclasses import dataclass, field
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -37,6 +38,11 @@ class GiftProfile:
     budget: tuple[float, float] | None = None
     keywords: list[str] = field(default_factory=list)
     notes: str = ""
+    occasion: str = ""  # e.g. "wedding gift for the couple"; shown to the LLM
+    until: date | None = None  # stop matching after this date (event passed)
+
+    def active(self, today: date | None = None) -> bool:
+        return self.until is None or (today or date.today()) <= self.until
 
 
 @dataclass
@@ -83,15 +89,22 @@ def _parse_profiles(raw: Any) -> list[GiftProfile]:
     profiles = []
     for p in raw:
         budget = p.get("budget")
-        profiles.append(
-            GiftProfile(
-                name=str(p["name"]),
-                interests=[str(i) for i in p.get("interests", [])],
-                budget=(float(budget[0]), float(budget[1])) if budget else None,
-                keywords=[str(k) for k in p.get("keywords", [])],
-                notes=str(p.get("notes", "")),
-            )
+        until = p.get("until")
+        if isinstance(until, str):
+            until = date.fromisoformat(until)
+        profile = GiftProfile(
+            name=str(p["name"]),
+            interests=[str(i) for i in p.get("interests", [])],
+            budget=(float(budget[0]), float(budget[1])) if budget else None,
+            keywords=[str(k) for k in p.get("keywords", [])],
+            notes=str(p.get("notes", "")),
+            occasion=str(p.get("occasion", "")),
+            until=until,
         )
+        if profile.active():
+            profiles.append(profile)
+        else:
+            log.info("Gift profile %r expired on %s; skipping", profile.name, profile.until)
     return profiles
 
 

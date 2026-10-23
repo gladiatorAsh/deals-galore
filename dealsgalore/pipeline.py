@@ -99,7 +99,9 @@ def digest(cfg: Config, store: Store, notifiers: list[Notifier], hours: float = 
         recipient = None
         if not rec.get("watch_item") and rec.get("gift_match"):
             probe = Deal(source=rec["source"], title=rec["title"], url=rec["url"], price=rec.get("price"))
-            recipient = next((p.name for p in cfg.gift_profiles if match_profile(probe, p)), None)
+            recipient = next(
+                (p.name for p in cfg.gift_profiles if p.active() and match_profile(probe, p)), None
+            )
         alerts.append(Alert(
             title=rec["title"], url=rec["url"], price=rec.get("price"), score=rec.get("score", 0),
             source=rec["source"], reason=rec.get("reason", ""), recipient=recipient,

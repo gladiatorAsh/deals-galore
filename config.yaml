@@ -31,7 +31,20 @@ sources:
   - type: slickdeals
     feeds: [frontpage, popular]
     search_watchlist: true     # runs a Slickdeals search for each watchlist item
-    searches: []               # extra free-text searches, e.g. ["lego technic"]
+    # Extra free-text searches. These catch gift ideas that may not reach the
+    # front page; they cost no LLM calls unless a result matches a profile.
+    searches:
+      # wedding / couple gifts
+      - le creuset
+      - staub dutch oven
+      - kitchenaid stand mixer
+      - breville espresso
+      - vitamix
+      - all-clad cookware
+      - wusthof knife set
+      - robot vacuum
+      - air purifier
+      - luggage set
 
   - type: reddit
     subreddits: [deals, buildapcsales, GameDeals, frugalmalefashion, BuyItForLife]

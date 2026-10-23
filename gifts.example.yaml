@@ -3,19 +3,27 @@
 # In GitHub: Settings -> Secrets and variables -> Actions -> New repository
 # secret named GIFT_PROFILES, and paste YAML like this as its value.
 # Locally: copy this file to gifts.local.yaml (git-ignored).
+#
+# Fields:
+#   name       how alerts label the match ("Gift for <name>")
+#   interests  loose topics; matched word by word ("history books" -> history, book)
+#   keywords   exact phrases or brands ("le creuset", "dutch oven")
+#   budget     [min, max] in USD
+#   occasion   optional; tells the scorer what the gift is for
+#   until      optional YYYY-MM-DD; the profile stops matching after this date
+#   notes      optional; things they already own, sizes, dislikes
 
 gift_profiles:
+  - name: Brother & his wife
+    occasion: Wedding gift for the couple, something they both enjoy at home
+    until: 2026-12-31
+    interests: [cookware, kitchen, espresso, bedding, decor, luggage]
+    keywords: [le creuset, staub, dutch oven, stand mixer, kitchenaid, breville, vitamix,
+               all-clad, knife set, robot vacuum, air purifier, luggage set]
+    budget: [100, 400]
+    notes: Prefer quality, long-lasting items over gadgets.
+
   - name: Dad
     interests: [woodworking, coffee, history books]
     budget: [50, 150]
     notes: Already owns a Chemex and a good chisel set.
-
-  - name: Niece
-    interests: [lego, art supplies, science kits]
-    budget: [25, 60]
-    notes: Age 8, loves anything with animals.
-
-  - name: Partner
-    interests: [yoga, skincare, cookbooks]
-    keywords: [lululemon, le creuset]   # brands or exact words to watch for
-    budget: [40, 200]
