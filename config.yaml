@@ -48,7 +48,7 @@ sources:
       - luggage set
 
   - type: reddit
-    subreddits: [deals, buildapcsales, GameDeals, frugalmalefashion, BuyItForLife]
+    subreddits: [deals, buildapcsales, GameDeals, frugalmalefashion]  # deal-only subs; avoid discussion subs
     sort: new
 
   # Any RSS/Atom feed works:

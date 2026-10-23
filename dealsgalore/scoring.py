@@ -99,6 +99,10 @@ def heuristic_score(c: Candidate, cfg: Config) -> Scored:
         1 - d.price / d.list_price if d.price and d.list_price and d.list_price > d.price else 0
     )
     # Without an LLM, keyword gift matches land in the digest, not instant alerts.
+    # A post with no price is usually a question or discussion, not a deal.
+    if d.price is None:
+        return Scored(c, score=0.3, recipient=c.recipients[0] if c.recipients else None,
+                      reason="Keyword match but no price; likely not a deal")
     score = 0.5 + min(discount, 0.5) * 0.5
     return Scored(
         c,

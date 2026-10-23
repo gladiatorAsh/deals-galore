@@ -123,3 +123,12 @@ def test_price_history_penalizes_fake_discount(cfg, tmp_path):
     s = Scored(c, score=0.9, watch_item="Dyson V15 Detect")
     apply_price_history(s, cfg, store)
     assert s.score < 0.7 and "median" in s.price_note
+
+
+def test_heuristic_demotes_priceless_posts(cfg):
+    from dealsgalore.scoring import heuristic_score
+
+    q = Candidate(Deal("r/BuyItForLife", "In search of durable luggage", "u"), recipients=["Niece"])
+    assert heuristic_score(q, cfg).score < cfg.settings.digest_threshold
+    d = Candidate(Deal("s", "LEGO set $39.99", "u2", price=39.99), recipients=["Niece"])
+    assert heuristic_score(d, cfg).score >= cfg.settings.digest_threshold
