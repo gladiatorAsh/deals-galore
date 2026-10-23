@@ -59,6 +59,20 @@ sources:
     subreddits: [deals, frugalfemalefashion, frugalmalefashion]  # deal-only subs
     sort: new
 
+  # Deal aggregators: editors and communities post deals from every major
+  # retailer (Costco, Walmart, Target, Macy's, Nordstrom, Amazon, Best Buy,
+  # brand outlets...). Most stores publish no feed of their own and block
+  # scrapers, so these are how the scanner covers them.
+  - type: rss
+    name: dealnews
+    urls:
+      - https://www.dealnews.com/?rss=1&sort=time          # newest
+      - https://www.dealnews.com/?rss=1&sort=hotness       # most popular
+      - https://www.dealnews.com/f1682/Staff-Pick/?rss=1   # editors' choice
+  - type: rss
+    name: bensbargains
+    url: https://bensbargains.com/rss/
+
   # Any RSS/Atom feed works:
   # - type: rss
   #   name: my-favorite-blog

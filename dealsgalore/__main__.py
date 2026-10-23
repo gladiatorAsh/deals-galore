@@ -85,6 +85,9 @@ def main(argv: list[str] | None = None) -> int:
             counts[d.source] = counts.get(d.source, 0) + 1
         for src, n in sorted(counts.items()):
             print(f"{n:5d}  {src}")
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            line = ", ".join(f"{src}: {n}" for src, n in sorted(counts.items())) or "nothing fetched"
+            print(f"::notice title=Items per source::{line}", flush=True)
         return 0 if counts else 1
 
     if args.command == "test-notify":
