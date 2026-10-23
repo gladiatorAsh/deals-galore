@@ -1,42 +1,69 @@
 {
  "deals": {
   "05c67ae480a2729c": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T03:05:24+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
+   "gift_match": false,
    "notified": false,
    "price": 299.99,
+   "price_note": "",
+   "reason": "",
    "score": 0.0,
    "source": "slickdeals:popular",
    "title": "ECO-WORTHY 2560Wh 24V 100AH LiFePO4 Lithium Battery With SOC Display and Bluetooth $299.99 + Free Shipping",
-   "url": "https://slickdeals.net/f/20192547-eco-worthy-2560wh-24v-100ah-lifepo4-lithium-battery-with-soc-display-and-bluetooth-299-99-free-shipping?utm_source=rss&utm_content=ht&utm_medium=RSS2"
+   "url": "https://slickdeals.net/f/20192547-eco-worthy-2560wh-24v-100ah-lifepo4-lithium-battery-with-soc-display-and-bluetooth-299-99-free-shipping?utm_source=rss&utm_content=ht&utm_medium=RSS2",
+   "watch_item": null
   },
   "0760c2f72a741e88": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T03:21:03+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
+   "gift_match": false,
    "notified": false,
    "price": 19.99,
+   "price_note": "",
+   "reason": "",
    "score": 0.0,
    "source": "slickdeals:popular",
    "title": "Macy's Up to 75% Off Jewelry: 18\" Multi-heart Diamond Pendant Sterling Silver Necklace (1/10 ct. t.w) $19.99 & More + Free Shipping on $39+",
-   "url": "https://slickdeals.net/f/20194290-macy-s-up-to-75-off-jewelry-18-multi-heart-diamond-pendant-sterling-silver-necklace-1-10-ct-t-w-19-99-more-free-shipping-on-39?utm_source=rss&utm_content=ht&utm_medium=RSS2"
+   "url": "https://slickdeals.net/f/20194290-macy-s-up-to-75-off-jewelry-18-multi-heart-diamond-pendant-sterling-silver-necklace-1-10-ct-t-w-19-99-more-free-shipping-on-39?utm_source=rss&utm_content=ht&utm_medium=RSS2",
+   "watch_item": null
   },
   "09a781abe7d17d7b": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T03:05:24+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
+   "gift_match": false,
    "notified": false,
    "price": 159.0,
+   "price_note": "",
+   "reason": "",
    "score": 0.0,
    "source": "slickdeals:popular",
    "title": "[Refurbished] Intel ARC A750 Limited Edition 8GB GDDR6 PCIe 4.0 Graphics Card $159 + Free S/H",
-   "url": "https://slickdeals.net/f/20195355-refurbished-intel-arc-a750-limited-edition-8gb-gddr6-pcie-4-0-graphics-card-159-free-s-h?utm_source=rss&utm_content=ht&utm_medium=RSS2"
+   "url": "https://slickdeals.net/f/20195355-refurbished-intel-arc-a750-limited-edition-8gb-gddr6-pcie-4-0-graphics-card-159-free-s-h?utm_source=rss&utm_content=ht&utm_medium=RSS2",
+   "watch_item": null
+  },
+  "0a2b056faebe2bb8": {
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "notified": false,
+   "price": 94.0,
+   "score": 0.0,
+   "source": "slickdeals:popular",
+   "title": "$94: Milwaukee SHOCKWAVE Impact-Duty 1/2 in. Drive SAE Deep Well Impact PACKOUT Socket Set (15-Piece) at HomeDepot",
+   "url": "https://slickdeals.net/f/20191197-94-milwaukee-shockwave-impact-duty-1-2-in-drive-sae-deep-well-impact-packout-socket-set-15-piece-at-homedepot?utm_source=rss&utm_content=ht&utm_medium=RSS2"
   },
   "0af248144b583215": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 11.0,
@@ -63,10 +90,29 @@
    "url": "https://www.reddit.com/r/BuyItForLife/comments/1xcjht8/any_thoughts_on_aran_or_similar_wool_sweaters/",
    "watch_item": null
   },
+  "0f943d1a788a3525": {
+   "candidate": true,
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "gift_match": true,
+   "match_hint": "Watch from a good brand",
+   "notified": false,
+   "price": 106.95,
+   "price_note": "",
+   "reason": "Affordable watch fits budget, yet it's a personal accessory.",
+   "score": 0.5,
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "source": "slickdeals:search",
+   "title": "Citizen Quartz Mens Watch, Stainless Steel, Classic, Silver-Tone (Model: BI1030-53A) $106.95",
+   "url": "https://slickdeals.net/f/20193909-citizen-quartz-mens-watch-stainless-steel-classic-silver-tone-model-bi1030-53a-106-95?utm_source=rss&utm_content=def&utm_medium=RSS2",
+   "watch_item": "Watch from a good brand"
+  },
   "11297403bc3604e6": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 76.0,
@@ -109,9 +155,10 @@
    "watch_item": null
   },
   "12131a517dcba6b3": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 48.0,
@@ -123,10 +170,22 @@
    "url": "https://slickdeals.net/f/20168706-round-trip-columbus-oh-atlanta-or-vice-versa-48-nonstop-airfares-on-frontier-airlines-be-limited-travel-december-february-2027?utm_source=rss&utm_content=fp&utm_medium=RSS2",
    "watch_item": null
   },
+  "124b5efdddc79591": {
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "notified": false,
+   "price": 4.97,
+   "score": 0.0,
+   "source": "slickdeals:popular",
+   "title": "Ozark Trail 500-Lumen LED Mini Camping Lantern w/ Carabiner Handle $4.97 + Free Shipping w/ Walmart+ or on $35+",
+   "url": "https://slickdeals.net/f/20193843-ozark-trail-500-lumen-led-mini-camping-lantern-w-carabiner-handle-4-97-free-shipping-w-walmart-or-on-35?utm_source=rss&utm_content=ht&utm_medium=RSS2"
+  },
   "132490fb96d2b620": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:43:11+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 18.9,
@@ -169,20 +228,26 @@
    "watch_item": null
   },
   "18a4894b7470ad89": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T03:05:24+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
+   "gift_match": false,
    "notified": false,
    "price": 20.0,
+   "price_note": "",
+   "reason": "",
    "score": 0.0,
    "source": "slickdeals:frontpage",
    "title": "3-Pk Men's Waffle-Knit Thermal Henley Pullover Hoodie $20 + Free S&H w/ Prime",
-   "url": "https://slickdeals.net/f/20191911-3-pack-men-s-waffle-knit-thermal-henley-pullover-hoodie-3-colors-sizes-s-3xl-19-99-6-67-each-free-shipping-w-prime?utm_source=rss&utm_content=fp&utm_medium=RSS2"
+   "url": "https://slickdeals.net/f/20191911-3-pack-men-s-waffle-knit-thermal-henley-pullover-hoodie-3-colors-sizes-s-3xl-19-99-6-67-each-free-shipping-w-prime?utm_source=rss&utm_content=fp&utm_medium=RSS2",
+   "watch_item": null
   },
   "18fc2f03c4ecf3aa": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:46:13+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": null,
@@ -193,6 +258,24 @@
    "title": "Lands' End - 50% Off Sitewide + Up to 70% off Clearance",
    "url": "https://www.reddit.com/r/frugalmalefashion/comments/1xbx7vl/lands_end_50_off_sitewide_up_to_70_off_clearance/",
    "watch_item": null
+  },
+  "1ae1ee5cdeff519c": {
+   "candidate": true,
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "gift_match": true,
+   "match_hint": "Watch from a good brand",
+   "notified": false,
+   "price": 217.95,
+   "price_note": "",
+   "reason": "Good watch within budget but personal item, not ideal for couple.",
+   "score": 0.55,
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "source": "slickdeals:search",
+   "title": "Citizen Men's Classic Corso Eco-Drive Watch, 3-Hand Date, Luminous Hands and Markers, Two-Tone Stainless Steel, White Dial $217.95",
+   "url": "https://slickdeals.net/f/20194026-citizen-men-s-classic-corso-eco-drive-watch-3-hand-date-luminous-hands-and-markers-two-tone-stainless-steel-white-dial-217-95?utm_source=rss&utm_content=def&utm_medium=RSS2",
+   "watch_item": "Watch from a good brand"
   },
   "1aed11032bf6a9a3": {
    "digested": false,
@@ -210,9 +293,10 @@
    "watch_item": null
   },
   "1c75f12057f857a2": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:46:13+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 9.99,
@@ -225,15 +309,20 @@
    "watch_item": null
   },
   "1f3140c6723c2b35": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T03:05:24+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
+   "gift_match": false,
    "notified": false,
    "price": 9.85,
+   "price_note": "",
+   "reason": "",
    "score": 0.0,
    "source": "slickdeals:popular",
    "title": "Soothfeel Men's Workout Athletic Shorts with 3 Pockets 7\" Running Shorts $9.85",
-   "url": "https://slickdeals.net/f/20194374-soothfeel-men-s-workout-athletic-shorts-with-3-pockets-7-running-shorts-9-85?utm_source=rss&utm_content=ht&utm_medium=RSS2"
+   "url": "https://slickdeals.net/f/20194374-soothfeel-men-s-workout-athletic-shorts-with-3-pockets-7-running-shorts-9-85?utm_source=rss&utm_content=ht&utm_medium=RSS2",
+   "watch_item": null
   },
   "22b61fa5ff33c7b2": {
    "digested": false,
@@ -266,9 +355,10 @@
    "watch_item": null
   },
   "24f9628be99abeb1": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 7.2,
@@ -304,6 +394,17 @@
    "source": "slickdeals:popular",
    "title": "SYMA X100 Indoor Drone for Kids 8-12, 20-Min Flight with 2 Batteries $29.24 at YM Playworks via Amazon",
    "url": "https://slickdeals.net/f/20194110-syma-x100-indoor-drone-for-kids-8-12-20-min-flight-with-2-batteries-29-24-at-ym-playworks-via-amazon?utm_source=rss&utm_content=ht&utm_medium=RSS2"
+  },
+  "2f058b53f0be4e5c": {
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "notified": false,
+   "price": 14.99,
+   "score": 0.0,
+   "source": "slickdeals:popular",
+   "title": "Pre-order: Funko Pop! Vinyl: Teenage Mutant Ninja Turtles: Michelangelo or Donatello or Raphael\u200b or Leonardo $14.99",
+   "url": "https://slickdeals.net/f/20194728-pre-order-funko-pop-vinyl-teenage-mutant-ninja-turtles-michelangelo-or-donatello-or-raphael-or-leonardo-14-99?utm_source=rss&utm_content=ht&utm_medium=RSS2"
   },
   "2f7dfeeaf677f1f0": {
    "digested": false,
@@ -451,9 +552,10 @@
    "watch_item": null
   },
   "3a741f07f20d890e": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": null,
@@ -480,10 +582,29 @@
    "url": "https://www.reddit.com/r/buildapcsales/comments/1xbeb0h/other_amazon_basics_20000_mah_highcapacity/",
    "watch_item": null
   },
+  "3d81675d04e251de": {
+   "candidate": true,
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "gift_match": true,
+   "match_hint": "Watch from a good brand",
+   "notified": false,
+   "price": 851.4,
+   "price_note": "",
+   "reason": "Expensive watch exceeds budget, not suitable as shared wedding gift.",
+   "score": 0.3,
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "source": "slickdeals:search",
+   "title": "$851.40* | Tissot T-Touch Connect Sport, Swiss Quartz Solar Tactile, 43mm, Black Dial, Unisex Watch at Amazon",
+   "url": "https://slickdeals.net/f/20192169-851-40-tissot-t-touch-connect-sport-swiss-quartz-solar-tactile-43mm-black-dial-unisex-watch-at-amazon?utm_source=rss&utm_content=def&utm_medium=RSS2",
+   "watch_item": "Watch from a good brand"
+  },
   "3ed1d1fd00d665ad": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 110.0,
@@ -540,16 +661,32 @@
    "url": "https://slickdeals.net/f/20192115-5-piece-skyway-tideland-softside-spinner-luggage-set-black-blue-157-00-free-shipping-w-walmart-or-on-35?utm_source=rss&utm_content=def&utm_medium=RSS2",
    "watch_item": null
   },
+  "45f15297f43c0692": {
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "notified": false,
+   "price": 6.01,
+   "score": 0.0,
+   "source": "slickdeals:popular",
+   "title": "Cultures For Health San Francisco Style Sourdough Starter $6.01 w/ S&S + Free Shipping w/ Prime or on $35+",
+   "url": "https://slickdeals.net/f/20192202-cultures-for-health-san-francisco-style-sourdough-starter-6-01-w-s-s-free-shipping-w-prime-or-on-35?utm_source=rss&utm_content=ht&utm_medium=RSS2"
+  },
   "468d748a4c3014b3": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T03:05:24+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
+   "gift_match": false,
    "notified": false,
    "price": 9.35,
+   "price_note": "",
+   "reason": "",
    "score": 0.0,
    "source": "slickdeals:frontpage",
    "title": "50\"x60\" Bedsure 3D Fleece Bubble Throw Blanket (Off White) $9.35",
-   "url": "https://slickdeals.net/f/20187807-50-x-60-bedsure-3d-fleece-bubble-throw-blanket-off-white-9-34-free-shipping-w-prime-or-on-35?utm_source=rss&utm_content=fp&utm_medium=RSS2"
+   "url": "https://slickdeals.net/f/20187807-50-x-60-bedsure-3d-fleece-bubble-throw-blanket-off-white-9-34-free-shipping-w-prime-or-on-35?utm_source=rss&utm_content=fp&utm_medium=RSS2",
+   "watch_item": null
   },
   "47a5ac4187f4bfd3": {
    "digested": false,
@@ -567,9 +704,10 @@
    "watch_item": null
   },
   "47aedf626fcb2c4b": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 600.0,
@@ -582,9 +720,10 @@
    "watch_item": null
   },
   "4df968b352227e15": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 30.0,
@@ -597,9 +736,10 @@
    "watch_item": null
   },
   "4ece69bce16040ca": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 9.98,
@@ -807,9 +947,10 @@
    "watch_item": null
   },
   "5c4cd378e166a8e9": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 99.0,
@@ -837,9 +978,10 @@
    "watch_item": null
   },
   "5f9219e96fcda1d8": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 10.0,
@@ -877,9 +1019,10 @@
    "watch_item": null
   },
   "662a0cab3252279b": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:46:13+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": null,
@@ -892,9 +1035,10 @@
    "watch_item": null
   },
   "66458b9ef9339576": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:46:13+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 26.0,
@@ -922,15 +1066,20 @@
    "watch_item": null
   },
   "69d230c775741bae": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T03:05:24+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
+   "gift_match": false,
    "notified": false,
    "price": 18.2,
+   "price_note": "",
+   "reason": "",
    "score": 0.0,
    "source": "slickdeals:frontpage",
    "title": "30-Oz Contigo SnapSeal Stainless Steel Vacuum-Insulated Tumbler (Various) $18.20",
-   "url": "https://slickdeals.net/f/20191752-30-oz-contigo-snapseal-stainless-steel-vacuum-insulated-tumbler-various-18-20?utm_source=rss&utm_content=fp&utm_medium=RSS2"
+   "url": "https://slickdeals.net/f/20191752-30-oz-contigo-snapseal-stainless-steel-vacuum-insulated-tumbler-various-18-20?utm_source=rss&utm_content=fp&utm_medium=RSS2",
+   "watch_item": null
   },
   "6dea56663d569aa5": {
    "digested": false,
@@ -1137,6 +1286,28 @@
    "url": "https://www.reddit.com/r/BuyItForLife/comments/1xc8ftk/rice_cooker_older_than_me/",
    "watch_item": null
   },
+  "7dea10f166697d9e": {
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "notified": false,
+   "price": 23.95,
+   "score": 0.0,
+   "source": "slickdeals:frontpage",
+   "title": "ALLSWIFIT Women's Mesh Lace-Up Walking Shoes (3 Colors) $23.95 + Free S&H",
+   "url": "https://slickdeals.net/f/20187957-allswifit-women-s-mesh-lace-up-walking-shoes-3-colors-23-93-free-shipping-w-prime-or-on-35?utm_source=rss&utm_content=fp&utm_medium=RSS2"
+  },
+  "7f56ce6565e2b785": {
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "notified": false,
+   "price": null,
+   "score": 0.0,
+   "source": "slickdeals:search",
+   "title": "Rise and Rhythm Cruise for Two with iHeartRadio Sweepstakes ~ 11/1/2026",
+   "url": "https://slickdeals.net/f/20192874-rise-and-rhythm-cruise-for-two-with-iheartradio-sweepstakes-11-1-2026?utm_source=rss&utm_content=def&utm_medium=RSS2"
+  },
   "81e53e452a6a131b": {
    "digested": false,
    "first_seen": "2026-10-23T02:46:13+00:00",
@@ -1151,6 +1322,17 @@
    "title": "[Laptop] ASUS Zenbook A14, Snapdragon X Plus 8 Core, 16GB RAM, 512GB SSD, 14\" 2K OLED - $331.99 OPEN BOX",
    "url": "https://www.reddit.com/r/buildapcsales/comments/1xbfke5/laptop_asus_zenbook_a14_snapdragon_x_plus_8_core/",
    "watch_item": null
+  },
+  "82926bee720de58a": {
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "notified": false,
+   "price": 0.89,
+   "score": 0.0,
+   "source": "slickdeals:popular",
+   "title": "10-Count The Honest Company Multi-Use Baby Wipes (Pattern Play) $0.89 w/ S&S + Free Shipping w/ Prime or on $35+",
+   "url": "https://slickdeals.net/f/20195316-10-count-the-honest-company-multi-use-baby-wipes-pattern-play-0-89-w-s-s-free-shipping-w-prime-or-on-35?utm_source=rss&utm_content=ht&utm_medium=RSS2"
   },
   "82d56868c04ebf42": {
    "digested": false,
@@ -1168,9 +1350,10 @@
    "watch_item": null
   },
   "82e1b273602dc829": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 9.9,
@@ -1198,9 +1381,10 @@
    "watch_item": null
   },
   "85072a1220632a73": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 8.0,
@@ -1273,9 +1457,10 @@
    "watch_item": null
   },
   "8e32cc6d048d9c5b": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 3.0,
@@ -1363,9 +1548,10 @@
    "watch_item": null
   },
   "957350e9fa27b50e": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 11.0,
@@ -1513,9 +1699,10 @@
    "watch_item": null
   },
   "9cca3c7d981c327d": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": null,
@@ -1633,15 +1820,20 @@
    "watch_item": null
   },
   "a9c17f76ea52f762": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T03:05:24+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
+   "gift_match": false,
    "notified": false,
    "price": 32.99,
+   "price_note": "",
+   "reason": "",
    "score": 0.0,
    "source": "slickdeals:popular",
    "title": "[Prime] 5000A S Zevzo A11 Portable Jump Starter for 10L Gas & 7L Diesel Engines w/ LCD Display & Flashlight $32.99 + Free Shipping",
-   "url": "https://slickdeals.net/f/20194767-prime-5000a-s-zevzo-a11-portable-jump-starter-for-10l-gas-7l-diesel-engines-w-lcd-display-flashlight-32-99-free-shipping?utm_source=rss&utm_content=ht&utm_medium=RSS2"
+   "url": "https://slickdeals.net/f/20194767-prime-5000a-s-zevzo-a11-portable-jump-starter-for-10l-gas-7l-diesel-engines-w-lcd-display-flashlight-32-99-free-shipping?utm_source=rss&utm_content=ht&utm_medium=RSS2",
+   "watch_item": null
   },
   "aa1bf7f888f42684": {
    "digested": false,
@@ -1700,15 +1892,20 @@
    "watch_item": null
   },
   "ad2e9a05ad26e4f6": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T03:05:24+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
+   "gift_match": false,
    "notified": false,
    "price": 7.99,
+   "price_note": "",
+   "reason": "",
    "score": 0.0,
    "source": "slickdeals:popular",
    "title": "Briignite Halloween Ghost Campfire Flickering LED Plug-In Night Light (Various Styles) $7.99 + Free Shipping w/ Prime or on $35+",
-   "url": "https://slickdeals.net/f/20195079-briignite-halloween-ghost-campfire-flickering-led-plug-in-night-light-various-styles-7-99-free-shipping-w-prime-or-on-35?utm_source=rss&utm_content=ht&utm_medium=RSS2"
+   "url": "https://slickdeals.net/f/20195079-briignite-halloween-ghost-campfire-flickering-led-plug-in-night-light-various-styles-7-99-free-shipping-w-prime-or-on-35?utm_source=rss&utm_content=ht&utm_medium=RSS2",
+   "watch_item": null
   },
   "ad5bc9b063055cf5": {
    "digested": false,
@@ -1756,9 +1953,10 @@
    "watch_item": null
   },
   "afac70436a42a817": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 22.3,
@@ -1831,9 +2029,10 @@
    "watch_item": null
   },
   "b5a2a3c6db5043ea": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 159.95,
@@ -1905,6 +2104,17 @@
    "url": "https://www.reddit.com/r/buildapcsales/comments/1xbe79g/prebuilt_msi_codex_r2_b14nvn7440us_desktop_pc/",
    "watch_item": null
   },
+  "bcb86bf63dc5e914": {
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "notified": false,
+   "price": 19.99,
+   "score": 0.0,
+   "source": "slickdeals:popular",
+   "title": "ZITY 3-Pack Men Polo Shirts Short Sleeve Athletic Golf Polos with Pocket $19.99 AC",
+   "url": "https://slickdeals.net/f/20189709-zity-3-pack-men-polo-shirts-short-sleeve-athletic-golf-polos-with-pocket-19-99-ac?utm_source=rss&utm_content=ht&utm_medium=RSS2"
+  },
   "bd22aba47b235810": {
    "digested": false,
    "first_seen": "2026-10-23T02:46:13+00:00",
@@ -1921,9 +2131,10 @@
    "watch_item": null
   },
   "c2c0e345106c2b42": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:43:11+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 16.99,
@@ -1936,9 +2147,10 @@
    "watch_item": null
   },
   "c2ef5a0d9a9c38ae": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 100.0,
@@ -2010,6 +2222,17 @@
    "url": "https://slickdeals.net/f/20193261-wolfbox-mt600-40v-620cfm-cordless-leaf-blower-w-2-batteries-130-free-s-h?utm_source=rss&utm_content=ht&utm_medium=RSS2",
    "watch_item": null
   },
+  "c9883ca2d820e95f": {
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "notified": false,
+   "price": 12.99,
+   "score": 0.0,
+   "source": "slickdeals:search",
+   "title": "ESR 3-in-1 15W MagSafe Foldable Wireless Charging Station $12.99 + Free Shipping w/ Prime or on $35+",
+   "url": "https://slickdeals.net/f/20188386-esr-3-in-1-15w-magsafe-foldable-wireless-charging-station-12-99-free-shipping-w-prime-or-on-35?utm_source=rss&utm_content=def&utm_medium=RSS2"
+  },
   "cb9a24c02dcab9df": {
    "digested": false,
    "first_seen": "2026-10-23T02:46:13+00:00",
@@ -2024,6 +2247,17 @@
    "title": "Eberjey vs ekouaer vs soma: which silky pajama set is actually worth it?",
    "url": "https://www.reddit.com/r/BuyItForLife/comments/1xbig97/eberjey_vs_ekouaer_vs_soma_which_silky_pajama_set/",
    "watch_item": null
+  },
+  "ccd3c348d1462db6": {
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "notified": false,
+   "price": null,
+   "score": 0.0,
+   "source": "slickdeals:search",
+   "title": "Tortuga Music Festival 2027 Sweepstakes ~ 11/22/2026",
+   "url": "https://slickdeals.net/f/20192556-tortuga-music-festival-2027-sweepstakes-11-22-2026?utm_source=rss&utm_content=def&utm_medium=RSS2"
   },
   "cda9fcd86fc74f34": {
    "digested": false,
@@ -2056,9 +2290,10 @@
    "watch_item": null
   },
   "ce9ec7dd82fdcf6b": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:46:13+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 30.0,
@@ -2096,9 +2331,10 @@
    "url": "https://slickdeals.net/f/20193573-zity-lightweight-mens-waterproof-windbreaker-11-99-after-coupon?utm_source=rss&utm_content=ht&utm_medium=RSS2"
   },
   "d45fb166c84e7084": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:46:13+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 11.99,
@@ -2126,9 +2362,10 @@
    "watch_item": null
   },
   "d70de860083bace0": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 11.0,
@@ -2231,9 +2468,10 @@
    "watch_item": null
   },
   "e3f6e068a8077a84": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 120.0,
@@ -2277,9 +2515,10 @@
    "watch_item": null
   },
   "e934fb0001c03d59": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 22.0,
@@ -2291,10 +2530,29 @@
    "url": "https://slickdeals.net/f/20171673-scary-halloween-hanging-swinging-doll-4-6ft-21-99-with-code?utm_source=rss&utm_content=fp&utm_medium=RSS2",
    "watch_item": null
   },
+  "eac5dc9034801163": {
+   "candidate": true,
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "gift_match": true,
+   "match_hint": "Designer purse or handbag",
+   "notified": true,
+   "price": 119.0,
+   "price_note": "",
+   "reason": "Stylish weekender bag fits budget and can be shared by them.",
+   "score": 0.88,
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "source": "slickdeals:search",
+   "title": "Michael Kors Extra Large Weekender Bag $119",
+   "url": "https://slickdeals.net/f/20192208-michael-kors-extra-large-weekender-bag-119?utm_source=rss&utm_content=def&utm_medium=RSS2",
+   "watch_item": "Designer purse or handbag"
+  },
   "eb939202b3afe953": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": null,
@@ -2367,9 +2625,10 @@
    "watch_item": null
   },
   "f1be8a726f1cde61": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 30.0,
@@ -2382,9 +2641,10 @@
    "watch_item": null
   },
   "f320bcf250d4b766": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:46:13+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": null,
@@ -2455,6 +2715,24 @@
    "title": "[Monitor] Sam's Club (Check local warehouse) ASUS TUF VG279Q5R - $59.00",
    "url": "https://www.reddit.com/r/buildapcsales/comments/1xbfk23/monitor_sams_club_check_local_warehouse_asus_tuf/",
    "watch_item": null
+  },
+  "fbef583413601e8d": {
+   "candidate": true,
+   "digested": false,
+   "first_seen": "2026-10-23T03:39:22+00:00",
+   "fp": "b1f8b1cdcf",
+   "gift_match": true,
+   "match_hint": "Watch from a good brand",
+   "notified": false,
+   "price": 211.84,
+   "price_note": "",
+   "reason": "Quality watch at good price, but personal rather than shared gift.",
+   "score": 0.55,
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "source": "slickdeals:search",
+   "title": "Citizen Men's Classic Eco-Drive Watch with 3-Hand Day and Date, Brown Leather Strap/ Rose Gold $211.84",
+   "url": "https://slickdeals.net/f/20194011-citizen-men-s-classic-eco-drive-watch-with-3-hand-day-and-date-brown-leather-strap-rose-gold-211-84?utm_source=rss&utm_content=def&utm_medium=RSS2",
+   "watch_item": "Watch from a good brand"
   },
   "fc2bb9e8da9a0f7b": {
    "digested": false,
@@ -2548,9 +2826,10 @@
    "watch_item": null
   },
   "ffe027db10efda85": {
+   "candidate": false,
    "digested": false,
    "first_seen": "2026-10-23T02:34:37+00:00",
-   "fp": "c54fe7b0e7",
+   "fp": "b1f8b1cdcf",
    "gift_match": false,
    "notified": false,
    "price": 70.0,
@@ -2579,7 +2858,37 @@
   }
  },
  "meta": {
-  "updated": "2026-10-23T03:21:03+00:00"
+  "updated": "2026-10-23T03:39:22+00:00"
  },
- "prices": {}
+ "prices": {
+  "Designer purse or handbag": [
+   {
+    "at": "2026-10-23T03:39:22+00:00",
+    "deal": "eac5dc9034801163",
+    "price": 119.0
+   }
+  ],
+  "Watch from a good brand": [
+   {
+    "at": "2026-10-23T03:39:22+00:00",
+    "deal": "1ae1ee5cdeff519c",
+    "price": 217.95
+   },
+   {
+    "at": "2026-10-23T03:39:22+00:00",
+    "deal": "fbef583413601e8d",
+    "price": 211.84
+   },
+   {
+    "at": "2026-10-23T03:39:22+00:00",
+    "deal": "0f943d1a788a3525",
+    "price": 106.95
+   },
+   {
+    "at": "2026-10-23T03:39:22+00:00",
+    "deal": "3d81675d04e251de",
+    "price": 851.4
+   }
+  ]
+ }
 }
