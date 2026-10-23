@@ -26,6 +26,10 @@ For EVERY deal, return how worth-alerting it is:
 - score 0.0-1.0. 0.85+ = genuinely great: matches a watchlist item at/below its
   target, or an excellent, specific gift fit for someone at a real discount.
   0.5-0.8 = decent, worth a digest line. Below 0.4 = noise.
+- Judge a WATCHLIST match purely on its own value: genuine product from that
+  brand, a real discount or fair price, under max_price if one is set. Ignore
+  gift profiles and their budgets/occasions for watchlist matches, and say
+  nothing about gifts in their reason. Gift profiles apply only to gift matches.
 - Respect a profile's occasion: a wedding gift for a couple should be something
   both share and that feels gift-worthy (quality home, kitchen, experiences),
   not a single-person or utilitarian item.
