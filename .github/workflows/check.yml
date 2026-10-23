@@ -28,8 +28,9 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - name: Items per source
-        run: python -m dealsgalore sources --config "${{ inputs.config }}"
+        run: python -m dealsgalore sources --config "$CONFIG"
         env:
+          CONFIG: ${{ inputs.config || 'config.yaml' }}   # passed as data, not shell
           BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
       - name: Test LLM scoring
         run: python -m dealsgalore test-llm
