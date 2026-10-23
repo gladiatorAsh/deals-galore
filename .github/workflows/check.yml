@@ -27,6 +27,11 @@ jobs:
         run: python -m dealsgalore sources
         env:
           BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
+      - name: Test LLM scoring
+        run: python -m dealsgalore test-llm
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       - name: Test notification
         if: ${{ inputs.test_notify }}
         run: python -m dealsgalore test-notify

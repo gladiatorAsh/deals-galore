@@ -26,7 +26,7 @@ class GitHubAnnotationHandler(logging.Handler):
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="dealsgalore")
-    ap.add_argument("command", choices=["scan", "digest", "sources", "test-notify"])
+    ap.add_argument("command", choices=["scan", "digest", "sources", "test-notify", "test-llm"])
     ap.add_argument("--config", default="config.yaml")
     ap.add_argument("--store", default="data/deals.json")
     ap.add_argument("--dry-run", action="store_true", help="print alerts instead of sending them")
@@ -41,6 +41,26 @@ def main(argv: list[str] | None = None) -> int:
         logging.getLogger().addHandler(GitHubAnnotationHandler())
     cfg = load_config(args.config)
     notifiers = configured_notifiers(dry_run=args.dry_run)
+
+    if args.command == "test-llm":
+        from .llm import LLMClient, LLMUnavailable
+
+        llm = LLMClient(cfg.llm_providers)
+        if not llm.providers:
+            logging.getLogger("dealsgalore").warning(
+                "No LLM key set (GROQ_API_KEY or GEMINI_API_KEY); using rule-based scoring")
+            return 0
+        try:
+            data, provider = llm.complete_json(
+                'Reply with JSON only: {"ok": true}', "Health check from deals-galore.")
+        except LLMUnavailable as exc:
+            logging.getLogger("dealsgalore").error("LLM check failed: %s", exc)
+            return 1
+        msg = f"LLM scoring works via {provider} (reply: {data})"
+        print(msg)
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            print(f"::notice title=LLM check::{msg}", flush=True)
+        return 0
 
     if args.command == "sources":
         from .sources import FetchContext, fetch_all
