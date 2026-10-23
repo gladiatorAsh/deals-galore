@@ -53,6 +53,7 @@ class LLMClient:
     def __init__(self, providers: list[LLMProvider], session: Any = None):
         self.providers = [p for p in providers if p.api_key]
         self.exhausted: set[str] = set()
+        self.working: dict[str, str] = {}
         self.calls = 0
         self.session = session or requests
         if not self.providers:
@@ -88,36 +89,91 @@ class LLMClient:
             raise LLMError(f"unexpected response shape: {str(data)[:200]}", r.status_code)
         return data
 
+    def _list_models(self, p: LLMProvider) -> list[str]:
+        """Ask an OpenAI-compatible provider which models this key can use."""
+        url = chat_url(p.base_url).rsplit("/chat/completions", 1)[0] + "/models"
+        try:
+            r = self.session.get(url, headers={"Authorization": f"Bearer {p.api_key}"}, timeout=30)
+            if r.status_code >= 400:
+                return []
+            ids = [m.get("id", "") for m in (r.json().get("data") or [])]
+        except Exception:
+            return []
+        skip = ("whisper", "tts", "guard", "embed", "vision", "audio", "speech", "image", "compound")
+        ids = [i.removeprefix("models/") for i in ids if i and not any(k in i.lower() for k in skip)]
+        return sorted(ids)
+
+    def _try_model(self, p: LLMProvider, model: str, messages: list) -> dict[str, Any]:
+        body = {
+            "model": model,
+            "messages": messages,
+            "temperature": 0.2,
+            "response_format": {"type": "json_object"},
+        }
+        try:
+            return self._post(p, body)
+        except LLMError as exc:
+            if exc.status in (400, 422) and not _is_model_error(exc):
+                # Some models reject response_format; retry without it.
+                body.pop("response_format")
+                return self._post(p, body)
+            raise
+
     def complete_json(self, system: str, user: str) -> tuple[dict[str, Any], str]:
         last_error: Exception | None = None
         messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
         for p in self.providers:
             if p.name in self.exhausted:
                 continue
-            body = {
-                "model": p.model,
-                "messages": messages,
-                "temperature": 0.2,
-                "response_format": {"type": "json_object"},
-            }
-            try:
+            # Prefer the model that worked earlier this run, then the configured list.
+            candidates = [m for m in [self.working.get(p.name), *p.models] if m]
+            tried: set[str] = set()
+            discovered = False
+            while True:
+                model = next((m for m in candidates if m not in tried), None)
+                if model is None:
+                    if discovered:
+                        break
+                    discovered = True
+                    found = self._list_models(p)
+                    if found:
+                        log.warning("Configured models unavailable on %s; trying discovered: %s",
+                                    p.name, ", ".join(found[:5]))
+                    candidates = found
+                    continue
+                tried.add(model)
                 try:
-                    data = self._post(p, body)
+                    data = self._try_model(p, model, messages)
+                    self.calls += 1
+                    if self.working.get(p.name) != model:
+                        if model != p.models[0]:
+                            log.warning("Using %s model %s (update config.yaml to silence this)",
+                                        p.name, model)
+                        self.working[p.name] = model
+                    content = data["choices"][0].get("message", {}).get("content") or ""
+                    return _parse_json(content), f"{p.name}:{model}"
                 except LLMError as exc:
-                    if exc.status in (400, 422):
-                        # Some models reject response_format; retry without it.
-                        body.pop("response_format")
-                        data = self._post(p, body)
-                    else:
-                        raise
-                self.calls += 1
-                content = data["choices"][0].get("message", {}).get("content") or ""
-                return _parse_json(content), p.name
-            except Exception as exc:
-                status = getattr(exc, "status", None)
-                log.warning("LLM provider %s failed: %s", p.name, exc)
-                # Auth, quota and rate-limit problems won't fix themselves this run.
-                if status in (401, 403, 404, 429) or "rate" in str(exc).lower():
-                    self.exhausted.add(p.name)
-                last_error = exc
+                    last_error = exc
+                    if _is_model_error(exc):
+                        log.info("%s model %s unavailable: %s", p.name, model, exc)
+                        continue  # try the next model
+                    log.warning("LLM provider %s failed: %s", p.name, exc)
+                    if exc.status in (401, 403, 429) or "rate" in str(exc).lower():
+                        self.exhausted.add(p.name)
+                    break
+                except Exception as exc:  # unparseable content etc.
+                    log.warning("LLM provider %s failed: %s", p.name, exc)
+                    last_error = exc
+                    break
+            if p.name not in self.working:
+                self.exhausted.add(p.name)
         raise LLMUnavailable(str(last_error) if last_error else "no providers")
+
+
+def _is_model_error(exc: LLMError) -> bool:
+    text = str(exc).lower()
+    return exc.status in (400, 403, 404) and (
+        "model_not_found" in text or "does not exist" in text
+        or "model_decommissioned" in text or "decommissioned" in text
+        or ("model" in text and "not found" in text) or "no access to model" in text
+    )

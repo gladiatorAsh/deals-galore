@@ -20,7 +20,8 @@ llm:
   providers:
     - name: groq                     # console.groq.com, no credit card
       base_url: https://api.groq.com/openai/v1
-      model: llama-3.3-70b-versatile
+      # Preference order. If all are retired, the scanner picks one the key can use.
+      model: [openai/gpt-oss-120b, openai/gpt-oss-20b, llama-3.1-8b-instant]
       api_key_env: GROQ_API_KEY
     - name: gemini
       base_url: https://generativelanguage.googleapis.com/v1beta/openai/

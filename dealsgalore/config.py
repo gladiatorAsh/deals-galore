@@ -49,8 +49,12 @@ class GiftProfile:
 class LLMProvider:
     name: str
     base_url: str
-    model: str
+    model: str | list[str]  # one model or a preference list; first available wins
     api_key_env: str
+
+    @property
+    def models(self) -> list[str]:
+        return [self.model] if isinstance(self.model, str) else list(self.model)
 
     @property
     def api_key(self) -> str | None:
