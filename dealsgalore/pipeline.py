@@ -70,6 +70,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
         rec = store.deals.get(d.id)
         if rec:
             rec["last_seen"] = now_iso  # still listed by its source
+            rec["title"] = d.title  # sources may improve titles over time
         if rec and rec.get("fp") == fp and not rec.get("pending"):
             continue
         if not _fresh(d, st.max_age_hours) or is_excluded(d, st.exclude_keywords):
