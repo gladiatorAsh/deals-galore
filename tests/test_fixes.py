@@ -135,6 +135,20 @@ def test_shopify_products_to_deals():
         "Coach Landon Carryall – Bag $250.00 (was $450.00)",
         "Seiko Presage – Watch $300.00 (was $425.00)",
     ]
+    colorways = [
+        {"title": "Catalina Tote - Black", "vendor": "Lo &amp;amp; Sons", "handle": "c-black",
+         "variants": [{"price": "134.40", "compare_at_price": "168"}]},
+        {"title": "Catalina Tote - Navy", "vendor": "Lo &amp;amp; Sons", "handle": "c-navy",
+         "variants": [{"price": "134.40", "compare_at_price": "168"}]},
+        {"title": "Catalina Tote - Red", "vendor": "Lo &amp;amp; Sons", "handle": "c-red",
+         "variants": [{"price": "117.60", "compare_at_price": "168"}]},
+    ]
+    grouped = products_to_deals(colorways, "https://s.example", "b")
+    assert [d.title for d in grouped] == [
+        "Lo & Sons Catalina Tote $134.40 (was $168.00) · 2 colors",
+        "Lo & Sons Catalina Tote - Red $117.60 (was $168.00)",
+    ]
+    assert grouped[0].url == "https://s.example/products/c-black"
     assert deals[0].url == "https://shop.example.com/products/landon"
     assert (deals[0].price, deals[0].list_price, deals[0].store) == (250.0, 450.0, "Coach")
     assert deals[0].id != products_to_deals(

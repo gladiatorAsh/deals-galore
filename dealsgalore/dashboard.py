@@ -6,7 +6,7 @@ recipient names (those exist only in the GIFT_PROFILES secret).
 from __future__ import annotations
 
 import html
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 from pathlib import Path
 from typing import Any
@@ -122,7 +122,8 @@ def _item(rec: dict[str, Any], cat: str, is_top: bool, repo: str | None, tz) -> 
 def render(store: Store, output: str | Path, min_score: float, max_items: int,
            fp: str | None = None, browse_sources: list[str] | None = None,
            browse_hours: float = 48, browse_items: int = 80, repo: str | None = None,
-           browse_only_matches: bool = False, timezone_name: str | None = None) -> Path:
+           browse_only_matches: bool = False, timezone_name: str | None = None,
+           stale_hours: float = 12) -> Path:
     """One list, best first, with a filter chip per category actually present.
 
     Included: deals scored at/above min_score under the current config (fp), plus
@@ -130,7 +131,11 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
     priced deals from browse_sources. Top picks are those at/above min_score.
     """
     tz = _tz(timezone_name)
-    current = lambda v: fp is None or v.get("fp") == fp  # noqa: E731
+    fresh_cut = (datetime.now(timezone.utc) - timedelta(hours=stale_hours)).isoformat()
+    # Only deals scored under the current config and still listed by a source
+    # recently (drops expired posts and sold/removed items).
+    fresh = lambda v: v.get("last_seen", v["first_seen"]) >= fresh_cut  # noqa: E731
+    current = lambda v: (fp is None or v.get("fp") == fp) and fresh(v)  # noqa: E731
     rows: dict[str, dict[str, Any]] = {}
     for k, v in store.recent(min_score):
         if current(v):
@@ -142,7 +147,7 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
             if current(v):  # scores from an older config are stale
                 rows[k] = v
         elif not browse_only_matches and browse_sources and v.get("source") in browse_sources \
-                and v.get("price") is not None:
+                and v.get("price") is not None and fresh(v):
             rows[k] = v
     # Best score first (premium brands already carry a score boost), then newest.
     ordered = sorted(rows.values(), key=lambda v: (v.get("score") or 0, v["first_seen"]), reverse=True)

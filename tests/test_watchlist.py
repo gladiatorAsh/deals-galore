@@ -82,3 +82,19 @@ def test_dashboard_has_watch_buttons(tmp_path):
     assert 'data-c="Dyson V15 Detect"' in out and 'data-c="Other deals"' in out
     assert "Gift ideas" not in out
     assert "PDT" in out or "PST" in out
+
+
+def test_dashboard_hides_items_no_longer_listed(tmp_path):
+    from datetime import datetime, timedelta, timezone
+
+    from dealsgalore import dashboard
+    from dealsgalore.store import Store
+
+    st = Store(tmp_path / "d.json")
+    old = (datetime.now(timezone.utc) - timedelta(hours=20)).isoformat(timespec="seconds")
+    st.add_deal("gone", {"title": "Gone tote $150", "url": "https://g", "source": "s", "price": 150.0,
+                         "score": 0.9, "fp": "f", "watch_item": "Bags", "last_seen": old})
+    st.add_deal("live", {"title": "Live tote $150", "url": "https://l", "source": "s", "price": 150.0,
+                         "score": 0.9, "fp": "f", "watch_item": "Bags"})
+    out = dashboard.render(st, tmp_path / "i.html", 0.5, 10, fp="f").read_text()
+    assert "Live tote" in out and "Gone tote" not in out

@@ -43,6 +43,7 @@ class Store:
 
     def add_deal(self, deal_id: str, record: dict[str, Any]) -> None:
         record.setdefault("first_seen", _iso(_now()))
+        record.setdefault("last_seen", record["first_seen"])
         record.setdefault("notified", False)
         record.setdefault("digested", False)
         self.deals[deal_id] = record

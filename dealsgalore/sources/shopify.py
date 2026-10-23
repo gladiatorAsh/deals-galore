@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import html
 import logging
+import re
 from datetime import datetime, timezone
 from typing import Any
 from urllib.parse import urlparse
@@ -35,6 +36,20 @@ def _money(value: Any) -> float | None:
     return v if v > 0 else None
 
 
+def _text(value: Any) -> str:
+    """Decode HTML entities, including double-encoded ones ("&amp;amp;")."""
+    t = str(value or "")
+    for _ in range(3):
+        u = html.unescape(t)
+        if u == t:
+            break
+        t = u
+    return t.strip()
+
+
+_VARIANT_TAIL = re.compile(r"\s+[-–|/]\s+[^-–|/]+$")
+
+
 def _store_name(base: str) -> str:
     host = urlparse(base).netloc.lower().removeprefix("www.").removeprefix("us.").removeprefix("shop.")
     return host.split(".")[0]
@@ -43,7 +58,8 @@ def _store_name(base: str) -> str:
 def products_to_deals(products: list[dict[str, Any]], base: str, source: str,
                       store_label: str | None = None) -> list[Deal]:
     now = datetime.now(timezone.utc)
-    deals = []
+    deals: dict[tuple[str, str, float], Deal] = {}
+    colors: dict[tuple[str, str, float], int] = {}
     for p in products:
         best: tuple[float, float] | None = None
         for v in p.get("variants") or []:
@@ -55,15 +71,17 @@ def products_to_deals(products: list[dict[str, Any]], base: str, source: str,
         if not best or not p.get("handle"):
             continue
         price, was = best
-        vendor = html.unescape(p.get("vendor") or "").strip()
-        name = html.unescape(p.get("title") or "").strip()
-        ptype = html.unescape(p.get("product_type") or "").strip()
-        label = name if vendor and vendor.lower() in name.lower() else f"{vendor} {name}".strip()
-        if ptype and ptype.lower() not in label.lower():
-            label = f"{label} – {ptype}"
-        deals.append(Deal(
+        vendor, name, ptype = _text(p.get("vendor")), _text(p.get("title")), _text(p.get("product_type"))
+        # Colorways are often separate products ("Tote - Black", "Tote - Navy"):
+        # keep one card per product and price, linking to the first colorway.
+        base_name = _VARIANT_TAIL.sub("", name) or name
+        key = (vendor.lower(), base_name.lower(), round(price, 2))
+        colors[key] = colors.get(key, 0) + 1
+        if key in deals:
+            continue
+        deals[key] = Deal(
             source=source,
-            title=f"{label} ${price:,.2f} (was ${was:,.2f})",
+            title="",  # set below, once the colorway count is known
             url=f"{base}/products/{p['handle']}",
             published=now,
             summary=strip_html(p.get("body_html") or "", 300),
@@ -71,8 +89,19 @@ def products_to_deals(products: list[dict[str, Any]], base: str, source: str,
             list_price=was,
             id_salt=f"{price:.2f}",
             store=store_label or vendor or None,
-        ))
-    return deals
+        )
+        deals[key]._label = (vendor, name, base_name, ptype)  # type: ignore[attr-defined]
+    out = []
+    for key, d in deals.items():
+        vendor, name, base_name, ptype = d._label  # type: ignore[attr-defined]
+        shown = base_name if colors[key] > 1 else name
+        label = shown if vendor and vendor.lower() in shown.lower() else f"{vendor} {shown}".strip()
+        if ptype and ptype.lower() not in label.lower():
+            label = f"{label} – {ptype}"
+        extra = f" · {colors[key]} colors" if colors[key] > 1 else ""
+        d.title = f"{label} ${d.price:,.2f} (was ${d.list_price:,.2f}){extra}"
+        out.append(d)
+    return out
 
 
 def fetch(entry: dict[str, Any], ctx: FetchContext) -> list[Deal]:

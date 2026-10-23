@@ -63,10 +63,13 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
     fp = config_fingerprint(cfg)
     unique: dict[str, Deal] = {}
     rechecked = 0
+    now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
     for d in deals:
         if d.id in unique:
             continue
         rec = store.deals.get(d.id)
+        if rec:
+            rec["last_seen"] = now_iso  # still listed by its source
         if rec and rec.get("fp") == fp and not rec.get("pending"):
             continue
         if not _fresh(d, st.max_age_hours) or is_excluded(d, st.exclude_keywords):
@@ -133,6 +136,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             browse_items=cfg.dashboard.get("browse_items", 80),
             browse_only_matches=cfg.dashboard.get("browse_only_matches", False),
             timezone_name=cfg.dashboard.get("timezone"),
+            stale_hours=cfg.dashboard.get("stale_hours", 12),
             repo=cfg.dashboard.get("repo") or os.environ.get("GITHUB_REPOSITORY"),
         )
     store.save()
