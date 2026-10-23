@@ -91,6 +91,7 @@ class Scored:
     watch_item: str | None = None
     price_note: str = ""
     scored_by: str = "heuristic"
+    premium: str | None = None  # premium brand named in the deal
 
     @property
     def deal(self) -> Deal:

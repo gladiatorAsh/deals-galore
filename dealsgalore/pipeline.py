@@ -30,12 +30,12 @@ def _alert_from_scored(s: Scored) -> Alert:
     return Alert(
         title=d.title, url=d.url, price=d.price, score=s.score, source=d.source,
         reason=s.reason, recipient=s.recipient, watch_item=s.watch_item, price_note=s.price_note,
-        store=d.store,
+        store=d.store, premium=s.premium,
     )
 
 
 # Bump when scoring logic changes in a way that should re-check recent posts.
-SCORING_VERSION = 5
+SCORING_VERSION = 6
 
 
 def config_fingerprint(cfg: Config) -> str:
@@ -97,7 +97,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             store.add_deal(d.id, {"title": d.title, "url": d.url, "source": d.source,
                                   "price": d.price, "score": 0.0, "fp": fp, "store": d.store})
 
-    for s in sorted(scored, key=lambda x: x.score, reverse=True):
+    for s in sorted(scored, key=lambda x: (bool(x.premium), x.score), reverse=True):
         d = s.deal
         store.mark(
             d.id,
@@ -110,6 +110,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             scored_by=s.scored_by,
             candidate=True,  # matched your watchlist/gift keywords (shown in Browse)
             match_hint=(s.candidate.watch_items or ["Gift idea"])[0],
+            premium=s.premium,
         )
         already_logged = any(p["deal"] == d.id for p in store.prices.get(s.watch_item or "", []))
         if s.watch_item and d.price is not None and not already_logged:
@@ -149,7 +150,8 @@ def digest(cfg: Config, store: Store, notifiers: list[Notifier], hours: float = 
         log.info("Nothing new for the digest")
         return 0
     alerts = []
-    for _, rec in sorted(rows, key=lambda kv: kv[1].get("score", 0), reverse=True):
+    for _, rec in sorted(rows, key=lambda kv: (bool(kv[1].get("premium")), kv[1].get("score", 0)),
+                         reverse=True):
         # Recipient names aren't stored (public repo); re-derive them from the
         # private profiles at send time.
         recipient = None
@@ -162,7 +164,7 @@ def digest(cfg: Config, store: Store, notifiers: list[Notifier], hours: float = 
             title=rec["title"], url=rec["url"], price=rec.get("price"), score=rec.get("score", 0),
             source=rec["source"], reason=rec.get("reason", ""), recipient=recipient,
             watch_item=rec.get("watch_item"), price_note=rec.get("price_note", ""),
-            store=rec.get("store"),
+            store=rec.get("store"), premium=rec.get("premium"),
         ))
     subject = f"Deals digest — {len(alerts)} picks ({datetime.now(timezone.utc):%b %d})"
     if send_all(notifiers, "digest", alerts, subject):

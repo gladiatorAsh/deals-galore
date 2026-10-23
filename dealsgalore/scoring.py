@@ -33,6 +33,9 @@ For EVERY deal, return how worth-alerting it is:
 - Respect a profile's occasion: a wedding gift for a couple should be something
   both share and that feels gift-worthy (quality home, kitchen, experiences),
   not a single-person or utilitarian item.
+- Premium brands (listed in premium_brands) are the shopper's priority: a
+  genuine discount on one deserves a higher score than a similar discount on
+  an everyday brand.
 - Penalize: vague listings, accessories posing as the main product, refurbished
   or used unless the item says so, likely-expired posts, inflated "list price"
   discounts, and gifts that only loosely fit an interest.
@@ -85,6 +88,7 @@ def build_user_prompt(batch: list[Candidate], cfg: Config) -> str:
     return json.dumps(
         {
             "watchlist": _watch_block(cfg.watchlist),
+            "premium_brands": cfg.premium_brands,
             "gift_profiles": _profiles_block(cfg.gift_profiles),
             "deals": deals,
         },
@@ -197,6 +201,17 @@ def scrub_names(text: str, profiles: list[GiftProfile]) -> str:
     return text
 
 
+def premium_brand(title: str, brands: list[str]) -> str | None:
+    """The premium brand named in a title, if any (longest name wins)."""
+    from .prefilter import _has_phrase_prefix
+
+    low = title.lower()
+    for b in sorted(brands, key=len, reverse=True):
+        if _has_phrase_prefix(low, b):
+            return b
+    return None
+
+
 def score_candidates(
     candidates: list[Candidate], cfg: Config, llm: LLMClient, store: Store
 ) -> list[Scored]:
@@ -207,5 +222,8 @@ def score_candidates(
     for i, c in enumerate(candidates):
         s = by_llm.get(i) or heuristic_score(c, cfg)
         apply_price_history(s, cfg, store)
+        s.premium = premium_brand(c.deal.title, cfg.premium_brands)
+        if s.premium and s.score >= 0.4:  # boost real deals, not noise
+            s.score = min(1.0, s.score + cfg.premium_boost)
         results.append(s)
     return results

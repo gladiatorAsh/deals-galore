@@ -69,3 +69,13 @@ def test_watch_item_any_of_groups():
     assert match_watch(_d("TAG Heuer Formula 1 Chronograph $999", 999), w)
     assert not match_watch(_d("Seiko clock $40", 40), w)          # missing kind word
     assert not match_watch(_d("Apple Watch SE $199", 199), w)     # missing brand
+
+
+def test_premium_brand_detection_and_boost(tmp_path):
+    from dealsgalore.config import WatchItem
+    from dealsgalore.scoring import premium_brand
+
+    brands = ["omega", "tag heuer", "gucci", "saint laurent"]
+    assert premium_brand("TAG Heuer Carrera Chronograph $2,400", brands) == "tag heuer"
+    assert premium_brand("Saint Laurent Loulou bag $1,690", brands) == "saint laurent"
+    assert premium_brand("Seiko 5 Sports $189", brands) is None

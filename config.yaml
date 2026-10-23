@@ -68,6 +68,9 @@ sources:
     urls:
       - "https://news.google.com/rss/search?q=%22coach+outlet%22+OR+%22coach%22+bag+sale+when:2d&hl=en-US&gl=US&ceid=US:en"
       - "https://news.google.com/rss/search?q=handbag+OR+purse+sale+(%22kate+spade%22+OR+%22michael+kors%22+OR+%22tory+burch%22)+when:2d&hl=en-US&gl=US&ceid=US:en"
+      # premium brands
+      - "https://news.google.com/rss/search?q=(gucci+OR+prada+OR+%22saint+laurent%22+OR+fendi+OR+%22bottega+veneta%22+OR+celine+OR+burberry)+bag+(sale+OR+deal+OR+%22off%22)+when:2d&hl=en-US&gl=US&ceid=US:en"
+      - "https://news.google.com/rss/search?q=(omega+OR+%22tag+heuer%22+OR+tudor+OR+longines+OR+cartier+OR+breitling+OR+%22grand+seiko%22)+watch+(sale+OR+deal+OR+%22off%22)+when:2d&hl=en-US&gl=US&ceid=US:en"
       - "https://news.google.com/rss/search?q=(%22watch+deal%22+OR+%22watch+sale%22+OR+%22watches+on+sale%22)+(seiko+OR+citizen+OR+tissot+OR+hamilton+OR+bulova)+when:2d&hl=en-US&gl=US&ceid=US:en"
 
   # Deal blog with frequent Coach Outlet / Kate Spade / Michael Kors posts.
@@ -89,6 +92,14 @@ sources:
       - https://www.timex.com
       - https://www.vaerwatches.com
       - https://lorierwatches.com
+
+  # Pre-owned premium bags and watches from resellers, with their markdowns.
+  - type: shopify
+    name: resale
+    stores:
+      - https://www.lovethatbagetc.com     # pre-owned Louis Vuitton, Chanel, Gucci, ...
+      - https://www.fashionphile.com       # authenticated pre-owned luxury
+      - https://shop.hodinkee.com          # new and pre-owned watches
 
   # Deal aggregators: editors and communities post deals from every major
   # retailer (Costco, Walmart, Target, Macy's, Nordstrom, Amazon, Best Buy,
@@ -121,7 +132,8 @@ watchlist:
     any_of:
       - [seiko, grand seiko, tissot, citizen, hamilton, longines, omega, tag heuer, tudor,
          oris, bulova, orient, movado, rado, mido, certina, frederique constant, nomos,
-         sinn, victorinox, breitling, cartier, timex, vaer, lorier]
+         sinn, victorinox, breitling, cartier, timex, vaer, lorier, rolex, iwc,
+         panerai]
       - [watch, chronograph, timepiece, diver, automatic, wts]   # wts = r/Watchexchange sale post
 
   - item: Designer purses
@@ -130,8 +142,48 @@ watchlist:
       - [coach, kate spade, michael kors, tory burch, marc jacobs, longchamp, furla,
          rebecca minkoff, mulberry, burberry, ferragamo, gucci, prada, saint laurent, ysl,
          fendi, chloe, celine, givenchy, mz wallace, dagne dover, cuyana, lo & sons,
-         mansur gavriel, staud]
+         mansur gavriel, staud, louis vuitton, chanel, hermes, bottega veneta, loewe,
+         dior, balenciaga]
       - [purse, handbag, bag, tote, crossbody, satchel, clutch, hobo, shoulder bag]
+
+# Premium brands are your priority: their deals get a score boost, are listed
+# first on the dashboard and in alerts, and get their own "Premium" filter.
+premium:
+  boost: 0.1
+  brands:
+    # watches
+    - rolex
+    - omega
+    - grand seiko
+    - tudor
+    - cartier
+    - breitling
+    - tag heuer
+    - iwc
+    - panerai
+    - longines
+    - oris
+    - nomos
+    - frederique constant
+    # bags
+    - louis vuitton
+    - chanel
+    - hermes
+    - gucci
+    - prada
+    - saint laurent
+    - ysl
+    - bottega veneta
+    - celine
+    - loewe
+    - fendi
+    - dior
+    - balenciaga
+    - givenchy
+    - burberry
+    - ferragamo
+    - chloe
+    - mulberry
 
 # Retailers to recognize in deal posts ("... at Costco"); shown on alerts and
 # the dashboard. Add any store. Set only_stores to ignore deals from others.

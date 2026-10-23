@@ -93,6 +93,8 @@ class Config:
     dashboard: dict[str, Any]
     stores: list[str] = field(default_factory=list)  # retailer names to detect
     only_stores: list[str] = field(default_factory=list)  # if set, ignore other stores
+    premium_brands: list[str] = field(default_factory=list)  # ranked first, score boost
+    premium_boost: float = 0.1
 
 
 def _parse_profiles(raw: Any) -> list[GiftProfile]:
@@ -151,4 +153,6 @@ def load_config(path: str | Path = "config.yaml") -> Config:
         dashboard=dashboard,
         stores=[str(s) for s in data.get("stores") or []],
         only_stores=[str(s) for s in data.get("only_stores") or []],
+        premium_brands=[str(b) for b in (data.get("premium") or {}).get("brands", [])],
+        premium_boost=float((data.get("premium") or {}).get("boost", 0.1)),
     )

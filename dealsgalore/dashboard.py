@@ -41,6 +41,7 @@ h1{{font-size:28px;margin:0 0 4px;letter-spacing:-.02em}}.sub{{color:var(--muted
 .tag{{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:2px}}
 .tag.top::before{{content:"\2605 Top pick · ";color:var(--good)}}
 .empty{{color:var(--muted);padding:40px 0;text-align:center}}
+.prem{{background:#8a6d1f;color:#fff;border-radius:4px;padding:1px 6px;margin-right:6px;letter-spacing:.04em}}
 .row{{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}}
 .watch{{flex:none;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;white-space:nowrap}}
 .watch:hover{{color:var(--accent);border-color:var(--accent)}}
@@ -56,7 +57,7 @@ h1{{font-size:28px;margin:0 0 4px;letter-spacing:-.02em}}.sub{{color:var(--muted
 let cat='all';const top=document.getElementById('toponly');
 function render(){{let n=0;
 document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.c===cat));
-document.querySelectorAll('.deal').forEach(d=>{{const v=(cat==='all'||d.dataset.c===cat)&&(!top.checked||d.dataset.top==='1');
+document.querySelectorAll('.deal').forEach(d=>{{const v=(cat==='all'||d.dataset.c===cat||(cat==='premium'&&d.dataset.p==='1'))&&(!top.checked||d.dataset.top==='1');
 d.hidden=!v;n+=v;}});document.getElementById('none').hidden=n>0;}}
 document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{{cat=c.dataset.c;render();}});
 top.onchange=render;render();
@@ -102,6 +103,8 @@ def _item(rec: dict[str, Any], cat: str, is_top: bool, repo: str | None, tz) -> 
     ) if x)
     scored = rec.get("candidate") or rec.get("score")
     score = f'<div class="score">score {rec.get("score", 0):.2f}</div>' if scored else ""
+    prem = (f'<span class="prem">{html.escape(rec["premium"].title())}</span>'
+            if rec.get("premium") else "")
     watch = ""
     if repo:
         url = new_issue_url(repo, rec["title"], rec.get("price"))
@@ -109,8 +112,8 @@ def _item(rec: dict[str, Any], cat: str, is_top: bool, repo: str | None, tz) -> 
                  f'title="Track this exact item at a target price">{STAR}Watch</a>')
     return (
         f'<div class="deal{" top" if is_top else ""}" data-c="{html.escape(cat)}" '
-        f'data-top="{int(is_top)}"><div><div class="price">{html.escape(price)}</div>{score}</div><div>'
-        f'<div class="row"><div class="tag{" top" if is_top else ""}">{html.escape(cat)}</div>{watch}</div>'
+        f'data-p="{int(bool(rec.get("premium")))}" data-top="{int(is_top)}"><div><div class="price">{html.escape(price)}</div>{score}</div><div>'
+        f'<div class="row"><div class="tag{" top" if is_top else ""}">{prem}{html.escape(cat)}</div>{watch}</div>'
         f'<a class="t" href="{html.escape(rec["url"])}" target="_blank" rel="noopener">'
         f'{html.escape(rec["title"])}</a><div class="meta">{html.escape(meta)}</div></div></div>'
     )
@@ -141,21 +144,27 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
         elif not browse_only_matches and browse_sources and v.get("source") in browse_sources \
                 and v.get("price") is not None:
             rows[k] = v
-    ordered = sorted(rows.values(), key=lambda v: (v.get("score") or 0, v["first_seen"]), reverse=True)
+    # Top picks first; within them premium brands first; then by score and recency.
+    ordered = sorted(rows.values(), key=lambda v: (
+        (v.get("score") or 0) >= min_score, bool(v.get("premium")), v.get("score") or 0, v["first_seen"],
+    ), reverse=True)
     ordered = ordered[: max_items + browse_items]
 
     cards, counts = [], {}
-    n_top = 0
+    n_top = n_premium = 0
     for rec in ordered:
         cat = _category(rec)
         is_top = (rec.get("score") or 0) >= min_score
         n_top += is_top
         counts[cat] = counts.get(cat, 0) + 1
+        n_premium += bool(rec.get("premium"))
         cards.append(_item(rec, cat, is_top, repo, tz))
 
     # "All" plus one chip per category present (largest first); a lone category
     # needs no chip of its own.
     chips = [f'<button class="chip" data-c="all">All ({len(ordered)})</button>']
+    if n_premium:
+        chips.append(f'<button class="chip" data-c="premium">★ Premium ({n_premium})</button>')
     if len(counts) > 1:
         for cat, n in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0])):
             chips.append(f'<button class="chip" data-c="{html.escape(cat)}">{html.escape(cat)} ({n})</button>')

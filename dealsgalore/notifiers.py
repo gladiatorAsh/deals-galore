@@ -33,11 +33,13 @@ class Alert:
     watch_item: str | None = None
     price_note: str = ""
     store: str | None = None
+    premium: str | None = None
 
     @property
     def tag(self) -> str:
+        star = "★ Premium · " if self.premium else ""
         if self.watch_item:
-            return f"Watchlist: {self.watch_item}"
+            return f"{star}{self.watch_item}"
         if self.recipient:
             return f"Gift for {self.recipient}"
         return "Deal"
