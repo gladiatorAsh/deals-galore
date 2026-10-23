@@ -5,9 +5,9 @@ import re
 from dataclasses import dataclass, field
 from datetime import datetime
 
-_PRICE_RE = re.compile(r"\$\s?(\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?)")
+_PRICE_RE = re.compile(r"\$\s?(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?)(?![\d,])")
 _LIST_PRICE_RE = re.compile(
-    r"(?:reg\.?|regular|was|list|msrp|orig\.?|retail)\s*:?\s*\$\s?(\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?)",
+    r"(?:reg\.?|regular|was|list|msrp|orig\.?|retail)\s*:?\s*\$\s?(\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|\d+(?:\.\d{1,2})?)(?![\d,])",
     re.IGNORECASE,
 )
 

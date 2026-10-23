@@ -35,7 +35,7 @@ def _alert_from_scored(s: Scored) -> Alert:
 
 
 # Bump when scoring logic changes in a way that should re-check recent posts.
-SCORING_VERSION = 6
+SCORING_VERSION = 7
 
 
 def config_fingerprint(cfg: Config) -> str:
@@ -66,7 +66,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
         if d.id in unique:
             continue
         rec = store.deals.get(d.id)
-        if rec and rec.get("fp") == fp:
+        if rec and rec.get("fp") == fp and not rec.get("pending"):
             continue
         if not _fresh(d, st.max_age_hours) or is_excluded(d, st.exclude_keywords):
             continue
@@ -109,6 +109,8 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             price_note=s.price_note,
             scored_by=s.scored_by,
             candidate=True,  # matched your watchlist/gift keywords (shown in Browse)
+            # Rule-scored because the AI budget ran out: AI-score it next scan.
+            pending=bool(s.scored_by == "heuristic" and llm.providers),
             match_hint=(s.candidate.watch_items or ["Gift idea"])[0],
             premium=s.premium,
         )

@@ -140,3 +140,29 @@ def test_heuristic_demotes_priceless_watchlist_hits(cfg):
     news = Candidate(Deal("news", "Watch live: Hamilton debate tonight", "u"),
                      watch_items=["Dyson V15 Detect"])
     assert heuristic_score(news, cfg).score < cfg.settings.digest_threshold
+
+
+def test_parse_prices_without_thousands_comma():
+    assert parse_prices("[WTS] Oris 65 Divers Chronograph 40mm $1695 shipped")[0] == 1695.0
+    assert parse_prices("Rolex Datejust $12500 (was $14000)") == (12500.0, 14000.0)
+    assert parse_prices("Tudor BB58 $3,950") == (3950.0, None)
+    assert parse_prices("Coach tote $99.99") == (99.99, None)
+
+
+def test_budget_limited_matches_stay_pending(feed_xml, cfg, tmp_path, monkeypatch):
+    import json as _json
+
+    monkeypatch.setenv("FAKE_KEY", "x")
+    from dealsgalore.config import LLMProvider
+
+    cfg.llm_providers = [LLMProvider("fake", "https://invalid.example/v1", "m", "FAKE_KEY")]
+    cfg.settings.max_llm_batches_per_run = 0  # no AI budget this run
+    store = Store(tmp_path / "deals.json")
+    scan(cfg, store, [Recorder()], deals=parse_feed(feed_xml, "s"))
+    recs = _json.loads((tmp_path / "deals.json").read_text())["deals"].values()
+    cands = [r for r in recs if r.get("candidate")]
+    assert cands and all(r["pending"] for r in cands)
+    # next scan re-checks them
+    stats: dict = {}
+    scan(cfg, Store(tmp_path / "deals.json"), [Recorder()], deals=parse_feed(feed_xml, "s"), stats=stats)
+    assert stats["rechecked"] == len(cands)

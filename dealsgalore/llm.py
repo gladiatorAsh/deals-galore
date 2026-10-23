@@ -150,8 +150,8 @@ class LLMClient:
                     data = self._try_model(p, model, messages)
                     self.calls += 1
                     if self.working.get(p.name) != model:
-                        if model != p.models[0]:
-                            log.warning("Using %s model %s (update config.yaml to silence this)",
+                        if model not in p.models:
+                            log.warning("Using discovered %s model %s (update config.yaml)",
                                         p.name, model)
                         self.working[p.name] = model
                     content = data["choices"][0].get("message", {}).get("content") or ""
