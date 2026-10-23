@@ -116,3 +116,27 @@ def test_detect_store():
     assert detect_store("Fossil watch $59", stores) is None
     # "at X" beats an earlier incidental mention
     assert detect_store("Target-free shipping... Kate Spade bag $99 at Costco", stores) == "Costco"
+
+
+def test_shopify_products_to_deals():
+    from dealsgalore.sources.shopify import products_to_deals
+
+    products = [
+        {"title": "Landon Carryall", "vendor": "Coach", "product_type": "Bag", "handle": "landon",
+         "variants": [{"price": "250.00", "compare_at_price": "450.00", "available": True},
+                      {"price": "199.00", "compare_at_price": "450.00", "available": False}]},
+        {"title": "Full price tote", "vendor": "X", "handle": "fp",
+         "variants": [{"price": "100.00", "compare_at_price": None}]},
+        {"title": "Seiko Presage", "vendor": "Seiko", "product_type": "Watch", "handle": "p",
+         "variants": [{"price": "300", "compare_at_price": "425"}]},
+    ]
+    deals = products_to_deals(products, "https://shop.example.com", "brand:example")
+    assert [d.title for d in deals] == [
+        "Coach Landon Carryall – Bag $250.00 (was $450.00)",
+        "Seiko Presage – Watch $300.00 (was $425.00)",
+    ]
+    assert deals[0].url == "https://shop.example.com/products/landon"
+    assert (deals[0].price, deals[0].list_price, deals[0].store) == (250.0, 450.0, "Coach")
+    assert deals[0].id != products_to_deals(
+        [dict(products[0], variants=[{"price": "240", "compare_at_price": "450"}])],
+        "https://shop.example.com", "b")[0].id  # new price -> new deal id

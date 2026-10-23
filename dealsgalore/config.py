@@ -80,6 +80,7 @@ class Settings:
     request_timeout: float = 20
     user_agent: str = "deals-galore/0.1"
     exclude_keywords: list[str] = field(default_factory=list)
+    max_alerts_per_run: int = 5  # extra strong matches wait for the digest
 
 
 @dataclass

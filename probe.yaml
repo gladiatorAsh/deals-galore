@@ -1,0 +1,40 @@
+# Temporary: candidate sources tested by the Check workflow, then removed.
+watchlist: []
+sources:
+  - type: rss
+    name: gnews:coach
+    url: "https://news.google.com/rss/search?q=%22coach+outlet%22+OR+%22coach%22+bag+sale+when:2d&hl=en-US&gl=US&ceid=US:en"
+  - type: rss
+    name: gnews:handbags
+    url: "https://news.google.com/rss/search?q=handbag+OR+purse+sale+(%22kate+spade%22+OR+%22michael+kors%22+OR+%22tory+burch%22)+when:2d&hl=en-US&gl=US&ceid=US:en"
+  - type: rss
+    name: gnews:watches
+    url: "https://news.google.com/rss/search?q=watch+deal+(seiko+OR+citizen+OR+tissot+OR+hamilton+OR+bulova)+when:2d&hl=en-US&gl=US&ceid=US:en"
+  - type: rss
+    name: hip2save
+    url: https://hip2save.com/feed/
+  - type: rss
+    name: krazycouponlady
+    url: https://thekrazycouponlady.com/feed
+  - type: rss
+    name: dealsplus
+    url: https://www.dealsplus.com/rss/hot
+  - type: reddit
+    subreddits: [Watchexchange]
+  - type: shopify
+    name: brand
+    stores:
+      - https://www.mzwallace.com
+      - https://www.dagnedover.com
+      - https://www.rebeccaminkoff.com
+      - https://www.loandsons.com
+      - https://www.cuyana.com
+      - https://www.mansurgavriel.com
+      - https://us.polene-paris.com
+      - https://www.senreve.com
+      - https://www.staud.clothing
+      - https://www.timex.com
+      - https://www.baltic-watches.com
+      - https://www.vaerwatches.com
+      - https://lorierwatches.com
+      - https://noduswatches.com

@@ -8,6 +8,10 @@ on:
         description: "Also send a test notification"
         type: boolean
         default: true
+      config:
+        description: "Config file to test (e.g. a list of candidate sources)"
+        type: string
+        default: config.yaml
 
 permissions:
   contents: read
@@ -24,7 +28,7 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - name: Items per source
-        run: python -m dealsgalore sources
+        run: python -m dealsgalore sources --config "${{ inputs.config }}"
         env:
           BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
       - name: Test LLM scoring

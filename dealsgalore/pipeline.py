@@ -71,7 +71,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
         if not _fresh(d, st.max_age_hours) or is_excluded(d, st.exclude_keywords):
             continue
         d.fill_prices()
-        d.store = detect_store(f"{d.title} {d.summary}", cfg.stores)
+        d.store = d.store or detect_store(f"{d.title} {d.summary}", cfg.stores)
         if cfg.only_stores and d.store not in cfg.only_stores:
             continue
         unique[d.id] = d
@@ -114,7 +114,8 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
         already_logged = any(p["deal"] == d.id for p in store.prices.get(s.watch_item or "", []))
         if s.watch_item and d.price is not None and not already_logged:
             store.record_price(s.watch_item, d.price, d.id)
-        if s.score >= st.instant_threshold and not store.deals[d.id].get("notified"):
+        if (s.score >= st.instant_threshold and not store.deals[d.id].get("notified")
+                and stats["alerts"] < st.max_alerts_per_run):
             if send_all(notifiers, "alert", _alert_from_scored(s)):
                 store.mark(d.id, notified=True)
                 stats["alerts"] += 1
