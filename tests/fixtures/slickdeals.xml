@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>Slickdeals Frontpage</title>
+<item><title>Dyson V15 Detect Cordless Vacuum $449.99 (Reg. $749.99) + Free Shipping</title>
+<link>https://slickdeals.net/f/1111-dyson-v15</link><pubDate>{now}</pubDate>
+<description>Dyson V15 Detect at Target</description></item>
+<item><title>LEGO Ideas Botanical Bonsai Tree $39.99 at Amazon</title>
+<link>https://slickdeals.net/f/2222-lego-bonsai</link><pubDate>{now}</pubDate>
+<description>Great gift for adults and kids</description></item>
+<item><title>Paper towels 12-pack $14.99</title>
+<link>https://slickdeals.net/f/3333-paper-towels</link><pubDate>{now}</pubDate>
+<description>Subscribe and save</description></item>
+<item><title>Old expired-in-time post: Dyson V15 $399</title>
+<link>https://slickdeals.net/f/4444-old</link><pubDate>Mon, 01 Jan 2024 10:00:00 GMT</pubDate>
+<description>old</description></item>
+</channel></rss>

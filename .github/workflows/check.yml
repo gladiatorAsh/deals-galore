@@ -1,0 +1,39 @@
+name: Check sources and notifications
+
+# Run manually after editing config.yaml or adding secrets.
+on:
+  workflow_dispatch:
+    inputs:
+      test_notify:
+        description: "Also send a test notification"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Items per source
+        run: python -m dealsgalore sources
+        env:
+          BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
+      - name: Test notification
+        if: ${{ inputs.test_notify }}
+        run: python -m dealsgalore test-notify
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}

@@ -1,0 +1,47 @@
+name: Scan for deals
+
+on:
+  schedule:
+    - cron: "17 */2 * * *"   # every 2 hours (UTC); tighten during Black Friday week
+  workflow_dispatch:
+
+permissions:
+  contents: write   # commit data/deals.json and docs/index.html
+  models: read      # free GitHub Models inference with GITHUB_TOKEN
+
+concurrency:
+  group: deals-store
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Scan
+        run: python -m dealsgalore scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GIFT_PROFILES: ${{ secrets.GIFT_PROFILES }}
+          BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+
+      - name: Commit store and dashboard
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "chore: update deals"
+          git pull --rebase --autostash
+          git push

@@ -1,0 +1,21 @@
+# Gift profiles are private. Do NOT commit real ones to this public repo.
+#
+# In GitHub: Settings -> Secrets and variables -> Actions -> New repository
+# secret named GIFT_PROFILES, and paste YAML like this as its value.
+# Locally: copy this file to gifts.local.yaml (git-ignored).
+
+gift_profiles:
+  - name: Dad
+    interests: [woodworking, coffee, history books]
+    budget: [50, 150]
+    notes: Already owns a Chemex and a good chisel set.
+
+  - name: Niece
+    interests: [lego, art supplies, science kits]
+    budget: [25, 60]
+    notes: Age 8, loves anything with animals.
+
+  - name: Partner
+    interests: [yoga, skincare, cookbooks]
+    keywords: [lululemon, le creuset]   # brands or exact words to watch for
+    budget: [40, 200]

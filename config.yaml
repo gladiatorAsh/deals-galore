@@ -1,0 +1,67 @@
+# deals-galore configuration (public; this repo is public).
+# Gift profiles for family members are NOT here; see gifts.example.yaml.
+
+settings:
+  max_age_hours: 48          # ignore posts older than this
+  instant_threshold: 0.8     # push alert immediately at or above this score
+  digest_threshold: 0.5      # include in the daily digest at or above this score
+  max_llm_batches_per_run: 6 # each batch scores up to batch_size deals in ONE request
+  batch_size: 15
+  history_days: 90           # window for "is this really a low price?" checks
+  retention_days: 60         # how long seen deals are kept in data/deals.json
+  request_timeout: 20
+  user_agent: "deals-galore/0.1 (+https://github.com/gladiatorAsh/deals-galore)"
+  exclude_keywords: ["for parts", "expired", "dead deal"]
+
+# Free, OpenAI-compatible providers, tried in order. GitHub Models uses the
+# workflow's built-in GITHUB_TOKEN; Gemini needs a free GEMINI_API_KEY secret.
+llm:
+  providers:
+    - name: github-models
+      base_url: https://models.github.ai/inference
+      model: openai/gpt-4.1-mini
+      api_key_env: GITHUB_TOKEN
+    - name: gemini
+      base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+      model: gemini-2.5-flash-lite
+      api_key_env: GEMINI_API_KEY
+
+# Add or remove sources freely. Types: slickdeals, reddit, rss, bestbuy.
+sources:
+  - type: slickdeals
+    feeds: [frontpage, popular]
+    search_watchlist: true     # runs a Slickdeals search for each watchlist item
+    searches: []               # extra free-text searches, e.g. ["lego technic"]
+
+  - type: reddit
+    subreddits: [deals, buildapcsales, GameDeals, frugalmalefashion, BuyItForLife]
+    sort: new
+
+  # Any RSS/Atom feed works:
+  # - type: rss
+  #   name: my-favorite-blog
+  #   url: https://example.com/deals/feed
+
+  # Needs a free BESTBUY_API_KEY secret (developer.bestbuy.com):
+  # - type: bestbuy
+  #   skus: [6505727]
+
+# Specific things you want, with the price that would make you buy.
+# `match`: words that must ALL appear in a deal title (defaults to the item name).
+watchlist:
+  - item: LG C4 65" OLED TV
+    match: [lg, c4, "65"]
+    query: LG C4 65 OLED
+    max_price: 1400
+  - item: Dyson V15 Detect
+    match: [dyson, v15]
+    max_price: 500
+  - item: AirPods Pro 2
+    match: [airpods, pro]
+    max_price: 170
+
+dashboard:
+  enabled: true
+  min_score: 0.5
+  max_items: 100
+  output: docs/index.html
