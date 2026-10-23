@@ -15,7 +15,8 @@ settings:
                      # accessories / fakes that look like watch or bag deals
                      "watch band", "watch strap", "replacement band", "screen protector",
                      "replica", "dupe", "inspired by",
-                     "bag charm", "key holder", "keychain", "key ring", "strap only"]
+                     "bag charm", "key holder", "keychain", "key ring", "strap only",
+                     "bag strap", "– accessory"]
 
 # Free, OpenAI-compatible providers, tried in order. Each needs a free API key
 # saved as a repository secret; you only need one. Without any key, scoring

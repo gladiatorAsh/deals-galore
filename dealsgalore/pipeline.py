@@ -35,7 +35,7 @@ def _alert_from_scored(s: Scored) -> Alert:
 
 
 # Bump when scoring logic changes in a way that should re-check recent posts.
-SCORING_VERSION = 10
+SCORING_VERSION = 11
 
 
 def config_fingerprint(cfg: Config) -> str:
@@ -138,6 +138,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             browse_only_matches=cfg.dashboard.get("browse_only_matches", False),
             timezone_name=cfg.dashboard.get("timezone"),
             stale_hours=cfg.dashboard.get("stale_hours", 12),
+            hide_below=cfg.dashboard.get("hide_below", 0.3),
             repo=cfg.dashboard.get("repo") or os.environ.get("GITHUB_REPOSITORY"),
         )
     store.save()

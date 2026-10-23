@@ -123,7 +123,7 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
            fp: str | None = None, browse_sources: list[str] | None = None,
            browse_hours: float = 48, browse_items: int = 80, repo: str | None = None,
            browse_only_matches: bool = False, timezone_name: str | None = None,
-           stale_hours: float = 12) -> Path:
+           stale_hours: float = 12, hide_below: float = 0.3) -> Path:
     """One list, best first, with a filter chip per category actually present.
 
     Included: deals scored at/above min_score under the current config (fp), plus
@@ -144,7 +144,8 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
         if k in rows:
             continue
         if v.get("candidate"):
-            if current(v):  # scores from an older config are stale
+            # skip stale scores and matches the scorer rejected (suspicious prices etc.)
+            if current(v) and (v.get("score") or 0) >= hide_below:
                 rows[k] = v
         elif not browse_only_matches and browse_sources and v.get("source") in browse_sources \
                 and v.get("price") is not None and fresh(v):

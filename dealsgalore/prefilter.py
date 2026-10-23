@@ -43,7 +43,8 @@ def _has_term(text: str, term: str) -> bool:
 
 
 def is_excluded(deal: Deal, exclude: list[str]) -> bool:
-    text = _norm(f"{deal.title} {deal.summary}")
+    # Titles only: a real bag's description may well mention "shoulder strap".
+    text = _norm(deal.title)
     return any(k.lower() in text for k in exclude)
 
 

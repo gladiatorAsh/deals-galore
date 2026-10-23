@@ -98,3 +98,25 @@ def test_dashboard_hides_items_no_longer_listed(tmp_path):
                          "score": 0.9, "fp": "f", "watch_item": "Bags"})
     out = dashboard.render(st, tmp_path / "i.html", 0.5, 10, fp="f").read_text()
     assert "Live tote" in out and "Gone tote" not in out
+
+
+def test_dashboard_hides_rejected_matches(tmp_path):
+    from dealsgalore import dashboard
+    from dealsgalore.store import Store
+
+    st = Store(tmp_path / "d.json")
+    st.add_deal("scam", {"title": "Omega Speedmaster $250", "url": "https://s", "source": "r", "price": 250.0,
+                         "score": 0.1, "fp": "f", "candidate": True, "match_hint": "Watches"})
+    st.add_deal("ok", {"title": "Seiko Presage $350", "url": "https://o", "source": "r", "price": 350.0,
+                       "score": 0.45, "fp": "f", "candidate": True, "match_hint": "Watches"})
+    out = dashboard.render(st, tmp_path / "i.html", 0.5, 10, fp="f", browse_only_matches=True).read_text()
+    assert "Seiko Presage" in out and "Speedmaster" not in out
+
+
+def test_exclusions_check_titles_only():
+    from dealsgalore.models import Deal
+    from dealsgalore.prefilter import is_excluded
+
+    ex = ["bag strap", "– accessory"]
+    assert is_excluded(Deal("s", "Celine Logo Bag Strap – Accessory $446", "u"), ex)
+    assert not is_excluded(Deal("s", "Coach Tabby 26 $295", "u", summary="Detachable bag strap"), ex)
