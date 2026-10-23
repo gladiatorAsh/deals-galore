@@ -99,6 +99,7 @@ heuristic scoring.
 
 ## Adding sources
 
+- **Brand store on Shopify:** add its URL under a `type: shopify` source; only discounted items are read.
 - **Any RSS/Atom feed:** add a `type: rss` entry with a `url`. Most deal blogs and
   forums have one.
 - **New kind of source:** write `fetch(entry, ctx) -> list[Deal]` in

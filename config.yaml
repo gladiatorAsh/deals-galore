@@ -11,7 +11,7 @@ settings:
   retention_days: 60         # how long seen deals are kept in data/deals.json
   request_timeout: 20
   user_agent: "deals-galore/0.1 (+https://github.com/gladiatorAsh/deals-galore)"
-  exclude_keywords: ["for parts", "expired", "dead deal",
+  exclude_keywords: ["for parts", "expired", "dead deal", "[wtb]", "[wtt]",
                      # accessories / fakes that look like watch or bag deals
                      "watch band", "watch strap", "replacement band", "screen protector",
                      "replica", "dupe", "inspired by"]
@@ -59,6 +59,40 @@ sources:
     subreddits: [deals, frugalfemalefashion, frugalmalefashion]  # deal-only subs
     sort: new
 
+  # Pre-owned watches sold by individuals ([WTS] posts with prices). Often the
+  # best value on good brands, but buy with care: check the seller's history.
+  - type: reddit
+    subreddits: [Watchexchange]
+    sort: new
+
+  # Deal articles from news and shopping sites (People, NY Post, Today, ...).
+  - type: rss
+    name: news
+    urls:
+      - "https://news.google.com/rss/search?q=%22coach+outlet%22+OR+%22coach%22+bag+sale+when:2d&hl=en-US&gl=US&ceid=US:en"
+      - "https://news.google.com/rss/search?q=handbag+OR+purse+sale+(%22kate+spade%22+OR+%22michael+kors%22+OR+%22tory+burch%22)+when:2d&hl=en-US&gl=US&ceid=US:en"
+      - "https://news.google.com/rss/search?q=watch+deal+(seiko+OR+citizen+OR+tissot+OR+hamilton+OR+bulova)+when:2d&hl=en-US&gl=US&ceid=US:en"
+
+  # Deal blog with frequent Coach Outlet / Kate Spade / Michael Kors posts.
+  - type: rss
+    name: hip2save
+    url: https://hip2save.com/feed/
+
+  # Brand stores' own sale sections, with real sale vs. original prices.
+  # Stores with nothing on sale return 0 until their next sale.
+  - type: shopify
+    name: brand
+    stores:
+      - https://www.dagnedover.com
+      - https://www.loandsons.com
+      - https://www.mzwallace.com
+      - https://www.cuyana.com
+      - https://www.mansurgavriel.com
+      - https://www.staud.clothing
+      - https://www.timex.com
+      - https://www.vaerwatches.com
+      - https://lorierwatches.com
+
   # Deal aggregators: editors and communities post deals from every major
   # retailer (Costco, Walmart, Target, Macy's, Nordstrom, Amazon, Best Buy,
   # brand outlets...). Most stores publish no feed of their own and block
@@ -90,15 +124,16 @@ watchlist:
     any_of:
       - [seiko, grand seiko, tissot, citizen, hamilton, longines, omega, tag heuer, tudor,
          oris, bulova, orient, movado, rado, mido, certina, frederique constant, nomos,
-         sinn, victorinox, breitling, cartier]
-      - [watch, chronograph, timepiece, diver, automatic]
+         sinn, victorinox, breitling, cartier, timex, vaer, lorier]
+      - [watch, chronograph, timepiece, diver, automatic, wts]   # wts = r/Watchexchange sale post
 
   - item: Designer purses
     search: false
     any_of:
       - [coach, kate spade, michael kors, tory burch, marc jacobs, longchamp, furla,
          rebecca minkoff, mulberry, burberry, ferragamo, gucci, prada, saint laurent, ysl,
-         fendi, chloe, celine, givenchy, mz wallace, dagne dover, cuyana]
+         fendi, chloe, celine, givenchy, mz wallace, dagne dover, cuyana, lo & sons,
+         mansur gavriel, staud]
       - [purse, handbag, bag, tote, crossbody, satchel, clutch, hobo, shoulder bag]
 
 # Retailers to recognize in deal posts ("... at Costco"); shown on alerts and
