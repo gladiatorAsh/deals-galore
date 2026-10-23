@@ -56,3 +56,16 @@ def test_example_file_parses():
     profiles = _parse_profiles(data)
     assert profiles[0].name == "Brother & his wife"
     assert profiles[0].budget == (100.0, 400.0)
+
+
+def test_watch_item_any_of_groups():
+    from dealsgalore.config import WatchItem
+    from dealsgalore.prefilter import match_watch
+
+    w = WatchItem(item="Good watch", search=False,
+                  any_of=[["seiko", "tag heuer"], ["watch", "chronograph"]])
+    assert w.query is None and w.match == []
+    assert match_watch(_d("Seiko Presage Automatic Watches $299", 299), w)
+    assert match_watch(_d("TAG Heuer Formula 1 Chronograph $999", 999), w)
+    assert not match_watch(_d("Seiko clock $40", 40), w)          # missing kind word
+    assert not match_watch(_d("Apple Watch SE $199", 199), w)     # missing brand

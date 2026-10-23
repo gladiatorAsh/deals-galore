@@ -21,13 +21,20 @@ LOCAL_GIFT_FILES = ("gifts.local.yaml", "gifts.yaml")
 class WatchItem:
     item: str
     max_price: float | None = None
-    match: list[str] = field(default_factory=list)
+    match: list[str] = field(default_factory=list)  # ALL of these must appear
     query: str | None = None  # search phrase for sources that support search
+    # Groups of alternatives; the title must contain at least one term from EACH
+    # group, e.g. [[seiko, tissot], [watch]] = "a Seiko or Tissot ... watch".
+    any_of: list[list[str]] = field(default_factory=list)
+    search: bool = True  # run a source search for `query` (off for broad categories)
 
     def __post_init__(self) -> None:
-        if not self.match:
+        self.any_of = [[str(t) for t in ([g] if isinstance(g, str) else g)] for g in self.any_of]
+        if not self.match and not self.any_of:
             self.match = [w for w in self.item.lower().split() if len(w) > 1]
-        if not self.query:
+        if not self.search:
+            self.query = None
+        elif not self.query:
             self.query = self.item
 
 

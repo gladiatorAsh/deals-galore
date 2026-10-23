@@ -41,7 +41,7 @@ def config_fingerprint(cfg: Config) -> str:
     """Short hash of what decides a match. Only a hash is stored (public repo)."""
     payload = {
         "scoring": SCORING_VERSION,
-        "watch": [(w.item, w.max_price, w.match) for w in cfg.watchlist],
+        "watch": [(w.item, w.max_price, w.match, w.any_of) for w in cfg.watchlist],
         "gifts": [(p.name, p.interests, p.keywords, p.budget, p.occasion) for p in cfg.gift_profiles],
     }
     return hashlib.sha1(json.dumps(payload, sort_keys=True, default=str).encode()).hexdigest()[:10]
@@ -88,7 +88,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
     for d in unique.values():
         if store.seen(d.id):
             store.mark(d.id, fp=fp, price=d.price, score=0.0, watch_item=None, gift_match=False,
-                       reason="", price_note="")
+                       reason="", price_note="", candidate=False)
         else:
             store.add_deal(d.id, {"title": d.title, "url": d.url, "source": d.source,
                                   "price": d.price, "score": 0.0, "fp": fp})
@@ -104,6 +104,8 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             reason=scrub_names(s.reason, cfg.gift_profiles),
             price_note=s.price_note,
             scored_by=s.scored_by,
+            candidate=True,  # matched your watchlist/gift keywords (shown in Browse)
+            match_hint=(s.candidate.watch_items or ["Gift idea"])[0],
         )
         already_logged = any(p["deal"] == d.id for p in store.prices.get(s.watch_item or "", []))
         if s.watch_item and d.price is not None and not already_logged:
@@ -120,6 +122,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             fp=fp, browse_sources=cfg.dashboard.get("browse_sources"),
             browse_hours=cfg.dashboard.get("browse_hours", 48),
             browse_items=cfg.dashboard.get("browse_items", 80),
+            browse_only_matches=cfg.dashboard.get("browse_only_matches", False),
             repo=cfg.dashboard.get("repo") or os.environ.get("GITHUB_REPOSITORY"),
         )
     store.save()

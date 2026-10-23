@@ -51,10 +51,19 @@ def match_watch(deal: Deal, item: WatchItem) -> bool:
     title = _norm(deal.title)
     if not all(tok.lower() in title for tok in item.match):
         return False
+    for group in item.any_of:
+        if not any(_has_phrase_prefix(title, term) for term in group):
+            return False
     if item.max_price is not None and deal.price is not None:
         # Allow 10% headroom; the LLM/price check decides whether it's good.
         return deal.price <= item.max_price * 1.1
     return True
+
+
+def _has_phrase_prefix(text: str, phrase: str) -> bool:
+    """Phrase at a word start; the last word may continue ("watch" -> "watches")."""
+    words = [re.escape(w) for w in re.findall(r"[a-z0-9'&]+", phrase.lower())]
+    return bool(words) and re.search(r"\b" + r"[\s\-]+".join(words), text) is not None
 
 
 def _has_phrase(text: str, phrase: str) -> bool:

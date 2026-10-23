@@ -58,7 +58,11 @@ def _profiles_block(profiles: list[GiftProfile]) -> list[dict]:
 
 
 def _watch_block(watchlist: list[WatchItem]) -> list[dict]:
-    return [{"item": w.item, "max_price_usd": w.max_price} for w in watchlist]
+    return [
+        {"item": w.item, "max_price_usd": w.max_price,
+         **({"must_include_one_of_each": w.any_of} if w.any_of else {})}
+        for w in watchlist
+    ]
 
 
 def build_user_prompt(batch: list[Candidate], cfg: Config) -> str:

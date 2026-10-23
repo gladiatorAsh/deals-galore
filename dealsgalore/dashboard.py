@@ -63,7 +63,7 @@ show({default_tab});
 def _item(rec: dict[str, Any], browse: bool = False, repo: str | None = None) -> str:
     price = f"${rec['price']:,.0f}" if rec.get("price") is not None else "—"
     if browse:
-        kind, tag = "browse", "Deal"
+        kind, tag = "browse", rec.get("match_hint") or "Deal"
     elif rec.get("watch_item"):
         kind, tag = "watch", f"Watchlist · {rec['watch_item']}"
     else:
@@ -88,13 +88,20 @@ def _item(rec: dict[str, Any], browse: bool = False, repo: str | None = None) ->
 
 def render(store: Store, output: str | Path, min_score: float, max_items: int,
            fp: str | None = None, browse_sources: list[str] | None = None,
-           browse_hours: float = 48, browse_items: int = 80, repo: str | None = None) -> Path:
+           browse_hours: float = 48, browse_items: int = 80, repo: str | None = None,
+           browse_only_matches: bool = False) -> Path:
     """Picks = deals scored under the current config (fp); Browse = latest posts
     from curated feeds such as the Slickdeals front page, newest first."""
     picks = [(k, v) for k, v in store.recent(min_score) if fp is None or v.get("fp") == fp][:max_items]
     picked = {k for k, _ in picks}
     browse = []
-    if browse_sources:
+    if browse_only_matches:
+        # Every recent post that matched your watchlist/gift keywords, any score.
+        browse = [
+            (k, v) for k, v in store.recent(0.0, browse_hours)
+            if v.get("candidate") and v.get("fp") == fp and k not in picked
+        ][:browse_items]
+    elif browse_sources:
         browse = [
             (k, v) for k, v in store.recent(0.0, browse_hours)
             if v.get("source") in browse_sources and k not in picked and v.get("price") is not None

@@ -11,7 +11,10 @@ settings:
   retention_days: 60         # how long seen deals are kept in data/deals.json
   request_timeout: 20
   user_agent: "deals-galore/0.1 (+https://github.com/gladiatorAsh/deals-galore)"
-  exclude_keywords: ["for parts", "expired", "dead deal"]
+  exclude_keywords: ["for parts", "expired", "dead deal",
+                     # accessories / fakes that look like watch or bag deals
+                     "watch band", "watch strap", "replacement band", "screen protector",
+                     "replica", "dupe", "inspired by"]
 
 # Free, OpenAI-compatible providers, tried in order. Each needs a free API key
 # saved as a repository secret; you only need one. Without any key, scoring
@@ -29,27 +32,31 @@ llm:
       api_key_env: GEMINI_API_KEY
 
 # Add or remove sources freely. Types: slickdeals, reddit, rss, bestbuy.
+# Current focus: watches and designer purses.
 sources:
   - type: slickdeals
     feeds: [frontpage, popular]
-    search_watchlist: true     # runs a Slickdeals search for each watchlist item
-    # Extra free-text searches. These catch gift ideas that may not reach the
-    # front page; they cost no LLM calls unless a result matches a profile.
+    search_watchlist: true     # runs a Slickdeals search for each watchlist item with search on
+    # Brand searches catch deals that never reach the front page. They cost no
+    # LLM calls unless a result matches the watchlist below.
     searches:
-      # wedding / couple gifts
-      - le creuset
-      - staub dutch oven
-      - kitchenaid stand mixer
-      - breville espresso
-      - vitamix
-      - all-clad cookware
-      - wusthof knife set
-      - robot vacuum
-      - air purifier
-      - luggage set
+      # watches
+      - seiko watch
+      - tissot watch
+      - citizen watch
+      - hamilton watch
+      - orient watch
+      - bulova watch
+      # purses
+      - coach bag
+      - kate spade bag
+      - michael kors bag
+      - tory burch bag
+      - longchamp
+      - marc jacobs bag
 
   - type: reddit
-    subreddits: [deals, buildapcsales, GameDeals, frugalmalefashion]  # deal-only subs; avoid discussion subs
+    subreddits: [deals, frugalfemalefashion, frugalmalefashion]  # deal-only subs
     sort: new
 
   # Any RSS/Atom feed works:
@@ -61,26 +68,36 @@ sources:
   # - type: bestbuy
   #   skus: [6505727]
 
-# Specific things you want, with the price that would make you buy.
-# `match`: words that must ALL appear in a deal title (defaults to the item name).
+# What to watch for.
+#   match:   words that must ALL appear in the title
+#   any_of:  groups of alternatives; the title needs one term from EACH group
+#   max_price: alert at or below this price (omit to let the scorer judge value)
+# The dashboard's Watch button adds specific items here.
 watchlist:
-  - item: LG C4 65" OLED TV
-    match: [lg, c4, "65"]
-    query: LG C4 65 OLED
-    max_price: 1400
-  - item: Dyson V15 Detect
-    match: [dyson, v15]
-    max_price: 500
-  - item: AirPods Pro 2
-    match: [airpods, pro]
-    max_price: 170
+  - item: Watch from a good brand
+    search: false              # covered by the brand searches above
+    any_of:
+      - [seiko, grand seiko, tissot, citizen, hamilton, longines, omega, tag heuer, tudor,
+         oris, bulova, orient, movado, rado, mido, certina, frederique constant, nomos,
+         sinn, victorinox, breitling, cartier]
+      - [watch, chronograph, timepiece, diver, automatic]
+
+  - item: Designer purse or handbag
+    search: false
+    any_of:
+      - [coach, kate spade, michael kors, tory burch, marc jacobs, longchamp, furla,
+         rebecca minkoff, mulberry, burberry, ferragamo, gucci, prada, saint laurent, ysl,
+         fendi, chloe, celine, givenchy, mz wallace, dagne dover, cuyana]
+      - [purse, handbag, bag, tote, crossbody, satchel, clutch, hobo, shoulder bag]
 
 dashboard:
   enabled: true
   min_score: 0.5          # "For you" tab: watchlist and gift matches at or above this
   max_items: 100
   output: docs/index.html
-  # "Browse all" tab: latest deals from these community-vetted feeds (no alerts)
+  # "Browse all" tab: every recent post matching the watchlist, any score (no alerts).
+  # Set browse_only_matches: false to browse the whole Slickdeals front page instead.
+  browse_only_matches: true
   browse_sources: [slickdeals:frontpage, slickdeals:popular]
   browse_hours: 48
   browse_items: 80
