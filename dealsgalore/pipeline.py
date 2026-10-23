@@ -114,7 +114,12 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
 
     store.prune(st.retention_days, st.history_days)
     if cfg.dashboard.get("enabled", True):
-        dashboard.render(store, cfg.dashboard["output"], cfg.dashboard["min_score"], cfg.dashboard["max_items"])
+        dashboard.render(
+            store, cfg.dashboard["output"], cfg.dashboard["min_score"], cfg.dashboard["max_items"],
+            fp=fp, browse_sources=cfg.dashboard.get("browse_sources"),
+            browse_hours=cfg.dashboard.get("browse_hours", 48),
+            browse_items=cfg.dashboard.get("browse_items", 80),
+        )
     store.save()
     return scored
 
@@ -123,7 +128,12 @@ def digest(cfg: Config, store: Store, notifiers: list[Notifier], hours: float = 
     """Send everything above the digest threshold that hasn't been digested yet."""
     from .prefilter import match_profile
 
-    rows = [(k, v) for k, v in store.recent(cfg.settings.digest_threshold, hours) if not v.get("digested")]
+    # Only deals scored under the current watchlist/profiles (stale scores are skipped).
+    fp = config_fingerprint(cfg)
+    rows = [
+        (k, v) for k, v in store.recent(cfg.settings.digest_threshold, hours)
+        if not v.get("digested") and v.get("fp") == fp
+    ]
     if not rows:
         log.info("Nothing new for the digest")
         return 0

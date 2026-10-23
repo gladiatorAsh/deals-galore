@@ -32,39 +32,63 @@ h1{{font-size:28px;margin:0 0 4px;letter-spacing:-.02em}}.sub{{color:var(--muted
 .empty{{color:var(--muted);padding:40px 0;text-align:center}}
 </style></head><body><main>
 <h1>Deals Galore</h1>
-<p class="sub">{count} deals scored ≥ {min_score} · updated {updated} UTC</p>
-<div class="filters"><button class="on" data-f="all">All</button><button data-f="watch">Watchlist</button><button data-f="gift">Gift ideas</button></div>
+<p class="sub">{count} picks for you · {browse_count} recent deals to browse · updated {updated} UTC</p>
+<div class="filters">
+<button data-f="mine">For you ({count})</button><button data-f="watch">Watchlist</button>
+<button data-f="gift">Gift ideas</button><button data-f="browse">Browse all ({browse_count})</button></div>
+<p class="empty" id="none" hidden>Nothing here yet. Matches appear as new deals are posted.</p>
 <div id="list">{items}</div>
 </main><script>
-document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{{
-document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x===b));
-document.querySelectorAll('.deal').forEach(d=>d.hidden=b.dataset.f!=='all'&&d.dataset.kind!==b.dataset.f);}});
+function show(f){{
+document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x.dataset.f===f));
+let n=0;document.querySelectorAll('.deal').forEach(d=>{{const k=d.dataset.kind;
+const v=f==='mine'?k!=='browse':k===f;d.hidden=!v;n+=v;}});
+document.getElementById('none').hidden=n>0;}}
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>show(b.dataset.f));
+show({default_tab});
 </script></body></html>
 """
 
 
-def _item(rec: dict[str, Any]) -> str:
+def _item(rec: dict[str, Any], browse: bool = False) -> str:
     price = f"${rec['price']:,.0f}" if rec.get("price") is not None else "—"
-    kind = "watch" if rec.get("watch_item") else "gift"
-    tag = f"Watchlist · {rec['watch_item']}" if rec.get("watch_item") else "Gift idea"
+    if browse:
+        kind, tag = "browse", "Deal"
+    elif rec.get("watch_item"):
+        kind, tag = "watch", f"Watchlist · {rec['watch_item']}"
+    else:
+        kind, tag = "gift", "Gift idea"
     meta = " · ".join(
         x for x in (rec.get("source"), rec.get("reason"), rec.get("price_note"), rec["first_seen"][:16].replace("T", " ")) if x
     )
+    score = "" if browse else f'<div class="score">score {rec.get("score", 0):.2f}</div>'
     return (
         f'<div class="deal" data-kind="{kind}"><div><div class="price">{html.escape(price)}</div>'
-        f'<div class="score">score {rec.get("score", 0):.2f}</div></div><div>'
+        f'{score}</div><div>'
         f'<div class="tag">{html.escape(tag)}</div>'
         f'<a href="{html.escape(rec["url"])}" target="_blank" rel="noopener">{html.escape(rec["title"])}</a>'
         f'<div class="meta">{html.escape(meta)}</div></div></div>'
     )
 
 
-def render(store: Store, output: str | Path, min_score: float, max_items: int) -> Path:
-    rows = store.recent(min_score)[:max_items]
-    items = "".join(_item(rec) for _, rec in rows) or '<p class="empty">No deals yet.</p>'
+def render(store: Store, output: str | Path, min_score: float, max_items: int,
+           fp: str | None = None, browse_sources: list[str] | None = None,
+           browse_hours: float = 48, browse_items: int = 80) -> Path:
+    """Picks = deals scored under the current config (fp); Browse = latest posts
+    from curated feeds such as the Slickdeals front page, newest first."""
+    picks = [(k, v) for k, v in store.recent(min_score) if fp is None or v.get("fp") == fp][:max_items]
+    picked = {k for k, _ in picks}
+    browse = []
+    if browse_sources:
+        browse = [
+            (k, v) for k, v in store.recent(0.0, browse_hours)
+            if v.get("source") in browse_sources and k not in picked and v.get("price") is not None
+        ][:browse_items]
+    items = "".join(_item(rec) for _, rec in picks) + "".join(_item(rec, True) for _, rec in browse)
     page = PAGE.format(
-        count=len(rows),
-        min_score=min_score,
+        count=len(picks),
+        browse_count=len(browse),
+        default_tab="'mine'" if picks or not browse else "'browse'",
         updated=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"),
         items=items,
     )
