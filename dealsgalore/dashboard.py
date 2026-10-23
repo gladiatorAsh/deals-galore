@@ -134,7 +134,7 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
     fresh_cut = (datetime.now(timezone.utc) - timedelta(hours=stale_hours)).isoformat()
     # Only deals scored under the current config and still listed by a source
     # recently (drops expired posts and sold/removed items).
-    fresh = lambda v: v.get("last_seen", v["first_seen"]) >= fresh_cut  # noqa: E731
+    fresh = lambda v: v.get("last_seen", "") >= fresh_cut  # noqa: E731  (no stamp = legacy, stale)
     current = lambda v: (fp is None or v.get("fp") == fp) and fresh(v)  # noqa: E731
     rows: dict[str, dict[str, Any]] = {}
     for k, v in store.recent(min_score):
