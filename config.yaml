@@ -124,10 +124,12 @@ sources:
 # What to watch for.
 #   match:   words that must ALL appear in the title
 #   any_of:  groups of alternatives; the title needs one term from EACH group
-#   max_price: alert at or below this price (omit to let the scorer judge value)
+#   min_price / max_price: only deals priced in this range (omit to allow any)
 # The dashboard's Watch button adds specific items here.
 watchlist:
   - item: Watches
+    min_price: 100             # budget: $100–$500
+    max_price: 500
     search: false              # covered by the brand searches above
     any_of:
       - [seiko, grand seiko, tissot, citizen, hamilton, longines, omega, tag heuer, tudor,
@@ -137,6 +139,8 @@ watchlist:
       - [watch, chronograph, timepiece, diver, automatic, wts]   # wts = r/Watchexchange sale post
 
   - item: Designer purses
+    min_price: 100
+    max_price: 500
     search: false
     any_of:
       - [coach, kate spade, michael kors, tory burch, marc jacobs, longchamp, furla,

@@ -21,6 +21,7 @@ LOCAL_GIFT_FILES = ("gifts.local.yaml", "gifts.yaml")
 class WatchItem:
     item: str
     max_price: float | None = None
+    min_price: float | None = None  # skip deals cheaper than this
     match: list[str] = field(default_factory=list)  # ALL of these must appear
     query: str | None = None  # search phrase for sources that support search
     # Groups of alternatives; the title must contain at least one term from EACH

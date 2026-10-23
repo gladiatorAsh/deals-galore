@@ -79,3 +79,30 @@ def test_premium_brand_detection_and_boost(tmp_path):
     assert premium_brand("TAG Heuer Carrera Chronograph $2,400", brands) == "tag heuer"
     assert premium_brand("Saint Laurent Loulou bag $1,690", brands) == "saint laurent"
     assert premium_brand("Seiko 5 Sports $189", brands) is None
+
+
+def test_watch_item_price_range():
+    from dealsgalore.config import WatchItem
+    from dealsgalore.prefilter import match_watch
+
+    w = WatchItem(item="Watches", min_price=100, max_price=500, search=False,
+                  any_of=[["seiko", "omega"], ["watch"]])
+    assert match_watch(_d("Seiko Presage watch $349", 349), w)
+    assert match_watch(_d("Seiko watch $500", 500), w)
+    assert not match_watch(_d("Seiko 5 watch $89", 89), w)        # too cheap
+    assert not match_watch(_d("Omega Seamaster watch $3,900", 3900), w)  # over budget
+    assert not match_watch(_d("Seiko watch $520", 520), w)        # no headroom above max
+    assert match_watch(_d("Omega watch sale this weekend", None), w)  # price unknown: scorer decides
+
+
+def test_scored_price_outside_range_is_demoted(tmp_path):
+    from dealsgalore.config import Config, Settings, WatchItem
+    from dealsgalore.models import Candidate, Scored
+    from dealsgalore.scoring import apply_price_history
+    from dealsgalore.store import Store
+
+    w = WatchItem(item="Watches", min_price=100, max_price=500, search=False, any_of=[["seiko"]])
+    cfg = Config(Settings(), [], [w], [], [], {})
+    s = Scored(Candidate(_d("Seiko watch", 1695), watch_items=["Watches"]), score=0.9, watch_item="Watches")
+    apply_price_history(s, cfg, Store(tmp_path / "d.json"))
+    assert s.score == 0.2 and "budget" in s.price_note

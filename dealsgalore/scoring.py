@@ -27,7 +27,7 @@ For EVERY deal, return how worth-alerting it is:
   target, or an excellent, specific gift fit for someone at a real discount.
   0.5-0.8 = decent, worth a digest line. Below 0.4 = noise.
 - Judge a WATCHLIST match purely on its own value: genuine product from that
-  brand, a real discount or fair price, under max_price if one is set. Ignore
+  brand, a real discount or fair price, between min_price and max_price when set. Ignore
   gift profiles and their budgets/occasions for watchlist matches, and say
   nothing about gifts in their reason. Gift profiles apply only to gift matches.
 - Respect a profile's occasion: a wedding gift for a couple should be something
@@ -66,7 +66,7 @@ def _profiles_block(profiles: list[GiftProfile]) -> list[dict]:
 
 def _watch_block(watchlist: list[WatchItem]) -> list[dict]:
     return [
-        {"item": w.item, "max_price_usd": w.max_price,
+        {"item": w.item, "max_price_usd": w.max_price, "min_price_usd": w.min_price,
          **({"must_include_one_of_each": w.any_of} if w.any_of else {})}
         for w in watchlist
     ]
@@ -187,11 +187,14 @@ def apply_price_history(s: Scored, cfg: Config, store: Store) -> None:
             s.score = min(1.0, s.score + 0.1)
             s.price_note = f"Lowest price seen in {cfg.settings.history_days} days"
     watch = next((w for w in cfg.watchlist if w.item == s.watch_item), None)
+    out_of_range = None
     if watch and watch.max_price is not None and price > watch.max_price:
-        s.score = min(s.score, 0.6)
-        s.price_note = (s.price_note + "; " if s.price_note else "") + (
-            f"above your ${watch.max_price:.0f} target"
-        )
+        out_of_range = f"over your ${watch.max_price:.0f} budget"
+    elif watch and watch.min_price is not None and price < watch.min_price:
+        out_of_range = f"under your ${watch.min_price:.0f} minimum"
+    if out_of_range:  # e.g. the AI corrected a price the keyword filter misread
+        s.score = min(s.score, 0.2)
+        s.price_note = (s.price_note + "; " if s.price_note else "") + out_of_range
 
 
 def scrub_names(text: str, profiles: list[GiftProfile]) -> str:

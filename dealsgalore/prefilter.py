@@ -54,9 +54,11 @@ def match_watch(deal: Deal, item: WatchItem) -> bool:
     for group in item.any_of:
         if not any(_has_phrase_prefix(title, term) for term in group):
             return False
-    if item.max_price is not None and deal.price is not None:
-        # Allow 10% headroom; the LLM/price check decides whether it's good.
-        return deal.price <= item.max_price * 1.1
+    if deal.price is not None:
+        if item.max_price is not None and deal.price > item.max_price:
+            return False
+        if item.min_price is not None and deal.price < item.min_price:
+            return False
     return True
 
 
