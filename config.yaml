@@ -135,6 +135,10 @@ stores:
   - Kay Jewelers
   - Zales
   - Macy's Backstage
+  - eBay
+  - Woot
+  - Gap Factory
+  - Banana Republic Factory
 only_stores: []   # e.g. [Costco, Walmart, Nordstrom Rack]
 
 dashboard:
