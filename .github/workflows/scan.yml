@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write   # commit data/deals.json and docs/index.html
-  models: read      # free GitHub Models inference with GITHUB_TOKEN
 
 concurrency:
   group: deals-store
@@ -28,7 +27,7 @@ jobs:
       - name: Scan
         run: python -m dealsgalore scan
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GIFT_PROFILES: ${{ secrets.GIFT_PROFILES }}
           BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}

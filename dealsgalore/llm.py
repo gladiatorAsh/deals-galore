@@ -1,9 +1,7 @@
 """OpenAI-compatible chat client that falls through a list of free providers.
 
-GitHub Models works inside GitHub Actions with the built-in GITHUB_TOKEN (the
-workflow grants `models: read`), so the default setup needs no API keys at all.
-Gemini's OpenAI-compatible endpoint is the fallback when GitHub's daily quota
-runs out.
+Defaults: Groq's free tier first, Gemini's OpenAI-compatible endpoint as the
+fallback. Any OpenAI-compatible provider can be added in config.yaml.
 
 Calls go straight over HTTP (no SDK) so that any unexpected response is
 reported with its status and content type instead of failing obscurely.

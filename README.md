@@ -7,7 +7,7 @@ private **gift profiles** (family members' interests and budgets), and uses a
 free LLM to separate real finds from noise. Great matches are pushed to your
 phone right away; good ones arrive in a daily digest.
 
-Everything runs on free tiers: GitHub Actions, GitHub Models (with Gemini as a
+Everything runs on free tiers: GitHub Actions, Groq (with Gemini as a
 fallback), GitHub Pages, and Telegram/ntfy/Gmail.
 
 ```
@@ -15,7 +15,7 @@ GitHub Actions (every 2h)
   → fetch Slickdeals / Reddit / RSS / Best Buy
   → dedupe against data/deals.json, drop stale or excluded posts
   → keyword + budget prefilter (no LLM cost for the 95% that can't match)
-  → LLM scores matches in batches (GitHub Models → Gemini → heuristic)
+  → LLM scores matches in batches (Groq → Gemini → heuristic)
   → price-history check: down-rank "deals" above the 90-day median
   → instant alert (score ≥ 0.8) · daily digest (score ≥ 0.5) · dashboard
   → commit data/deals.json + docs/index.html
@@ -65,19 +65,22 @@ Other channels, all optional and usable alongside Telegram:
 | Email digest | `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_TO` | Gmail address plus a Google **app password** (needs 2-Step Verification). |
 
 ### 4. Optional extras
-- `GEMINI_API_KEY`: a free key from Google AI Studio, used when GitHub Models' daily quota runs out.
+- `GROQ_API_KEY` (recommended): free key from console.groq.com → API Keys, no credit card.
+  Turns on LLM scoring; without it, deals are scored by simple keyword and price rules.
+- `GEMINI_API_KEY`: free key from Google AI Studio, used as a fallback if Groq is unavailable.
 - `BESTBUY_API_KEY`: a free key from developer.bestbuy.com, for `bestbuy` SKU sources.
 
-GitHub Models needs no key: the workflow's built-in `GITHUB_TOKEN` has
-`models: read`.
 
 ### 5. Turn it on
 1. **Actions** tab → enable workflows if prompted.
 2. Run **Check sources and notifications** manually. It prints how many items
    each source returned and sends a test alert.
 3. Run **Scan for deals** once manually. After that it runs on its schedule.
-4. Optional dashboard: **Settings → Pages → Deploy from a branch → `main` / `/docs`**.
-   The dashboard never shows gift recipient names.
+4. Dashboard: **Settings → Pages → Build and deployment → Source: Deploy from a
+   branch → `main` / `/docs` → Save**. Because the owner's user site has a custom
+   domain, it is served at **https://www.ashutoshysingh.com/deals-galore/**
+   (otherwise `https://<user>.github.io/deals-galore/`). It refreshes after every
+   scan and never shows gift recipient names.
 
 ## Running locally
 
@@ -91,8 +94,7 @@ python -m dealsgalore digest --dry-run
 pytest -q
 ```
 
-Set `GITHUB_TOKEN` (a personal access token with the `models:read` permission)
-or `GEMINI_API_KEY` locally to use LLM scoring. Without either, it falls back to
+Set `GROQ_API_KEY` or `GEMINI_API_KEY` locally to use LLM scoring. Without either, it falls back to
 heuristic scoring.
 
 ## Adding sources
@@ -107,7 +109,7 @@ heuristic scoring.
 | Resource | Usage | Free limit |
 |---|---|---|
 | Actions minutes | ~12 runs/day × ~1 min | Unlimited on public repos |
-| GitHub Models | ≤ 6 batched requests per run, usually 0–2 | Daily per-model quota (low-tier models ~150/day) |
+| Groq | ≤ 6 batched requests per run, usually 0–2 | Free tier, about 1,000 requests/day for llama-3.3-70b |
 | Gemini | Fallback only | Free tier, about 5–15 requests/min |
 
 During Black Friday week you can change the cron in `scan.yml` to hourly.

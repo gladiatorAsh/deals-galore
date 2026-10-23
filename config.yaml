@@ -13,14 +13,15 @@ settings:
   user_agent: "deals-galore/0.1 (+https://github.com/gladiatorAsh/deals-galore)"
   exclude_keywords: ["for parts", "expired", "dead deal"]
 
-# Free, OpenAI-compatible providers, tried in order. GitHub Models uses the
-# workflow's built-in GITHUB_TOKEN; Gemini needs a free GEMINI_API_KEY secret.
+# Free, OpenAI-compatible providers, tried in order. Each needs a free API key
+# saved as a repository secret; you only need one. Without any key, scoring
+# falls back to simple keyword/price rules. (GitHub Models retired July 2026.)
 llm:
   providers:
-    - name: github-models
-      base_url: https://models.github.ai/inference
-      model: openai/gpt-4.1-mini
-      api_key_env: GITHUB_TOKEN
+    - name: groq                     # console.groq.com, no credit card
+      base_url: https://api.groq.com/openai/v1
+      model: llama-3.3-70b-versatile
+      api_key_env: GROQ_API_KEY
     - name: gemini
       base_url: https://generativelanguage.googleapis.com/v1beta/openai/
       model: gemini-2.5-flash-lite
