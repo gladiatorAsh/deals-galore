@@ -516,7 +516,7 @@
   },
   "0f943d1a788a3525": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-23T03:39:22+00:00",
    "fp": "3ee88eb095",
    "gift_match": false,
@@ -996,7 +996,7 @@
   },
   "1ae1ee5cdeff519c": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-23T03:39:22+00:00",
    "fp": "3ee88eb095",
    "gift_match": false,
@@ -2195,7 +2195,7 @@
   },
   "3d81675d04e251de": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-23T03:39:22+00:00",
    "fp": "3ee88eb095",
    "gift_match": false,
@@ -9418,7 +9418,7 @@
   },
   "eac5dc9034801163": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-23T03:39:22+00:00",
    "fp": "3ee88eb095",
    "gift_match": false,
@@ -10080,7 +10080,7 @@
   },
   "fbef583413601e8d": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-23T03:39:22+00:00",
    "fp": "3ee88eb095",
    "gift_match": false,
@@ -10350,7 +10350,7 @@
   }
  },
  "meta": {
-  "updated": "2026-10-23T18:26:05+00:00"
+  "updated": "2026-10-23T19:05:46+00:00"
  },
  "prices": {
   "Designer purse or handbag": [
