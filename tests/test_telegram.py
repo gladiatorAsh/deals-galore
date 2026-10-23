@@ -5,8 +5,17 @@ from dealsgalore.notifiers import Alert, TelegramNotifier, configured_notifiers
 
 
 class _Resp:
+    status_code = 200
+
+    def __init__(self, status_code=200, body=None):
+        self.status_code = status_code
+        self._body = body or {"ok": True}
+
     def raise_for_status(self):
         return None
+
+    def json(self):
+        return self._body
 
 
 def _capture(monkeypatch):
@@ -42,6 +51,18 @@ def test_telegram_digest_splits_long_messages(monkeypatch):
     assert len(calls) > 1
     assert all(len(c["json"]["text"]) <= 4000 for c in calls)
     assert sum(c["json"]["text"].count("example.com") for c in calls) == 60
+
+
+def test_telegram_error_explains_without_leaking_token(monkeypatch):
+    monkeypatch.setattr(
+        notifiers.requests, "post",
+        lambda *a, **k: _Resp(400, {"ok": False, "description": "Bad Request: chat not found"}),
+    )
+    try:
+        TelegramNotifier("SECRET:TOKEN", "1").alert(_alert())
+    except RuntimeError as exc:
+        msg = str(exc)
+    assert "chat not found" in msg and "TELEGRAM_CHAT_ID" in msg and "SECRET" not in msg
 
 
 def test_telegram_enabled_from_env(monkeypatch):

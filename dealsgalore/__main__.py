@@ -3,12 +3,25 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import sys
 
 from .config import load_config
 from .notifiers import Alert, configured_notifiers, send_all
 from .pipeline import digest, scan
 from .store import Store
+
+
+class GitHubAnnotationHandler(logging.Handler):
+    """Surface warnings/errors as annotations on the Actions run summary."""
+
+    def __init__(self) -> None:
+        super().__init__(level=logging.WARNING)
+
+    def emit(self, record: logging.LogRecord) -> None:
+        kind = "error" if record.levelno >= logging.ERROR else "warning"
+        msg = record.getMessage().replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+        print(f"::{kind} title={record.name}::{msg}", flush=True)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -24,6 +37,8 @@ def main(argv: list[str] | None = None) -> int:
         level=logging.DEBUG if args.verbose else logging.INFO,
         format="%(levelname)s %(name)s: %(message)s",
     )
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        logging.getLogger().addHandler(GitHubAnnotationHandler())
     cfg = load_config(args.config)
     notifiers = configured_notifiers(dry_run=args.dry_run)
 
@@ -42,7 +57,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "test-notify":
         a = Alert(title="deals-galore test notification", url="https://github.com/gladiatorAsh/deals-galore",
                   price=None, score=1.0, source="test", reason="If you can read this, alerts work.")
+        names = ", ".join(n.name for n in notifiers)
         ok = send_all(notifiers, "alert", a) + send_all(notifiers, "digest", [a], "deals-galore test digest")
+        if not ok:
+            logging.getLogger("dealsgalore").error("No test notification was delivered (channels: %s)", names)
         return 0 if ok else 1
 
     store = Store(args.store)

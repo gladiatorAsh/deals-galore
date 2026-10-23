@@ -84,7 +84,19 @@ class TelegramNotifier(Notifier):
             },
             timeout=20,
         )
-        r.raise_for_status()
+        if r.status_code >= 400:
+            # Telegram explains failures in the body, e.g. "chat not found" or
+            # "Unauthorized"; never include the URL, which contains the token.
+            try:
+                detail = r.json().get("description", "")
+            except ValueError:
+                detail = r.text[:200]
+            hint = {
+                401: "check TELEGRAM_BOT_TOKEN",
+                400: "check TELEGRAM_CHAT_ID and that you pressed Start in the bot chat",
+                403: "the bot was blocked or removed from the chat",
+            }.get(r.status_code, "")
+            raise RuntimeError(f"Telegram HTTP {r.status_code}: {detail} {('(' + hint + ')') if hint else ''}".strip())
 
     @staticmethod
     def _fmt(a: Alert) -> str:
