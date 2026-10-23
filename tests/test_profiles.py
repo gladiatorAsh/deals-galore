@@ -106,3 +106,21 @@ def test_scored_price_outside_range_is_demoted(tmp_path):
     s = Scored(Candidate(_d("Seiko watch", 1695), watch_items=["Watches"]), score=0.9, watch_item="Watches")
     apply_price_history(s, cfg, Store(tmp_path / "d.json"))
     assert s.score == 0.2 and "budget" in s.price_note
+
+
+def test_price_from_summary_and_require_price():
+    from dealsgalore.config import WatchItem
+    from dealsgalore.models import Deal
+    from dealsgalore.prefilter import match_watch
+
+    d = Deal("r/Watchexchange", "[WTS] Rolex GMT Master II Batgirl 126710BLNR", "u",
+             summary="Full set, 2023 card. Asking $14,250 shipped CONUS.")
+    d.fill_prices()
+    assert d.price == 14250.0
+    w = WatchItem(item="Watches", min_price=100, max_price=500, require_price=True,
+                  search=False, any_of=[["rolex", "seiko"]])
+    assert not match_watch(d, w)  # over budget, now that the price is known
+    assert not match_watch(Deal("news", "Seiko watch sale this weekend", "u"), w)  # no price
+    ok = Deal("r/Watchexchange", "[WTS] Seiko SPB143", "u", summary="Price: $450")
+    ok.fill_prices()
+    assert match_watch(ok, w)

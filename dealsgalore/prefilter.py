@@ -54,6 +54,8 @@ def match_watch(deal: Deal, item: WatchItem) -> bool:
     for group in item.any_of:
         if not any(_has_phrase_prefix(title, term) for term in group):
             return False
+    if deal.price is None and item.require_price:
+        return False
     if deal.price is not None:
         if item.max_price is not None and deal.price > item.max_price:
             return False

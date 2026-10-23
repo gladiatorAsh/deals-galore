@@ -35,14 +35,15 @@ def _alert_from_scored(s: Scored) -> Alert:
 
 
 # Bump when scoring logic changes in a way that should re-check recent posts.
-SCORING_VERSION = 8
+SCORING_VERSION = 9
 
 
 def config_fingerprint(cfg: Config) -> str:
     """Short hash of what decides a match. Only a hash is stored (public repo)."""
     payload = {
         "scoring": SCORING_VERSION,
-        "watch": [(w.item, w.max_price, w.min_price, w.match, w.any_of) for w in cfg.watchlist],
+        "watch": [(w.item, w.max_price, w.min_price, w.require_price, w.match, w.any_of)
+                  for w in cfg.watchlist],
         "gifts": [(p.name, p.interests, p.keywords, p.budget, p.occasion) for p in cfg.gift_profiles],
     }
     return hashlib.sha1(json.dumps(payload, sort_keys=True, default=str).encode()).hexdigest()[:10]

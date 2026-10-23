@@ -54,6 +54,9 @@ class Deal:
     def fill_prices(self) -> None:
         if self.price is None:
             price, list_price = parse_prices(self.title)
+            if price is None and self.summary:
+                # e.g. r/Watchexchange: the asking price is in the post, not the title
+                price, list_price = parse_prices(self.summary)
             self.price = price
             if self.list_price is None:
                 self.list_price = list_price

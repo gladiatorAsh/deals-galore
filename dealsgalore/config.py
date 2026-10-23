@@ -22,6 +22,7 @@ class WatchItem:
     item: str
     max_price: float | None = None
     min_price: float | None = None  # skip deals cheaper than this
+    require_price: bool = False  # skip posts with no price (can't check the budget)
     match: list[str] = field(default_factory=list)  # ALL of these must appear
     query: str | None = None  # search phrase for sources that support search
     # Groups of alternatives; the title must contain at least one term from EACH
