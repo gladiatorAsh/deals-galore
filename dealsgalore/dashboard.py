@@ -11,6 +11,11 @@ from pathlib import Path
 from typing import Any
 
 from .store import Store
+from .watchlist import new_issue_url
+
+STAR = ('<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" '
+        'stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3.5l2.6 5.3 5.9.9-4.3 '
+        '4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>')
 
 PAGE = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
@@ -30,12 +35,17 @@ h1{{font-size:28px;margin:0 0 4px;letter-spacing:-.02em}}.sub{{color:var(--muted
 .deal a{{color:var(--ink);text-decoration:none;font-weight:600}}.deal a:hover{{color:var(--accent)}}
 .meta{{color:var(--muted);font-size:13px;margin-top:4px}}.tag{{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:2px}}
 .empty{{color:var(--muted);padding:40px 0;text-align:center}}
+.row{{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}}
+.watch{{flex:none;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;color:var(--muted)!important;text-decoration:none;white-space:nowrap}}
+.watch:hover{{color:var(--accent)!important;border-color:var(--accent)}}
+.hint{{color:var(--muted);font-size:13px;margin:-8px 0 16px}}
 </style></head><body><main>
 <h1>Deals Galore</h1>
 <p class="sub">{count} picks for you · {browse_count} recent deals to browse · updated {updated} UTC</p>
 <div class="filters">
 <button data-f="mine">For you ({count})</button><button data-f="watch">Watchlist</button>
 <button data-f="gift">Gift ideas</button><button data-f="browse">Browse all ({browse_count})</button></div>
+<p class="hint">Tap <b>Watch</b> on any deal to add it to your watchlist (opens a pre-filled GitHub issue; submit it and the next scan starts watching).</p>
 <p class="empty" id="none" hidden>Nothing here yet. Matches appear as new deals are posted.</p>
 <div id="list">{items}</div>
 </main><script>
@@ -50,7 +60,7 @@ show({default_tab});
 """
 
 
-def _item(rec: dict[str, Any], browse: bool = False) -> str:
+def _item(rec: dict[str, Any], browse: bool = False, repo: str | None = None) -> str:
     price = f"${rec['price']:,.0f}" if rec.get("price") is not None else "—"
     if browse:
         kind, tag = "browse", "Deal"
@@ -62,10 +72,15 @@ def _item(rec: dict[str, Any], browse: bool = False) -> str:
         x for x in (rec.get("source"), rec.get("reason"), rec.get("price_note"), rec["first_seen"][:16].replace("T", " ")) if x
     )
     score = "" if browse else f'<div class="score">score {rec.get("score", 0):.2f}</div>'
+    watch = ""
+    if repo and kind != "watch":
+        url = new_issue_url(repo, rec["title"], rec.get("price"))
+        watch = (f'<a class="watch" href="{html.escape(url)}" target="_blank" rel="noopener" '
+                 f'title="Add to watchlist">{STAR}Watch</a>')
     return (
         f'<div class="deal" data-kind="{kind}"><div><div class="price">{html.escape(price)}</div>'
         f'{score}</div><div>'
-        f'<div class="tag">{html.escape(tag)}</div>'
+        f'<div class="row"><div class="tag">{html.escape(tag)}</div>{watch}</div>'
         f'<a href="{html.escape(rec["url"])}" target="_blank" rel="noopener">{html.escape(rec["title"])}</a>'
         f'<div class="meta">{html.escape(meta)}</div></div></div>'
     )
@@ -73,7 +88,7 @@ def _item(rec: dict[str, Any], browse: bool = False) -> str:
 
 def render(store: Store, output: str | Path, min_score: float, max_items: int,
            fp: str | None = None, browse_sources: list[str] | None = None,
-           browse_hours: float = 48, browse_items: int = 80) -> Path:
+           browse_hours: float = 48, browse_items: int = 80, repo: str | None = None) -> Path:
     """Picks = deals scored under the current config (fp); Browse = latest posts
     from curated feeds such as the Slickdeals front page, newest first."""
     picks = [(k, v) for k, v in store.recent(min_score) if fp is None or v.get("fp") == fp][:max_items]
@@ -84,7 +99,8 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
             (k, v) for k, v in store.recent(0.0, browse_hours)
             if v.get("source") in browse_sources and k not in picked and v.get("price") is not None
         ][:browse_items]
-    items = "".join(_item(rec) for _, rec in picks) + "".join(_item(rec, True) for _, rec in browse)
+    items = "".join(_item(rec, repo=repo) for _, rec in picks) + "".join(
+        _item(rec, True, repo) for _, rec in browse)
     page = PAGE.format(
         count=len(picks),
         browse_count=len(browse),

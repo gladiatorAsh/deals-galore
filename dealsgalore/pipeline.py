@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import os
 from datetime import datetime, timedelta, timezone
 
 from . import dashboard
@@ -119,6 +120,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             fp=fp, browse_sources=cfg.dashboard.get("browse_sources"),
             browse_hours=cfg.dashboard.get("browse_hours", 48),
             browse_items=cfg.dashboard.get("browse_items", 80),
+            repo=cfg.dashboard.get("repo") or os.environ.get("GITHUB_REPOSITORY"),
         )
     store.save()
     return scored

@@ -1,0 +1,79 @@
+from __future__ import annotations
+
+import shutil
+from pathlib import Path
+from urllib.parse import parse_qs, urlparse
+
+import pytest
+import yaml
+
+from dealsgalore.config import load_config
+from dealsgalore.watchlist import (
+    add_to_config, clean_title, issue_body, new_issue_url, parse_issue_body, suggest_match,
+)
+
+ROOT = Path(__file__).parent.parent
+TITLE = "KitchenAid Deluxe 4.5 Quart Tilt-Head Stand Mixer (Contour Silver) $299.99 + Free Shipping"
+
+
+def test_clean_title_and_match():
+    assert clean_title(TITLE) == "KitchenAid Deluxe 4.5 Quart Tilt-Head Stand Mixer"
+    assert suggest_match(TITLE) == ["kitchenaid", "deluxe", "quart"]
+    assert suggest_match("[Refurbished] Intel ARC A750 8GB $159") == ["intel", "arc", "a750"]
+
+
+def test_issue_url_roundtrip():
+    url = new_issue_url("me/repo", TITLE, 299.99)
+    q = parse_qs(urlparse(url).query)
+    assert url.startswith("https://github.com/me/repo/issues/new?")
+    assert q["title"][0].startswith("Watch: KitchenAid")
+    entry = parse_issue_body(q["body"][0])
+    assert entry == {"item": "KitchenAid Deluxe 4.5 Quart Tilt-Head Stand Mixer",
+                     "max_price": 299.99, "match": ["kitchenaid", "deluxe", "quart"]}
+
+
+def test_parse_rejects_garbage():
+    for bad in ("", "hello", "```yaml\nitem: ''\n```", "```yaml\nitem: x\nmax_price: -5\n```"):
+        with pytest.raises(ValueError):
+            parse_issue_body(bad)
+
+
+def test_add_to_config_preserves_comments_and_dedupes(tmp_path):
+    cfg = tmp_path / "config.yaml"
+    shutil.copy(ROOT / "config.yaml", cfg)
+    before = cfg.read_text()
+    entry = parse_issue_body(issue_body(TITLE, 279.0))
+    assert "Added" in add_to_config(cfg, entry)
+    after = cfg.read_text()
+    # every original line kept (comments included), and still loads
+    assert all(line in after.splitlines() for line in before.splitlines())
+    items = [w.item for w in load_config(cfg).watchlist]
+    assert items[-1] == "KitchenAid Deluxe 4.5 Quart Tilt-Head Stand Mixer"
+    assert load_config(cfg).watchlist[-1].max_price == 279
+    assert "dashboard" in yaml.safe_load(after)  # following section intact
+    assert "already" in add_to_config(cfg, entry)
+    assert cfg.read_text() == after
+
+
+def test_add_to_empty_watchlist(tmp_path):
+    cfg = tmp_path / "config.yaml"
+    cfg.write_text("settings: {}\nwatchlist: []\n\ndashboard:\n  enabled: true\n")
+    add_to_config(cfg, {"item": "Thing: with colon", "max_price": None, "match": ["thing"]})
+    data = yaml.safe_load(cfg.read_text())
+    assert data["watchlist"] == [{"item": "Thing: with colon", "match": ["thing"]}]
+    assert data["dashboard"] == {"enabled": True}
+
+
+def test_dashboard_has_watch_buttons(tmp_path):
+    from dealsgalore import dashboard
+    from dealsgalore.store import Store
+
+    st = Store(tmp_path / "d.json")
+    st.add_deal("a", {"title": TITLE, "url": "https://x", "source": "slickdeals:frontpage",
+                      "price": 299.99, "score": 0.0})
+    st.add_deal("b", {"title": "Dyson V15 $449", "url": "https://y", "source": "s", "price": 449.0,
+                      "score": 0.9, "watch_item": "Dyson V15 Detect", "fp": "f"})
+    out = dashboard.render(st, tmp_path / "i.html", 0.5, 10, fp="f",
+                           browse_sources=["slickdeals:frontpage"], repo="me/repo").read_text()
+    assert out.count('class="watch"') == 1  # browse deal only; already-watched item has none
+    assert "https://github.com/me/repo/issues/new?title=Watch%3A%20KitchenAid" in out

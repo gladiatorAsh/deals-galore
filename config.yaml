@@ -84,3 +84,4 @@ dashboard:
   browse_sources: [slickdeals:frontpage, slickdeals:popular]
   browse_hours: 48
   browse_items: 80
+  repo: gladiatorAsh/deals-galore   # where the dashboard's Watch button opens issues

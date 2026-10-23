@@ -26,7 +26,8 @@ class GitHubAnnotationHandler(logging.Handler):
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="dealsgalore")
-    ap.add_argument("command", choices=["scan", "digest", "sources", "test-notify", "test-llm"])
+    ap.add_argument("command",
+                    choices=["scan", "digest", "sources", "test-notify", "test-llm", "watch-add"])
     ap.add_argument("--config", default="config.yaml")
     ap.add_argument("--store", default="data/deals.json")
     ap.add_argument("--dry-run", action="store_true", help="print alerts instead of sending them")
@@ -41,6 +42,18 @@ def main(argv: list[str] | None = None) -> int:
         logging.getLogger().addHandler(GitHubAnnotationHandler())
     cfg = load_config(args.config)
     notifiers = configured_notifiers(dry_run=args.dry_run)
+
+    if args.command == "watch-add":
+        from .watchlist import add_to_config, parse_issue_body
+
+        try:
+            entry = parse_issue_body(os.environ.get("ISSUE_BODY", ""))
+            msg = add_to_config(args.config, entry)
+        except Exception as exc:
+            print(f"Couldn't add to the watchlist: {exc}")
+            return 1
+        print(msg)
+        return 0
 
     if args.command == "test-llm":
         from .llm import LLMClient, LLMUnavailable
