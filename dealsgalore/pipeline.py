@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import logging
 from datetime import datetime, timedelta, timezone
 
@@ -30,22 +32,43 @@ def _alert_from_scored(s: Scored) -> Alert:
     )
 
 
+def config_fingerprint(cfg: Config) -> str:
+    """Short hash of what decides a match. Only a hash is stored (public repo)."""
+    payload = {
+        "watch": [(w.item, w.max_price, w.match) for w in cfg.watchlist],
+        "gifts": [(p.name, p.interests, p.keywords, p.budget, p.occasion) for p in cfg.gift_profiles],
+    }
+    return hashlib.sha1(json.dumps(payload, sort_keys=True, default=str).encode()).hexdigest()[:10]
+
+
 def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | None = None,
-         deals: list[Deal] | None = None) -> list[Scored]:
+         deals: list[Deal] | None = None, stats: dict | None = None) -> list[Scored]:
     st = cfg.settings
+    stats = stats if stats is not None else {}
+    stats.update(profiles=len(cfg.gift_profiles), watchlist=len(cfg.watchlist))
     if deals is None:
         ctx = FetchContext(user_agent=st.user_agent, timeout=st.request_timeout, watchlist=cfg.watchlist)
         deals = fetch_all(cfg.sources, ctx)
 
+    # A deal is skipped only if it was already evaluated against the CURRENT
+    # watchlist and gift profiles. Editing either re-checks recent posts.
+    fp = config_fingerprint(cfg)
     unique: dict[str, Deal] = {}
+    rechecked = 0
     for d in deals:
-        if d.id in unique or store.seen(d.id):
+        if d.id in unique:
+            continue
+        rec = store.deals.get(d.id)
+        if rec and rec.get("fp") == fp:
             continue
         if not _fresh(d, st.max_age_hours) or is_excluded(d, st.exclude_keywords):
             continue
         d.fill_prices()
         unique[d.id] = d
-    log.info("Fetched %d items, %d new", len(deals), len(unique))
+        rechecked += bool(rec)
+    stats.update(fetched=len(deals), new=len(unique) - rechecked, rechecked=rechecked)
+    log.info("Fetched %d items, %d new, %d re-checked after config change",
+             len(deals), len(unique) - rechecked, rechecked)
 
     candidates = find_candidates(list(unique.values()), cfg.watchlist, cfg.gift_profiles)
     log.info("%d candidates after keyword prefilter", len(candidates))
@@ -53,11 +76,16 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
     llm = llm or LLMClient(cfg.llm_providers)
     scored = score_candidates(candidates, cfg, llm, store)
     log.info("Scored %d candidates (%d LLM calls)", len(scored), llm.calls)
+    stats.update(candidates=len(candidates), llm_calls=llm.calls, alerts=0)
 
-    # Record every new item as seen so it's never re-processed, even non-matches.
+    # Record every evaluated item so it isn't re-processed until config changes.
     for d in unique.values():
-        store.add_deal(d.id, {"title": d.title, "url": d.url, "source": d.source,
-                              "price": d.price, "score": 0.0})
+        if store.seen(d.id):
+            store.mark(d.id, fp=fp, price=d.price, score=0.0, watch_item=None, gift_match=False,
+                       reason="", price_note="")
+        else:
+            store.add_deal(d.id, {"title": d.title, "url": d.url, "source": d.source,
+                                  "price": d.price, "score": 0.0, "fp": fp})
 
     for s in sorted(scored, key=lambda x: x.score, reverse=True):
         d = s.deal
@@ -71,11 +99,13 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             price_note=s.price_note,
             scored_by=s.scored_by,
         )
-        if s.watch_item and d.price is not None:
+        already_logged = any(p["deal"] == d.id for p in store.prices.get(s.watch_item or "", []))
+        if s.watch_item and d.price is not None and not already_logged:
             store.record_price(s.watch_item, d.price, d.id)
-        if s.score >= st.instant_threshold:
+        if s.score >= st.instant_threshold and not store.deals[d.id].get("notified"):
             if send_all(notifiers, "alert", _alert_from_scored(s)):
                 store.mark(d.id, notified=True)
+                stats["alerts"] += 1
 
     store.prune(st.retention_days, st.history_days)
     if cfg.dashboard.get("enabled", True):

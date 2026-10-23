@@ -65,9 +65,17 @@ def main(argv: list[str] | None = None) -> int:
 
     store = Store(args.store)
     if args.command == "scan":
-        scored = scan(cfg, store, notifiers)
-        hits = sum(1 for s in scored if s.score >= cfg.settings.instant_threshold)
-        logging.getLogger("dealsgalore").info("Done: %d scored, %d instant alerts", len(scored), hits)
+        stats: dict = {}
+        scan(cfg, store, notifiers, stats=stats)
+        summary = (
+            f"{stats['profiles']} gift profile(s), {stats['watchlist']} watchlist item(s) | "
+            f"{stats['fetched']} fetched, {stats['new']} new, {stats['rechecked']} re-checked | "
+            f"{stats['candidates']} candidate(s), {stats['llm_calls']} LLM call(s), "
+            f"{stats['alerts']} alert(s) sent"
+        )
+        logging.getLogger("dealsgalore").info(summary)
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            print(f"::notice title=Scan summary::{summary}", flush=True)
     else:
         digest(cfg, store, notifiers)
     return 0

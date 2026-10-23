@@ -11,6 +11,7 @@ from __future__ import annotations
 import html
 import logging
 import os
+import re
 import smtplib
 from dataclasses import dataclass
 from email.message import EmailMessage
@@ -213,13 +214,44 @@ class EmailNotifier(Notifier):
         self._send(subject, text, f"<h2>{html.escape(subject)}</h2><table>{rows}</table>")
 
 
+_TOKEN_RE = re.compile(r"\d{6,12}:[A-Za-z0-9_-]{30,40}")
+
+
+def describe_token_problem(raw: str) -> str | None:
+    """Explain what's off about a token's shape without revealing its contents."""
+    t = TelegramNotifier.clean_token(raw)
+    if _TOKEN_RE.fullmatch(t):
+        return None
+    if ":" not in t:
+        return (f"{len(t)} characters and no ':'; a bot token is '<digits>:<~35 characters>' "
+                "(did you paste the chat ID or bot username instead?)")
+    head, tail = t.split(":", 1)
+    parts = []
+    if not head.isdigit():
+        parts.append("the part before ':' should be only digits")
+    if not 30 <= len(tail) <= 40:
+        parts.append(f"the part after ':' is {len(tail)} characters (expected ~35)")
+    if re.search(r"[^A-Za-z0-9_\-:]", t):
+        parts.append("it contains spaces or unexpected characters such as < >")
+    return "; ".join(parts) or "unexpected format"
+
+
 def configured_notifiers(dry_run: bool = False) -> list[Notifier]:
     if dry_run:
         return [ConsoleNotifier()]
     env = os.environ
     out: list[Notifier] = []
     if env.get("TELEGRAM_BOT_TOKEN") and env.get("TELEGRAM_CHAT_ID"):
+        problem = describe_token_problem(env["TELEGRAM_BOT_TOKEN"])
+        if problem:
+            log.warning("TELEGRAM_BOT_TOKEN doesn't look like a bot token: %s", problem)
+        chat = env["TELEGRAM_CHAT_ID"].strip().strip("'\"")
+        if not re.fullmatch(r"-?\d+", chat):
+            log.warning("TELEGRAM_CHAT_ID should be a number like 123456789 (got %d chars, "
+                        "not all digits)", len(chat))
         out.append(TelegramNotifier(env["TELEGRAM_BOT_TOKEN"], env["TELEGRAM_CHAT_ID"]))
+    elif env.get("TELEGRAM_BOT_TOKEN") or env.get("TELEGRAM_CHAT_ID"):
+        log.warning("Telegram needs BOTH TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID secrets")
     if env.get("NTFY_TOPIC"):
         out.append(NtfyNotifier(env["NTFY_TOPIC"], env.get("NTFY_SERVER") or "https://ntfy.sh",
                                 env.get("NTFY_TOKEN") or None))

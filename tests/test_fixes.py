@@ -61,3 +61,45 @@ def test_reddit_retries_once_on_429(monkeypatch):
 
     sess = _Session([_Resp(429), _Resp(429)])
     assert reddit.fetch({"subreddits": ["deals"]}, FetchContext(session=sess)) == []
+
+
+def test_describe_token_problem():
+    from dealsgalore.notifiers import describe_token_problem
+
+    good = "123456789:" + "A" * 35
+    assert describe_token_problem(good) is None
+    assert describe_token_problem(f"bot{good}\n") is None
+    assert "no ':'" in describe_token_problem("123456789")  # chat id pasted
+    assert "unexpected characters" in describe_token_problem("<123456789:" + "A" * 35 + ">")
+    assert "is 5 characters" in describe_token_problem("123456789:AAAAA")
+    assert good not in (describe_token_problem("x" + good) or "")
+
+
+def test_config_change_rechecks_recent_deals_without_duplicate_alerts(feed_xml, cfg, tmp_path):
+    from dealsgalore.config import GiftProfile
+    from dealsgalore.pipeline import scan
+    from dealsgalore.sources.base import parse_feed
+    from dealsgalore.store import Store
+    from test_core import Recorder
+
+    path = tmp_path / "deals.json"
+    cfg.gift_profiles = []  # first run: no profiles yet
+    rec = Recorder()
+    stats: dict = {}
+    scan(cfg, Store(path), [rec], deals=parse_feed(feed_xml, "s"), stats=stats)
+    assert stats["new"] == 3 and stats["rechecked"] == 0 and len(rec.alerts) == 1  # Dyson
+
+    # Same config: nothing to do.
+    stats = {}
+    scan(cfg, Store(path), [Recorder()], deals=parse_feed(feed_xml, "s"), stats=stats)
+    assert stats["new"] == 0 and stats["rechecked"] == 0
+
+    # Add a profile: recent posts are re-checked, LEGO now matches, Dyson not re-alerted.
+    cfg.gift_profiles = [GiftProfile(name="Niece", interests=["lego"], budget=(25, 60))]
+    rec3, stats = Recorder(), {}
+    scored = scan(cfg, Store(path), [rec3], deals=parse_feed(feed_xml, "s"), stats=stats)
+    assert stats["new"] == 0 and stats["rechecked"] == 3 and stats["profiles"] == 1
+    assert any(s.recipient == "Niece" or "Niece" in s.candidate.recipients for s in scored)
+    assert rec3.alerts == []
+    store = Store(path)
+    assert len(store.prices["Dyson V15 Detect"]) == 1  # price not double-counted
