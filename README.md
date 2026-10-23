@@ -33,13 +33,26 @@ Copy the format from `gifts.example.yaml`. Then, in GitHub:
 **Settings → Secrets and variables → Actions → New repository secret**, name it
 `GIFT_PROFILES`, and paste the YAML.
 
-### 3. Pick a notification channel (secrets)
+### 3. Notifications with ntfy (default)
+
+[ntfy](https://ntfy.sh) is free push to your phone, with no account or bot setup.
+
+1. Pick a long, random topic name, for example `deals-ash-7f3k9q2xv8`. ntfy.sh
+   topics have no password, so anyone who guesses the name can read the deals.
+   A random name is effectively private.
+2. Install the ntfy app (iOS/Android) → **+** → subscribe to that topic.
+3. Add the repository secret `NTFY_TOPIC` with the same name.
+
+Instant alerts open the deal when tapped. Matches scoring 0.9 or higher arrive
+at high priority, and the daily digest arrives as one or more grouped messages.
+
+Other channels, all optional and usable alongside ntfy:
 
 | Channel | Secrets | How to get them |
 |---|---|---|
-| **Telegram** (recommended) | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Message @BotFather → `/newbot` for the token. Send your bot a message, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy `chat.id`. |
-| **ntfy** | `NTFY_TOPIC` | Install the ntfy app and subscribe to a long, random topic name. Topics are public to anyone who guesses the name. |
-| **Email digest** | `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_TO` | Gmail address plus a Google **app password** (needs 2-Step Verification). |
+| Telegram | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Message @BotFather → `/newbot` for the token. Send your bot a message, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy `chat.id`. |
+| Email digest | `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_TO` | Gmail address plus a Google **app password** (needs 2-Step Verification). |
+| Self-hosted or protected ntfy | `NTFY_SERVER`, `NTFY_TOKEN` | Only if you run your own ntfy server or use an access token. |
 
 ### 4. Optional extras
 - `GEMINI_API_KEY`: a free key from Google AI Studio, used when GitHub Models' daily quota runs out.

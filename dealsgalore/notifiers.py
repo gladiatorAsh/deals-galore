@@ -1,7 +1,8 @@
 """Free notification channels. Each is enabled only when its env vars are set.
 
   Telegram : TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
-  ntfy     : NTFY_TOPIC (pick something unguessable), optional NTFY_SERVER
+  ntfy     : NTFY_TOPIC (pick something unguessable), optional NTFY_SERVER,
+             NTFY_TOKEN (only for a self-hosted or reserved, protected topic)
   Email    : SMTP_USER, SMTP_PASSWORD (Gmail app password), EMAIL_TO,
              optional SMTP_HOST (default smtp.gmail.com), SMTP_PORT (465)
 """
@@ -107,24 +108,55 @@ class TelegramNotifier(Notifier):
 
 
 class NtfyNotifier(Notifier):
+    """ntfy.sh push. Subscribe to the same topic in the ntfy phone app.
+
+    Instant alerts are tappable (open the deal) and use high priority for the
+    very best matches; the digest is split across messages to stay under
+    ntfy's 4 KB message limit.
+    """
+
     name = "ntfy"
+    MAX_BYTES = 3800
 
-    def __init__(self, topic: str, server: str = "https://ntfy.sh"):
+    def __init__(self, topic: str, server: str = "https://ntfy.sh", token: str | None = None):
         self.endpoint = f"{server.rstrip('/')}/{topic}"
+        self.token = token
 
-    def _post(self, title: str, body: str, click: str | None = None) -> None:
-        headers = {"Title": title.encode("utf-8"), "Tags": "shopping_cart"}
+    def _post(self, title: str, body: str, click: str | None = None,
+              priority: str = "default", tags: str = "shopping_cart") -> None:
+        headers = {"Title": title.encode("utf-8"), "Tags": tags, "Priority": priority}
         if click:
             headers["Click"] = click
+        if self.token:
+            headers["Authorization"] = f"Bearer {self.token}"
         requests.post(self.endpoint, data=body.encode("utf-8"), headers=headers, timeout=20).raise_for_status()
+
+    @staticmethod
+    def priority_for(a: Alert) -> str:
+        return "high" if a.score >= 0.9 else "default"
 
     def alert(self, a: Alert) -> None:
         head, title, extra = a.lines()
-        self._post(head, f"{title}\n{extra}".strip(), a.url)
+        tags = "eyes" if a.watch_item else "gift" if a.recipient else "shopping_cart"
+        self._post(head, f"{title}\n{extra}".strip(), a.url, self.priority_for(a), tags)
 
     def digest(self, alerts: list[Alert], subject: str) -> None:
-        body = "\n\n".join(f"{a.lines()[0]}\n{a.title}\n{a.url}" for a in alerts)
-        self._post(subject, body[:3900])
+        entries = [f"{a.lines()[0]}\n{a.title}\n{a.url}" for a in alerts]
+        chunks: list[str] = []
+        current = ""
+        for e in entries:
+            candidate = f"{current}\n\n{e}" if current else e
+            if current and len(candidate.encode("utf-8")) > self.MAX_BYTES:
+                chunks.append(current)
+                current = e
+            else:
+                current = candidate
+        if current:
+            chunks.append(current)
+        for i, chunk in enumerate(chunks, 1):
+            title = subject if len(chunks) == 1 else f"{subject} ({i}/{len(chunks)})"
+            self._post(title, chunk.encode("utf-8")[: self.MAX_BYTES].decode("utf-8", "ignore"),
+                       tags="newspaper")
 
 
 class EmailNotifier(Notifier):
@@ -166,7 +198,8 @@ def configured_notifiers(dry_run: bool = False) -> list[Notifier]:
     if env.get("TELEGRAM_BOT_TOKEN") and env.get("TELEGRAM_CHAT_ID"):
         out.append(TelegramNotifier(env["TELEGRAM_BOT_TOKEN"], env["TELEGRAM_CHAT_ID"]))
     if env.get("NTFY_TOPIC"):
-        out.append(NtfyNotifier(env["NTFY_TOPIC"], env.get("NTFY_SERVER", "https://ntfy.sh")))
+        out.append(NtfyNotifier(env["NTFY_TOPIC"], env.get("NTFY_SERVER") or "https://ntfy.sh",
+                                env.get("NTFY_TOKEN") or None))
     if env.get("SMTP_USER") and env.get("SMTP_PASSWORD") and env.get("EMAIL_TO"):
         out.append(
             EmailNotifier(
