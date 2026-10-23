@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import logging
 import re
+import time
 from typing import Any
 
 import requests
@@ -54,6 +55,8 @@ class LLMClient:
         self.providers = [p for p in providers if p.api_key]
         self.exhausted: set[str] = set()
         self.working: dict[str, str] = {}
+        self.waited = 0.0  # seconds spent waiting out rate limits this run
+        self.sleep = time.sleep
         self.calls = 0
         self.session = session or requests
         if not self.providers:
@@ -128,11 +131,12 @@ class LLMClient:
             # Prefer the model that worked earlier this run, then the configured list.
             candidates = [m for m in [self.working.get(p.name), *p.models] if m]
             tried: set[str] = set()
-            discovered = False
+            retried: set[str] = set()
+            discovered = rate_limited = False
             while True:
                 model = next((m for m in candidates if m not in tried), None)
                 if model is None:
-                    if discovered:
+                    if discovered or rate_limited:
                         break
                     discovered = True
                     found = self._list_models(p)
@@ -157,6 +161,21 @@ class LLMClient:
                     if _is_model_error(exc):
                         log.info("%s model %s unavailable: %s", p.name, model, exc)
                         continue  # try the next model
+                    if exc.status == 429:
+                        # Free tiers limit tokens per minute PER MODEL: wait out a short
+                        # limit once, otherwise move on to the next model.
+                        wait = _retry_after(str(exc))
+                        if (wait is not None and wait <= MAX_WAIT and model not in retried
+                                and self.waited + wait <= MAX_TOTAL_WAIT):
+                            retried.add(model)
+                            tried.discard(model)
+                            self.waited += wait
+                            log.info("%s model %s rate-limited; waiting %.0fs", p.name, model, wait)
+                            self.sleep(wait + 1)
+                            continue
+                        log.info("%s model %s rate-limited; trying the next model", p.name, model)
+                        rate_limited = True
+                        continue
                     log.warning("LLM provider %s failed: %s", p.name, exc)
                     if exc.status in (401, 403, 429) or "rate" in str(exc).lower():
                         self.exhausted.add(p.name)
@@ -165,15 +184,29 @@ class LLMClient:
                     log.warning("LLM provider %s failed: %s", p.name, exc)
                     last_error = exc
                     break
-            if p.name not in self.working:
+            if p.name not in self.working or rate_limited:
+                if rate_limited:
+                    log.warning("LLM provider %s: all models rate-limited for now", p.name)
                 self.exhausted.add(p.name)
         raise LLMUnavailable(str(last_error) if last_error else "no providers")
+
+
+MAX_WAIT = 30  # seconds: longest single rate-limit wait worth taking
+MAX_TOTAL_WAIT = 120  # seconds of waiting per run, across all calls
+
+
+def _retry_after(text: str) -> float | None:
+    """Parse Groq/OpenAI style 'try again in 18.9s' or '1m23.4s'."""
+    m = re.search(r"try again in (?:(\d+)m)?([\d.]+)s", text)
+    if not m:
+        return None
+    return int(m.group(1) or 0) * 60 + float(m.group(2))
 
 
 def _is_model_error(exc: LLMError) -> bool:
     text = str(exc).lower()
     return exc.status in (400, 403, 404) and (
-        "model_not_found" in text or "does not exist" in text
+        "model_not_found" in text or "does not exist" in text or "no longer available" in text
         or "model_decommissioned" in text or "decommissioned" in text
         or ("model" in text and "not found" in text) or "no access to model" in text
     )

@@ -109,3 +109,32 @@ def test_all_models_gone_marks_provider_exhausted(monkeypatch):
     with pytest.raises(LLMUnavailable):
         c.complete_json("s", "u")
     assert not c.available
+
+
+def test_rate_limit_waits_then_retries_same_model(monkeypatch):
+    monkeypatch.setenv("K1", "a")
+    p = LLMProvider("groq", "https://x/v1", ["big", "small"], "K1")
+    limited = _R(429, text='{"error":{"message":"Rate limit reached for model `big` ... '
+                           'Please try again in 12.5s."}}')
+    s = _S(limited, ok('{"results": []}'))
+    c = LLMClient([p], session=s)
+    slept = []
+    c.sleep = slept.append
+    assert c.complete_json("s", "u")[1] == "groq:big"
+    assert slept == [13.5] and c.waited == 12.5
+
+
+def test_long_rate_limit_moves_to_next_model(monkeypatch):
+    monkeypatch.setenv("K1", "a")
+    p = LLMProvider("groq", "https://x/v1", ["big", "small"], "K1")
+    s = _S(_R(429, text="Rate limit reached ... try again in 1m40s"), ok('{"results": [3]}'))
+    c = LLMClient([p], session=s)
+    c.sleep = lambda x: (_ for _ in ()).throw(AssertionError("should not sleep"))
+    assert c.complete_json("s", "u") == ({"results": [3]}, "groq:small")
+
+
+def test_retired_gemini_message_is_a_model_error():
+    from dealsgalore.llm import LLMError, _is_model_error
+
+    assert _is_model_error(LLMError(
+        "HTTP 404: This model models/gemini-2.5-flash-lite is no longer available to new users", 404))

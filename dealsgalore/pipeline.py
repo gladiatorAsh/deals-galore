@@ -35,7 +35,7 @@ def _alert_from_scored(s: Scored) -> Alert:
 
 
 # Bump when scoring logic changes in a way that should re-check recent posts.
-SCORING_VERSION = 4
+SCORING_VERSION = 5
 
 
 def config_fingerprint(cfg: Config) -> str:

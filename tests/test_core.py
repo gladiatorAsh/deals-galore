@@ -132,3 +132,11 @@ def test_heuristic_demotes_priceless_posts(cfg):
     assert heuristic_score(q, cfg).score < cfg.settings.digest_threshold
     d = Candidate(Deal("s", "LEGO set $39.99", "u2", price=39.99), recipients=["Niece"])
     assert heuristic_score(d, cfg).score >= cfg.settings.digest_threshold
+
+
+def test_heuristic_demotes_priceless_watchlist_hits(cfg):
+    from dealsgalore.scoring import heuristic_score
+
+    news = Candidate(Deal("news", "Watch live: Hamilton debate tonight", "u"),
+                     watch_items=["Dyson V15 Detect"])
+    assert heuristic_score(news, cfg).score < cfg.settings.digest_threshold

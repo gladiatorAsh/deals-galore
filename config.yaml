@@ -28,7 +28,7 @@ llm:
       api_key_env: GROQ_API_KEY
     - name: gemini
       base_url: https://generativelanguage.googleapis.com/v1beta/openai/
-      model: gemini-2.5-flash-lite
+      model: [gemini-3.5-flash-lite, gemini-2.5-flash]
       api_key_env: GEMINI_API_KEY
 
 # Add or remove sources freely. Types: slickdeals, reddit, rss, bestbuy.
@@ -55,14 +55,11 @@ sources:
       - longchamp
       - marc jacobs bag
 
+  # All subreddits are fetched in ONE request (Reddit rate-limits repeat calls).
+  # r/Watchexchange = pre-owned watches sold by individuals ([WTS] posts): often
+  # the best value on good brands, but check the seller's history before buying.
   - type: reddit
-    subreddits: [deals, frugalfemalefashion, frugalmalefashion]  # deal-only subs
-    sort: new
-
-  # Pre-owned watches sold by individuals ([WTS] posts with prices). Often the
-  # best value on good brands, but buy with care: check the seller's history.
-  - type: reddit
-    subreddits: [Watchexchange]
+    subreddits: [deals, frugalfemalefashion, frugalmalefashion, Watchexchange]
     sort: new
 
   # Deal articles from news and shopping sites (People, NY Post, Today, ...).
@@ -71,7 +68,7 @@ sources:
     urls:
       - "https://news.google.com/rss/search?q=%22coach+outlet%22+OR+%22coach%22+bag+sale+when:2d&hl=en-US&gl=US&ceid=US:en"
       - "https://news.google.com/rss/search?q=handbag+OR+purse+sale+(%22kate+spade%22+OR+%22michael+kors%22+OR+%22tory+burch%22)+when:2d&hl=en-US&gl=US&ceid=US:en"
-      - "https://news.google.com/rss/search?q=watch+deal+(seiko+OR+citizen+OR+tissot+OR+hamilton+OR+bulova)+when:2d&hl=en-US&gl=US&ceid=US:en"
+      - "https://news.google.com/rss/search?q=(%22watch+deal%22+OR+%22watch+sale%22+OR+%22watches+on+sale%22)+(seiko+OR+citizen+OR+tissot+OR+hamilton+OR+bulova)+when:2d&hl=en-US&gl=US&ceid=US:en"
 
   # Deal blog with frequent Coach Outlet / Kate Spade / Michael Kors posts.
   - type: rss

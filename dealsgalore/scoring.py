@@ -95,6 +95,9 @@ def build_user_prompt(batch: list[Candidate], cfg: Config) -> str:
 def heuristic_score(c: Candidate, cfg: Config) -> Scored:
     d = c.deal
     watch = next((w for w in cfg.watchlist if w.item in c.watch_items), None)
+    if watch and d.price is None:
+        return Scored(c, score=0.3, watch_item=watch.item,
+                      reason="Watchlist keywords but no price; likely an article or not a deal")
     if watch:
         under = watch.max_price is not None and d.price is not None and d.price <= watch.max_price
         return Scored(

@@ -15,6 +15,7 @@ price, so you're alerted again only when the price changes.
 """
 from __future__ import annotations
 
+import html
 import logging
 from datetime import datetime, timezone
 from typing import Any
@@ -54,9 +55,9 @@ def products_to_deals(products: list[dict[str, Any]], base: str, source: str,
         if not best or not p.get("handle"):
             continue
         price, was = best
-        vendor = (p.get("vendor") or "").strip()
-        name = (p.get("title") or "").strip()
-        ptype = (p.get("product_type") or "").strip()
+        vendor = html.unescape(p.get("vendor") or "").strip()
+        name = html.unescape(p.get("title") or "").strip()
+        ptype = html.unescape(p.get("product_type") or "").strip()
         label = name if vendor and vendor.lower() in name.lower() else f"{vendor} {name}".strip()
         if ptype and ptype.lower() not in label.lower():
             label = f"{label} – {ptype}"
