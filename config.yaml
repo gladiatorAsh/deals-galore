@@ -159,6 +159,21 @@ watchlist:
 # first on the dashboard and in alerts, and get their own "Premium" filter.
 premium:
   boost: 0.1
+  # Lowest believable price (USD) for a genuine item; cheaper listings are
+  # demoted as likely misread prices, parts, replicas or scams. Omega x Swatch
+  # (MoonSwatch) is exempt.
+  plausible_min:
+    rolex: 2500
+    omega: 300        # vintage Genève/Seamaster can be $300+; a $250 Moonwatch can't
+    cartier: 500
+    tudor: 700
+    grand seiko: 1200
+    iwc: 1500
+    panerai: 1500
+    breitling: 600
+    hermes: 600
+    chanel: 600
+    louis vuitton: 250
   brands:
     # watches
     - rolex

@@ -124,3 +124,29 @@ def test_price_from_summary_and_require_price():
     ok = Deal("r/Watchexchange", "[WTS] Seiko SPB143", "u", summary="Price: $450")
     ok.fill_prices()
     assert match_watch(ok, w)
+
+
+def test_implausibly_cheap_luxury_is_demoted(tmp_path):
+    from dealsgalore.config import Config, Settings, WatchItem
+    from dealsgalore.models import Candidate, Scored
+    from dealsgalore.scoring import score_candidates
+    from dealsgalore.store import Store
+
+    class NoLLM:
+        available = False
+        calls = 0
+        providers: list = []
+
+    w = WatchItem(item="Watches", search=False, any_of=[["omega", "seiko"], ["watch", "wts"]])
+    cfg = Config(Settings(), [], [w], [], [], {}, premium_brands=["omega"],
+                 plausible_min={"omega": 900})
+    cands = [
+        Candidate(_d("[WTS] Omega Speedmaster Moonwatch $250", 250), watch_items=["Watches"]),
+        Candidate(_d("[WTS] Omega x Swatch Mission to the Moon $260", 260), watch_items=["Watches"]),
+        Candidate(_d("[WTS] Seiko Presage watch $250", 250), watch_items=["Watches"]),
+    ]
+    by_title = {s.deal.title: s for s in score_candidates(cands, cfg, NoLLM(), Store(tmp_path / "d.json"))}
+    assert by_title["[WTS] Omega Speedmaster Moonwatch $250"].score == 0.1
+    assert "implausibly low" in by_title["[WTS] Omega Speedmaster Moonwatch $250"].price_note
+    assert by_title["[WTS] Omega x Swatch Mission to the Moon $260"].score > 0.3
+    assert by_title["[WTS] Seiko Presage watch $250"].score > 0.3

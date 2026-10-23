@@ -230,7 +230,16 @@ def score_candidates(
         s = by_llm.get(i) or heuristic_score(c, cfg)
         apply_price_history(s, cfg, store)
         s.premium = premium_brand(c.deal.title, cfg.premium_brands)
-        if s.premium and s.score >= 0.4:  # boost real deals, not noise
+        floor_brand = premium_brand(c.deal.title, list(cfg.plausible_min))
+        if (floor_brand and c.deal.price is not None and c.deal.price < cfg.plausible_min[floor_brand]
+                and not re.search(r"\bswatch\b|\bx\s+swatch\b", c.deal.title.lower())):
+            # Fixed rule, so it doesn't depend on how the AI happened to score it.
+            s.score = min(s.score, 0.1)
+            s.premium = None
+            s.price_note = (s.price_note + "; " if s.price_note else "") + (
+                f"${c.deal.price:,.0f} is implausibly low for genuine {floor_brand.title()}"
+                " (misread price, part, replica or scam?)")
+        elif s.premium and s.score >= 0.4:  # boost real deals, not noise
             s.score = min(1.0, s.score + cfg.premium_boost)
         results.append(s)
     return results

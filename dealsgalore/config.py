@@ -97,6 +97,9 @@ class Config:
     only_stores: list[str] = field(default_factory=list)  # if set, ignore other stores
     premium_brands: list[str] = field(default_factory=list)  # ranked first, score boost
     premium_boost: float = 0.1
+    # Lowest believable price for a genuine item of a brand; below it a deal is
+    # treated as a misread price, part, replica or scam.
+    plausible_min: dict[str, float] = field(default_factory=dict)
 
 
 def _parse_profiles(raw: Any) -> list[GiftProfile]:
@@ -157,4 +160,6 @@ def load_config(path: str | Path = "config.yaml") -> Config:
         only_stores=[str(s) for s in data.get("only_stores") or []],
         premium_brands=[str(b) for b in (data.get("premium") or {}).get("brands", [])],
         premium_boost=float((data.get("premium") or {}).get("boost", 0.1)),
+        plausible_min={str(k).lower(): float(v)
+                       for k, v in ((data.get("premium") or {}).get("plausible_min") or {}).items()},
     )
