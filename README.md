@@ -33,26 +33,36 @@ Copy the format from `gifts.example.yaml`. Then, in GitHub:
 **Settings → Secrets and variables → Actions → New repository secret**, name it
 `GIFT_PROFILES`, and paste the YAML.
 
-### 3. Notifications with ntfy (default)
+### 3. Notifications with Telegram (default)
 
-[ntfy](https://ntfy.sh) is free push to your phone, with no account or bot setup.
+Alerts come from your own private Telegram bot. It's free, and only you can see
+its chat.
 
-1. Pick a long, random topic name, for example `deals-ash-7f3k9q2xv8`. ntfy.sh
-   topics have no password, so anyone who guesses the name can read the deals.
-   A random name is effectively private.
-2. Install the ntfy app (iOS/Android) → **+** → subscribe to that topic.
-3. Add the repository secret `NTFY_TOPIC` with the same name.
+1. **Create the bot.** In Telegram, search for **@BotFather** (blue check mark),
+   send `/newbot`, and pick a display name and a username ending in `bot`, for
+   example `ash_deals_bot`. BotFather replies with a token like
+   `123456789:AAH...`. Keep it secret: anyone with it can control the bot.
+2. **Start a chat with it.** Tap the `t.me/...` link BotFather gives you, press
+   **Start**, and send any message, such as `hi`. A bot can't message you until
+   you've messaged it.
+3. **Find your chat ID.** In a browser, open
+   `https://api.telegram.org/bot<TOKEN>/getUpdates`, using your token. Find
+   `"chat":{"id":123456789,...` and copy that number. If the page shows
+   `"result":[]`, send the bot another message and refresh.
+4. **Add two repository secrets:** `TELEGRAM_BOT_TOKEN` (the token) and
+   `TELEGRAM_CHAT_ID` (the number).
 
-Instant alerts open the deal when tapped. Matches scoring 0.9 or higher arrive
-at high priority, and the daily digest arrives as one or more grouped messages.
+Instant alerts show the price, why it matched, and a tappable link to the deal.
+The daily digest arrives as one grouped message, split if it's long.
+For a shared family channel, add the bot to a Telegram group and use the
+group's chat ID instead. Group IDs start with `-`.
 
-Other channels, all optional and usable alongside ntfy:
+Other channels, all optional and usable alongside Telegram:
 
 | Channel | Secrets | How to get them |
 |---|---|---|
-| Telegram | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Message @BotFather → `/newbot` for the token. Send your bot a message, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy `chat.id`. |
+| ntfy push | `NTFY_TOPIC` (optional `NTFY_SERVER`, `NTFY_TOKEN`) | Install the ntfy app, subscribe to a long random topic name, and use the same name as the secret. |
 | Email digest | `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_TO` | Gmail address plus a Google **app password** (needs 2-Step Verification). |
-| Self-hosted or protected ntfy | `NTFY_SERVER`, `NTFY_TOKEN` | Only if you run your own ntfy server or use an access token. |
 
 ### 4. Optional extras
 - `GEMINI_API_KEY`: a free key from Google AI Studio, used when GitHub Models' daily quota runs out.
