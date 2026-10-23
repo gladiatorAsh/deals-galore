@@ -70,8 +70,18 @@ class TelegramNotifier(Notifier):
     name = "telegram"
 
     def __init__(self, token: str, chat_id: str):
-        self.url = f"https://api.telegram.org/bot{token}/sendMessage"
-        self.chat_id = chat_id
+        self.url = f"https://api.telegram.org/bot{self.clean_token(token)}/sendMessage"
+        self.chat_id = chat_id.strip().strip("'\"")
+
+    @staticmethod
+    def clean_token(token: str) -> str:
+        """Forgive common paste mistakes: whitespace, quotes, a 'bot' prefix or a full URL."""
+        t = token.strip().strip("'\"").strip()
+        if "api.telegram.org/bot" in t:
+            t = t.split("api.telegram.org/bot", 1)[1].split("/", 1)[0]
+        if t.lower().startswith("bot") and ":" in t:
+            t = t[3:]
+        return t
 
     def _send(self, text: str) -> None:
         r = requests.post(
@@ -93,6 +103,7 @@ class TelegramNotifier(Notifier):
                 detail = r.text[:200]
             hint = {
                 401: "check TELEGRAM_BOT_TOKEN",
+                404: "TELEGRAM_BOT_TOKEN is malformed; it should look like 123456789:AA...",
                 400: "check TELEGRAM_CHAT_ID and that you pressed Start in the bot chat",
                 403: "the bot was blocked or removed from the chat",
             }.get(r.status_code, "")

@@ -51,27 +51,26 @@ def entry_time(entry: Any) -> datetime | None:
     return None
 
 
+def deal_from_entry(e: Any, source: str) -> Deal | None:
+    link = e.get("link")
+    title = strip_html(e.get("title", ""), 300)
+    if not link or not title:
+        return None
+    summary = e.get("summary", "")
+    if not summary and e.get("content"):
+        summary = e["content"][0].get("value", "")
+    return Deal(
+        source=source,
+        title=title,
+        url=link,
+        published=entry_time(e),
+        summary=strip_html(summary),
+    )
+
+
 def parse_feed(content: bytes | str, source: str) -> list[Deal]:
     feed = feedparser.parse(content)
-    deals = []
-    for e in feed.entries:
-        link = e.get("link")
-        title = strip_html(e.get("title", ""), 300)
-        if not link or not title:
-            continue
-        summary = e.get("summary", "")
-        if not summary and e.get("content"):
-            summary = e["content"][0].get("value", "")
-        deals.append(
-            Deal(
-                source=source,
-                title=title,
-                url=link,
-                published=entry_time(e),
-                summary=strip_html(summary),
-            )
-        )
-    return deals
+    return [d for e in feed.entries if (d := deal_from_entry(e, source))]
 
 
 def fetch_feed(url: str, source: str, ctx: FetchContext) -> list[Deal]:
