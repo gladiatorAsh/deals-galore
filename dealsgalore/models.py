@@ -44,6 +44,7 @@ class Deal:
     price: float | None = None
     list_price: float | None = None
     id_salt: str = ""  # e.g. current price, for sources whose URL never changes
+    store: str | None = None  # retailer, detected from the title/summary
 
     @property
     def id(self) -> str:
@@ -56,6 +57,22 @@ class Deal:
             self.price = price
             if self.list_price is None:
                 self.list_price = list_price
+
+
+def detect_store(text: str, stores: list[str]) -> str | None:
+    """First known retailer named in the text. Longer names win ("Nordstrom Rack"
+    over "Nordstrom"); "at X" / "from X" phrasing is preferred when present."""
+    low = text.lower()
+    best: tuple[int, int, int, str] | None = None
+    for name in sorted(stores, key=len, reverse=True):
+        pat = re.escape(name.lower()).replace("\\'", "['’]?").replace("'", "['’]?")
+        for m in re.finditer(rf"(?<![a-z0-9]){pat}(?![a-z0-9])", low):
+            prefixed = re.search(r"\b(?:at|from|via|@)\s*$", low[max(0, m.start() - 6):m.start()])
+            key = (0 if prefixed else 1, m.start(), -len(name), name)
+            if best is None or key < best:
+                best = key
+            break
+    return best[3] if best else None
 
 
 @dataclass

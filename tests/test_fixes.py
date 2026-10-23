@@ -103,3 +103,16 @@ def test_config_change_rechecks_recent_deals_without_duplicate_alerts(feed_xml, 
     assert rec3.alerts == []
     store = Store(path)
     assert len(store.prices["Dyson V15 Detect"]) == 1  # price not double-counted
+
+
+def test_detect_store():
+    from dealsgalore.models import detect_store
+
+    stores = ["Costco", "Nordstrom", "Nordstrom Rack", "Macy's", "Coach Outlet", "Target"]
+    assert detect_store("Seiko 5 Automatic $189 at Nordstrom Rack", stores) == "Nordstrom Rack"
+    assert detect_store("Citizen Eco-Drive $99 @ Costco (in-warehouse)", stores) == "Costco"
+    assert detect_store("Coach tote $150 at Macy’s", stores) == "Macy's"
+    assert detect_store("Coach Outlet: Willow tote $129", stores) == "Coach Outlet"
+    assert detect_store("Fossil watch $59", stores) is None
+    # "at X" beats an earlier incidental mention
+    assert detect_store("Target-free shipping... Kate Spade bag $99 at Costco", stores) == "Costco"

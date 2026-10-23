@@ -32,6 +32,7 @@ class Alert:
     recipient: str | None = None
     watch_item: str | None = None
     price_note: str = ""
+    store: str | None = None
 
     @property
     def tag(self) -> str:
@@ -44,7 +45,8 @@ class Alert:
     def lines(self) -> list[str]:
         price = f"${self.price:,.2f}" if self.price is not None else "price ?"
         extra = " · ".join(x for x in (self.reason, self.price_note) if x)
-        return [f"{self.tag} — {price} ({self.score:.2f}, {self.source})", self.title, extra]
+        where = f" at {self.store}" if self.store else ""
+        return [f"{self.tag} — {price}{where} ({self.score:.2f}, {self.source})", self.title, extra]
 
 
 class Notifier:

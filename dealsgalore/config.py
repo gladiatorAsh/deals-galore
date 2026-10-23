@@ -90,6 +90,8 @@ class Config:
     gift_profiles: list[GiftProfile]
     llm_providers: list[LLMProvider]
     dashboard: dict[str, Any]
+    stores: list[str] = field(default_factory=list)  # retailer names to detect
+    only_stores: list[str] = field(default_factory=list)  # if set, ignore other stores
 
 
 def _parse_profiles(raw: Any) -> list[GiftProfile]:
@@ -146,4 +148,6 @@ def load_config(path: str | Path = "config.yaml") -> Config:
         gift_profiles=load_gift_profiles(path.parent),
         llm_providers=providers,
         dashboard=dashboard,
+        stores=[str(s) for s in data.get("stores") or []],
+        only_stores=[str(s) for s in data.get("only_stores") or []],
     )

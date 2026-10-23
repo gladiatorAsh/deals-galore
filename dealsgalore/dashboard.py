@@ -69,7 +69,7 @@ def _item(rec: dict[str, Any], browse: bool = False, repo: str | None = None) ->
     else:
         kind, tag = "gift", "Gift idea"
     meta = " · ".join(
-        x for x in (rec.get("source"), rec.get("reason"), rec.get("price_note"), rec["first_seen"][:16].replace("T", " ")) if x
+        x for x in ((f"at {rec['store']}" if rec.get("store") else None), rec.get("source"), rec.get("reason"), rec.get("price_note"), rec["first_seen"][:16].replace("T", " ")) if x
     )
     score = "" if browse else f'<div class="score">score {rec.get("score", 0):.2f}</div>'
     watch = ""

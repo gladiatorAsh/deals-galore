@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, timezone
 from . import dashboard
 from .config import Config
 from .llm import LLMClient
-from .models import Deal, Scored
+from .models import Deal, Scored, detect_store
 from .notifiers import Alert, Notifier, send_all
 from .prefilter import find_candidates, is_excluded
 from .scoring import score_candidates, scrub_names
@@ -30,6 +30,7 @@ def _alert_from_scored(s: Scored) -> Alert:
     return Alert(
         title=d.title, url=d.url, price=d.price, score=s.score, source=d.source,
         reason=s.reason, recipient=s.recipient, watch_item=s.watch_item, price_note=s.price_note,
+        store=d.store,
     )
 
 
@@ -70,6 +71,9 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
         if not _fresh(d, st.max_age_hours) or is_excluded(d, st.exclude_keywords):
             continue
         d.fill_prices()
+        d.store = detect_store(f"{d.title} {d.summary}", cfg.stores)
+        if cfg.only_stores and d.store not in cfg.only_stores:
+            continue
         unique[d.id] = d
         rechecked += bool(rec)
     stats.update(fetched=len(deals), new=len(unique) - rechecked, rechecked=rechecked)
@@ -87,11 +91,11 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
     # Record every evaluated item so it isn't re-processed until config changes.
     for d in unique.values():
         if store.seen(d.id):
-            store.mark(d.id, fp=fp, price=d.price, score=0.0, watch_item=None, gift_match=False,
+            store.mark(d.id, fp=fp, store=d.store, price=d.price, score=0.0, watch_item=None, gift_match=False,
                        reason="", price_note="", candidate=False)
         else:
             store.add_deal(d.id, {"title": d.title, "url": d.url, "source": d.source,
-                                  "price": d.price, "score": 0.0, "fp": fp})
+                                  "price": d.price, "score": 0.0, "fp": fp, "store": d.store})
 
     for s in sorted(scored, key=lambda x: x.score, reverse=True):
         d = s.deal
@@ -156,6 +160,7 @@ def digest(cfg: Config, store: Store, notifiers: list[Notifier], hours: float = 
             title=rec["title"], url=rec["url"], price=rec.get("price"), score=rec.get("score", 0),
             source=rec["source"], reason=rec.get("reason", ""), recipient=recipient,
             watch_item=rec.get("watch_item"), price_note=rec.get("price_note", ""),
+            store=rec.get("store"),
         ))
     subject = f"Deals digest — {len(alerts)} picks ({datetime.now(timezone.utc):%b %d})"
     if send_all(notifiers, "digest", alerts, subject):

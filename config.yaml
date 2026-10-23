@@ -69,9 +69,6 @@ sources:
       - https://www.dealnews.com/?rss=1&sort=time          # newest
       - https://www.dealnews.com/?rss=1&sort=hotness       # most popular
       - https://www.dealnews.com/f1682/Staff-Pick/?rss=1   # editors' choice
-  - type: rss
-    name: bensbargains
-    url: https://bensbargains.com/rss/
 
   # Any RSS/Atom feed works:
   # - type: rss
@@ -103,6 +100,42 @@ watchlist:
          rebecca minkoff, mulberry, burberry, ferragamo, gucci, prada, saint laurent, ysl,
          fendi, chloe, celine, givenchy, mz wallace, dagne dover, cuyana]
       - [purse, handbag, bag, tote, crossbody, satchel, clutch, hobo, shoulder bag]
+
+# Retailers to recognize in deal posts ("... at Costco"); shown on alerts and
+# the dashboard. Add any store. Set only_stores to ignore deals from others.
+stores:
+  - Costco
+  - Walmart
+  - Target
+  - Amazon
+  - Best Buy
+  - Macy's
+  - Nordstrom
+  - Nordstrom Rack
+  - Bloomingdale's
+  - Saks Fifth Avenue
+  - Saks Off 5th
+  - Neiman Marcus
+  - Last Call
+  - Kohl's
+  - JCPenney
+  - Dillard's
+  - TJ Maxx
+  - Marshalls
+  - Ross
+  - Burlington
+  - Zappos
+  - Jomashop
+  - Ashford
+  - Coach Outlet
+  - Kate Spade Outlet
+  - Michael Kors
+  - Tory Burch
+  - Fossil
+  - Kay Jewelers
+  - Zales
+  - Macy's Backstage
+only_stores: []   # e.g. [Costco, Walmart, Nordstrom Rack]
 
 dashboard:
   enabled: true
