@@ -154,3 +154,49 @@ def test_shopify_products_to_deals():
     assert deals[0].id != products_to_deals(
         [dict(products[0], variants=[{"price": "240", "compare_at_price": "450"}])],
         "https://shop.example.com", "b")[0].id  # new price -> new deal id
+
+
+def test_tracked_pages_refresh_or_fall_back():
+    import json as _json
+
+    from dealsgalore.sources import pages
+
+    one = ('<script type="application/ld+json">' + _json.dumps({"@type": "Product", "name": "Grant",
+           "offers": {"@type": "Offer", "price": "89.99", "availability": "https://schema.org/InStock"}})
+           + "</script>")
+    many = "".join('<script type="application/ld+json">' + _json.dumps(
+        {"@type": "Product", "offers": {"price": p}}) + "</script>" for p in ("47.50", "131.25"))
+    gone = one.replace("InStock", "OutOfStock")
+    assert pages.read_offer(one) == (89.99, True)
+    assert pages.read_offer(many) == (None, None)  # listing page: don't guess
+
+    class R:
+        def __init__(self, text): self.text = text
+    class Ctx:
+        def __init__(self, pages_): self.pages = pages_
+        def get(self, url):
+            v = self.pages[url]
+            if isinstance(v, Exception):
+                raise v
+            return R(v)
+
+    items = [{"url": "u1", "title": "Fossil Grant Watch", "price": 97.5, "was": 195, "checked": "2026-10-23",
+              "store": "Macy's"},
+             {"url": "u2", "title": "Tommy Watch", "price": 101.25, "was": 135, "checked": "2026-10-23"},
+             {"url": "u3", "title": "Kate Spade Crossbody", "price": 119, "was": 429, "checked": "2026-10-23"}]
+    deals = pages.fetch({"items": items}, Ctx({"u1": one, "u2": RuntimeError("403"), "u3": gone}))
+    by = {d.url: d for d in deals}
+    assert by["u1"].price == 89.99 and "this scan" in by["u1"].summary and by["u1"].store == "Macy's"
+    assert by["u2"].price == 101.25 and "confirmed 2026-10-23" in by["u2"].summary
+    assert "u3" not in by  # out of stock -> dropped
+    assert by["u1"].title == "Fossil Grant Watch $89.99 (was $195.00)"
+
+
+def test_tracked_page_fallback_expires(monkeypatch):
+    from dealsgalore.sources import pages
+
+    class Ctx:
+        def get(self, url):
+            raise RuntimeError("403")
+    old = [{"url": "u", "title": "Old pick", "price": 90, "checked": "2020-01-01"}]
+    assert pages.fetch({"items": old}, Ctx()) == []

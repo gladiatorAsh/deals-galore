@@ -133,6 +133,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             pending=bool(s.scored_by == "heuristic" and llm.providers),
             match_hint=(s.candidate.watch_items or ["Gift idea"])[0],
             premium=s.premium,
+            note=d.note,
         )
         already_logged = any(p["deal"] == d.id for p in store.prices.get(s.watch_item or "", []))
         if s.watch_item and d.price is not None and not already_logged:

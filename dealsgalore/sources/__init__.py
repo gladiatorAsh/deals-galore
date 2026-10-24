@@ -9,7 +9,7 @@ import logging
 from typing import Any, Callable
 
 from ..models import Deal
-from . import bestbuy, reddit, rss, shopify, slickdeals
+from . import bestbuy, pages, reddit, rss, shopify, slickdeals
 from .base import FetchContext
 
 log = logging.getLogger(__name__)
@@ -20,6 +20,7 @@ ADAPTERS: dict[str, Callable[[dict[str, Any], FetchContext], list[Deal]]] = {
     "slickdeals": slickdeals.fetch,
     "bestbuy": bestbuy.fetch,
     "shopify": shopify.fetch,
+    "pages": pages.fetch,
 }
 
 

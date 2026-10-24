@@ -45,6 +45,7 @@ class Deal:
     list_price: float | None = None
     id_salt: str = ""  # e.g. current price, for sources whose URL never changes
     store: str | None = None  # retailer, detected from the title/summary
+    note: str = ""  # shown on the dashboard card (e.g. when a price was confirmed)
 
     @property
     def id(self) -> str:

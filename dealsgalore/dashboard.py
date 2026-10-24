@@ -99,7 +99,7 @@ def _item(rec: dict[str, Any], cat: str, is_top: bool, repo: str | None, tz) -> 
     price = f"${rec['price']:,.0f}" if rec.get("price") is not None else "—"
     meta = " · ".join(x for x in (
         f"at {rec['store']}" if rec.get("store") else None,
-        rec.get("source"), rec.get("reason"), rec.get("price_note"),
+        rec.get("source"), rec.get("reason"), rec.get("price_note"), rec.get("note"),
         _local(rec["first_seen"], tz),
     ) if x)
     scored = rec.get("candidate") or rec.get("score")

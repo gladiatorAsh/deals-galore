@@ -131,6 +131,48 @@ sources:
       - https://www.fashionphile.com       # authenticated pre-owned luxury
       - https://shop.hodinkee.com          # new and pre-owned watches
 
+  # Specific product pages, re-checked every scan (store sales nobody posted to
+  # a deal site). Prices below were confirmed on the store pages on Oct 23.
+  - type: pages
+    name: tracked
+    items:
+      - url: https://www.macys.com/shop/product/fossil-mens-chronograph-grant-stainless-steel-bracelet-watch-44mm-fs4736?ID=711376
+        title: Fossil Men's Chronograph Grant Stainless Steel Bracelet Watch 44mm FS4736
+        store: Macy's
+        price: 97.50
+        was: 195.00
+        checked: 2026-10-23
+      - url: https://www.macys.com/shop/featured/fossil-mens-watches
+        title: Fossil Men's Chronograph Grant Leather Strap Watch 44mm (black or brown)
+        store: Macy's
+        price: 90.00
+        was: 180.00
+        checked: 2026-10-23
+      - url: https://www.macys.com/shop/featured/tommy-hilfiger-mens-watches
+        title: Tommy Hilfiger Men's Quartz Brown Leather Watch 43.5mm
+        store: Macy's
+        price: 138.75
+        was: 185.00
+        checked: 2026-10-23
+      - url: https://www.macys.com/shop/featured/tommy-hilfiger-mens-watches
+        title: Tommy Hilfiger Men's Multifunction Black Leather Watch 43mm
+        store: Macy's
+        price: 101.25
+        was: 135.00
+        checked: 2026-10-23
+      - url: https://www.macys.com/shop/featured/tommy-hilfiger-mens-watches
+        title: Tommy Hilfiger Men's Quartz Silver-Tone Stainless Steel Bracelet Watch 42mm
+        store: Macy's
+        price: 86.25
+        was: 115.00
+        checked: 2026-10-23
+      - url: https://www.katespadeoutlet.com/products/lenox-large-crossbody-bag/KP339-960.html
+        title: Kate Spade Lenox Large Crossbody Bag, pebbled leather
+        store: Kate Spade Outlet
+        price: 119.00
+        was: 429.00
+        checked: 2026-10-23
+
   # Deal aggregators: editors and communities post deals from every major
   # retailer (Costco, Walmart, Target, Macy's, Nordstrom, Amazon, Best Buy,
   # brand outlets...). Most stores publish no feed of their own and block
