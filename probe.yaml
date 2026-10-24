@@ -1,0 +1,14 @@
+# Temporary: can the Fossil / Tommy Hilfiger US and India stores be read?
+watchlist: []
+sources:
+  - type: shopify
+    name: probe
+    stores:
+      - https://www.fossil.com
+      - https://www.fossil.com/en-in
+      - https://usa.tommy.com
+      - https://in.tommy.com
+      - https://www.tommy.com
+  - type: rss
+    name: gnews-india
+    url: "https://news.google.com/rss/search?q=(fossil+OR+%22tommy+hilfiger%22)+watch+sale+when:7d&hl=en-IN&gl=IN&ceid=IN:en"

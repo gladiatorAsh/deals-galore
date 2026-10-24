@@ -53,31 +53,24 @@ sources:
     # Brand searches catch deals that never reach the front page. They cost no
     # LLM calls unless a result matches the watchlist below.
     searches:
-      # watches
-      - seiko watch
-      - tissot watch
-      - citizen watch
-      - hamilton watch
-      - orient watch
-      - bulova watch
-      # purses
-      - coach bag
-      - kate spade bag
-      - michael kors bag
-      - tory burch bag
-      - longchamp
-      - marc jacobs bag
-      # gift mode: more brands
+      # brother's watch
       - fossil watch
-      - armani watch
-      - hugo boss watch
+      - fossil mens watch
       - tommy hilfiger watch
-      - g-shock
+      - tommy hilfiger mens watch
+      # sister-in-law's purse
+      - coach crossbody
+      - coach shoulder bag
+      - kate spade crossbody
+      - kate spade purse
+      - michael kors crossbody
+      - michael kors purse
+      - tory burch crossbody
+      - marc jacobs bag
+      - longchamp
+      - dooney bourke
       - coach outlet
       - kate spade outlet
-      - dooney bourke
-      - ralph lauren bag
-      - calvin klein bag
 
   # All subreddits are fetched in ONE request (Reddit rate-limits repeat calls).
   # r/Watchexchange = pre-owned watches sold by individuals ([WTS] posts): often
@@ -97,7 +90,7 @@ sources:
       # premium brands
       - "https://news.google.com/rss/search?q=(gucci+OR+prada+OR+%22saint+laurent%22+OR+fendi+OR+%22bottega+veneta%22+OR+celine+OR+burberry)+bag+(sale+OR+deal+OR+%22off%22)+when:2d&hl=en-US&gl=US&ceid=US:en"
       - "https://news.google.com/rss/search?q=(omega+OR+%22tag+heuer%22+OR+tudor+OR+longines+OR+cartier+OR+breitling+OR+%22grand+seiko%22)+watch+(sale+OR+deal+OR+%22off%22)+when:2d&hl=en-US&gl=US&ceid=US:en"
-      - "https://news.google.com/rss/search?q=(%22watch+deal%22+OR+%22watch+sale%22+OR+%22watches+on+sale%22)+(seiko+OR+citizen+OR+tissot+OR+hamilton+OR+bulova)+when:2d&hl=en-US&gl=US&ceid=US:en"
+      - "https://news.google.com/rss/search?q=(fossil+OR+%22tommy+hilfiger%22)+watch+(sale+OR+deal+OR+%22off%22)+when:2d&hl=en-US&gl=US&ceid=US:en"
 
   # Deal blog with frequent Coach Outlet / Kate Spade / Michael Kors posts.
   - type: rss
@@ -157,26 +150,24 @@ sources:
 watchlist:
   # Gift for my brother
   - item: Men's watch
-    notes: Gift for my brother. Any recognizable brand is fine; it should feel like a proper present (new, boxed, warranty).
+    notes: >-
+      Gift for my brother: a Fossil or Tommy Hilfiger men's watch (both brands
+      have stores in India for service). New, boxed, with warranty.
     until: 2026-11-05          # gift deadline; stops matching afterwards
     min_price: 100             # budget: $100–$500
     max_price: 500
     require_price: true        # skip posts with no price
     search: false              # covered by the brand searches above
     any_of:
-      - [seiko, grand seiko, tissot, citizen, hamilton, longines, omega, tag heuer, tudor,
-         oris, bulova, orient, movado, rado, mido, certina, frederique constant, nomos,
-         sinn, victorinox, breitling, cartier, timex, vaer, lorier, rolex, iwc,
-         panerai,
-         # well-known fashion/lifestyle brands (gift mode: any recognizable brand)
-         fossil, michael kors, emporio armani, armani exchange, hugo boss, tommy hilfiger,
-         coach, skagen, g-shock, casio, lacoste, citizen eco-drive, invicta, swiss army]
-      - [watch, chronograph, timepiece, diver, automatic]
-    exclude: [women's, womens, ladies, lady, girls, kids, smartwatch]   # bands/straps: see exclude_keywords
+      - [fossil, tommy hilfiger, tommy]
+      - [watch, chronograph, timepiece, automatic]
+    exclude: [women's, womens, ladies, lady, girls, kids, smartwatch, smart watch, gen 6, gen 7]
 
   # Gift for my sister-in-law
   - item: Women's bag
-    notes: Gift for my sister-in-law. Any recognizable brand is fine; a purse or handbag, new with tags.
+    notes: >-
+      Gift for my sister-in-law: a branded purse or handbag she can carry
+      (crossbody, shoulder bag, satchel, clutch). NOT a tote. New with tags.
     until: 2026-11-05
     min_price: 100
     max_price: 500
@@ -192,9 +183,10 @@ watchlist:
          dkny, calvin klein, guess, vera bradley, fossil, madewell, cole haan, kenneth cole,
          ralph lauren, lauren ralph lauren, polo, nine west, radley, brahmin, dooney & bourke,
          dooney, frye, see by chloe, karl lagerfeld, ted baker, aldo, steve madden, anne klein]
-      - [purse, handbag, bag, tote, crossbody, satchel, clutch, hobo, shoulder bag]
-    exclude: [men's, mens, laptop, diaper, gym, lunch, toiletry, cosmetic, makeup, duffel,
-              weekender, luggage, wallet, card case]
+      - [purse, handbag, crossbody, cross-body, satchel, clutch, hobo, shoulder bag, top handle,
+         top-handle, wristlet, saddle bag, bucket bag, camera bag, flap bag, mini bag]
+    exclude: [men's, mens, tote, totes, carryall, shopper, backpack, laptop, diaper, gym, lunch,
+              toiletry, cosmetic, makeup, duffel, weekender, luggage, travel, wallet, card case]
 
 # Premium brands are your priority: their deals get a score boost, are listed
 # first on the dashboard and in alerts, and get their own "Premium" filter.

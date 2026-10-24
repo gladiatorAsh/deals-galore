@@ -49,7 +49,7 @@ def gift_countdown(cfg: Config, today: date | None = None) -> str | None:
 
 
 # Bump when scoring logic changes in a way that should re-check recent posts.
-SCORING_VERSION = 15
+SCORING_VERSION = 16
 
 
 def config_fingerprint(cfg: Config) -> str:
