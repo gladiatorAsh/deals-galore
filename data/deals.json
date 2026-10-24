@@ -2182,7 +2182,7 @@
   },
   "101a661c4fa81bd2": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-24T05:50:35+00:00",
    "fp": "10f589b3db",
    "gift_match": false,
@@ -22808,7 +22808,7 @@
   },
   "ae69eca3319306a5": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-24T05:50:35+00:00",
    "fp": "10f589b3db",
    "gift_match": false,
@@ -25639,7 +25639,7 @@
   },
   "c3f2cd91615d0dd0": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-24T05:50:35+00:00",
    "fp": "10f589b3db",
    "gift_match": false,
@@ -26606,7 +26606,7 @@
   },
   "cab64f371d39f521": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-24T05:50:35+00:00",
    "fp": "10f589b3db",
    "gift_match": false,
@@ -28799,7 +28799,7 @@
   },
   "dd85f01ca0c8b6f1": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-24T05:50:35+00:00",
    "fp": "10f589b3db",
    "gift_match": false,
@@ -29836,7 +29836,7 @@
   },
   "e489b5340f4396b7": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-24T05:50:35+00:00",
    "fp": "10f589b3db",
    "gift_match": false,
@@ -33195,7 +33195,7 @@
   }
  },
  "meta": {
-  "updated": "2026-10-24T16:40:56+00:00"
+  "updated": "2026-10-24T18:03:22+00:00"
  },
  "prices": {
   "Designer purse or handbag": [
