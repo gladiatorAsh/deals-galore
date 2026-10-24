@@ -27,6 +27,9 @@ For EVERY deal, return how worth-alerting it is:
 - score 0.0-1.0. 0.85+ = genuinely great: matches a watchlist item at/below its
   target, or an excellent, specific gift fit for someone at a real discount.
   0.5-0.8 = decent, worth a digest line. Below 0.4 = noise.
+- Every deal has ALREADY passed the watchlist's brand, item-type and price
+  checks (see keyword_hints). Never reject a deal for its brand or for not
+  matching the brand list; judge only value, genuineness and suitability.
 - Judge a WATCHLIST match purely on its own value: genuine product from that
   brand, a real discount or fair price, between min_price and max_price when set. Ignore
   gift profiles and their budgets/occasions for watchlist matches, and say
