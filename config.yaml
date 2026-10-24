@@ -58,6 +58,12 @@ sources:
       - fossil mens watch
       - tommy hilfiger watch
       - tommy hilfiger mens watch
+      - macys fossil watch
+      - macys tommy hilfiger watch
+      - amazon fossil watch
+      - amazon tommy hilfiger watch
+      - nordstrom rack fossil
+      - kohls fossil watch
       # sister-in-law's purse
       - coach crossbody
       - coach shoulder bag
@@ -71,6 +77,10 @@ sources:
       - dooney bourke
       - coach outlet
       - kate spade outlet
+      - macys coach bag
+      - macys michael kors bag
+      - nordstrom rack crossbody
+      - amazon kate spade crossbody
 
   # All subreddits are fetched in ONE request (Reddit rate-limits repeat calls).
   # r/Watchexchange = pre-owned watches sold by individuals ([WTS] posts): often
@@ -154,7 +164,7 @@ watchlist:
       Gift for my brother: a Fossil or Tommy Hilfiger men's watch (both brands
       have stores in India for service). New, boxed, with warranty.
     until: 2026-11-05          # gift deadline; stops matching afterwards
-    min_price: 100             # budget: $100–$500
+    min_price: 75              # watch budget: $75–$500 (Fossil/Tommy sale prices start ~$80)
     max_price: 500
     require_price: true        # skip posts with no price
     search: false              # covered by the brand searches above
@@ -281,6 +291,7 @@ stores:
   - Gap Factory
   - Banana Republic Factory
 only_stores: []   # e.g. [Costco, Walmart, Nordstrom Rack]
+# Gift mode: US stores only (all sources here are US; prices in USD).
 
 dashboard:
   enabled: true
