@@ -67,6 +67,17 @@ sources:
       - tory burch bag
       - longchamp
       - marc jacobs bag
+      # gift mode: more brands
+      - fossil watch
+      - armani watch
+      - hugo boss watch
+      - tommy hilfiger watch
+      - g-shock
+      - coach outlet
+      - kate spade outlet
+      - dooney bourke
+      - ralph lauren bag
+      - calvin klein bag
 
   # All subreddits are fetched in ONE request (Reddit rate-limits repeat calls).
   # r/Watchexchange = pre-owned watches sold by individuals ([WTS] posts): often
@@ -146,7 +157,7 @@ sources:
 watchlist:
   # Gift for my brother
   - item: Men's watch
-    notes: Gift for my brother; needs to look and feel like a proper present (box, warranty).
+    notes: Gift for my brother. Any recognizable brand is fine; it should feel like a proper present (new, boxed, warranty).
     until: 2026-11-05          # gift deadline; stops matching afterwards
     min_price: 100             # budget: $100–$500
     max_price: 500
@@ -156,13 +167,16 @@ watchlist:
       - [seiko, grand seiko, tissot, citizen, hamilton, longines, omega, tag heuer, tudor,
          oris, bulova, orient, movado, rado, mido, certina, frederique constant, nomos,
          sinn, victorinox, breitling, cartier, timex, vaer, lorier, rolex, iwc,
-         panerai]
+         panerai,
+         # well-known fashion/lifestyle brands (gift mode: any recognizable brand)
+         fossil, michael kors, emporio armani, armani exchange, hugo boss, tommy hilfiger,
+         coach, skagen, g-shock, casio, lacoste, citizen eco-drive, invicta, swiss army]
       - [watch, chronograph, timepiece, diver, automatic]
     exclude: [women's, womens, ladies, lady, girls, kids, smartwatch]   # bands/straps: see exclude_keywords
 
   # Gift for my sister-in-law
   - item: Women's bag
-    notes: Gift for my sister-in-law; a purse or handbag she'd carry every day or for evenings out.
+    notes: Gift for my sister-in-law. Any recognizable brand is fine; a purse or handbag, new with tags.
     until: 2026-11-05
     min_price: 100
     max_price: 500
@@ -173,7 +187,11 @@ watchlist:
          rebecca minkoff, mulberry, burberry, ferragamo, gucci, prada, saint laurent, ysl,
          fendi, chloe, celine, givenchy, mz wallace, dagne dover, cuyana, lo & sons,
          mansur gavriel, staud, louis vuitton, chanel, hermes, bottega veneta, loewe,
-         dior, balenciaga]
+         dior, balenciaga,
+         # well-known fashion brands (gift mode: any recognizable brand)
+         dkny, calvin klein, guess, vera bradley, fossil, madewell, cole haan, kenneth cole,
+         ralph lauren, lauren ralph lauren, polo, nine west, radley, brahmin, dooney & bourke,
+         dooney, frye, see by chloe, karl lagerfeld, ted baker, aldo, steve madden, anne klein]
       - [purse, handbag, bag, tote, crossbody, satchel, clutch, hobo, shoulder bag]
     exclude: [men's, mens, laptop, diaper, gym, lunch, toiletry, cosmetic, makeup, duffel,
               weekender, luggage, wallet, card case]
