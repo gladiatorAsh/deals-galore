@@ -4,7 +4,7 @@ import hashlib
 import json
 import logging
 import os
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 
 from . import dashboard
 from .config import Config
@@ -34,16 +34,31 @@ def _alert_from_scored(s: Scored) -> Alert:
     )
 
 
+def gift_countdown(cfg: Config, today: date | None = None) -> str | None:
+    """'13 days to Nov 5 · order by Oct 31' while gift mode is on."""
+    if not cfg.gift_deadline:
+        return None
+    today = today or date.today()
+    days = (cfg.gift_deadline - today).days
+    if days < 0:
+        return None
+    order_by = cfg.order_by()
+    tail = (f" · order by {order_by:%b} {order_by.day} for standard shipping" if order_by >= today
+            else " · past standard-shipping cutoff: pick fast shipping or in-store pickup")
+    return f"🎁 {days} day{'s' if days != 1 else ''} to {cfg.gift_deadline:%b} {cfg.gift_deadline.day}{tail}"
+
+
 # Bump when scoring logic changes in a way that should re-check recent posts.
-SCORING_VERSION = 12
+SCORING_VERSION = 13
 
 
 def config_fingerprint(cfg: Config) -> str:
     """Short hash of what decides a match. Only a hash is stored (public repo)."""
     payload = {
         "scoring": SCORING_VERSION,
-        "watch": [(w.item, w.max_price, w.min_price, w.require_price, w.match, w.any_of)
-                  for w in cfg.watchlist],
+        "watch": [(w.item, w.max_price, w.min_price, w.require_price, w.match, w.any_of,
+                   w.exclude, w.notes, w.active()) for w in cfg.watchlist],
+        "gift_deadline": cfg.gift_deadline,
         "gifts": [(p.name, p.interests, p.keywords, p.budget, p.occasion) for p in cfg.gift_profiles],
     }
     return hashlib.sha1(json.dumps(payload, sort_keys=True, default=str).encode()).hexdigest()[:10]
@@ -139,6 +154,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             timezone_name=cfg.dashboard.get("timezone"),
             stale_hours=cfg.dashboard.get("stale_hours", 12),
             hide_below=cfg.dashboard.get("hide_below", 0.3),
+            banner=gift_countdown(cfg),
             repo=cfg.dashboard.get("repo") or os.environ.get("GITHUB_REPOSITORY"),
         )
     store.save()
@@ -176,6 +192,9 @@ def digest(cfg: Config, store: Store, notifiers: list[Notifier], hours: float = 
             store=rec.get("store"), premium=rec.get("premium"),
         ))
     subject = f"Deals digest — {len(alerts)} picks ({datetime.now(timezone.utc):%b %d})"
+    countdown = gift_countdown(cfg)
+    if countdown:
+        subject += f" · {countdown}"
     if send_all(notifiers, "digest", alerts, subject):
         for k, _ in rows:
             store.mark(k, digested=True)

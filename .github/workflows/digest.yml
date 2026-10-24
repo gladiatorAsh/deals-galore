@@ -3,6 +3,7 @@ name: Daily digest
 on:
   schedule:
     - cron: "7 15 * * *"   # 15:07 UTC = 8:07am Pacific (PDT); 7:07am after DST ends
+    - cron: "7 1 * * *"    # 01:07 UTC = 6:07pm Pacific (PDT); gift mode evening digest
   workflow_dispatch:
 
 permissions:

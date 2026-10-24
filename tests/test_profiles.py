@@ -150,3 +150,29 @@ def test_implausibly_cheap_luxury_is_demoted(tmp_path):
     assert "implausibly low" in by_title["[WTS] Omega Speedmaster Moonwatch $250"].price_note
     assert by_title["[WTS] Omega x Swatch Mission to the Moon $260"].score > 0.3
     assert by_title["[WTS] Seiko Presage watch $250"].score > 0.3
+
+
+def test_gift_mode_items_and_countdown():
+    from datetime import date
+
+    from dealsgalore.config import Config, Settings, WatchItem
+    from dealsgalore.pipeline import gift_countdown
+    from dealsgalore.prefilter import find_candidates
+    from dealsgalore.scoring import build_user_prompt
+    from dealsgalore.models import Candidate
+
+    w = WatchItem(item="Men's watch", until="2026-11-05", min_price=100, max_price=500,
+                  search=False, any_of=[["citizen"], ["watch"]], exclude=["women's", "ladies"],
+                  notes="Gift for my brother")
+    assert w.until == date(2026, 11, 5)
+    assert w.active(date(2026, 11, 5)) and not w.active(date(2026, 11, 6))
+    deals = [_d("Citizen Men's Watch with Leather Strap $199", 199), _d("Citizen Women's Watch $199", 199)]
+    assert [c.deal.title for c in find_candidates(deals, [w], [])] == [deals[0].title]
+
+    cfg = Config(Settings(), [], [w], [], [], {}, gift_deadline=date(2026, 11, 5), shipping_days=5)
+    assert str(cfg.order_by()) == "2026-10-31"
+    assert gift_countdown(cfg, date(2026, 10, 23)) == "🎁 13 days to Nov 5 · order by Oct 31 for standard shipping"
+    assert "past standard-shipping cutoff" in gift_countdown(cfg, date(2026, 11, 3))
+    assert gift_countdown(cfg, date(2026, 11, 6)) is None
+    prompt = build_user_prompt([Candidate(deals[0], watch_items=["Men's watch"])], cfg)
+    assert '"must_arrive_by": "2026-11-05"' in prompt and "Gift for my brother" in prompt

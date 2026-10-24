@@ -1,9 +1,17 @@
 # deals-galore configuration (public; this repo is public).
 # Gift profiles for family members are NOT here; see gifts.example.yaml.
 
+# Gift mode: everything below is tuned for buying two gifts by the deadline.
+# The scorer favors new, in-stock items from retailers with fast shipping and
+# easy returns; the dashboard and digest show a countdown. Remove this section
+# (and the `until:` lines in the watchlist) to go back to general deal hunting.
+gift_mode:
+  deadline: 2026-11-05
+  shipping_days: 5           # "order by" = deadline minus this
+
 settings:
   max_age_hours: 48          # ignore posts older than this
-  instant_threshold: 0.8     # push alert immediately at or above this score
+  instant_threshold: 0.75    # push alert immediately at or above this score (gift mode: a bit eager)
   digest_threshold: 0.5      # include in the daily digest at or above this score
   max_llm_batches_per_run: 6 # each batch scores up to batch_size deals in ONE request
   batch_size: 15
@@ -16,7 +24,10 @@ settings:
                      "watch band", "watch strap", "replacement band", "screen protector",
                      "replica", "dupe", "inspired by",
                      "bag charm", "key holder", "keychain", "key ring", "strap only",
-                     "bag strap", "– accessory"]
+                     "bag strap", "– accessory",
+                     # gift mode: new and in stock only
+                     "pre-owned", "preowned", "pre owned", "refurbished", "renewed", "vintage",
+                     "pre-order", "preorder", "backorder", "[wts]"]
 
 # Free, OpenAI-compatible providers, tried in order. Each needs a free API key
 # saved as a repository secret; you only need one. Without any key, scoring
@@ -61,7 +72,9 @@ sources:
   # r/Watchexchange = pre-owned watches sold by individuals ([WTS] posts): often
   # the best value on good brands, but check the seller's history before buying.
   - type: reddit
-    subreddits: [deals, frugalfemalefashion, frugalmalefashion, Watchexchange]
+    subreddits: [deals, frugalfemalefashion, frugalmalefashion]
+    # Gift mode: r/Watchexchange (private sellers, pre-owned) is off. Add it back
+    # to the list above for your own purchases.
     sort: new
 
   # Deal articles from news and shopping sites (People, NY Post, Today, ...).
@@ -98,6 +111,7 @@ sources:
   # Pre-owned premium bags and watches from resellers, with their markdowns.
   - type: shopify
     name: resale
+    enabled: false   # gift mode: pre-owned resellers off (no box/warranty, slower returns)
     stores:
       - https://www.lovethatbagetc.com     # pre-owned Louis Vuitton, Chanel, Gucci, ...
       - https://www.fashionphile.com       # authenticated pre-owned luxury
@@ -130,7 +144,10 @@ sources:
 #   require_price: skip posts whose price can't be found
 # The dashboard's Watch button adds specific items here.
 watchlist:
-  - item: Watches
+  # Gift for my brother
+  - item: Men's watch
+    notes: Gift for my brother; needs to look and feel like a proper present (box, warranty).
+    until: 2026-11-05          # gift deadline; stops matching afterwards
     min_price: 100             # budget: $100–$500
     max_price: 500
     require_price: true        # skip posts with no price
@@ -140,9 +157,13 @@ watchlist:
          oris, bulova, orient, movado, rado, mido, certina, frederique constant, nomos,
          sinn, victorinox, breitling, cartier, timex, vaer, lorier, rolex, iwc,
          panerai]
-      - [watch, chronograph, timepiece, diver, automatic, wts]   # wts = r/Watchexchange sale post
+      - [watch, chronograph, timepiece, diver, automatic]
+    exclude: [women's, womens, ladies, lady, girls, kids, smartwatch]   # bands/straps: see exclude_keywords
 
-  - item: Designer purses
+  # Gift for my sister-in-law
+  - item: Women's bag
+    notes: Gift for my sister-in-law; a purse or handbag she'd carry every day or for evenings out.
+    until: 2026-11-05
     min_price: 100
     max_price: 500
     require_price: true
@@ -154,6 +175,8 @@ watchlist:
          mansur gavriel, staud, louis vuitton, chanel, hermes, bottega veneta, loewe,
          dior, balenciaga]
       - [purse, handbag, bag, tote, crossbody, satchel, clutch, hobo, shoulder bag]
+    exclude: [men's, mens, laptop, diaper, gym, lunch, toiletry, cosmetic, makeup, duffel,
+              weekender, luggage, wallet, card case]
 
 # Premium brands are your priority: their deals get a score boost, are listed
 # first on the dashboard and in alerts, and get their own "Premium" filter.

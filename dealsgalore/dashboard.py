@@ -46,9 +46,10 @@ h1{{font-size:28px;margin:0 0 4px;letter-spacing:-.02em}}.sub{{color:var(--muted
 .watch{{flex:none;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;white-space:nowrap}}
 .watch:hover{{color:var(--accent);border-color:var(--accent)}}
 .hint{{color:var(--muted);font-size:13px;margin:24px 0 0}}
+.gift{{background:var(--card);border:1px solid var(--accent);border-radius:10px;padding:10px 14px;margin:-8px 0 18px;font-weight:600}}
 </style></head><body><main>
 <h1>Deals Galore</h1>
-<p class="sub">{total} deals · {top} top picks · updated {updated}</p>
+<p class="sub">{total} deals · {top} top picks · updated {updated}</p>{banner}
 <div class="bar">{chips}<label class="toggle"><input type="checkbox" id="toponly">Top picks only</label></div>
 <p class="empty" id="none" hidden>Nothing here right now. New matches appear as deals are posted.</p>
 <div id="list">{items}</div>
@@ -123,7 +124,7 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
            fp: str | None = None, browse_sources: list[str] | None = None,
            browse_hours: float = 48, browse_items: int = 80, repo: str | None = None,
            browse_only_matches: bool = False, timezone_name: str | None = None,
-           stale_hours: float = 12, hide_below: float = 0.3) -> Path:
+           stale_hours: float = 12, hide_below: float = 0.3, banner: str | None = None) -> Path:
     """One list, best first, with a filter chip per category actually present.
 
     Included: deals scored at/above min_score under the current config (fp), plus
@@ -177,6 +178,7 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
     page = PAGE.format(
         total=len(ordered),
         top=n_top,
+        banner=f'<p class="gift">{html.escape(banner)}</p>' if banner else "",
         updated=now.strftime("%b %-d, %-I:%M %p %Z"),
         chips="".join(chips),
         items="".join(cards),

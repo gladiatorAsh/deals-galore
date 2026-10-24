@@ -55,6 +55,8 @@ def match_watch(deal: Deal, item: WatchItem) -> bool:
     for group in item.any_of:
         if not any(_has_phrase_prefix(title, term) for term in group):
             return False
+    if any(_has_phrase_prefix(title, term) for term in item.exclude):
+        return False
     if deal.price is None and item.require_price:
         return False
     if deal.price is not None:
@@ -99,7 +101,7 @@ def find_candidates(
     for d in deals:
         c = Candidate(
             deal=d,
-            watch_items=[w.item for w in watchlist if match_watch(d, w)],
+            watch_items=[w.item for w in watchlist if w.active() and match_watch(d, w)],
             recipients=[p.name for p in profiles if match_profile(d, p)],
         )
         if c.watch_items or c.recipients:

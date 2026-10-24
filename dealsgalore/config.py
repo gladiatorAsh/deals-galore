@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import os
 from dataclasses import dataclass, field
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -29,8 +29,16 @@ class WatchItem:
     # group, e.g. [[seiko, tissot], [watch]] = "a Seiko or Tissot ... watch".
     any_of: list[list[str]] = field(default_factory=list)
     search: bool = True  # run a source search for `query` (off for broad categories)
+    exclude: list[str] = field(default_factory=list)  # title words that rule a deal out
+    notes: str = ""  # context for the AI scorer, e.g. who it's for and their style
+    until: date | None = None  # stop matching after this date (e.g. a gift deadline)
+
+    def active(self, today: date | None = None) -> bool:
+        return self.until is None or (today or date.today()) <= self.until
 
     def __post_init__(self) -> None:
+        if isinstance(self.until, str):
+            self.until = date.fromisoformat(self.until)
         self.any_of = [[str(t) for t in ([g] if isinstance(g, str) else g)] for g in self.any_of]
         if not self.match and not self.any_of:
             self.match = [w for w in self.item.lower().split() if len(w) > 1]
@@ -87,6 +95,8 @@ class Settings:
 
 @dataclass
 class Config:
+    """Loaded configuration. `gift_deadline` set => gift mode (see order_by)."""
+
     settings: Settings
     sources: list[dict[str, Any]]
     watchlist: list[WatchItem]
@@ -97,9 +107,17 @@ class Config:
     only_stores: list[str] = field(default_factory=list)  # if set, ignore other stores
     premium_brands: list[str] = field(default_factory=list)  # ranked first, score boost
     premium_boost: float = 0.1
+    gift_deadline: date | None = None  # gift mode: must arrive by this date
+    shipping_days: int = 5  # buffer for standard shipping before the deadline
     # Lowest believable price for a genuine item of a brand; below it a deal is
     # treated as a misread price, part, replica or scam.
     plausible_min: dict[str, float] = field(default_factory=dict)
+
+    def order_by(self) -> date | None:
+        """Last day to order for standard shipping to arrive by the gift deadline."""
+        if not self.gift_deadline:
+            return None
+        return self.gift_deadline - timedelta(days=self.shipping_days)
 
 
 def _parse_profiles(raw: Any) -> list[GiftProfile]:
@@ -141,6 +159,12 @@ def load_gift_profiles(base_dir: Path) -> list[GiftProfile]:
     return []
 
 
+def _as_date(value: Any) -> date | None:
+    if value in (None, ""):
+        return None
+    return value if isinstance(value, date) else date.fromisoformat(str(value))
+
+
 def load_config(path: str | Path = "config.yaml") -> Config:
     path = Path(path)
     data = yaml.safe_load(path.read_text()) or {}
@@ -160,6 +184,8 @@ def load_config(path: str | Path = "config.yaml") -> Config:
         only_stores=[str(s) for s in data.get("only_stores") or []],
         premium_brands=[str(b) for b in (data.get("premium") or {}).get("brands", [])],
         premium_boost=float((data.get("premium") or {}).get("boost", 0.1)),
+        gift_deadline=_as_date((data.get("gift_mode") or {}).get("deadline")),
+        shipping_days=int((data.get("gift_mode") or {}).get("shipping_days", 5)),
         plausible_min={str(k).lower(): float(v)
                        for k, v in ((data.get("premium") or {}).get("plausible_min") or {}).items()},
     )

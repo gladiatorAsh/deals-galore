@@ -7,6 +7,7 @@ Anything the LLM can't reach falls back to a transparent heuristic.
 from __future__ import annotations
 
 import json
+from datetime import date
 import logging
 import re
 
@@ -40,6 +41,12 @@ For EVERY deal, return how worth-alerting it is:
   genuine Omega Speedmaster or Louis Vuitton bag for a few hundred dollars),
   it is probably a misread price, a part or accessory, a replica, or a scam:
   score it 0.1 and say why.
+- If gift_mode is present, these are GIFTS that must arrive by must_arrive_by:
+  prefer new, in-stock items from retailers with fast shipping and easy
+  returns (brand stores, Nordstrom, Macy's, Amazon, Costco, Best Buy).
+  Score 0.2 or less for pre-order/backorder, "ships in N weeks", auctions,
+  international shipping, used or pre-owned items, and anything unlikely to
+  arrive in time. Use each watchlist item's notes (who it's for, their style).
 - Penalize: vague listings, accessories posing as the main product, refurbished
   or used unless the item says so, likely-expired posts, inflated "list price"
   discounts, and gifts that only loosely fit an interest.
@@ -71,6 +78,7 @@ def _profiles_block(profiles: list[GiftProfile]) -> list[dict]:
 def _watch_block(watchlist: list[WatchItem]) -> list[dict]:
     return [
         {"item": w.item, "max_price_usd": w.max_price, "min_price_usd": w.min_price,
+         **({"notes": w.notes} if w.notes else {}),
          **({"must_include_one_of_each": w.any_of} if w.any_of else {})}
         for w in watchlist
     ]
@@ -91,6 +99,11 @@ def build_user_prompt(batch: list[Candidate], cfg: Config) -> str:
     ]
     return json.dumps(
         {
+            **({"gift_mode": {
+                "today": date.today().isoformat(),
+                "must_arrive_by": cfg.gift_deadline.isoformat(),
+                "order_by_for_standard_shipping": cfg.order_by().isoformat(),
+            }} if cfg.gift_deadline else {}),
             "watchlist": _watch_block(cfg.watchlist),
             "premium_brands": cfg.premium_brands,
             "gift_profiles": _profiles_block(cfg.gift_profiles),

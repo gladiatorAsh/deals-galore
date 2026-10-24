@@ -2,7 +2,7 @@ name: Scan for deals
 
 on:
   schedule:
-    - cron: "17 */2 * * *"   # every 2 hours (UTC); tighten during Black Friday week
+    - cron: "17 * * * *"     # hourly during gift mode (was every 2 hours)
   workflow_dispatch:
 
 permissions:
