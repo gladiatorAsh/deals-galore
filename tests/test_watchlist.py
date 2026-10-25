@@ -120,3 +120,21 @@ def test_exclusions_check_titles_only():
     ex = ["bag strap", "– accessory"]
     assert is_excluded(Deal("s", "Celine Logo Bag Strap – Accessory $446", "u"), ex)
     assert not is_excluded(Deal("s", "Coach Tabby 26 $295", "u", summary="Detachable bag strap"), ex)
+
+
+def test_dashboard_caps_cards_per_store_except_tracked(tmp_path):
+    from dealsgalore import dashboard
+    from dealsgalore.store import Store
+
+    st = Store(tmp_path / "d.json")
+    for i in range(12):
+        st.add_deal(f"d{i}", {"title": f"Dooney bag {i} $109", "url": f"https://d/{i}", "source": "brand:dooney",
+                              "store": "Dooney & Bourke", "price": 109.0, "score": 0.8, "fp": "f",
+                              "watch_item": "Women's bag"})
+    for i in range(10):
+        st.add_deal(f"t{i}", {"title": f"Rack pick {i} $120", "url": f"https://r/{i}", "source": "tracked",
+                              "store": "Nordstrom Rack", "price": 120.0, "score": 0.7, "fp": "f",
+                              "watch_item": "Women's bag"})
+    out = dashboard.render(st, tmp_path / "i.html", 0.5, 50, fp="f", max_per_store=8).read_text()
+    assert out.count("Dooney bag") == 8 and out.count("Rack pick") == 10
+    assert "18 deals" in out

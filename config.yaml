@@ -318,7 +318,10 @@ watchlist:
       - [purse, handbag, crossbody, cross-body, satchel, clutch, hobo, shoulder bag, top handle,
          top-handle, wristlet, saddle bag, bucket bag, camera bag, flap bag, mini bag]
     exclude: [men's, mens, tote, totes, carryall, shopper, backpack, laptop, diaper, gym, lunch,
-              toiletry, cosmetic, makeup, duffel, weekender, luggage, travel, wallet, card case]
+              toiletry, cosmetic, makeup, duffel, weekender, luggage, travel, wallet, card case,
+              # team logos / licensed characters: not this gift
+              mlb, nfl, nba, nhl, mls, ncaa, collegiate, university, college, disney, marvel,
+              star wars, peanuts, hello kitty, harry potter]
 
 # Premium brands are your priority: their deals get a score boost, are listed
 # first on the dashboard and in alerts, and get their own "Premium" filter.
@@ -428,3 +431,4 @@ dashboard:
   browse_items: 80
   repo: gladiatorAsh/deals-galore   # where the dashboard's Watch button opens issues
   timezone: America/Los_Angeles     # times on the dashboard (Pacific)
+  max_per_store: 8                  # cards per store, so one big sale can't crowd out the rest

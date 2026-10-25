@@ -49,7 +49,7 @@ def gift_countdown(cfg: Config, today: date | None = None) -> str | None:
 
 
 # Bump when scoring logic changes in a way that should re-check recent posts.
-SCORING_VERSION = 17
+SCORING_VERSION = 18
 
 
 def config_fingerprint(cfg: Config) -> str:
@@ -156,6 +156,7 @@ def scan(cfg: Config, store: Store, notifiers: list[Notifier], llm: LLMClient | 
             stale_hours=cfg.dashboard.get("stale_hours", 12),
             hide_below=cfg.dashboard.get("hide_below", 0.3),
             banner=gift_countdown(cfg),
+            max_per_store=cfg.dashboard.get("max_per_store", 0),
             repo=cfg.dashboard.get("repo") or os.environ.get("GITHUB_REPOSITORY"),
         )
     store.save()

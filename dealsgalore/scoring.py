@@ -197,8 +197,12 @@ def apply_price_history(s: Scored, cfg: Config, store: Store) -> None:
     """Down-rank 'deals' that aren't actually below recent prices."""
     if not s.watch_item or s.deal.price is None:
         return
-    stats = store.price_stats(s.watch_item, cfg.settings.history_days)
+    watch = next((w for w in cfg.watchlist if w.item == s.watch_item), None)
     price = s.deal.price
+    # Price history only means something for ONE product ("Dyson V15"). For a
+    # category ("any branded purse") it would compare different items.
+    stats = (None if watch is None or watch.any_of
+             else store.price_stats(s.watch_item, cfg.settings.history_days))
     if stats and stats["count"] >= 3:
         if price > stats["median"]:
             s.score = max(0.0, s.score - 0.3)
@@ -206,7 +210,6 @@ def apply_price_history(s: Scored, cfg: Config, store: Store) -> None:
         elif price <= stats["min"]:
             s.score = min(1.0, s.score + 0.1)
             s.price_note = f"Lowest price seen in {cfg.settings.history_days} days"
-    watch = next((w for w in cfg.watchlist if w.item == s.watch_item), None)
     out_of_range = None
     if watch and watch.max_price is not None and price > watch.max_price:
         out_of_range = f"over your ${watch.max_price:.0f} budget"

@@ -124,7 +124,8 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
            fp: str | None = None, browse_sources: list[str] | None = None,
            browse_hours: float = 48, browse_items: int = 80, repo: str | None = None,
            browse_only_matches: bool = False, timezone_name: str | None = None,
-           stale_hours: float = 12, hide_below: float = 0.3, banner: str | None = None) -> Path:
+           stale_hours: float = 12, hide_below: float = 0.3, banner: str | None = None,
+           max_per_store: int = 0) -> Path:
     """One list, best first, with a filter chip per category actually present.
 
     Included: deals scored at/above min_score under the current config (fp), plus
@@ -155,9 +156,13 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
     ordered = sorted(rows.values(), key=lambda v: (v.get("score") or 0, v["first_seen"]), reverse=True)
     ordered = ordered[: max_items + browse_items]
 
-    cards, counts = [], {}
+    cards, counts, per_store = [], {}, {}
     n_top = n_premium = 0
     for rec in ordered:
+        shop = rec.get("store") or rec.get("source") or "?"
+        per_store[shop] = per_store.get(shop, 0) + 1
+        if max_per_store and per_store[shop] > max_per_store and rec.get("source") != "tracked":
+            continue  # one big sale shouldn't push every other store off the page
         cat = _category(rec)
         is_top = (rec.get("score") or 0) >= min_score
         n_top += is_top
@@ -167,7 +172,7 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
 
     # "All" plus one chip per category present (largest first); a lone category
     # needs no chip of its own.
-    chips = [f'<button class="chip" data-c="all">All ({len(ordered)})</button>']
+    chips = [f'<button class="chip" data-c="all">All ({len(cards)})</button>']
     if n_premium:
         chips.append(f'<button class="chip" data-c="premium">★ Premium ({n_premium})</button>')
     if len(counts) > 1:
@@ -176,7 +181,7 @@ def render(store: Store, output: str | Path, min_score: float, max_items: int,
 
     now = datetime.now(timezone.utc).astimezone(tz)
     page = PAGE.format(
-        total=len(ordered),
+        total=len(cards),
         top=n_top,
         banner=f'<p class="gift">{html.escape(banner)}</p>' if banner else "",
         updated=now.strftime("%b %-d, %-I:%M %p %Z"),

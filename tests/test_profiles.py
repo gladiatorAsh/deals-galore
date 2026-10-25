@@ -176,3 +176,13 @@ def test_gift_mode_items_and_countdown():
     assert gift_countdown(cfg, date(2026, 11, 6)) is None
     prompt = build_user_prompt([Candidate(deals[0], watch_items=["Men's watch"])], cfg)
     assert '"must_arrive_by": "2026-11-05"' in prompt and "Gift for my brother" in prompt
+
+
+def test_women_bag_excludes_team_logo_designs():
+    from dealsgalore.config import load_config
+    from dealsgalore.prefilter import match_watch
+
+    bag = next(w for w in load_config().watchlist if w.item == "Women's bag")
+    assert not match_watch(_d("Dooney & Bourke MLB Astros Continental Clutch $109", 109), bag)
+    assert not match_watch(_d("Dooney & Bourke Collegiate University of Georgia Top Zip Crossbody $109", 109), bag)
+    assert match_watch(_d("Dooney & Bourke Pebble Grain Cameron Crossbody $109", 109), bag)
