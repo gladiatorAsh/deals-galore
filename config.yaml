@@ -325,6 +325,9 @@ watchlist:
 
 # Premium brands are your priority: their deals get a score boost, are listed
 # first on the dashboard and in alerts, and get their own "Premium" filter.
+  - item: Fossil Men's Nate Quartz Chronograph Watch
+    match: [fossil, men, nate]
+    max_price: 110
 premium:
   boost: 0.1
   # Lowest believable price (USD) for a genuine item; cheaper listings are
