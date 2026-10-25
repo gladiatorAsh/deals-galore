@@ -596,7 +596,7 @@
   },
   "035628c066be3d97": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -729,7 +729,7 @@
   },
   "04206b718483ab83": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -901,7 +901,7 @@
   },
   "0505272217f95445": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -1203,7 +1203,7 @@
   },
   "064f15ddd04d9581": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -1362,7 +1362,7 @@
   },
   "07439976d514e8db": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -1623,7 +1623,7 @@
   },
   "085a18bc20f192e5": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -2847,7 +2847,7 @@
   },
   "0f317d28ee4c939b": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -2958,7 +2958,7 @@
   },
   "0f7db6cb31461e91": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -3313,7 +3313,7 @@
   },
   "111f5a798524391b": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -3445,7 +3445,7 @@
   },
   "1179814b1677ff0d": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -3691,7 +3691,7 @@
   },
   "130f6c4ff1014665": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -4370,7 +4370,7 @@
   },
   "1629fbd88bd264b2": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -4539,7 +4539,7 @@
   },
   "17440f14a213b3a4": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -5171,7 +5171,7 @@
   },
   "1b1de6adcb570ff2": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -5583,7 +5583,7 @@
   },
   "1d4a96e140bda439": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -5912,7 +5912,7 @@
   },
   "1ff64f1ab6bc303b": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -6729,7 +6729,7 @@
   },
   "24e444f4f0f710bf": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -8193,7 +8193,7 @@
   },
   "2cbb4b9e1776c824": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -8594,7 +8594,7 @@
   },
   "2eea18c4a8b362cd": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -8736,7 +8736,7 @@
   },
   "2f813e933b082fae": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -9226,7 +9226,7 @@
   },
   "330df4f00f1b4788": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -9604,7 +9604,7 @@
   },
   "3528328805c1be52": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -9873,7 +9873,7 @@
   },
   "36d4438b95c016e5": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -9927,7 +9927,7 @@
   },
   "36da3dd2d1088a61": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -11259,7 +11259,7 @@
   },
   "3d6cc9090e12f2aa": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -11330,7 +11330,7 @@
   },
   "3db4a60fe81cefb6": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -11494,7 +11494,7 @@
   },
   "3e6c35260c812555": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -12721,7 +12721,7 @@
   },
   "44c3303846e71eca": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -12996,7 +12996,7 @@
   },
   "45fe9030b15b776b": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -13104,7 +13104,7 @@
   },
   "465c9d36dba313ad": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -16497,7 +16497,7 @@
   },
   "5648f3c133a02051": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -16698,7 +16698,7 @@
   },
   "57de23b03cb855d0": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -18274,7 +18274,7 @@
   },
   "62d5383726e38b0a": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -18640,7 +18640,7 @@
   },
   "65ee1e843a80438b": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -19053,7 +19053,7 @@
   },
   "67d3afdbf07b8b71": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -19597,7 +19597,7 @@
   },
   "6a57378afb017653": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -20065,7 +20065,7 @@
   },
   "6c9ae97df7029709": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -20320,7 +20320,7 @@
   },
   "6ea36bf8061811fb": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -20481,7 +20481,7 @@
   },
   "6f27b204688dd8ed": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -20747,7 +20747,7 @@
   },
   "70a858f38df1f6e8": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -21113,7 +21113,7 @@
   },
   "72c1925e2f50a874": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -21285,7 +21285,7 @@
   },
   "73e180fbc03bf388": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -21365,7 +21365,7 @@
   },
   "74482f0328e83e73": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -21727,7 +21727,7 @@
   },
   "768abab76580b86f": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -21781,7 +21781,7 @@
   },
   "76bf20d0d4645670": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -22795,7 +22795,7 @@
   },
   "7af0f4aa83477d61": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -23071,7 +23071,7 @@
   },
   "7c95c69c25d75879": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -23177,7 +23177,7 @@
   },
   "7d30ba796a26d623": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -23392,7 +23392,7 @@
   },
   "7e6a127f0d94edca": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -23638,7 +23638,7 @@
   },
   "8023fb9b70f445be": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -23951,7 +23951,7 @@
   },
   "81fc7b2c225382a1": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -24065,7 +24065,7 @@
   },
   "8261b55cef0b0ac2": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -24163,7 +24163,7 @@
   },
   "82a9c91fb124c2ab": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -25271,7 +25271,7 @@
   },
   "885a3411d214d09d": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -25855,7 +25855,7 @@
   },
   "8bb709e6fe2a7958": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -26724,7 +26724,7 @@
   },
   "9065cc5a64f553a6": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -27088,7 +27088,7 @@
   },
   "92c030ec93bc4653": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -27218,7 +27218,7 @@
   },
   "9375cb7047b13dba": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -27425,7 +27425,7 @@
   },
   "945b669754b5f28e": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -28531,7 +28531,7 @@
   },
   "9982431008214571": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -28628,7 +28628,7 @@
   },
   "9a292032d18d14b2": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -29087,7 +29087,7 @@
   },
   "9ccb9323d4a8f49c": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -29383,7 +29383,7 @@
   },
   "9e4366839b93906d": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -29748,7 +29748,7 @@
   },
   "a03ef03de1708766": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -29998,7 +29998,7 @@
   },
   "a1606896bea9bf7f": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -30259,7 +30259,7 @@
   },
   "a3014f5c815cc26f": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -31858,7 +31858,7 @@
   },
   "ac0f075e6ef19d5d": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -32490,7 +32490,7 @@
   },
   "af9cfc403aea366c": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -34190,7 +34190,7 @@
   },
   "b8b64a330018cfdf": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -36805,7 +36805,7 @@
   },
   "c6d2c4ecab155de3": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -37017,7 +37017,7 @@
   },
   "c7befde7a5dea627": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -37463,7 +37463,7 @@
   },
   "ca797e5bd79c5042": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -38315,7 +38315,7 @@
   },
   "d09e9b7d39fd1ba7": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -41034,7 +41034,7 @@
   },
   "dffb1e2a7c74b93a": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -41328,7 +41328,7 @@
   },
   "e1b574eb710083d5": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -41399,7 +41399,7 @@
   },
   "e25c85bdd2412bf0": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -41422,7 +41422,7 @@
   },
   "e26ab5f453ebaea6": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -41648,7 +41648,7 @@
   },
   "e3bb452cc43f5840": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -41789,7 +41789,7 @@
   },
   "e43ec2818a7ee756": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -42476,7 +42476,7 @@
   },
   "e7a5bd23902de3f0": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -44744,7 +44744,7 @@
   },
   "f4beecf243d5ac94": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -45633,7 +45633,7 @@
   },
   "fa4cdb51c2d0db61": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -45687,7 +45687,7 @@
   },
   "fab6da20b16ca94b": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -45746,7 +45746,7 @@
   },
   "fad2e40b2b910d4e": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -46285,7 +46285,7 @@
   },
   "fd1bc283588db9af": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-25T07:35:54+00:00",
    "fp": "41f909ce55",
    "gift_match": false,
@@ -46818,7 +46818,7 @@
   }
  },
  "meta": {
-  "updated": "2026-10-25T17:05:35+00:00"
+  "updated": "2026-10-25T18:21:08+00:00"
  },
  "prices": {
   "Designer purse or handbag": [
