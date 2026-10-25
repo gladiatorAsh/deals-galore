@@ -121,6 +121,7 @@ sources:
       - https://www.timex.com
       - https://www.vaerwatches.com
       - https://lorierwatches.com
+      - https://www.dooney.com            # Dooney & Bourke sale section
 
   # Pre-owned premium bags and watches from resellers, with their markdowns.
   - type: shopify
@@ -172,6 +173,85 @@ sources:
         price: 119.00
         was: 429.00
         checked: 2026-10-23
+      # checked Oct 25: Amazon, Nordstrom Rack, Coach Outlet
+      - url: https://www.amazon.com/dp/B008AXYWHQ
+        title: Fossil Men's Nate Quartz Chronograph Watch (sold by Amazon.com)
+        store: Amazon
+        price: 110.00
+        was: 180.00
+        checked: 2026-10-25
+      - url: https://www.nordstromrack.com/s/fossil-dalton-three-hand-bracelet-watch-42mm/8712775
+        title: Fossil Men's Dalton Three-Hand Bracelet Watch 42mm
+        store: Nordstrom Rack
+        price: 109.97
+        was: 180.00
+        checked: 2026-10-25
+      - url: https://www.nordstromrack.com/s/tommy-hilfiger-legend/9205342
+        title: Tommy Hilfiger Men's Legend Skeleton Two-Tone Bracelet Watch
+        store: Nordstrom Rack
+        price: 116.97
+        was: 195.00
+        checked: 2026-10-25
+      - url: https://www.nordstromrack.com/s/jax-multifunction-leather-strap-watch/9205343
+        title: Tommy Hilfiger Men's Jax Multifunction Leather Strap Watch
+        store: Nordstrom Rack
+        price: 116.97
+        was: 195.00
+        checked: 2026-10-25
+      - url: https://www.nordstromrack.com/s/tommy-hilfiger-bryan/9205353
+        title: Tommy Hilfiger Men's Bryan Multi-Function Bracelet Watch
+        store: Nordstrom Rack
+        price: 104.97
+        was: 175.00
+        checked: 2026-10-25
+      - url: https://www.nordstromrack.com/s/duncan-chronograph-watch-44mm/8538829
+        title: Tommy Hilfiger Men's Duncan Chronograph Watch 44mm
+        store: Nordstrom Rack
+        price: 86.97
+        was: 145.00
+        checked: 2026-10-25
+      - url: https://www.nordstromrack.com/s/kate-spade-new-york-leila-pebbled-leather-shoulder-bag/8759794
+        title: Kate Spade Leila Pebbled Leather Shoulder Bag
+        store: Nordstrom Rack
+        price: 149.97
+        was: 429.00
+        checked: 2026-10-25
+      - url: https://www.nordstromrack.com/s/kate-spade-new-york-small-liv-pebble-leather-flap-crossbody-bag/8312973
+        title: Kate Spade Small Liv Pebble Leather Flap Crossbody Bag
+        store: Nordstrom Rack
+        price: 109.97
+        was: 348.00
+        checked: 2026-10-25
+      - url: https://www.nordstromrack.com/s/kate-spade-new-york-carey-quilted-crossbody-bag/8565343
+        title: Kate Spade Carey Quilted Crossbody Bag
+        store: Nordstrom Rack
+        price: 119.97
+        was: 379.00
+        checked: 2026-10-25
+      - url: https://www.nordstromrack.com/s/kate-spade-new-york-anna-medium-envelope-leather-convertible-clutch/7770305
+        title: Kate Spade Anna Medium Envelope Leather Convertible Clutch
+        store: Nordstrom Rack
+        price: 129.97
+        was: 298.00
+        checked: 2026-10-25
+      - url: https://www.coach.com/products/carey-crossbody-bag-in-loved-leather/CES82.html
+        title: Coach Carey Crossbody Bag in Loved Leather
+        store: Coach Outlet
+        price: 189.00
+        was: 250.00
+        checked: 2026-10-25
+      - url: https://www.coach.com/products/carey-crossbody-bag/CEB28.html
+        title: Coach Carey Crossbody Bag
+        store: Coach Outlet
+        price: 169.00
+        was: 250.00
+        checked: 2026-10-25
+      - url: https://www.coach.com/products/mini-carey-crossbody-bag-in-loved-leather/CEQ76.html
+        title: Coach Mini Carey Crossbody Bag in Loved Leather
+        store: Coach Outlet
+        price: 149.00
+        was: 195.00
+        checked: 2026-10-25
 
   # Deal aggregators: editors and communities post deals from every major
   # retailer (Costco, Walmart, Target, Macy's, Nordstrom, Amazon, Best Buy,
