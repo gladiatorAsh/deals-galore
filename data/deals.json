@@ -1506,7 +1506,7 @@
   },
   "06a9e0b29a5742c6": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-26T14:22:39+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -6866,7 +6866,7 @@
   },
   "1f2dbbca3d28377a": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-26T14:22:39+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -14748,7 +14748,7 @@
   },
   "4317c958fb5a0b4f": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-26T14:22:39+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -19438,7 +19438,7 @@
   },
   "5557814cbf79121f": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-26T14:22:39+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -25166,7 +25166,7 @@
   },
   "7212c9cb9a3b1957": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-26T14:22:39+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -35504,7 +35504,7 @@
   },
   "a06bea612c397015": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-26T14:22:39+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -42915,7 +42915,7 @@
   },
   "c3df8f752a6e6a85": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-26T14:22:39+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -50226,7 +50226,7 @@
   },
   "e5f8cdabba5b1833": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-26T14:22:39+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -54029,7 +54029,7 @@
   },
   "f8fda555a2c7869d": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-26T14:22:39+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -55773,7 +55773,7 @@
   }
  },
  "meta": {
-  "updated": "2026-10-26T14:22:41+00:00"
+  "updated": "2026-10-26T20:25:56+00:00"
  },
  "prices": {
   "Designer purse or handbag": [
