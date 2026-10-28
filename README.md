@@ -84,9 +84,10 @@ Other channels, all optional and usable alongside Telegram:
 
 ## Paper Desk (AI/ML reading list)
 
-A second page, **https://www.ashutoshysingh.com/deals-galore/papers/**, collects new
+A second page, **https://www.ashutoshysingh.com/papers/**, collects new
 AI/ML papers and lab blog posts relevant to production RAG, agents, evaluation and
-LLM systems. It updates every morning (`.github/workflows/papers.yml`, 6:23 AM Pacific).
+LLM systems. It updates every morning (`.github/workflows/papers.yml`, 6:23 AM Pacific) and writes
+`data/papers.html`; the main site repo copies it to `/papers/` when it rebuilds (daily at 6:53 AM).
 
 - **Sources:** Hugging Face Daily Papers, the newest arXiv submissions (cs.CL, cs.IR,
   cs.MA, and agent/retrieval papers in cs.AI/cs.LG/cs.SE), and the OpenAI, Google

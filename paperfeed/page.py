@@ -1,4 +1,4 @@
-"""The public reading page (docs/papers/index.html)."""
+"""The reading page (data/papers.html), published at ashutoshysingh.com/papers/ by the main site."""
 from __future__ import annotations
 
 import html

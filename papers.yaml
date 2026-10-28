@@ -1,5 +1,5 @@
 # Paper Desk: a daily reading list of AI/ML papers relevant to your work.
-# Page: https://www.ashutoshysingh.com/deals-galore/papers/
+# Page: https://www.ashutoshysingh.com/papers/
 # Edit this file to change topics or sources; the next daily run picks it up.
 
 # Who the AI ranks papers for. Keep it about the WORK, not the employer:
@@ -74,5 +74,5 @@ settings:
   retention_days: 60          # how long papers stay on the page
   must_reads: 5               # top papers of the last 7 days, pinned at the top
   timezone: America/Los_Angeles
-  output: docs/papers/index.html
+  output: data/papers.html     # served at /papers/ by the main site repo (gladiatorash.github.io)
   store: data/papers.json

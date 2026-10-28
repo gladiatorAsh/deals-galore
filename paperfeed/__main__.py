@@ -91,7 +91,7 @@ def update(cfg: dict[str, Any], llm: LLMClient, get=None, now: datetime | None =
     stats = {"sources": report, "fetched": len(fetched), "new": len(new), "added": len(picked),
              "ai_scored": by_ai, "on_page": len(known)}
     write_store(store_path, known, now, stats)
-    page.render(list(known.values()), st.get("output", "docs/papers/index.html"), topics.names,
+    page.render(list(known.values()), st.get("output", "data/papers.html"), topics.names,
                 min_relevance=float(st.get("min_relevance", 0.45)), must_reads=int(st.get("must_reads", 5)),
                 retention_days=int(st.get("retention_days", 60)),
                 timezone_name=st.get("timezone", "America/Los_Angeles"), latest_run=now, now=now)
