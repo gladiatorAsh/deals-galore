@@ -58531,7 +58531,7 @@
   },
   "c198c93ff6296f3d": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-10-28T18:55:06+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -77010,7 +77010,7 @@
   }
  },
  "meta": {
-  "updated": "2026-10-28T18:55:06+00:00"
+  "updated": "2026-10-28T20:12:44+00:00"
  },
  "prices": {
   "Designer purse or handbag": [
