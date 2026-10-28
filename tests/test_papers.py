@@ -78,7 +78,8 @@ def test_prefilter_uses_topics_and_title_exclusions():
     titles = [p.title for p in kept]
     assert titles[0].startswith("Memory Tax")                    # many hits + popular
     assert not any("Robotic" in t for t in titles)               # excluded by title
-    assert not any("Cohomology" in t or "Oracle" in t for t in titles)  # off-topic
+    assert not any("Cohomology" in t for t in titles)              # off-topic paper dropped
+    assert any("Oracle" in t for t in titles)                    # every blog post goes to the AI
     assert any("sleep framework" in t for t in titles)           # lab blog post kept
     assert kept[0].topic in topics.names
     assert [p.kind for p in rank.prefilter(items, topics, [], 25, 1)] == ["blog"]  # blog slot reserved
@@ -87,7 +88,7 @@ def test_prefilter_uses_topics_and_title_exclusions():
 def test_update_scores_with_ai_and_renders_page(tmp_path):
     c, llm = cfg(tmp_path), FakeLLM()
     stats = update(c, llm, get=fake_get, now=NOW)
-    assert stats["added"] == 3 and stats["ai_scored"] == 3
+    assert stats["added"] == 4 and stats["ai_scored"] == 4
     assert json.loads((tmp_path / "papers.json").read_text())["last_report"]["sources"]["Google Research"] == 2
     store = read_store(tmp_path / "papers.json")
     mem = store["arxiv:2610.34073"]
@@ -100,7 +101,7 @@ def test_update_scores_with_ai_and_renders_page(tmp_path):
     # Second run: nothing new, nothing re-sent to the AI, page still has everything.
     llm2 = FakeLLM()
     stats = update(c, llm2, get=fake_get, now=NOW.replace(day=29))
-    assert stats["added"] == 0 and llm2.prompts == [] and stats["on_page"] == 3
+    assert stats["added"] == 0 and llm2.prompts == [] and stats["on_page"] == 4
 
 
 def test_falls_back_to_keywords_without_ai(tmp_path):

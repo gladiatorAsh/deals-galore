@@ -20,6 +20,9 @@ For EVERY item (papers and lab blog posts) return:
   0.5-0.75 = useful background. Below 0.4 = not for them (off-topic, narrow
   domain, pure theory, or a marketing/product/partnership post with no
   technical substance).
+- Lab blog posts: a new model, API capability, or technical/research write-up
+  from a major lab is relevant (0.6+ when the reader could build on it).
+  Customer stories, partnerships and company news are not (0.2 or less).
 - topic: the single best-fitting name from topics, or null.
 - tldr: plain English, max 40 words: what they did and the key result. No hype,
   no "this paper". Include a number if the abstract gives one.
@@ -62,14 +65,22 @@ def prefilter(papers: list[Paper], topics: Topics, exclude_title: list[str],
         if any(r.search(p.title.lower()) for r in excl):
             continue
         hits = topics.hits(p)
-        if not hits and p.upvotes < popular_upvotes:
+        # Blog feeds are few and their summaries are short, so every post goes
+        # to the AI; papers need a keyword hit or real popularity.
+        if not hits and p.upvotes < popular_upvotes and p.kind != "blog":
             continue
         p.topics = sorted(hits, key=hits.get, reverse=True)
         p.topic = p.topics[0] if p.topics else None
         rank = sum(hits.values()) + math.log1p(p.upvotes) * 1.5 + (0.5 if p.kind == "blog" else 0)
         keep.append((rank, p))
     keep.sort(key=lambda x: x[0], reverse=True)
-    blogs = {id(p) for p in [p for _, p in keep if p.kind == "blog"][:blog_slots]}
+    per_feed: dict[str, int] = {}
+    blog_pick = []
+    for _, p in keep:  # spread blog slots across feeds (max 3 each)
+        if p.kind == "blog" and per_feed.get(p.source, 0) < 3 and len(blog_pick) < min(blog_slots, limit):
+            per_feed[p.source] = per_feed.get(p.source, 0) + 1
+            blog_pick.append(p)
+    blogs = {id(p) for p in blog_pick}
     rest = [p for _, p in keep if p.kind != "blog"][:max(0, limit - len(blogs))]
     chosen = blogs | {id(p) for p in rest}
     return [p for _, p in keep if id(p) in chosen]
