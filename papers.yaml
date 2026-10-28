@@ -1,0 +1,78 @@
+# Paper Desk: a daily reading list of AI/ML papers relevant to your work.
+# Page: https://www.ashutoshysingh.com/deals-galore/papers/
+# Edit this file to change topics or sources; the next daily run picks it up.
+
+# Who the AI ranks papers for. Keep it about the WORK, not the employer:
+# this repo and the page are public.
+reader: >
+  Staff-level applied AI engineer who builds and runs production LLM systems:
+  RAG pipelines and enterprise search, multi-agent orchestration, document
+  processing, and LLM apps on a major cloud (Python/FastAPI, C#/.NET). Wants
+  techniques they could apply or evaluate at work within months: better
+  retrieval and grounding, reliable agents, evaluation, cost and latency.
+  Less interested in robotics, pure vision, theory with no practical angle,
+  or narrow domain applications (medical, legal, finance) unless the method
+  transfers.
+
+# Each paper is tagged with the best-fitting topic. Keywords are a cheap first
+# filter (title + abstract); the AI then judges real relevance.
+topics:
+  - name: RAG & retrieval
+    keywords: [retrieval-augmented, retrieval augmented, rag, retriever, reranking, reranker,
+               dense retrieval, hybrid search, vector search, vector database, embedding model,
+               text embedding, chunking, knowledge graph, graphrag, grounding, citation,
+               long-context, context window, query rewriting, enterprise search]
+  - name: Agents & orchestration
+    keywords: [agent, agents, agentic, multi-agent, tool use, tool calling, function calling,
+               planner, orchestration, workflow, mcp, model context protocol, computer use,
+               browser agent, coding agent, agent memory, long-horizon]
+  - name: Evaluation & reliability
+    keywords: [hallucination, llm-as-a-judge, llm as a judge, evaluation framework, benchmark,
+               factuality, faithfulness, guardrail, prompt injection, jailbreak, red teaming,
+               uncertainty, calibration, observability, reliability]
+  - name: Documents & extraction
+    keywords: [document understanding, document parsing, pdf, ocr, table extraction,
+               information extraction, structured output, json schema, layout, form understanding]
+  - name: Efficient inference & cost
+    keywords: [inference, latency, speculative decoding, kv cache, quantization, distillation,
+               serving, throughput, prompt caching, small language model, routing, model router,
+               mixture of experts, token efficiency]
+  - name: Reasoning & post-training
+    keywords: [reasoning, chain-of-thought, test-time compute, reinforcement learning,
+               rlhf, dpo, grpo, fine-tuning, fine tuning, lora, instruction tuning, alignment,
+               prompt optimization, self-improving]
+
+# Papers matching these (title only) are skipped before the AI sees them.
+exclude_title: [robot, robotic, embodied, autonomous driving, medical image, radiology,
+                protein, molecule, weather forecast, 3d reconstruction, video generation,
+                image generation, diffusion model]
+
+sources:
+  - type: hf_daily            # Hugging Face Daily Papers: community-curated, with upvotes
+    name: HF Daily Papers
+    limit: 100
+  - type: arxiv               # newest submissions, filtered locally by topic keywords
+    name: arXiv
+    max_results: 200
+    queries:
+      - "cat:cs.IR OR cat:cs.MA"
+      - "cat:cs.CL"
+      - '(cat:cs.AI OR cat:cs.LG OR cat:cs.SE) AND (abs:agent OR abs:retrieval OR abs:"language model")'
+  - type: rss                 # lab and engineering blogs
+    feeds:
+      OpenAI: https://openai.com/news/rss.xml
+      Google Research: https://research.google/blog/rss/
+      Microsoft Research: https://www.microsoft.com/en-us/research/feed/
+      Hugging Face blog: https://huggingface.co/blog/feed.xml
+
+settings:
+  lookback_days: 4            # ignore anything older than this when fetching
+  popular_upvotes: 25         # HF papers this popular are considered even without a keyword hit
+  max_candidates: 60          # most papers sent to the AI per run (free-tier friendly)
+  batch_size: 10
+  min_relevance: 0.45         # hidden by default below this (a toggle shows everything)
+  retention_days: 60          # how long papers stay on the page
+  must_reads: 5               # top papers of the last 7 days, pinned at the top
+  timezone: America/Los_Angeles
+  output: docs/papers/index.html
+  store: data/papers.json

@@ -1,0 +1,44 @@
+name: Update Paper Desk
+
+on:
+  schedule:
+    - cron: "23 13 * * *"    # daily, 6:23 AM Pacific (after arXiv's overnight listing)
+  workflow_dispatch:
+
+permissions:
+  contents: write   # commit data/papers.json and docs/papers/index.html
+
+concurrency:
+  group: deals-store   # same group as the deal scan, so the two never push at once
+  cancel-in-progress: false
+
+env:
+  TZ: America/Los_Angeles
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Fetch, rank and publish papers
+        run: python -m paperfeed update
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/papers.json docs/papers
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "chore: update papers"
+          git pull --rebase --autostash
+          git push

@@ -82,6 +82,23 @@ Other channels, all optional and usable alongside Telegram:
    (otherwise `https://<user>.github.io/deals-galore/`). It refreshes after every
    scan and never shows gift recipient names.
 
+## Paper Desk (AI/ML reading list)
+
+A second page, **https://www.ashutoshysingh.com/deals-galore/papers/**, collects new
+AI/ML papers and lab blog posts relevant to production RAG, agents, evaluation and
+LLM systems. It updates every morning (`.github/workflows/papers.yml`, 6:23 AM Pacific).
+
+- **Sources:** Hugging Face Daily Papers, the newest arXiv submissions (cs.CL, cs.IR,
+  cs.MA, and agent/retrieval papers in cs.AI/cs.LG/cs.SE), and the OpenAI, Google
+  Research, Microsoft Research and Hugging Face blogs.
+- **Ranking:** a keyword filter per topic, then the same free AI keys (Groq, then Gemini)
+  score relevance to the `reader` description and write a TL;DR and a "For you" line.
+  Without a key it falls back to keyword ranking.
+- **Page:** New / This week / Last 60 days / Saved views, topic chips, search,
+  Must-read picks, and Save / Mark read buttons (kept in your browser).
+- **Change it:** edit `papers.yaml` (topics, keywords, sources, reader description).
+  Run it now from Actions → *Update Paper Desk* → *Run workflow*.
+
 ## Running locally
 
 ```bash

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/x</id><title>arXiv Query</title><updated>2026-10-28T02:54:48Z</updated>
+  <entry>
+    <id>http://arxiv.org/abs/2610.37651v1</id>
+    <title>GEPA-Curator: Curated Learning for
+      Self Improving Agents</title>
+    <updated>2026-10-27T17:58:11Z</updated>
+    <link href="https://arxiv.org/abs/2610.37651v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.37651v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models (LLMs) are increasingly used in multi-turn agentic workloads. We introduce GEPA-Curator, a framework that augments the prompt optimizer with task curation and prior success retrieval, with gains of up to 20.7% over GEPA.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-27T17:58:11Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author><name>Zack Yu</name></author><author><name>Matei Zaharia</name></author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.34073v2</id>
+    <title>Memory Tax: Dissecting the Net Value of Agent Memory</title>
+    <link href="https://arxiv.org/abs/2610.34073v2" rel="alternate" type="text/html"/>
+    <summary>Memory is increasingly used in long-horizon agents, yet the net value of building memory over direct retrieval from raw history remains largely unclear. Through a large-scale evaluation across multiple benchmarks and model backbones, we find many dedicated memory systems underperform naive RAG in many cases, indicating a negative net value.</summary>
+    <published>2026-10-25T10:00:00Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author><name>Xuan He</name></author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.30000v1</id>
+    <title>A Note on Group Cohomology</title>
+    <summary>We prove a theorem about groups.</summary>
+    <published>2026-10-27T10:00:00Z</published>
+    <author><name>Someone</name></author>
+  </entry>
+</feed>
