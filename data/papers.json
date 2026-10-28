@@ -1,0 +1,2411 @@
+{
+ "last_run": "2026-10-28T02:59:20+00:00",
+ "papers": {
+  "arxiv:2610.34467": {
+   "id": "arxiv:2610.34467",
+   "title": "DynaFlow: Learning Free-Form Multi-Agent Orchestration",
+   "url": "https://arxiv.org/abs/2610.34467",
+   "abstract": "Multi-agent systems often rely on predefined collaboration structures, limiting their ability to adapt to diverse task requirements. We introduce DynaFlow, a framework that integrates free-form executable workflow synthesis into the action space of the main agent. The agent decides when collaboration is needed and generates task-specific programs that coordinate sub-agents through sequential or parallel execution, structured information exchange, and verification. Execution results and traces inform subsequent actions, enabling the agent to adapt collaboration as reasoning progresses. We train only the main agent through supervised fine-tuning on distilled trajectories, followed by refinement on examples filtered for unsupported premises, biased verification, and information-flow defects. All sub-agents remain fixed, separating orchestration learning from executor capability improvement. Across six benchmarks spanning mathematical reasoning, scientific question answering, and multi-hop retrieval, DynaFlow achieves 88.08% overall accuracy in Forced mode, outperforming the strongest evaluated baseline by 10.90 percentage points with the same Qwen3.5-27B backbone. Workflow analysis finds more explicit use, verification, and refinement of upstream outputs after training, highlighting cross-stage information flow as a key dimension of multi-agent orchestration.",
+   "authors": [
+    "Ruhao Liu",
+    "Qi Li",
+    "Shizun Wang",
+    "Xinchao Wang"
+   ],
+   "org": "National University of Singapore",
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers",
+    "arXiv"
+   ],
+   "category": "cs.MA",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34467",
+   "hf_url": "https://huggingface.co/papers/2610.34467",
+   "code": "https://github.com/amiya-special/Dynaflow",
+   "project": "https://amiya-special.github.io/DynaFlow-website",
+   "upvotes": 189,
+   "summary_hint": "DynaFlow enables adaptive multi-agent collaboration by letting a main agent synthesize executable workflows that coordinate sub-agents through structured execution and verification.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.86,
+   "tldr": "DynaFlow lets a main LLM generate executable workflows to coordinate fixed sub‑agents, raising multi‑hop retrieval and reasoning accuracy to 88.08% across six benchmarks.",
+   "why": "Drop‑in orchestration layer that boosts multi‑agent pipelines with minimal retraining.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34662": {
+   "id": "arxiv:2610.34662",
+   "title": "StreamVibe: Proactive Video Agents for Evolving User Intent",
+   "url": "https://arxiv.org/abs/2610.34662",
+   "abstract": "Vision-language models are shifting from offline passive understanding toward online proactive interaction. However, prevailing methods largely rely on explicit requests while miss the implicit user intent (e.g., \"where should I click next?\" while a user navigate a website), meanwhile fail to update the state simultaneously as user requests might update continuously. These limitations make them less suited to intent-aware interaction in practical. To address these challenges, we introduce StreamVibe-Bench, a new benchmark serving as testbed for user intent interaction, with 4.1K evaluation samples and 85K training samples spanning explicit, implicit, and dynamic intents. Building on this benchmark, we develop StreamVibe-VL, a streaming proactive model that infers implicit user intents from continuous observations and dynamically tailors its interactions as these intents evolve. We further introduce StreamVibe-Harness, which maintains user intents as persistent states with a fleixble lifecycles via a hierarchical memory to track the latest user intent and environmental state. Our experiments reveal three key findings: (i) StreamVibe-VL preserves strong general video understanding while improving response timing and answer quality by 10.7% over other baselines; (ii) existing proactive models remain limited in understanding user intent and deciding when to respond, especially under implicit and dynamic intents; and (iii) StreamVibe-Harness further improves response consistency and adaptation over sustained interaction, resulting in a 12.3% gain in proactive interaction.",
+   "authors": [
+    "Chengzhi Liu",
+    "Yuxiang Lai",
+    "Yuzhe Yang",
+    "Yanqing Liu",
+    "Jiheng Hou",
+    "Yue Cao",
+    "Haonan Wang",
+    "Ruixi Fan",
+    "Lan Wang",
+    "Sheng Liu",
+    "Songyou Peng",
+    "Yale Song",
+    "Kevin Qinghong Lin",
+    "Xin Eric Wang",
+    "Jui-Hsin Lai",
+    "Youbao Tang"
+   ],
+   "org": "Google",
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34662",
+   "hf_url": "https://huggingface.co/papers/2610.34662",
+   "code": null,
+   "project": null,
+   "upvotes": 246,
+   "summary_hint": "StreamVibe introduces a benchmark, streaming vision-language model, and hierarchical memory harness to enable proactive, intent-aware interaction with implicit and evolving user goals.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.28,
+   "tldr": "StreamVibe introduces a benchmark and model that infer implicit user intents from continuous video streams, maintaining state via hierarchical memory.",
+   "why": "Vision‑centric approach not applicable to text‑based RAG systems.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.33956": {
+   "id": "arxiv:2610.33956",
+   "title": "Continual Learning Exam: Benchmarking Long-Horizon RSI and Experiential Learning in LLM Agents",
+   "url": "https://arxiv.org/abs/2610.33956",
+   "abstract": "Continual learning is the ability of LLM agents to improve over time by acquiring, refining, and applying knowledge from experience while retaining useful prior knowledge. It is essential for agents learning over long time horizons, yet current evaluations largely assess individual task performance rather than improvement through accumulated experience. We introduce Continual Learning Exam (CLE), a large-scale benchmark developed by 50+ domain experts to measure experience-driven improvement in realistic professional workflows. CLE comprises 120 human-authored tasks, each organised as a five-level ladder, yielding 600 levels spanning 89 professional roles across 12 occupational domains. Agents must pass each level to unlock the next, with later levels building on experience accumulated during earlier assignments. An evaluation agent assesses each submission against human-authored rubrics. We compare a single-submission setting with one that provides diagnostic feedback after failure and allows one revision. Across 17 harness-model configurations using frontier LLMs, feedback and revision yield a median completion gain of 5.3 percentage points. Yet the best-performing system clears only 47.7% of levels and completes all five levels in just 23.3% of tasks, highlighting the difficulty of sustained learning from experience for existing frontier LLMs. As such, the dataset can also be used to post-train LLMs to strengthen their continual learning capabilities.",
+   "authors": [
+    "Haoyu Zhao",
+    "Sitian Tu",
+    "Yuxuan Huang",
+    "Huichi Zhou",
+    "Zhangyue Yin",
+    "Jiahao Huang",
+    "Jingyuan Xu",
+    "Tianmiao Shi",
+    "Jin Shi",
+    "Nianxi Zhang",
+    "Yangmiao Zhang",
+    "Zhuolang Chan",
+    "Huiyan Hu",
+    "Chenchao Sheng",
+    "Yaqing Luo",
+    "Yue Chen",
+    "Huaxiu Yao",
+    "Meng Fang",
+    "Jun Wang"
+   ],
+   "org": "University College London",
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.33956",
+   "hf_url": "https://huggingface.co/papers/2610.33956",
+   "code": "https://github.com/haoyu-zhao/Continual-Learning-Exam",
+   "project": "https://haoyu-zhao.github.io/CLE/index.html",
+   "upvotes": 49,
+   "summary_hint": "A new benchmark evaluates whether LLM agents improve through repeated professional tasks with feedback, revealing limited sustained learning in current frontier models.",
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.62,
+   "tldr": "CLE benchmark measures LLM agents’ ability to improve over 120 tasks arranged in five‑step ladders, using feedback‑driven revisions and human rubrics.",
+   "why": "Provides realistic evaluation suite for long‑term agent improvement.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34491": {
+   "id": "arxiv:2610.34491",
+   "title": "What Effort Level Should I Choose? On the Economics of Reasoning Effort in LLM Agents",
+   "url": "https://arxiv.org/abs/2610.34491",
+   "abstract": "Generative models increasingly expose a reasoning effort setting that lets users scale inference-time compute, trading higher cost for potentially improved performance. Users must choose an effort level before knowing whether extra reasoning will help, and even a successful run does not reveal whether the effort purchased was necessary. Reasoning effort is therefore a credence good: buyers observe the outcome but cannot assess the marginal value of the computation they paid for. In this work, we measure the counterfactual effect of effort levels on both proprietary and open-weight models on four benchmarks, spanning single-call reasoning and long-horizon agentic tasks. Effort, it turns out, does not consistently preserve tasks that lower effort solves, can overspend, and can change trajectory behavior. First, we find that although higher effort can raise accuracy in aggregate, it frequently fails on tasks that lower effort solved. Second, on the subset of easy tasks that every effort level solves, higher effort is generally more costly, with the highest effort level costing up to 42x as much as the lowest. Lastly, effort changes not only how many tokens are used, but also how agents solve tasks: at higher effort, agents verify their own work more heavily and more often search for solutions than work through problems directly, both of which lengthen trajectories without necessarily altering the outcome. These findings show that naively choosing the highest level is not only cost-inefficient but also offers no guarantee of the best instance-level performance. A simple alternative, starting at the lowest effort and escalating only after a verified failure, matches or improves on fixed top effort across all models and benchmarks at lower cost for most proprietary models.",
+   "authors": [
+    "Kaiser Sun",
+    "Yongchan Kwon",
+    "Zain Hasan",
+    "Shang Zhu",
+    "Kaitlyn Zhou",
+    "Federico Bianchi"
+   ],
+   "org": "Together",
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34491",
+   "hf_url": "https://huggingface.co/papers/2610.34491",
+   "code": "https://github.com/KaiserWhoLearns/ReasoningEffortLLM",
+   "project": null,
+   "upvotes": 7,
+   "summary_hint": "Reasoning effort in generative models acts as a credence good where higher compute does not guarantee better instance-level results, and an escalation strategy from low effort improves cost-efficiency.",
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.81,
+   "tldr": "Study shows higher reasoning effort can cost up to 42× without consistent accuracy gains, revealing trade‑offs between compute and performance.",
+   "why": "Guides cost‑effective setting of compute budgets for agentic inference.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.33966": {
+   "id": "arxiv:2610.33966",
+   "title": "InteractiveWorld: A Verifiable Human-Centric Environment for Building Better Interactive MLLM Assistants",
+   "url": "https://arxiv.org/abs/2610.33966",
+   "abstract": "People have long dreamed of an assistant that is always there to guide them and remind what they forget, from new dishes to lost keys. Powered by multimodal large language models (MLLMs), egocentric AI assistants on wearable devices are bringing this dream within reach: they see what the user sees and give instructions for user's physical work when necessary. However, testing such assistance is challenging and usually requires real people. The expensive and rare real interaction data leaves a key question unanswered: Can today's MLLMs truly help people in physical world? To answer this question, we propose InteractiveWorld, the first verifiable environment for closed-loop interaction between human and AI assistant. Unlike existing robot-centric simulators, InteractiveWorld lets the assistant guide a human agent who observes the scene, understands instructions, and acts independently. It thus realistically simulates how AI assistant collaborates with human: the assistant instructs, the human acts, and the environment executes actions and updates what they see next. Building on it, we introduce InteractiveBench, the first dynamic benchmark for egocentric AI assistants, with 120 multi-turn tasks across six categories. In each task, the assistant guides the human in real time, and every instruction shapes the outcome, which is scored by verifiable, state-based rewards. Experiments with 12 frontier MLLMs show they are still far from reliable assistants. Even the strongest model, Claude Fable 5.1, achieves at most 20% and 25% on long-horizon Guidance and Planning tasks, respectively. Overall, our work offers a verifiable platform and a rigorous evaluation set, laying a solid foundation for research on interactive MLLM assistants that truly help people in the physical world.",
+   "authors": [
+    "Qinsi Wang",
+    "Wei Wen",
+    "Chong Zhou",
+    "Saksham Suri",
+    "Zechun Liu",
+    "Lemeng Wu",
+    "Hai Helen Li",
+    "Yiran Chen",
+    "Raghuraman Krishnamoorthi",
+    "Qi Qian"
+   ],
+   "org": "Meta",
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.33966",
+   "hf_url": "https://huggingface.co/papers/2610.33966",
+   "code": "https://github.com/facebookresearch/InteractiveWorld",
+   "project": "https://meta-interactiveworld.github.io/",
+   "upvotes": 114,
+   "summary_hint": "InteractiveWorld provides a verifiable simulation environment and benchmark to evaluate whether multimodal language models can reliably guide humans through physical tasks.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.24,
+   "tldr": "InteractiveWorld offers a simulated environment where a multimodal assistant guides a human agent, enabling closed‑loop testing of egocentric AI assistance.",
+   "why": "Focuses on multimodal interaction, not relevant to text‑only production pipelines.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35056": {
+   "id": "arxiv:2610.35056",
+   "title": "Hallucination-Aware Multi-Agent RAG via Internal Attention Rewards",
+   "url": "https://arxiv.org/abs/2610.35056",
+   "abstract": "Retrieval-augmented generation (RAG) grounds language models in retrieved evidence, but its outputs often contain claims unsupported by that evidence. Recent multi-agent RAG systems decompose the pipeline into cooperative decisions, yet they typically optimize all agents under a shared task reward such as EM or F1, which measures answer overlap rather than faithfulness to evidence. We propose a hallucination-aware multi-agent RAG framework that combines the task reward with an internal hallucination-risk signal computed from the generator's attention-head norms. Three role-specific LoRA adapters, a query planner, an evidence selector, and an answer generator, share a frozen backbone. A lightweight critic is trained once on TruthfulQA truthful/false pairs and then kept frozen, providing a complementary risk score that is added to the shared reward during cooperative PPO training. Across three backbones (Qwen3-8B, Llama3-8B, Llama2-13B) and three benchmarks (RAGTruth, HotpotQA, 2WikiMultiHopQA), our method improves task performance and reduces hallucination rates over the strongest multi-agent baseline. Ablations and critic diagnostics show that the TruthfulQA-calibrated signal provides useful reward shaping that transfers across RAG tasks.",
+   "authors": [
+    "Runsong Jia",
+    "Qian Chang",
+    "Mengjia Wu",
+    "Ciprian Doru Giurcăneanu",
+    "Jie Lu",
+    "Yi Zhang"
+   ],
+   "org": null,
+   "published": "2026-10-26T09:03:51+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.IR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35056",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "RAG & retrieval",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.92,
+   "tldr": "Adds an attention‑based hallucination‑risk reward to a multi‑agent RAG system, training LoRA adapters that improve accuracy and cut hallucinations on three benchmarks.",
+   "why": "Directly enhances RAG faithfulness with modest adapter training.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36433": {
+   "id": "arxiv:2610.36433",
+   "title": "LM-DSB: A Lightweight Multi-agent System for Automated Daily Safety Bulletin Generation in Construction",
+   "url": "https://arxiv.org/abs/2610.36433",
+   "abstract": "Construction safety management still struggles to produce daily safety bulletins (DSBs), structured daily communications that identify site-specific hazards, convey safety protocols, and set preventive measures for workers. Manual DSB creation takes 2-3 hours daily and yields inconsistent quality, with 25% of crews never conducting pretask planning (Olson et al., 2016), diverting safety personnel from field supervision. This study proposes the Lightweight Multi-Agent DSB System (LM-DSB), which integrates retrieval-augmented generation (RAG) with a locally deployable Large Language Model (LLM) to automate DSB generation on consumer-grade personal computers. LM-DSB coordinates specialized planner, researcher, and writer agents in a hierarchical architecture, enhanced by domain-specific fine-tuning on construction safety documentation and RAG grounding in 37 health, safety, and environment (HSE) documents. A two-phase validation assessed feasibility. Phase 1 comparative evaluation showed the multi-agent RAG system (Llama 3-8B) outperformed all alternative configurations, with strong lexical alignment and coherence (TF-IDF: 0.70, BLEU: 0.39, ROUGE-1: 0.66) and near-complete document generation (length ratio: 1.01 vs. 0.39 for single-agent RAG). Phase 2 expert evaluation (N=40) confirmed practical acceptability (mean scores 3.50-4.20 on a 5-point scale), particularly in regulatory compliance (4.20) and factual accuracy (4.10). The findings show that architectural design enables lightweight models to handle safety-critical documentation on consumer-grade hardware, advancing technology democratization in construction safety management. Limitations include knowledge base scope, language constraints, and lack of field deployment validation; future work should address multimodal integration and workflow adoption.",
+   "authors": [
+    "Xianxiang Zhao",
+    "Advik Mehta",
+    "Falak Sethi",
+    "Brian Gue",
+    "Qipei Mei",
+    "Lingzi Wu"
+   ],
+   "org": null,
+   "published": "2026-10-27T00:29:20+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36433",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.55,
+   "tldr": "LM‑DSB combines planner, researcher, and writer agents with RAG to auto‑generate daily safety bulletins, outperforming alternatives using Llama‑3‑8B.",
+   "why": "Shows a lightweight multi‑agent RAG pattern transferable to enterprise document generation.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36335": {
+   "id": "arxiv:2610.36335",
+   "title": "OA-RAG: Ontology-based Agentic RAG for Faithful LLM Reasoning",
+   "url": "https://arxiv.org/abs/2610.36335",
+   "abstract": "Large language models (LLMs) perform well across many real-world tasks but remain prone to hallucination, limiting their reliability in domains such as biomedicine and healthcare, where answers must be grounded in established knowledge. Retrieval-augmented generation (RAG) mitigates this problem by incorporating external information, but often overlooks logical relationships and relies heavily on the LLM's own reasoning, which can compromise answer faithfulness. We propose OA-RAG, an agent that integrates formal reasoning with LLM reasoning, drawing on both the logical structure and informal annotations of domain ontologies. For each answer, OA-RAG reports the ontology observations used as evidence and a model-assessed grounding level (entailed, supported, related, or unrelated) that characterises the strength of that evidence. Across benchmarks derived from three large-scale ontologies and six real-world medical question-answering tasks, OA-RAG achieves the best overall performance among the evaluated ontology-fine-tuned and popular RAG methods, with particularly strong results on reasoning-intensive tasks. The reported grounding levels also offer a useful indication of answer reliability, with stronger grounding generally associated with higher accuracy. Finally, our results demonstrate the value of ontologies as knowledge sources: OA-RAG is competitive with, and sometimes outperforms, domain-specific RAG systems that draw on sources such as textbooks.",
+   "authors": [
+    "Hui Yang",
+    "Jiaoyan Chen",
+    "Yongsheng Gao"
+   ],
+   "org": null,
+   "published": "2026-10-26T22:04:58+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36335",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "Evaluation & reliability",
+    "RAG & retrieval",
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.66,
+   "tldr": "OA‑RAG merges formal ontology reasoning with LLM generation, scoring evidence grounding and achieving top results on ontology‑based and medical QA benchmarks.",
+   "why": "Ontology‑guided grounding technique can be adapted to other knowledge bases.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35845": {
+   "id": "arxiv:2610.35845",
+   "title": "Work Agents: Systems, Capabilities, and Optimization",
+   "url": "https://arxiv.org/abs/2610.35845",
+   "abstract": "As foundation models evolve from information generation to digital work execution, agents are increasingly capable of completing complex tasks across tools, applications, and workflows. However, existing research lacks a unified perspective on how agents reliably accomplish delegated work. To address this gap, we present a work-centric, system-level perspective that views work agents as systems combining foundation models and runtime harnesses to execute tasks in stateful workspaces and deliver verifiable outcomes. We introduce two complementary dimensions, work persistence and work openness, to characterize working conditions, and classify digital work into five forms according to task scope and organization. Building on this framework, we identify five core capability families required for reliable work execution and examine approaches to model optimization, harness optimization, and their joint optimization. We further analyze existing evaluation methods and metrics from the perspective of work outcomes. Finally, we discuss future research directions, including sustained work delegation, adaptation to open environments, and the interaction between work execution and capability improvement. This paper provides a unified framework for understanding, optimizing, and evaluating work agents, supporting the development of systems capable of delivering reliable, verifiable, and practically valuable work outcomes.",
+   "authors": [
+    "Zishan Xu",
+    "Enjun Du",
+    "Mingqi Gao",
+    "Cheng Yang",
+    "Junhao Shen",
+    "Zirong Chen",
+    "Zhiyuan Yao",
+    "Yifu Guo",
+    "Yuquan Lu",
+    "Jinyang Huang",
+    "Zhengxi Lu",
+    "Siyi Liu",
+    "Ziyu Zheng",
+    "Yongqi Zhang",
+    "Difan Zou",
+    "Weiwen Liu"
+   ],
+   "org": "Shanghai Jiao Tong University",
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers",
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35845",
+   "hf_url": "https://huggingface.co/papers/2610.35845",
+   "code": "https://github.com/EnjunDu/awesome-working-agent",
+   "project": "https://enjundu.com/blog/working_agents",
+   "upvotes": 104,
+   "summary_hint": "The paper proposes a unified framework for work agents that integrates foundation models with runtime harnesses to execute complex digital tasks reliably, introducing dimensions of persistence and openness alongside capability families and evaluation metrics.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.61,
+   "tldr": "Presents a system‑level framework for work agents, defining persistence/open‑ness dimensions, capability families, and optimization strategies for reliable digital work.",
+   "why": "Offers taxonomy to design and optimize production LLM agents.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.18683": {
+   "id": "arxiv:2610.18683",
+   "title": "ProAS: A Progress-Aware Advantage Shaping Framework for Multi-Turn Agentic Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2610.18683",
+   "abstract": "Reinforcement learning (RL) has emerged as the primary paradigm for optimizing Large Language Model (LLM) agents, yet efficient critic-free algorithms (e.g., GRPO) suffer from a fundamental uniform credit assignment dilemma that broadcasts trajectory-level advantages equally to all actions. Our analysis reveals that this uniformity inherently reinforces structurally unreasonable actions in preferred trajectories and ignores each action's downstream deviations in unpreferred ones. To resolve this without introducing critic overhead, we propose Progress-Aware Advantage Shaping (ProAS), a plug-and-play framework that leverages a dynamically evolving Agentic Reference Graph (ARG) to achieve fine-grained credit assignment via Masking Unreasonable Incentives (MUI) and Asymmetric Penalty Redistribution (APR). Extensive experiments across Qwen2.5-1.5B-Instruct and Qwen2.5-7B-Instruct demonstrate that ProAS universally elevates mainstream group-based baselines to new state-of-the-art performance, achieving peak success rates of 91.9% and 94.3% on ALFWorld, alongside 66.7% and 70.8% on WebShop, respectively. Furthermore, it accelerates training convergence by up to 2.44times while maintaining strong robustness against imperfect or distilled ARGs. Codes: https://github.com/LINs-lab/ProAS",
+   "authors": [
+    "Bowen Ding",
+    "Mingda Wan",
+    "Yuhan Chen",
+    "Jiyao Yuan",
+    "Qi Zhu",
+    "Futing Wang",
+    "Heyuan Deng",
+    "Fei Mi",
+    "Lifeng Shang",
+    "Tao Lin"
+   ],
+   "org": "LINs lab",
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.18683",
+   "hf_url": "https://huggingface.co/papers/2610.18683",
+   "code": "https://github.com/LINs-lab/ProAS",
+   "project": null,
+   "upvotes": 19,
+   "summary_hint": "ProAS improves credit assignment in critic-free reinforcement learning for LLM agents by using a dynamic reference graph to mask unreasonable incentives and redistribute penalties asymmetrically, boosting success rates and convergence speed.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.57,
+   "tldr": "ProAS introduces progress‑aware credit shaping for agentic RL, using a reference graph to redistribute advantages, raising success to 94.3% on WebShop and 91.9% on ALFWorld.",
+   "why": "Could improve multi‑turn agent training, though RL complexity may limit quick adoption.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36325": {
+   "id": "arxiv:2610.36325",
+   "title": "Ontology-guided multi-agent reasoning for explainable differential diagnosis",
+   "url": "https://arxiv.org/abs/2610.36325",
+   "abstract": "Effective differential diagnosis depends on well structured and unambiguous patient case descriptions, since incomplete or ambiguous clinical information readily leads to diagnostic errors and inconsistent reasoning. Large Language Models (LLMs) have recently shown promising capabilities in medical question answering and clinical reasoning; however, even when achieving competitive performance on medical benchmarks, they often rely on pattern recognition learned from training data rather than grounded clinical evidence, and can generate plausible yet unsupported diagnostic conclusions. Their reasoning remains largely opaque, making it difficult for clinicians to assess the evidence and rationale behind a given recommendation. To address this gap, we propose an ontology-guided, multiagent differential diagnosis framework that replicates the iterative reasoning process of physicians. The framework grounds diagnostic inference in a structured, expert-curated medical knowledge base, enabling interpretation of symptoms, clinical findings, or disease relationships, while decomposing diagnosis into explicit, auditable reasoning steps. This ontology-based grounding constrains inference to evidence-backed associations, reducing hallucination and improving diagnostic transparency, traceability, and consistency. The system then identifies the most discriminative missing symptoms and generates targeted follow-up questions to reduce uncertainty through a process that mirrors to clinical inquiry. Together, these components improve the reliability, explainability, and diagnostic accuracy of AI-assisted differential diagnosis. The source code is publicly available.",
+   "authors": [
+    "Roxana Ramona Szomiu",
+    "George Ursu",
+    "Adrian Groza"
+   ],
+   "org": null,
+   "published": "2026-10-26T21:55:26+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36325",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability",
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.3,
+   "tldr": "An ontology-guided multi-agent framework was proposed for differential diagnosis to improve explainability and grounding in medical knowledge bases.",
+   "why": "Too narrow and domain-specific to medical diagnostics; methods do not cleanly transfer to enterprise RAG or general agent pipelines.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.37242": {
+   "id": "arxiv:2610.37242",
+   "title": "Grounding LLM Agents in Business Processes: Process-Aware Knowledge Graphs for Reliable Multi-Step Service Invocation",
+   "url": "https://arxiv.org/abs/2610.37242",
+   "abstract": "Large language model (LLM) agents that call enterprise APIs must select the correct endpoints, follow process order, use valid payload keys, and choose coded values from predefined lists. However, current retrieval-augmented service discovery treats endpoints independently and therefore misses process and schema constraints. We address this limitation by integrating Open Data Protocol (OData) metadata and Business Process Model and Notation (BPMN) reference processes in a typed property graph. A hybrid retriever identifies candidate endpoints using dense embeddings and follows process edges to retrieve subsequent endpoints. We evaluate the method on 42 enterprise services with process-chain ground truth. For queries with low lexical overlap between the query and downstream entities, it improves Recall@3 by 5.7 points (n=74), with consistent gains across embedding models and cut-offs. It matches dense retrieval on other queries and provides no improvement on OpenAPI services without a process layer, indicating that the gains arise from process structure. We also evaluate an LLM agent on 81 multi-step queries. It completes 38.7% of tasks, compared with 10.3% for a chunk-based baseline. In an elicitation probe, providing valid code lists eliminates invented codes but leaves invalid keys in 46% of write runs. Full typed context reduces invalid calls to 3% (3 of 101 runs), with no invented codes. These results show that exposing process and schema constraints during retrieval improves the reliability of agent-driven API calls.",
+   "authors": [
+    "Saiful Khan",
+    "Afrah Farea"
+   ],
+   "org": null,
+   "published": "2026-10-27T13:45:29+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.37242",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.85,
+   "tldr": "Integrating OData metadata and BPMN process graphs into a typed property graph improved API endpoint retrieval Recall@3 by 5.7 points for enterprise tool-use agents.",
+   "why": "Directly relevant for enterprise search and agentic tool invocation where API discovery and process constraints matter.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36444": {
+   "id": "arxiv:2610.36444",
+   "title": "RouteDRAG: Learning to Route and Control Agentic Execution for Multimodal Document RAG",
+   "url": "https://arxiv.org/abs/2610.36444",
+   "abstract": "Web-based applications increasingly rely on understanding long multimodal documents, where answering questions often requires combining information across pages, tables, and figures. Agentic retrieval-augmented generation addresses these tasks through iterative retrieval and reasoning. However, Agentic execution is not always necessary, introducing additional computation and potentially incorrect answers. Our empirical analysis reveals that Agentic execution provides query-dependent benefits, while additional operations may improve, preserve, or degrade answer accuracy. These findings motivate controlling both Agent invocation and subsequent execution. To address these challenges, we propose RouteDRAG, a learning-based framework comprising four components. Unified Document Index organizes multimodal content into a graph-backed index and derives query representations from initial retrieval. Adaptive Path Routing preserves exact answering and predicts the relative benefit of Agent over shorter execution paths. Dynamic Agent Execution maintains an evolving workspace and refines Planner proposals to control tool use and termination. Sequential Policy Learning first trains operation control from observed outcomes and then trains path routing using the resulting Agent's performance. Across two benchmarks, RouteDRAG achieves an average accuracy improvement of 3.47 percentage points over shorter-path-only execution while assigning only 79.3% of queries to Agent. Notably, it also surpasses uniform Agent execution on both benchmarks while requiring fewer answering calls. Our code is now available at https://github.com/Ereshkigal1/RouteDRAG.",
+   "authors": [
+    "Zekai Chen",
+    "Hao Zhu",
+    "Yu Liu",
+    "Xunkai Li",
+    "Zejian Kang",
+    "Rui Qian",
+    "Quanjiang Li",
+    "Rong-Hua Li"
+   ],
+   "org": null,
+   "published": "2026-10-27T00:45:49+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36444",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.8,
+   "tldr": "RouteDRAG uses a graph-backed multimodal document index and adaptive path routing to predict when agentic execution is necessary for long document RAG.",
+   "why": "Addresses cost-accuracy tradeoffs in multimodal document processing and agentic RAG pipelines you can apply directly.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34238": {
+   "id": "arxiv:2610.34238",
+   "title": "Δτ-Bench: Pushing Agents Toward a Moving Capability",
+   "url": "https://arxiv.org/abs/2610.34238",
+   "abstract": "In this paper, we introduce $Δτ$-Bench, an executable agent benchmark that models the structural evolution of large tool ecosystems. In $Δτ$-Bench, independently evolving services continually reshape how tasks can be accomplished: familiar tools may disappear or be replaced, while more efficient alternatives emerge amid overlapping functionality and noisy documentation. Against this moving capability frontier, we evaluate whether agents can proactively discover efficient tool-use paths and promptly revise their accumulated procedural knowledge, bringing together demands that existing benchmarks fail to examine. $Δτ$-Bench comprises 1,588 validated multi-turn tasks across 42 domains and six successive ecosystem states generated through capability-preserving transformations. Our evaluation shows that even the strongest evaluated model or harness achieves only 42.3% task success, while initial gains from existing skill-learning methods can not consistently translate into better adaptation as the ecosystem evolves. These findings motivate Steward, an ecosystem manager that jointly manages tools and procedural knowledge through incremental skill maintenance and dynamic provisioning during task execution. Experiments show that Steward sustains higher task success across ecosystem changes with lower skill-maintenance overhead, while improving both recovery from disrupted workflows and adoption of more efficient alternatives.",
+   "authors": [
+    "Shuofei Qiao",
+    "Xuanguang Pan",
+    "Yijun Chen",
+    "Wendi Feng",
+    "Bin Wu",
+    "Runnan Fang",
+    "Yuqi Zhu",
+    "Shumin Deng",
+    "Emine Yilmaz"
+   ],
+   "org": "University College London",
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers",
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34238",
+   "hf_url": "https://huggingface.co/papers/2610.34238",
+   "code": "https://github.com/zjunlp/delta-tau-bench",
+   "project": null,
+   "upvotes": 25,
+   "summary_hint": "Δτ-Bench evaluates agent adaptability to evolving tool ecosystems, and Steward improves sustained success through incremental skill maintenance and dynamic provisioning.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.75,
+   "tldr": "Introduced Delta-Bench, a 1,588-task benchmark measuring how agents handle dynamically evolving tool ecosystems, showing current models achieve only 42.3% success.",
+   "why": "Good evaluation reference for robust agent design against changing API definitions and toolsets in production environments.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35518": {
+   "id": "arxiv:2610.35518",
+   "title": "S3AC: Stabilized, Selective, and Scalable Actor-Critic for LLM Reasoning",
+   "url": "https://arxiv.org/abs/2610.35518",
+   "abstract": "Critic-free methods are widely used in reinforcement learning with verifiable rewards (RLVR) for long chain-of-thought (CoT) reasoning, avoiding difficult and costly critic training. Common alternatives lack token-level credit assignment and typically rely on grouped rollouts to estimate prompt-specific baselines. A critic can address both limitations, but long-CoT critic training is hindered by insufficient coverage of trajectories with diverse lengths and early gradients dominated by the newly initialized value head. We introduce S3AC (Stabilized, Selective, and Scalable Actor-Critic) for LLM reasoning, built around a practical critic-training recipe. The trained critic provides token-specific advantages and prompt-specific baselines. Using the prompt-level baseline to estimate difficulty, we propose Difficulty-Aware Prompt Sampling (DAPS). DAPS combines this estimate with outcome history to select prompts before generation, reducing rollout waste without offline difficulty initialization. S3AC improves group-rollout performance across dense and mixture-of-experts models from 1.5B to 397B parameters, outperforming a modern GRPO variant (GRPO-X). At 35B, it sustains single-rollout training while tested critic-free baselines deteriorate after initial gains.",
+   "authors": [
+    "Shuo Shen",
+    "Guangran Cheng",
+    "Chengqi Lyu",
+    "Xiangsen Wang",
+    "Yanan Sun",
+    "Wenwei Zhang"
+   ],
+   "org": "Shanghai AI Laboratory",
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers",
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35518",
+   "hf_url": "https://huggingface.co/papers/2610.35518",
+   "code": "https://github.com/InternLM/xtuner",
+   "project": null,
+   "upvotes": 16,
+   "summary_hint": "S3AC introduces a stabilized actor-critic training method with difficulty-aware prompt sampling to improve long reasoning in large language models without relying on grouped rollouts.",
+   "topic": "Reasoning & post-training",
+   "topics": [
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.6,
+   "tldr": "S3AC introduces a stabilized actor-critic method with token-level credit assignment and difficulty-aware prompt sampling to improve long-chain reasoning.",
+   "why": "Pure post-training research; interesting for reasoning models but less directly applicable unless you are training custom base models.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35690": {
+   "id": "arxiv:2610.35690",
+   "title": "EvoRouter: Cost-Efficient Multi-Agent Routing via Insight-Guided On-Policy Distillation",
+   "url": "https://arxiv.org/abs/2610.35690",
+   "abstract": "Serving web queries at scale with multi-agent systems requires jointly configuring large language models, collaboration modes, agent counts, interaction rounds, and skills. However, the resulting configuration space grows combinatorially, while sparse execution rewards provide limited fine-grained supervision for interdependent planning decisions. We propose EvoRouter, a self-evolving multi-agent routing framework driven by insight-guided on-policy distillation. A dedicated expert periodically synthesizes performance-cost feedback from configuration trajectories across tasks into reusable conditional routing insights about capability requirements, returns from resource scaling, and interactions among configuration choices. A privileged teacher combines these evolving insights with current execution feedback to provide dense token-level supervision for the router's own planning trajectories through on-policy distillation. Cost-aware reinforcement learning jointly optimizes task performance and computational cost. Together, these training signals internalize execution insights into the routing policy. The updated policy generates new trajectories that support subsequent insight extraction, forming an execution-driven self-improvement loop. We evaluate EvoRouter on 19 in-domain datasets spanning five domains and two out-of-domain benchmarks. EvoRouter achieves an average in-domain accuracy of 68.69%, outperforming the strongest routing baseline by 7.23 percentage points while reducing inference compute cost by 50.95%. Our code is open-sourced at https://github.com/CenYangtze/EvoRouter.",
+   "authors": [
+    "Yitao Xiao",
+    "Xu Zhang",
+    "Ye Cheng",
+    "Shaoyong Guo",
+    "Yan Sun",
+    "Ziyue Zhu",
+    "Sitao Xie",
+    "Guo Tong",
+    "Haoran Luo"
+   ],
+   "org": null,
+   "published": "2026-10-26T16:21:00+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35690",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost",
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.8,
+   "tldr": "EvoRouter uses on-policy distillation of execution insights to jointly optimize task performance and computational cost in multi-agent routing.",
+   "why": "Provides a practical blueprint for cost-efficient multi-agent orchestration and routing in production environments.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34569": {
+   "id": "arxiv:2610.34569",
+   "title": "Agentic AI Orchestration Framework for Spatial Intelligence: Supply Chain Deployment",
+   "url": "https://arxiv.org/abs/2610.34569",
+   "abstract": "Industrial spatial decisions are assembled across systems that share neither a reference frame nor an owner, and analysts spend substantial effort reconciling those systems rather than reasoning about space. This paper presents ANASSA, a reference architecture integrating structured reasoning, multi-agent workflow orchestration, authoritative spatial grounding, and feedback-driven execution, and reports its instantiation in an operating supply-chain deployment. The architecture places typed data contracts at agent boundaries, validates spatial claims against a certified authoritative foundation, and enforces two blocking human-in-the-loop approvals inside a six-step cognitive loop. The deployment covers multi-hazard risk assessment on an ocean-and-inland freight lane, including cold-chain excursion detection over container telemetry. Across a three-month proof of concept (POC) with three implementation iterations, three deployment outcomes are reported: 25% improvement in data quality, 50% reduction in spatial workflow runtime, and 60% lower decision latency relative to the preceding manual workflow. Absolute deployment-scale quantities and baseline counts are confidential; reported percentages are observed relative changes. These are uncontrolled deployment observations, not controlled experiments. We therefore specify instrumentation and ablation protocols for mechanism-level evaluation.",
+   "authors": [
+    "Constantinos Papantoniou",
+    "Brian Hilton"
+   ],
+   "org": null,
+   "published": "2026-10-25T21:12:21+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34569",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.8,
+   "tldr": "A reference architecture for spatial intelligence multi-agent orchestration achieved a 50% runtime reduction and 60% lower decision latency in a supply chain deployment.",
+   "why": "Offers concrete architectural patterns for enterprise multi-agent orchestration, human-in-the-loop controls, and data contracts.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.33768": {
+   "id": "arxiv:2610.33768",
+   "title": "SkillQR: Agentic Skill Discovery for Reason-Intensive Query Rewriting",
+   "url": "https://arxiv.org/abs/2610.33768",
+   "abstract": "Dense retrievers provide grounded evidence that mitigates hallucinations in outputs from Large Language Models (LLMs). Real-world queries are often verbose, ambiguously framed, or require multi-step reasoning, introducing irrelevant details that weaken semantic matching for dense retrievers. Query rewriting is a widely adopted pre-retrieval technique that leverages LLMs to reformulate queries and bridge the semantic gap between such queries and the retrieval target. Existing rewriting approaches either rely on expensive proprietary models, substantial training data, or iterative retrieval and rewriting, while largely applying a uniform rewriting strategy regardless of the retrieval corpus. We observe that effective query rewriting instructions are not universal: the optimal strategy depends on the retrieval target, rather than the model alone. We introduce SkillQR, a query rewriting framework that automatically discovers reasoning strategy sets from the retrieval target and dynamically routes a query to the appropriate rewriting strategy at inference time. Without relying on training data, SkillQR achieves competitive performance compared to fine-tuned rewriting models on the BRIGHT and R2MED benchmarks, while also providing lower inference latency than iterative rewriting approaches.",
+   "authors": [
+    "Kenan Jiang",
+    "Meixiu Long",
+    "Zihao Zhang",
+    "Ran Xu",
+    "Eugene Agichtein",
+    "Fei Liu"
+   ],
+   "org": null,
+   "published": "2026-10-24T16:19:31+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.IR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.33768",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.85,
+   "tldr": "SkillQR automatically discovers reasoning strategies from a retrieval corpus to dynamically route queries to appropriate rewriting strategies at inference time.",
+   "why": "Actionable pre-retrieval query rewriting technique that adapts to specific corpora without expensive training data.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34872": {
+   "id": "arxiv:2610.34872",
+   "title": "Adaptive Retrieval, Selective Answers: Evaluating Conformal Factuality in Agentic RAG",
+   "url": "https://arxiv.org/abs/2610.34872",
+   "abstract": "Retrieval-augmented generation (RAG) can improve factual grounding without guaranteeing that every generated claim is supported. Previous work has studied claim-level conformal factuality in single-stage RAG and, more recently, multi-hop RAG. We examine its behavior in agentic RAG, where a language-model policy adaptively issues follow-up retrieval queries or terminates retrieval before response generation. We retain the retrieval-based relevance-scoring formulation and post-generation conformal filtering and evaluate six model-dataset configurations: GPT-6 Luna and Llama 3.1 8B on HotpotQA, Natural Questions, and TriviaQA. Each configuration uses 60 fixed questions, 100 seeded 30/30 calibration-test partitions, five conformal target levels, and a no-conformal-prediction baseline. Across the six configurations, higher target levels are accompanied by higher observed full-support rates and reduced answer availability. At the 95% target, non-empty response coverage ranges from 17.23% to 60.17%, claim retention from 10.72% to 43.16%, and full support among non-empty outputs from 89.14% to 95.56%. We formulate the adaptive retrieval trajectory explicitly and characterize the reliability-informativeness trade-off when conformal factuality is applied after agent termination.",
+   "authors": [
+    "Muhammad Aimal Rehman",
+    "Chi-Kuang Yeh"
+   ],
+   "org": null,
+   "published": "2026-10-26T05:37:03+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34872",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "RAG & retrieval",
+    "Evaluation & reliability",
+    "Agents & orchestration"
+   ],
+   "relevance": 0.8,
+   "tldr": "Evaluated claim-level conformal factuality in agentic RAG, showing how target levels trade off full support rates against answer availability.",
+   "why": "Useful evaluation and reliability technique for bounding hallucination and ensuring grounded outputs in production RAG systems.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35801": {
+   "id": "arxiv:2610.35801",
+   "title": "FOCUS: Active Critic Learning for Long-Horizon Language Model Agents",
+   "url": "https://arxiv.org/abs/2610.35801",
+   "abstract": "Sparse outcome rewards make it difficult for long-horizon language-model agents to assign credit to earlier actions. Learned critics provide value estimates for intermediate states, but these estimates can be inaccurate, while estimating intermediate values with repetitive continuation samples from points within a trajectory incurs substantial costs. To mitigate these issues, we introduce FOCUS, an RL method that uses selective branching to help the critic network learn its value estimator. The rollout controller facilitates active learning for the critic by sampling continuations from states that are expected to most reduce the critic's estimation error. These refined value estimates then score the segment between consecutive states with a TD($λ$) advantage, while the sampled evidence supplies training targets for the critic. FOCUS supports long-horizon agentic reinforcement learning through a modular context-management interface that decouples context management from rollout allocation. Our experiments show that using compaction-induced segment boundaries for value estimation and credit assignment, FOCUS outperforms GRPO and VinePPO with matched per-step generation budgets on legal reasoning, deep search, and code localization benchmarks, improving held-out accuracy at Qwen3.5-9B scale by 7.2 points over the strongest baseline on BrowseComp-Plus (55.4 vs. 48.2) and by 4.1 points on DeonticBench (56.5 vs. 52.4).",
+   "authors": [
+    "Zhengping Jiang",
+    "William Jurayj",
+    "Liaoyaqi Wang",
+    "Chunsheng Zuo",
+    "Anqi Liu",
+    "Benjamin Van Durme"
+   ],
+   "org": null,
+   "published": "2026-10-26T17:34:47+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35801",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.7,
+   "tldr": "FOCUS uses selective branching and active learning for critic training to improve value estimation in long-horizon language model agents.",
+   "why": "Advanced reinforcement learning for long-horizon agents, though mostly applicable if you train or fine-tune custom agent policies.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36729": {
+   "id": "arxiv:2610.36729",
+   "title": "Hy-Nomas: Towards Free-form Interactive World Generation",
+   "url": "https://arxiv.org/abs/2610.36729",
+   "abstract": "Interactive world generation requires models to follow successive commands while preserving relevant history and action consequences. We present Hy-Nomas, a video world model with an 8B diffusion backbone that supports free-form text instructions and continuous camera control across multiple interaction turns. It generates variable-length segments conditioned on current inputs and cached history. Our central design aligns structured video captions with action-aware causal attention: descriptive context remains accessible across segments, while action instructions are restricted to their intended temporal windows. A vision-language Prompt Enhancer (PE) translates user requests and multimodal interaction histories into structured conditions for the next segment. A multi-stage curriculum progressively introduces causal generation, text interaction, camera control, and training on model-generated histories, followed by diffusion distillation. In human evaluation, Hy-Nomas shows superior performance over existing world models. We release model weights, code and benchmarks, together with a lightweight adaptation workflow, to support reproducible research on interactive world generation.",
+   "authors": [
+    "Qiaoling Chen",
+    "Jiaxiang Cheng",
+    "Xueqing Deng",
+    "Tiankai Hang",
+    "Ji Hou",
+    "Jiaqi Li",
+    "Yifan Liu",
+    "Tao Lu",
+    "Junshu Tang",
+    "Yu Tang",
+    "Yao Teng",
+    "Yu Tian",
+    "Heng Wang",
+    "Weizhi Wang",
+    "Xiyao Wang",
+    "Xilun Wu",
+    "Mingyu Yang",
+    "Yangbin Yu",
+    "Rui Zhao",
+    "Longjun Cao",
+    "Linghao Chen",
+    "Haoyi Duan",
+    "Jiaming Han",
+    "Mingji Han",
+    "Enhua Jiang",
+    "Shunkai Li",
+    "Yanzhe Liang",
+    "Qinwei Ma",
+    "Cong Wang",
+    "Lei Wang",
+    "Bing Wu",
+    "Ke Xing",
+    "Ray Ying",
+    "Zhentao Yu",
+    "Key Zhang",
+    "Yuan Zhou",
+    "Zhengguang Zhou",
+    "Kai Zou"
+   ],
+   "org": "Tencent Hunyuan",
+   "published": "2026-10-27T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36729",
+   "hf_url": "https://huggingface.co/papers/2610.36729",
+   "code": "https://github.com/Tencent-Hunyuan/Hy-Nomas",
+   "project": "https://hy-nomas.hy.tencent.com/",
+   "upvotes": 27,
+   "summary_hint": "Hy-Nomas is a video world model that uses causal attention and structured captions to follow multi-turn text and camera instructions while preserving interaction history.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.1,
+   "tldr": "Researchers proposed Hy-Nomas, an 8B video world model supporting free-form text instructions and camera control across multiple interaction turns.",
+   "why": "Pure video generation and robotics world modeling; completely off-topic for enterprise RAG and LLM app development.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34654": {
+   "id": "arxiv:2610.34654",
+   "title": "Thinking-in-Bets at Test Time Reduces Sycophantic Revisions in LLM Agents",
+   "url": "https://arxiv.org/abs/2610.34654",
+   "abstract": "Language model agents often abandon correct work when a user challenges it, yet simply telling them to stand firm makes them ignore real mistakes. Once an agent reads a complaint, it tends to discount its own earlier checks in order to agree with the user. We introduce Thinking-in-Bets, a training-free method in which an agent writes a short private record of its main claims, the checks supporting them, and its confidence before reading user feedback. When challenged, the agent consults this Claim Checklist to keep verified work intact while investigating uncertain or newly challenged parts. We evaluate five Gemini models (3.5 Flash-Lite, 3.5 Flash, 3.6 Flash, 3.8 Flash, and 4.0 Argon) across eight benchmarks: SWE-Together, SWE-Interact, and DeepSWE for software engineering, Agents' Last Exam for professional reports, Humanity's Last Exam and SycEval for academic reasoning, Vals Finance for financial analysis, and Terminal-Bench for command-line tasks. Recording claims before criticism nearly eliminates false reversals in patch review and protects passing report drafts under mistaken pushback, whereas writing the same record after reading the complaint recovers very little of the gain. In multi-turn coding, pre-reply claim records substantially reduce unnecessary file edits after mistaken complaints, and gating the record so it is written only when the agent is uncertain lowers token overhead while fixing more real bugs than the baseline. Even in non-interactive tasks without user feedback, listing the key claims in a draft and re-checking the weakest one before submission improves both answer accuracy and confidence estimates across all tested models.",
+   "authors": [
+    "Nghi D. Q. Bui"
+   ],
+   "org": "Google",
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34654",
+   "hf_url": "https://huggingface.co/papers/2610.34654",
+   "code": null,
+   "project": "https://thinking-in-bets.github.io/",
+   "upvotes": 11,
+   "summary_hint": "Thinking-in-Bets improves agent reliability by having models record verified claims before receiving user feedback, reducing false reversals and unnecessary edits while maintaining accuracy.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.85,
+   "tldr": "Introduces Thinking-in-Bets, a training-free method where agents log a claim checklist before reading user feedback, reducing sycophantic reversals across eight benchmarks.",
+   "why": "Directly applicable to multi-agent orchestration and chat apps to stop agents from folding under user pressure or incorrect corrections.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34149": {
+   "id": "arxiv:2610.34149",
+   "title": "Humans in Space: Can MLLMs Construct Human-Centric Spatial Understanding via Active Exocentric Exploration?",
+   "url": "https://arxiv.org/abs/2610.34149",
+   "abstract": "While Multimodal Large Language Models (MLLMs) excel at zero-shot reasoning, their spatial capabilities are primarily evaluated through static, passive observation. In complex, human-centric scenes, occlusion often hides crucial geometric evidence, and passive benchmarks force models to guess rather than recognize their own visual uncertainty. To bridge this gap, we introduce SATE-Bench, a novel interactive benchmark comprising 316 real-world scenes and 2,525 multi-turn QA pairs to evaluate visual self-awareness and active exocentric view-exploration. It combines a Passive multi-view control with an Active exploration setting, where models start from a severely occluded view and must iteratively query adjacent viewpoints until they gather enough evidence to fully ``sate'' the question, scored by a step-penalized efficiency reward. Evaluating state-of-the-art MLLMs reveals that they terminate exploration prematurely while reporting high confidence, and struggle with fine-grained 3D geometric tasks; matched-view controls further attribute the Active--Passive gap primarily to insufficient evidence acquisition. Moreover, fine-tuning with Group Relative Policy Optimization (GRPO) shows that rewarding view-seeking increases active exploration but lowers overall accuracy, as models over-explore and fail to fuse expanding multi-view contexts across turns. These findings indicate that scaling passive multi-view perception does not intrinsically yield active spatial reasoning, highlighting the need for models that know where to look, how to integrate what they see, and when to stop. Code and data are available at https://gtc-gh.github.io/SATE-Bench/",
+   "authors": [
+    "Tianchen Guo",
+    "Tengyue Zhang",
+    "Chen Liu",
+    "Ling Chen",
+    "Xin Yu"
+   ],
+   "org": null,
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34149",
+   "hf_url": "https://huggingface.co/papers/2610.34149",
+   "code": "https://github.com/gtc-gh/SATE-Bench",
+   "project": "https://gtc-gh.github.io/SATE-Bench/",
+   "upvotes": 5,
+   "summary_hint": null,
+   "topic": "Reasoning & post-training",
+   "topics": [
+    "Reasoning & post-training",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.2,
+   "tldr": "Introduced SATE-Bench to evaluate Multimodal LLMs on active exocentric view-exploration and visual self-awareness in occluded 3D scenes.",
+   "why": "Focuses on 3D spatial understanding and vision benchmarks, which do not transfer to text-centric enterprise search or RAG.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34386": {
+   "id": "arxiv:2610.34386",
+   "title": "ParetoRSI-Gym: Can AI Agents Improve Language Models Across Multiple Domains?",
+   "url": "https://arxiv.org/abs/2610.34386",
+   "abstract": "Recursive self-improvement (RSI) requires an agentic system to design, train, and evaluate its own successor. Data-driven post-training is a central part of that loop, yet existing evaluations measure it on a single benchmark, where an agent selects from a static pool or distills a stronger model to push one score up in one run. Real post-training is multi-domain, and a gain in one domain has to be weighed against a regression in another. We propose ParetoRSI-Gym, in which an agent searches for data, curates it, trains, reads back per-domain results, and repeats, with everything but the data held fixed: the initial LLM, the five domains (math, code, finance, medicine, science), the toolset, and the SFT pipeline. Generalization benchmarks in each domain separate capability gains from overfitting to the scores the agent optimizes against. Across three agent systems, three base models, five rounds and multiple seeds, the strongest system, Claude Code with Opus-5, raises the generalization scores of its proxy-best checkpoint by 9.2% relative to the starting model (+2.3 absolute points), averaged with equal weight over three base models and five domains, with a single-domain relative gain of up to 63% (medicine on Ministral-3-3B). Further analysis shows that the harness matters as much as the model it drives, and that each agent keeps a unique data selection strategy. We see our work as a step towards evaluation of RSI systems in real-world machine learning engineering.",
+   "authors": [
+    "Haojin Wang",
+    "Yangzhen Wu",
+    "Zeyi Chen",
+    "Jian Xie",
+    "Jiaying Ye",
+    "Lili Meng",
+    "Shuyun Tang",
+    "Shangding Gu",
+    "Dawn Song"
+   ],
+   "org": null,
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34386",
+   "hf_url": "https://huggingface.co/papers/2610.34386",
+   "code": "https://github.com/haojinw0027/ParetoRSI-GYM",
+   "project": null,
+   "upvotes": 9,
+   "summary_hint": "ParetoRSI-Gym evaluates recursive self-improvement agents across multiple domains by fixing the model and pipeline while allowing data curation and training loops, revealing significant generalization gains and distinct agent strategies.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.5,
+   "tldr": "Proposed ParetoRSI-Gym to evaluate recursive self-improvement across multiple domains, showing Claude Code can boost generalization scores by 9.2%.",
+   "why": "Interesting look at multi-domain agent self-improvement, but more aligned with foundational model training than application engineering.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34241": {
+   "id": "arxiv:2610.34241",
+   "title": "Beyond Benchmarks: Can Small Open-Weight Models Get Real Coding Work Done?",
+   "url": "https://arxiv.org/abs/2610.34241",
+   "abstract": "Making an open-weight language model generate text is not the same as making it finish coding work. This retrospective empirical systems experience report follows my engineering work from July to October 2026 across coding clients, model-specific serving recipes, vLLM, SGLang, llama.cpp, and MLX. Models behind a nominally compatible endpoint still differed in tool-call formatting, turn control, context behavior, cache reuse, and reliability. A served model, coherent text, executed tool calls, and code that passes independent behavioral checks proved to be distinct levels of progress. The evidence includes 4,165 coding-agent gateway turns from my own sessions, 623 debug jobs, and three separate delegation studies with hidden behavioral checks and a fixed Claude Opus 5.5 parent. Saved cold-prefix requests had a median time to first token of about 69.4 s, versus 2.8 s for high-reuse requests (observational). In a 45-trial study, direct coding passed 15/15 and delegation to a quantized Qwen3-Coder 30B-A3B worker passed 12/15 and 14/15. On a second 15-task suite under a fixed artifact contract, the completed replacement cohort had 45/45 for direct coding and 12/45 for a Nemotron Cascade 2 worker (11 worker substitutions). Sixteen sessions stopped by a subscription limit before any model call were replaced; counting them as failures gives 37/45 and 8/45. A Qwen3-Coder worker passed 0/45. In both studies with a direct arm, direct coding had lower API list-price-equivalent frontier cost per verified success. A post-hoc diagnostic found that 19 of 36 artifacts rejected only for renamed parameters passed the hidden checks unchanged; they are not counted as successes. The contribution is an evidence-qualified account of serving, agent protocol, session continuity, artifact validation, and verification in practice. The studies are not pooled and do not rank models or runtimes.",
+   "authors": [
+    "Vaibhav Jain"
+   ],
+   "org": null,
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34241",
+   "hf_url": "https://huggingface.co/papers/2610.34241",
+   "code": null,
+   "project": null,
+   "upvotes": 9,
+   "summary_hint": "Empirical studies of open-weight coding agents reveal that verified code success depends on serving setup, protocol design, and hidden behavioral checks rather than text coherence alone.",
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Evaluation & reliability",
+    "Agents & orchestration",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.8,
+   "tldr": "An engineering retrospective on serving small open-weight coding models using vLLM, SGLang, and llama.cpp, highlighting real-world friction in tool calls and cache reuse.",
+   "why": "Extremely relevant practical insights on serving open-weight models, KV caching, and orchestrating coding agents in production.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.22543": {
+   "id": "arxiv:2610.22543",
+   "title": "On the SPOT: Enhancing Speculative Decoding for Diffusion Language Models via Commit-Order Prediction",
+   "url": "https://arxiv.org/abs/2610.22543",
+   "abstract": "Diffusion language models (DLMs) promise parallel text generation, but in practice face an unresolved speed-quality trade-off. Exact decoding fills in only one masked position per model pass, while faster multi-token decoding schemes are lossy. Speculative decoding is the standard lossless acceleration for autoregressive models. However, it does not transfer directly to DLMs, which must choose both what to generate and where. We show that this order is the missing piece: the model's own predictions from the previous pass already give the right token at over 90% of positions, but not which position comes next. We introduce Speculating Positions Order Trajectory (SPOT), a 0.62M-parameter model that reads only the target's output distributions, predicts this order and proposes a tree of candidate continuations, which the target verifies in a single pass by state equality. Coupled-noise match, which shares Gumbel noise between drafter and target, keeps this verification exact at any temperature. This approach also inspired us to introduce SPOT-Sets for dynamic threshold decoding, where a pass commits several positions: SPOT-Sets drafts whole commit sets together with their tokens. Our comprehensive experiments show that SPOT cuts target passes by up to 6.8times and reaches up to 3.4times the throughput of standard decoding on SDAR-8B, matching or beating the calibrated and training-free drafting baselines in every task and budget at T=0 and T=1. In addition, we show that SPOT's learned drafter transfers across models, demonstrating successful transfer across six different DLMs; with a light calibration, the SPOT-Sets drafter transfers as well. On top of dynamic threshold decoding, SPOT-Sets improves the throughput of SDAR-8B by 59% on average over the threshold decoder alone. Project page: https://eliezer318.github.io/SPOT-dLLM/",
+   "authors": [
+    "Eliezer Shlomi",
+    "Eliron Rahimi",
+    "Avi Mendelson",
+    "Chaim Baskin"
+   ],
+   "org": null,
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.22543",
+   "hf_url": "https://huggingface.co/papers/2610.22543",
+   "code": "https://github.com/Eliezer318/SPOT-dLLM",
+   "project": "https://eliezer318.github.io/SPOT-dLLM/",
+   "upvotes": 18,
+   "summary_hint": "SPOT accelerates diffusion language models by predicting token generation order and verifying candidates in parallel, reducing passes up to 6.8x while maintaining exact decoding.",
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.3,
+   "tldr": "Introduced SPOT, a tiny model that predicts position order to accelerate speculative decoding in diffusion language models.",
+   "why": "Too narrow and specialized for diffusion-based text models, whereas standard production LLMs are autoregressive.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34283": {
+   "id": "arxiv:2610.34283",
+   "title": "ChronoReplay: One Answer Interface Is Not Enough for Streaming Spatial Intelligence",
+   "url": "https://arxiv.org/abs/2610.34283",
+   "abstract": "Training a spatial VLM to answer which side an object lies on does not require it to preserve the metric displacement that determines that answer, while supervision for a distance estimate may leave categorical relations largely unconstrained. When post-training emphasizes one readout, improvements can therefore concentrate on that interface while transfer to others remains weak or even degrades; we call this observed specialization interface lock-in. ChronoReplay addresses it by replaying heterogeneous spatial supervision as chronologically ordered episodes, retaining source-native targets, and balancing supervision across families. Under the same observation access, a single ChronoReplay checkpoint improves OVO-S-Bench, OST-Bench, and UCS-Bench together, including a 13.41-point gain on OST-Bench, and achieves the highest three-benchmark mean among the supervision settings compared here. Same-data controls further separate the ingredients of this transfer: answer serialization redistributes gains across OST and UCS, family-balanced learning improves over ordinary joint SFT and natural turn weighting, and chronological replay exceeds a shifted-order control by about 2.41 OST points across two paired seeds. Adaptive frame selection then changes evidence access while keeping the trained model fixed, providing an additional inference-time gain at lower visual cost. Streaming spatial performance depends on what distinctions supervision preserves, how heterogeneous histories are organized during learning, and what causal evidence inference makes available at test time.",
+   "authors": [
+    "Yihao Hu",
+    "Yitong Lin",
+    "Pan Wang",
+    "Zhihao Wen",
+    "Hang Wang",
+    "Yiwen Zhao",
+    "Deyuan Liu",
+    "Yutong Li",
+    "Mingda Wan",
+    "Yuchen Mao",
+    "Tao Lin"
+   ],
+   "org": "LINs lab",
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34283",
+   "hf_url": "https://huggingface.co/papers/2610.34283",
+   "code": null,
+   "project": "https://yihaohu0118.github.io/ChronoReplay/",
+   "upvotes": 31,
+   "summary_hint": "ChronoReplay mitigates interface lock-in in spatial vision-language models by replaying heterogeneous spatial supervision chronologically, improving cross-task transfer and enabling efficient inference-time evidence selection.",
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.2,
+   "tldr": "Proposed ChronoReplay to address interface lock-in in spatial VLMs by replaying heterogeneous spatial supervision as chronologically ordered episodes.",
+   "why": "Niche spatial vision-language model post-training technique with no relevance to standard enterprise LLM apps.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36068": {
+   "id": "arxiv:2610.36068",
+   "title": "Rollback: Experience Backtracking in World Models for Policy Improvement",
+   "url": "https://arxiv.org/abs/2610.36068",
+   "abstract": "Action-conditioned world models offer a scalable alternative to costly real-world interaction for improving robot policies. However, existing world-model-based methods largely treat world models as forward-only surrogates of the physical environment, leaving untapped a capability no physical environment affords: rewinding to past decision points to explore counterfactual futures. We introduce Rollback, a policy improvement paradigm that turns world models from passive simulators into counterfactual engines: it rolls back to critical decision points, branches into alternative actions, and contrasts their outcomes to attribute success to individual decisions. This concentrates imagination where it matters most and distills counterfactual outcomes into fine-grained, action-level supervision without a separately learned value model. We build a scalable training system that unifies distributed world-model search with asynchronous real-robot execution, forming a self-reinforcing cycle: real-world experience continually sharpens the world model, and a sharper world model in turn drives further policy improvement. We term the world-model side of this cycle test-time physics grounding, a capability that hand-built physics simulators lack: while the world model serves as the training environment, real transitions from the policy it trains correct its dynamics through a lightweight LoRA pipeline. Experiments on three challenging real-world tasks show that Rollback improves success rates over the strongest baseline by an absolute 10.67%, 11.11%, and 11.85% on block extraction, ball tossing, and tabletop curling, respectively, while achieving more stable improvement throughout training. Although initialized from teleoperated demonstrations far below human level, Rollback surpasses the average success rate of human players on both ball tossing and tabletop curling within 8 hours of training.",
+   "authors": [
+    "Jiayi Luo",
+    "Yang Zhang",
+    "Liliang Chen",
+    "Nan Wang",
+    "Chen Gao",
+    "Boxiang Qiu",
+    "Zhuoxuan Li",
+    "Baorui Peng",
+    "Chuankang Li",
+    "Yuxiang Yan",
+    "Si Liu",
+    "Qingyun Sun",
+    "Shuicheng Yan",
+    "Maoqing Yao",
+    "Jianxin Li",
+    "Guanghui Ren"
+   ],
+   "org": "AgiBot World",
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36068",
+   "hf_url": "https://huggingface.co/papers/2610.36068",
+   "code": null,
+   "project": "https://rollback-wm.github.io/",
+   "upvotes": 28,
+   "summary_hint": "Rollback improves robot policies by using world models to rewind to past decisions, explore counterfactual actions, and generate fine-grained supervision, while continuously refining dynamics via real-world feedback.",
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.2,
+   "tldr": "Introduced Rollback, a policy improvement paradigm that uses action-conditioned world models to rewind and explore counterfactual futures for robots.",
+   "why": "Focused entirely on robotics simulation and reinforcement learning rather than software engineering or LLM pipelines.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34073": {
+   "id": "arxiv:2610.34073",
+   "title": "Memory Tax: Dissecting the Net Value of Agent Memory",
+   "url": "https://arxiv.org/abs/2610.34073",
+   "abstract": "Memory is increasingly used in long-horizon agents, yet the net value of building memory over direct retrieval from raw history remains largely unclear. Through a large-scale evaluation across multiple benchmarks and model backbones, we find many dedicated memory systems underperform naive RAG in many cases, indicating a negative net value. Taking RAG as a reference, we dissect the net value of memory into the gains and losses over direct retrieval, termed memory benefit and memory tax. These gains and losses arise because memory process changes how the raw information is organized and accessed. We view such changes as the double-edged deviations from the raw history. They are originally designed and introduced to benefit the task, for example by reorganizing facts or distilling preferences, but some may also remove or obscure evidence, giving rise to memory tax. Since memory benefit reflects the expected gains of its design, we then focus more on the overlooked memory tax, study how it arises from the system and evaluation side, and generalize the concept to more application scenarios of memory. We hope the notion of memory tax can provide a new lens and shift more attention from standalone performance to the net value of memory, informing more reliable memory designs and evaluations. We will open-source the code and results to the community. Project Page: https://hexuan21.github.io/MemoryTax/",
+   "authors": [
+    "Xuan He",
+    "Sining Zhoubian",
+    "Ruozhen Yang",
+    "Yuhao Wen",
+    "Zhineng Wang",
+    "Yuyang Hu",
+    "Ke Yang",
+    "Yuyu Zhang",
+    "Ping Nie",
+    "Jiawei Han",
+    "ChengXiang Zhai"
+   ],
+   "org": "University of Illinois at Urbana-Champaign",
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34073",
+   "hf_url": "https://huggingface.co/papers/2610.34073",
+   "code": "https://github.com/hexuan21/MemoryTax",
+   "project": "https://hexuan21.github.io/MemoryTax/",
+   "upvotes": 1,
+   "summary_hint": "Large-scale evaluation reveals that dedicated memory systems often underperform naive retrieval-augmented generation, introducing a framework of memory benefit and memory tax to assess net value.",
+   "topic": "RAG & retrieval",
+   "topics": [
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.9,
+   "tldr": "Analyzed memory systems in long-horizon agents, finding many underperform naive RAG due to a 'memory tax' where information organization obscures evidence.",
+   "why": "Crucial evaluation framework for deciding whether to build complex agent memory or stick with robust RAG.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.37358": {
+   "id": "arxiv:2610.37358",
+   "title": "When Is Additional Retrieval Worthwhile? A Cost-Aware Study of Evidence Gain and Answer Reliability in RAG",
+   "url": "https://arxiv.org/abs/2610.37358",
+   "abstract": "Retrieval-augmented generation (RAG) can benefit from more sophisticated retrieval, but extra retrieval may be unnecessary for many questions and gains in evidence retrieval may not translate into faithful or correct answers. We study a cost-aware, two-action retrieval policy that chooses between a dense-retrieval-plus-reranking baseline and a hybrid lexical--dense retriever. Rather than classifying baseline retrieval as simply successful or unsuccessful, we estimate the question-specific incremental evidence-retrieval benefit of hybrid retrieval using features available before the routing decision. A regularized linear model and decision threshold are selected using document-grouped cross-validation and frozen prior to held-out evaluation. On 60 previously unseen QASPER training-split articles (188 questions, 169 evidence-evaluable), the policy triggers hybrid retrieval on 46 questions (24.5\\%) and obtains the same evidence Hit@10 as always-hybrid retrieval (78.70\\%, versus 76.92\\% for always-keep). Paired, paper-cluster bootstrap intervals do not establish a reliable utility advantage. We further compare generated answers from a 4-bit Qwen3-4B model under the three retrieval policies. Provisional answer-level assessments show no clear correctness or faithfulness improvement after partial review, despite the evidence-retrieval result. The generation assessments remain model-assisted and lack independent human validation. These results expose an important distinction between retrieving relevant evidence efficiently and improving the reliability of the generated answer. The work is presented as a reproducible empirical study, not a claim of statistically established answer-quality superiority.",
+   "authors": [
+    "Zhouting Zhao"
+   ],
+   "org": null,
+   "published": "2026-10-27T14:55:58+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.IR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.37358",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.95,
+   "tldr": "Studied a cost-aware retrieval policy that uses a regularized linear model to trigger hybrid search only when incremental evidence is beneficial.",
+   "why": "Directly applicable cost-optimization technique for RAG pipelines to reduce unnecessary expensive retrieval calls.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35840": {
+   "id": "arxiv:2610.35840",
+   "title": "ACARE: Agent-Context-Aware Reranker for Iterative Search",
+   "url": "https://arxiv.org/abs/2610.35840",
+   "abstract": "In agentic search, a document can match an agent-generated sub-query without helping answer the user's original question. Conventional rerankers score documents against the sub-query alone, overlooking the broader task and the agent's reasoning. We introduce the Agent-Context-Aware Reranker (ACARe), a compact 4B LLM trained to rerank documents using this context when available. Across multiple benchmarks and agent families, ACARe improves retrieval quality over its base reranker while reducing search effort. These benefits extend to answer generation: ACARe improves accuracy and reduces searches over no reranking, while matching or exceeding the base reranker's mean accuracy with more precise evidence. It also helps smaller agents narrow the retrieval-quality gap to larger agents, showing how better retrieval tools can make smaller agents more effective. The model, training data, and code will be released soon.",
+   "authors": [
+    "Sahel Sharifymoghaddam",
+    "Yauhen Babakhin",
+    "Reza Esfandiarpoor",
+    "Oliver Holworthy",
+    "Jimmy Lin",
+    "Bo Liu"
+   ],
+   "org": null,
+   "published": "2026-10-26T17:53:30+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.IR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35840",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.85,
+   "tldr": "Introduces ACARe, a compact 4B LLM reranker that conditions on the agent's broader task and reasoning context rather than just the sub-query. It improves retrieval quality and answer accuracy while reducing search effort.",
+   "why": "Directly applicable to improving retrieval accuracy in multi-step RAG and agentic search loops where standard rerankers fail.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35335": {
+   "id": "arxiv:2610.35335",
+   "title": "Knowing When to Escalate: Disagreement Patterns for Uncertainty-Aware Content Moderation",
+   "url": "https://arxiv.org/abs/2610.35335",
+   "abstract": "Agentic content-moderation systems increasingly rely on collective judgments from LLM agents, while aggregation methods commonly treat inter-agent disagreement as a reliability problem to be removed through consensus or voting. This framing is inappropriate for value-laden tasks, where disagreement may reflect irreducible value pluralism - a distinction standard uncertainty decompositions cannot recover, since they operate on output distributions and discard the reasoning behind each judgment. We propose Reasoning Trace Divergence Analysis (RTDA), which embeds model-generated justifications from perspective-differentiated agents and classifies each case by justification similarity and conclusion agreement. The resulting four-state taxonomy isolates convergent disagreement, where agents reasoning similarly but concluding differently, as a candidate signature of value-laden conflict. On 1,000 items from the Measuring Hate Speech corpus, this structural signal predicts human annotator disagreement better than magnitude-only and output-only baselines. We contribute a design principle: condition human escalation on the structure of disagreement, not its magnitude alone, with RTDA serving as a post-processing layer for systems that already generate reasoning traces.",
+   "authors": [
+    "Michał Wawer",
+    "Jarosław A. Chudziak"
+   ],
+   "org": null,
+   "published": "2026-10-26T12:32:25+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.MA",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35335",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.4,
+   "tldr": "Proposes Reasoning Trace Divergence Analysis (RTDA) to classify inter-agent disagreement in content moderation by inspecting reasoning similarity and conclusion agreement, outperforming output-only baselines.",
+   "why": "Interesting approach to agent reliability, but content moderation is a narrow domain with limited direct transfer to general enterprise search or RAG.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35089": {
+   "id": "arxiv:2610.35089",
+   "title": "Learning to Remember: Advances in Memory Mechanisms for Large Language Models",
+   "url": "https://arxiv.org/abs/2610.35089",
+   "abstract": "Memory has become a central mechanism for extending large language models (LLMs) beyond fixed context windows, stateless interaction, and static parametric knowledge. This survey organizes the literature around three complementary dimensions: the life cycle of memory, the storage substrate, and the system role that memory plays in LLM-based agents, while using cognitive-science-inspired memory concepts as a lightweight conceptual motivation rather than as a separate technical contribution or implementation family. On this basis, we distinguish three mechanism families: nonparametric memory, where information is stored outside model parameters in text, graph, multimodal, or database-like structures; parametric memory, where information is stored or accessed through activations, key-value caches, learned modules, adapter-based parameterizations, or model weights; and memory for agent evolution, where stored experiences support reinforcement learning, continual learning, procedural reuse, context engineering, and agent harness design. Evaluation is treated as a separate cross-cutting component rather than as a memory mechanism. Unlike surveys that focus primarily on retrieval-augmented generation or long-context modeling, this paper emphasizes the full memory life cycle: construction, maintenance, retrieval, consolidation, forgetting, governance, and evaluation. By aligning conceptual motivations, computational memory mechanisms, benchmarks, and deployment concerns, the survey provides a structured roadmap for designing memory-augmented LLM agents that are persistent, adaptive, auditable, and safe to update over time.",
+   "authors": [
+    "Chenye Han",
+    "Hongche Yu",
+    "Mengyue Wu",
+    "Dell Zhang",
+    "Jixiang Luo"
+   ],
+   "org": null,
+   "published": "2026-10-26T09:31:04+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.IR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35089",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.75,
+   "tldr": "Provides a comprehensive survey organizing LLM memory mechanisms into nonparametric, parametric, and agent-evolution families based on cognitive science concepts.",
+   "why": "Valuable taxonomy for evaluating long-term memory architectures and context engineering strategies in production agentic apps.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34836": {
+   "id": "arxiv:2610.34836",
+   "title": "Collective Emergent Alignment: Measuring and Amplifying Interaction-Induced Reasoning Alignment in Multi-Agent LLMs",
+   "url": "https://arxiv.org/abs/2610.34836",
+   "abstract": "Multi-agent large language model (LLM) systems can exhibit emergent behaviors through interaction, yet whether a similar phenomenon exists for reasoning alignment remains largely unexplored. We study whether agent interaction produces additional reference-grounded reasoning alignment beyond matched individual self-refinement, and introduce REMAP (Reference-Entailment-Matrix for Agentic Process), a framework that quantifies this effect through Semantic Coverage and interaction-specific alignment gains. Across diverse model families and two multi-hop reasoning benchmarks, we observe broadly positive interaction gains, particularly on reasoning content that depends on integrating evidence distributed across agents. These gains are consistently associated with independently measured peer-information recovery, while further analysis reveals composition-dependent heterogeneity effects and asymmetric information transfer across agent capability levels. Motivated by these findings, we further introduce a fact-level multi-agent communication framework that replaces full reasoning-trace exchange with compact, gap-aware, and selectively routed information. Our experiments show that compact fact exchange improves reasoning alignment and task performance while reducing communication overhead, whereas more selective communication exposes a trade-off between acquiring distributed information, retaining local content, and communication efficiency. Overall, our results show that collective emergent alignment can be quantified, linked to information-transfer patterns, and used to guide more effective multi-agent communication.",
+   "authors": [
+    "Boxuan Wang",
+    "Zhuoyun Li",
+    "Sarvapali D. Ramchurn",
+    "Xiaowei Huang",
+    "Yi Dong"
+   ],
+   "org": null,
+   "published": "2026-10-26T04:31:56+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34836",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.7,
+   "tldr": "Studies interaction-induced reasoning alignment in multi-agent LLM systems, showing positive gains on multi-hop reasoning and proposing a fact-level communication framework.",
+   "why": "Offers architectural insights for designing multi-agent communication protocols and reducing token overhead in enterprise multi-agent setups.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35959": {
+   "id": "arxiv:2610.35959",
+   "title": "AgentBaton: Efficient Model Collaboration in Agentic Tasks",
+   "url": "https://arxiv.org/abs/2610.35959",
+   "abstract": "Solving long-horizon agentic tasks requires language agents to interact with their environments over multiple steps, and reliable performance often comes from the expensive capable models available through cloud providers. Meanwhile, alternative efficient models with inferior performance but a much lower cost are emerging, including lower-tier cloud models and smaller open-weights models deployable on local hardware. This raises a natural question that remains less explored than traditional query-level routing: can capable and efficient models collaborate within a single long-horizon agentic task to substantially reduce cost while preserving task accuracy? In this paper, we systematically investigate key design choices for such collaboration through model handoffs, where one model takes over from another, focusing on handoff direction and context transfer. We find that efficient-to-capable handoffs generally underperform capable-only execution with limited or even no cost reduction, whereas capable-to-efficient handoffs at suitable stages of task progress largely preserve or even improve accuracy while substantially reducing cost. These findings suggest that a one-time, simple, well-timed handoff strategy is good enough for cost-effective agent collaboration, motivating AgentBaton, a lightweight detector that learns when to hand off from recurring patterns in task progress. Across 11 model pairs and two representative benchmarks, AgentBaton reduces API costs by 65.9% on average while largely preserving task accuracy, with accuracy gains of up to 8.8 percentage points over capable-only execution. Experiments across various reasoning-effort settings further show that AgentBaton extends the empirical accuracy-cost Pareto frontier.",
+   "authors": [
+    "Junlong Li",
+    "Jindong Jiang",
+    "Yonggan Fu",
+    "Jiarui Yao",
+    "Hanrong Ye",
+    "Wonmin Byeon",
+    "Peter Belcak",
+    "Hao Zhang",
+    "Pavlo Molchanov"
+   ],
+   "org": null,
+   "published": "2026-10-25T06:15:26+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.MA",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35959",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.85,
+   "tldr": "Systematically investigates model collaboration via handoffs in long-horizon tasks, discovering that capable-to-efficient handoffs at strategic stages preserve accuracy while lowering costs.",
+   "why": "Actionable pattern for cutting LLM operational costs in production multi-agent pipelines by routing tasks between high-end and cheaper models.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36759": {
+   "id": "arxiv:2610.36759",
+   "title": "DocSkill: Skill-Integrated Agentic Reasoning for Multilingual Multi-Hop Document Question Answering",
+   "url": "https://arxiv.org/abs/2610.36759",
+   "abstract": "Multilingual multi-hop document question answering (MMHop-DocQA) requires locating and integrating evidence across complex layouts, document pages, and diverse languages. Existing approaches include single-pass processing and adaptive tool use, but learning to coordinate evidence acquisition, cross-page integration, and answer verification remains challenging. To address this challenge, we present DocSkill, an agentic framework with a learned skill-orchestration policy for adaptive evidence acquisition and reasoning. The policy selects, revisits, or skips skills according to the evolving evidence state. To construct supervision for skill orchestration, bounded Monte Carlo Tree Search (MCTS) explores alternative skill trajectories offline. These trajectories provide demonstrations for supervised fine-tuning (SFT) and preference pairs for Direct Preference Optimization (DPO). We further introduce MMHop-DocBench, a multilingual multi-hop document QA dataset with training and test splits, containing 60K QA pairs across 10 languages and eight document domains. Its HopGen pipeline builds hierarchical page-element graphs to derive traceable cross-page evidence paths and generate grounded QA pairs with page- and element-level evidence annotations. Experiments show that DocSkill with Qwen3-VL-8B achieves 41.0 accuracy and 49.2 F1 on MMHop-DocBench, exceeding the strongest evaluated baseline by 5.5 and 6.3 points, respectively, and achieving competitive performance on MMLongBench-Doc and DocBench.",
+   "authors": [
+    "Jing Huang",
+    "Zhiya Tan",
+    "Changtao Miao",
+    "Shutao Gong",
+    "Yang Wang",
+    "Joey Tianyi Zhou",
+    "Jianshu Li",
+    "Ying Yan"
+   ],
+   "org": null,
+   "published": "2026-10-27T07:14:59+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36759",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Documents & extraction",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training",
+    "Documents & extraction"
+   ],
+   "relevance": 0.8,
+   "tldr": "Introduces DocSkill, an agentic framework with a learned skill-orchestration policy using MCTS and DPO for multilingual multi-hop document question answering across complex layouts.",
+   "why": "Provides advanced techniques for complex document extraction and multi-hop reasoning over unstructured enterprise documents.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35054": {
+   "id": "arxiv:2610.35054",
+   "title": "From Questions to Queries to Insights: A Schema-Grounded Agentic Workflow for Natural-Language Crash Data Analysis",
+   "url": "https://arxiv.org/abs/2610.35054",
+   "abstract": "Transportation agencies maintain extensive crash databases to identify safety priorities, evaluate countermeasures, and guide resource allocation. Making these data accessible to practitioners requires flexible ways to translate analytical questions into reliable results. Existing dashboards support predefined analyses, while additional requests often depend on specialists who understand database queries, coded fields, and agency conventions. This study presents CrashDB-QA, a fully local, schema-grounded agentic workflow that enables natural-language analysis of crash databases. Specialized components interpret questions, generate and validate read-only SQL, execute queries, and explain the results. A shared knowledge base grounds query construction in the agency's data dictionary and safety-analysis conventions, while recorded intermediate outputs support inspection and auditing. An optional extension, CrashDB-QA+, checks the alignment among the question, query, and execution result and supplies evidence for iterative repair. We evaluate the workflow on a frozen snapshot of 4.4 million Wisconsin crash records using a new benchmark of 300 questions across ten analytical categories and nine local open-weight models. Domain grounding substantially improves query accuracy, and a code-specialized 7B model provides the best accuracy-latency balance among the tested models. Compositional analyses remain more difficult than routine retrieval, particularly comparisons between groups or periods. Verification improves performance when the Judge uses authoritative field definitions and the Refiner receives execution evidence, whereas additional checking alone offers no consistent benefit. These findings demonstrate the potential of locally deployed, domain-grounded workflows to broaden access to crash analysis and identify the reasoning and verification capabilities needed for reliable use.",
+   "authors": [
+    "Jingwen Zhu",
+    "Keshu Wu",
+    "Steven T. Parker",
+    "Bin Ran",
+    "David A. Noyce"
+   ],
+   "org": null,
+   "published": "2026-10-26T09:01:57+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35054",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training",
+    "RAG & retrieval",
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.8,
+   "tldr": "Presents CrashDB-QA, a schema-grounded agentic workflow for natural-language database querying that uses specialized components to interpret questions, generate SQL, and validate results.",
+   "why": "A practical reference architecture for building enterprise text-to-SQL agents connected to structured relational databases.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34735": {
+   "id": "arxiv:2610.34735",
+   "title": "iPrefBench: A User-Centric Benchmark for Personalized Mobile Use Agents",
+   "url": "https://arxiv.org/abs/2610.34735",
+   "abstract": "An agent that truly knows and acts on behalf of its user has been a long-standing promise of AI assistants. Computer-use agents bring this promise within reach by capably executing fully specified tasks across apps. However, real-world user requests are often underspecified. To act correctly for the particular user, an agent must infer some missing information from the user's activity history and ask for other information that only the user can provide, without making unsupported assumptions or burdening the user with unnecessary questions. We present iPrefBench, a benchmark for evaluating the infer and ask capabilities of personal mobile-use agents in an executable iOS environment with an interactive simulated user. Grounded in a coherent persona with 3,051 past activity events, iPrefBench comprises 130 underspecified user tasks across 26 apps. Each omitted user-dependent requirement is, by construction, either history-inferable or ask-only. iPrefBench evaluates personalized mobile agents on both whether agents complete tasks correctly for the user (i.e., personalized task completion) and whether they seek user input when necessary (i.e., user-agent interaction). Evaluation of 7 frontier agents reveals a substantial gap between execution and personalization. Agents achieve high action completion scores (up to 91.6%) but low full task success (up to 47.7%) because personalization lags behind. They especially struggle with ask-only information, failing to request enough necessary information. Our findings highlight a challenge for personalized agents in knowing what to infer and when to ask. We hope that iPrefBench can serve as a valuable testbed for building agents that know their user and work with them.",
+   "authors": [
+    "Yuting Ning",
+    "Ruijia Cheng",
+    "Sushobhan Ghosh",
+    "Peitong Duan",
+    "HungShi Lin",
+    "Abhishek Sundararajan",
+    "Shreyash Pandey",
+    "Huan Sun",
+    "Jeffrey Nichols",
+    "Eldon Schoop"
+   ],
+   "org": "Apple",
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers",
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34735",
+   "hf_url": "https://huggingface.co/papers/2610.34735",
+   "code": null,
+   "project": null,
+   "upvotes": 13,
+   "summary_hint": "The study introduces iPrefBench, a benchmark for assessing whether mobile agents can infer missing user preferences from activity history or ask for necessary clarification, revealing that current agents execute actions well but fail at personalization.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.5,
+   "tldr": "Introduces iPrefBench, a benchmark for evaluating personal mobile-use agents on handling underspecified user tasks through history inference or direct queries.",
+   "why": "Too focused on mobile OS environments and end-user personal assistants to yield direct patterns for backend enterprise apps.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.37666": {
+   "id": "arxiv:2610.37666",
+   "title": "ThinkWorld: World Imagination Reinforces Chain-of-Dynamics Reasoning",
+   "url": "https://arxiv.org/abs/2610.37666",
+   "abstract": "Vision-Language-Action (VLA) models have made substantial progress in robotic manipulation, but their generalization remains constrained by the diversity and coverage of action-labeled robot demonstrations. Human videos provide much broader behavioral and environmental experience, while learning from them faces a fundamental trade-off between scalable data and explicit action grounding. We introduce ThinkWorld, a VLA learning framework that grounds action reasoning in world dynamics and strengthens it through reinforcement learning with world imagination. ThinkWorld represents each action thought as a Chain-of-Dynamics (CoD), a sequence of discrete motion tokens that captures the intermediate dynamics connecting the current world to a future state and serves as a common action representation across embodiments. We first initialize CoD with action-labeled demonstrations, then predict the future induced by each CoD and reinforce those whose predictions better match the observed outcome. This enables videos without action annotations to provide direct supervision from observed state transitions, allowing human and robot experience to refine the same reasoning space. Experiments in simulation and on real robots demonstrate effective human-to-robot transfer and strong generalization to unseen tasks and environments.",
+   "authors": [
+    "Chaehyun Kim",
+    "Chi-Pin Huang",
+    "Jisoo Kim",
+    "Min-Hung Chen",
+    "Yu-Chiang Frank Wang",
+    "Seungryong Kim",
+    "Fu-En Yang"
+   ],
+   "org": "NVIDIA",
+   "published": "2026-10-27T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.37666",
+   "hf_url": "https://huggingface.co/papers/2610.37666",
+   "code": null,
+   "project": "https://thinkworld-project.github.io/",
+   "upvotes": 12,
+   "summary_hint": "ThinkWorld improves robotic generalization by representing actions as dynamics chains and using world imagination to learn from unlabeled human videos.",
+   "topic": "Reasoning & post-training",
+   "topics": [
+    "Reasoning & post-training",
+    "RAG & retrieval"
+   ],
+   "relevance": 0.1,
+   "tldr": "Introduces ThinkWorld, a VLA learning framework for robotic manipulation that grounds action reasoning in world dynamics using video data.",
+   "why": "Irrelevant for software engineers building text/document-based LLM systems and RAG pipelines.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35193": {
+   "id": "arxiv:2610.35193",
+   "title": "Trustworthy Recursive Self-Improvement in the Era of Large Models: Foundation, Risks, Evaluation and Open Challenges",
+   "url": "https://arxiv.org/abs/2610.35193",
+   "abstract": "AI systems built around large models increasingly use experience and feedback to make persistent changes to models, prompts, memories, tools, and workflows. Recursive self-improvement (RSI) extends this process to inductive biases and to the mechanisms that govern future updates, which can themselves be revised and reused across improvement cycles. Yet self-modification alone does not guarantee trustworthy improvement. Reported gains may reflect flawed evaluations, previously acquired capabilities may deteriorate, and compliance with behavioral constraints may weaken. Compromised artifacts or sensitive information may also persist in successor systems. Changes to improvement mechanisms may invalidate earlier verification results and make human oversight less effective. This survey presents an operational definition and process framework for RSI and organizes the requirements for trustworthy RSI into four interconnected themes: genuine and sustained improvement; behavioral constraints, alignment, and fairness; system security and privacy; and transparency and controllability. We examine these themes from three perspectives: Improvement Validity, Constraint Preservation, and Effective Oversight. This analysis covers improvement diagnosis, proposal generation, proposal evaluation, and update implementation (S1--S4), including the recursive application of these stages to improvement mechanisms (RI). We review risks, safeguards, and evaluation evidence for individual updates, effects inherited by successor systems, and revisions to improvement mechanisms, while distinguishing direct RSI findings from evidence in related systems. Finally, we examine evaluation settings, identify requirements for independent and longitudinal assessment, and discuss applications and open research problems.",
+   "authors": [
+    "Jiayue Pu",
+    "Ang Gao",
+    "Jinyi Bai",
+    "Qipeng Wang",
+    "Tongyu Wen",
+    "Jiahao Zhao",
+    "Keyu Qu",
+    "Junhao Zhang",
+    "Chenglei Shen",
+    "Zhongxiang Sun",
+    "Jun Xu",
+    "Xiao Zhang"
+   ],
+   "org": null,
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35193",
+   "hf_url": "https://huggingface.co/papers/2610.35193",
+   "code": null,
+   "project": null,
+   "upvotes": 22,
+   "summary_hint": "This survey defines recursive self-improvement and organizes trustworthy advancement requirements into improvement validity, constraint preservation, and oversight across recursive update stages.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.5,
+   "tldr": "Surveys the landscape of trustworthy recursive self-improvement in LLM-based systems, organizing requirements around genuine improvement, constraints, security, and transparency.",
+   "why": "Broad theoretical and safety overview; lacks immediate architectural blueprints for near-term production implementation.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34415": {
+   "id": "arxiv:2610.34415",
+   "title": "Spatial Audio Generation and Editing with Executable Plans and Self-Distilling Transfusion",
+   "url": "https://arxiv.org/abs/2610.34415",
+   "abstract": "Spatial audio authoring coordinates source decisions with soundfield synthesis. For editing, plans specify what to change and retain, while reference audio supplies further acoustic detail. We present AMBIT, a unified framework for native First-Order Ambisonics (FOA) generation and editing with three connected contributions. First, a shared Transfusion backbone couples autoregressive planning with rectified-flow rendering through executable ScenePlans that specify source content, activity, and 3D trajectories. For editing, the plan describes the full target scene, including retained sources; contrastive features ground the requested change, while full reference latents supply residual acoustic detail for preservation. Second, an FOA-aware continuous VAE combines shared-decoder omnidirectional recovery, asymmetric grouped KL, and spatial covariance matching to preserve content and inter-channel structure. Third, joint Transfusion on-policy self-distillation (OPSD) refines planning on student-generated prefixes and rendering at sampling states reached under student plans, with target-conditioned teachers supervising both modes of the shared student. Evaluations across speech, music, and sound show improved generation content and spatial quality, acoustic fidelity during instruction-guided editing, and unedited-source preservation over the compared baselines. Project page: https://wjm-george.github.io/AMBIT/",
+   "authors": [
+    "Kam Man Wu",
+    "Yu Zhang",
+    "Pengjun Fang",
+    "Mingfei Chen",
+    "Weijia Chen",
+    "Zeyue Tian",
+    "Qifeng Chen"
+   ],
+   "org": "NoizAI",
+   "published": "2026-10-25T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34415",
+   "hf_url": "https://huggingface.co/papers/2610.34415",
+   "code": "https://github.com/WJM-George/AMBIT",
+   "project": "https://wjm-george.github.io/AMBIT/",
+   "upvotes": 42,
+   "summary_hint": "AMBIT is a unified framework that generates and edits first-order ambisonics audio by coupling autoregressive scene planning with rectified-flow rendering, using a specialized continuous VAE and on-policy self-distillation to preserve spatial structure and acoustic fidelity.",
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.1,
+   "tldr": "Introduces AMBIT for spatial audio generation and editing using a shared transfusion backbone and self-distilling transfusion.",
+   "why": "Entirely off-topic for enterprise RAG and LLM application engineering.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34886": {
+   "id": "arxiv:2610.34886",
+   "title": "ThinkBit: Search Codewords, Recalibrate Scales, Select by Reasoning",
+   "url": "https://arxiv.org/abs/2610.34886",
+   "abstract": "Reasoning language models generate thousands of tokens per answer, and generation speed is limited by memory bandwidth, so storing weights in two bits instead of bfloat16 can potentially make inference 8$\\times$ cheaper. Two-bit methods are usually judged by perplexity and multiple-choice question-answering accuracy, both of which say little about whether a model can still reason through more difficult problems. We present ThinkBit, a strictly scalar two-bit framework built to preserve reasoning, in which every weight is an integer codeword times a bfloat16 scale shared by a group of weights. We first use a sensitivity metric to assign each layer a ternary, 2-bit, or 3-bit tier to allocate bitwidths optimally among layers. This is followed by a layerwise Gumbel-softmax-based scalar quantization algorithm that searches for optimal codewords block by block. Since a layerwise scheme does not capture how quantized layers interact with each other, we recalibrate scales, with the codewords frozen, using a knowledge-distillation-based loss against the teacher model. We then perform a short quantization-aware training (QAT) stage that lets the model mimic the base model's distribution by reassigning codewords. Finally, a paired reasoning test on training problems selects the final checkpoint between the recalibration stage and the QAT stage. On Qwen3-1.7B at matched size, our recalibrated checkpoint scores 46.7 on MATH-500 against 30.0 for EfficientQAT trained on the same data, and 73.0 after QAT on reasoning traces; at 0.52 GB it is smaller than every published 2-bit GGUF of the model yet more accurate on MATH-500. We show that this framework scales and up to 14B, a 3.74 GB model scores 94.8 on MATH-500, against 97.5 for the 29.5 GB bfloat16 model.",
+   "authors": [
+    "Rhea Sanjay Sukthanker",
+    "Pashmina Cameron"
+   ],
+   "org": "Microsoft",
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers",
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34886",
+   "hf_url": "https://huggingface.co/papers/2610.34886",
+   "code": null,
+   "project": null,
+   "upvotes": 4,
+   "summary_hint": "ThinkBit is a scalar two-bit quantization framework that preserves reasoning by assigning layerwise bit tiers, optimizing codewords via Gumbel-softmax, and recalibrating with knowledge distillation followed by quantization-aware training.",
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.75,
+   "tldr": "Presents ThinkBit, a strict scalar 2-bit quantization framework for reasoning LLMs that combines layerwise bitwidth allocation, Gumbel-softmax quantization, and scale recalibration.",
+   "why": "Relevant for reducing LLM inference costs and memory bandwidth bottlenecks when deploying large reasoning models in production.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35434": {
+   "id": "arxiv:2610.35434",
+   "title": "Skill^{infty}: Recursive Self-Improvement for Agent Skill Optimization",
+   "url": "https://arxiv.org/abs/2610.35434",
+   "abstract": "Recursive self-improvement (RSI), in which a system also improves the way it improves, is a long-standing aspiration on the path to AGI. Language agents increasingly store procedural knowledge in reusable skills. Optimizing skills offers a direct way to achieve RSI, because the optimization procedure itself can be encoded as a skill. Existing skill optimizers, however, follow a hand-designed procedure. Even methods that evolve a meta-skill confine it to a fixed pipeline and relearn it for each task. We present Skill$^{\\infty}$, which makes skill optimization recursively self-improving: a meta agent follows a meta-skill to optimize task skills and optimizes the meta-skill itself using the same procedure. The optimization is agent-led. The meta agent diagnoses execution traces, proposes candidates, requests independent reviews, and allocates the search budget. The meta-skill defines these steps, allowing self-improvement to rewrite them. This meta-skill is also decoupled from task skills, refined on multiple skill optimization tasks and then reused to optimize task skills across diverse domains. As in deployment, skills at both levels are standard packages loaded through native skill discovery. On 83 SkillsBench tasks, Skill$^{\\infty}$ reaches a pass rate of 60.7%, compared with 56.4% for human-curated skills and 54.5% for SkillEvolver.",
+   "authors": [
+    "Wangcheng Tao",
+    "Zhanglu Yan",
+    "Han Wu",
+    "Weng-Fai Wong"
+   ],
+   "org": "National University of Singapore",
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers",
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35434",
+   "hf_url": "https://huggingface.co/papers/2610.35434",
+   "code": null,
+   "project": null,
+   "upvotes": 8,
+   "summary_hint": "Skill∞ enables recursive self-improvement by letting a meta agent optimize both task skills and its own meta-skill through a reusable, agent-led procedure, improving performance across diverse domains.",
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.7,
+   "tldr": "Proposes Skillinfty for recursive self-improvement in language agents, using a meta agent to optimize task skills and iteratively rewrite its own meta-skill optimization procedure.",
+   "why": "Offers interesting ideas for advanced agent architectures and self-improving workflows, though complex to implement in standard enterprise settings.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35328": {
+   "id": "arxiv:2610.35328",
+   "title": "Constrained Decoding: Harmful or Beneficial? Revisiting Its Impact on LLM Performance",
+   "url": "https://arxiv.org/abs/2610.35328",
+   "abstract": "Constrained decoding guarantees that Large Language Models (LLMs) produce outputs conforming to predefined formats, but is often assumed to inherently degrade reasoning. We examine this assumption through a taxonomy of three constraint types: \\emph{format constraints}, which enforce output structure; \\emph{validity constraints}, which mask invalid answer; and \\emph{reasoning constraints}, which restrict reasoning trajectories. We theoretically show that appropriate constraints can preserve or improve performance by eliminating invalid paths. Across four model families and eleven open-source models, causal ablations on diverse benchmarks using state-of-the-art constrained decoding strategies reveal that apparent performance degradation largely stems from non-equivalent prompting and output formats rather than from decoder-level masking. Meanwhile, validity constraints improve reliability and extractability by eliminating invalid answers, while reasoning constraints can improve reasoning and, consequently, accuracy when they enforce beneficial trajectories. These findings show that the impact of constrained decoding depends on the type of constraint and the output space it removes. Our code is available.",
+   "authors": [
+    "Ngoc Trinh Hung Nguyen",
+    "Alonso Silva",
+    "Armen Aghasaryan",
+    "Mehwish Alam"
+   ],
+   "org": "Nokia",
+   "published": "2026-10-26T00:00:00+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers",
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35328",
+   "hf_url": "https://huggingface.co/papers/2610.35328",
+   "code": null,
+   "project": null,
+   "upvotes": 7,
+   "summary_hint": "Constrained decoding does not inherently harm reasoning; its effects depend on constraint type, with validity and reasoning constraints often improving reliability and accuracy by removing invalid paths.",
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.8,
+   "tldr": "Examines constrained decoding across 11 models and shows that format, validity, and reasoning constraints improve reliability and accuracy rather than degrading reasoning.",
+   "why": "Directly applicable for improving output reliability and enforcing structured JSON/schema generation in production LLM systems.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.37375": {
+   "id": "arxiv:2610.37375",
+   "title": "Agent-Conditioned Routing: Diverse Reasoning Paths Within One Frozen Model",
+   "url": "https://arxiv.org/abs/2610.37375",
+   "abstract": "Generating several solutions can expose alternative methods, but additional trajectories often paraphrase one dominant approach. We investigate whether the conditional capacity of a frozen sparse mixture-of-experts (MoE) model can provide such diversity from one problem prompt, without user-assigned roles, prescribed methods, fine-tuning, or model copies. Agent-Conditioned Routing (ACR) assigns $m$ parallel trajectories persistent, untrained shared/private expert-eligibility masks while preserving the learned, input-dependent token router. On a screened 126-question multi-mode mathematics and physics benchmark, with model judges reading the reported derivations in full, we count the number of problems yielding at least two distinct primary methods among soft-correct solutions in four trajectories. ACR reaches approximately twice as many such problems as the strongest temperature setting under GLM 5.3 (37.3 versus 18.7), and 1.67 times as many under GPT-5.6 Sol (45.00 versus 27.00), at matched output budgets. A blinded four-expert audit on a stratified sample of 30 problems also finds more multi-method solutions with ACR on both backbones, with lower correctness. Matched-eligibility ablations show modest multi-method count advantages for ACR, while token-resampled masks attain higher correctness. An informed sequential prompt elicits more diversity still, using previous solutions and explicit requests for alternative methods. ACR adds about 160 KiB of mask state. In a three-problem microbenchmark capped at 1,024 tokens, its latency and peak VRAM usage remain within 3% of batched temperature sampling.",
+   "authors": [
+    "Ananth Kalyanasundaram",
+    "Ankush Kadu",
+    "Athira Gopal",
+    "Aswanth Krishnan"
+   ],
+   "org": null,
+   "published": "2026-10-27T15:06:29+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.37375",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Efficient inference & cost",
+    "Reasoning & post-training",
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.7,
+   "tldr": "Introduces Agent-Conditioned Routing (ACR), assigning persistent expert-eligibility masks to parallel trajectories in a frozen MoE model to generate diverse reasoning paths.",
+   "why": "Provides a method to elicit diverse reasoning paths from a single frozen model without extra fine-tuning or model copies.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.37080": {
+   "id": "arxiv:2610.37080",
+   "title": "Tessera: Structure-Completed Evidence Units for Web Retrieval-Augmented Generation",
+   "url": "https://arxiv.org/abs/2610.37080",
+   "abstract": "Web retrieval-augmented generation (RAG) splits a page into fixed-size text chunks or, in recent visual pipelines, screenshot tiles, and the retrieved item serves at once as the unit of indexing, ranking, and reading. We trace answer evidence from source HTML to reader input over the full English Wikipedia and find that this coupling loses evidence in text and screenshot pipelines alike: evidence present in the source page often fails to reach the reader intact, particularly structured content such as tables and infoboxes, which chunking separates from the headers and context that give it meaning. Stronger extraction, context expansion, and larger reader budgets leave the loss in place. We present Tessera, a training-free evidence delivery layer that decouples what a pipeline retrieves from what its reader reads. Given the pages behind any ranked list, Tessera rebuilds their HTML into fine-grained evidence units, each completed with its page title, section path, and table headers, selects the units relevant to the query, and packs them into the reader context at an unchanged token budget. The index, the retriever, and the reader stay as they are, so Tessera applies to text, screenshot, and agentic pipelines. Across three question answering benchmarks, Tessera improves answer accuracy by 5 to 6 points on text and screenshot pipelines, consistently across readers, retrievers, and reader budgets, and outperforms strong HTML-aware and structure-aware RAG baselines under matched budgets. The gains carry over to multi-step agentic search. Our code is publicly available at https://github.com/sarendis56/Tessera.",
+   "authors": [
+    "Peichun Hua",
+    "He Sun",
+    "Zirui Zhuang",
+    "Qi Qi",
+    "Yiming Qiu",
+    "Shinan Liu",
+    "Yunming Xiao"
+   ],
+   "org": null,
+   "published": "2026-10-27T11:41:33+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.IR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.37080",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.9,
+   "tldr": "Presents Tessera, a training-free evidence delivery layer that rebuilds raw HTML into fine-grained units with section paths and table headers, decoupling retrieval from reading.",
+   "why": "Directly applicable drop-in improvement for web RAG and document parsing pipelines that struggle with tables and structured content separation.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36991": {
+   "id": "arxiv:2610.36991",
+   "title": "SpectRAG: Weighted Chunk Graphs for Token-Budgeted Context Selection in Multi-Hop Retrieval-Augmented Generation",
+   "url": "https://arxiv.org/abs/2610.36991",
+   "abstract": "Retrieval-augmented generation (RAG) systems ground large language models (LLMs) by retrieving external evidence and conditioning generation on the retrieved context. Although dense retrieval is effective for local semantic matching, independently ranked retrieval can return redundant passages, miss cross-chunk dependencies, and provide incomplete evidence for multi-hop reasoning. We propose SpectRAG, a spectral graph-augmented retrieval framework that combines hybrid candidate seeding, weighted chunk graph construction, graph-based expansion, spectral relevance propagation, and token-budgeted context selection. Document chunks are represented by dense semantic embeddings and graph-spectral coordinates derived from a weighted chunk graph whose edges encode semantic similarity, document adjacency, section hierarchy, shared entities, citation links, and similarity between LLM-generated utility questions. At query time, SpectRAG builds a high-recall seed set using exact inner-product search and hybrid relevance signals, expands it over the chunk graph, re-scores candidates using graph proximity and spectral information, and assembles the final context under a fixed token budget. The goal is not merely to retrieve individually similar chunks, but to construct a context that is relevant, diverse, structurally connected, and sufficient for grounded reasoning. Experiments on MultiHopRAG, UltraDomain, and long-document question-answering settings show that SpectRAG improves broad evidence recovery and achieves competitive generation quality against dense, hybrid, HyDE, LightRAG, and NaiveRAG baselines. The results further indicate that graph-spectral structure is particularly useful for inference-oriented and cross-document retrieval, while highlighting trade-offs in early precision, computational cost, and domain-dependent performance.",
+   "authors": [
+    "Zafer Sahinoglu",
+    "Abdulazeez Mohammed",
+    "Buse Yaren Kazangirler",
+    "Cahit Berkay Kazangirler"
+   ],
+   "org": null,
+   "published": "2026-10-27T10:38:29+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36991",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.85,
+   "tldr": "Proposes SpectRAG, a spectral graph-augmented retrieval framework combining weighted chunk graphs, semantic similarity, and spectral relevance propagation for multi-hop RAG.",
+   "why": "Provides a concrete graph-based retrieval strategy to handle multi-hop dependencies and reduce context redundancy in enterprise search.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36890": {
+   "id": "arxiv:2610.36890",
+   "title": "Latent Residual Reasoning for Ranking in Generative Recommendation",
+   "url": "https://arxiv.org/abs/2610.36890",
+   "abstract": "Generative recommendation (GR) models for ranking typically adopt a fast-thinking direct prediction paradigm with strong practical efficiency. However, ranking requires fine-grained scoring across multiple candidate items, while existing GR models still mainly rely on one-shot prediction. This raises the question whether additional inference-time computation can further improve ranking quality. Recently, inspired by Chain-of-Thought (CoT) reasoning in large language models (LLMs), some work has begun to introduce reasoning into recommendation systems. Some of these methods rely on LLM reasoning frameworks to perform explicit reasoning in textual space, but such designs are not suitable for more widely deployed non-textual recommendation models. A more relevant direction is to introduce latent reasoning into ID-based recommendation models. Although recent work has extended latent reasoning to industrial ranking, how successive reasoning steps should improve fine-grained candidate scores remains less explored. To address this problem, we propose Refiner, a latent residual reasoning framework with parameter-efficient fine-tuning for generative ranking. Our approach introduces three key components: (1) a residual reasoning mechanism that progressively refines ranking scores through cumulative additive corrections, (2) history queries that provide condensed user behavior representations to enhance candidate-specific reasoning, and (3) a parameter-efficient fine-tuning strategy that leverages LoRA modules to adapt pre-trained models for latent reasoning. Extensive experiments on two public benchmarks, an offline industrial dataset, and an online A/B test demonstrate that Refiner consistently improves over direct prediction, validating its effectiveness and practical utility.",
+   "authors": [
+    "Haihan Shi",
+    "Ruidong Han",
+    "Wenjie Wang",
+    "Shangyu Chen",
+    "Sunhao Dai",
+    "Yongqi Li",
+    "Yangyang Li",
+    "Fei Jiang",
+    "Wei Lin",
+    "Fuli Feng",
+    "Xiangnan He"
+   ],
+   "org": null,
+   "published": "2026-10-27T09:25:53+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.IR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36890",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Reasoning & post-training",
+   "topics": [
+    "Reasoning & post-training",
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.3,
+   "tldr": "Proposes Refiner, a latent residual reasoning framework for ID-based generative recommendation systems.",
+   "why": "Narrowly focused on recommendation systems rather than general LLM apps, RAG, or agent orchestration.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36561": {
+   "id": "arxiv:2610.36561",
+   "title": "Governed Sovereign RAG for Public Administration: Tripartite Epistemic Routing, Facet-Guided Clarification, and Deterministic Numeric Verification in Citizen Services",
+   "url": "https://arxiv.org/abs/2610.36561",
+   "abstract": "Deploying conversational assistants at government service desks faces a tension between regulatory certainty (zero tolerance for invented fees), data sovereignty prohibiting commercial clouds, and high rates of underspecified or out-of-jurisdiction citizen queries. We present and evaluate a governed, sovereign Retrieval-Augmented Generation (RAG) architecture deployed on the official portal of the State of Tlaxcala, Mexico (tlaxcaladigital.gob.mx), covering 1,143 procedures and a decoupled directory of 924 offices. The system governs interactions via three pillars: (1) a two-stage tripartite epistemic gate (clarify_policy and a Boltzmann distribution over AnyJev) arbitrating among answering (SPECIFIC), facet-guided clarification (CLARIFY), and abstaining (ABSTAIN); (2) a post-generation deterministic numeric verifier (verify_numeric_guardrail) with SHA-256 cache invalidation ensuring every generated fee or validity figure belongs to the retrieved official record; and (3) an empirical evaluation across 380 organic production traces (8 weeks) and a 200-query stratified benchmark (5-fold CV: 86.41% +/- 7.50%). In production, 89.47% of traffic is resolved at Level 0 via deterministic templates without free generation (global p50 = 0.665 s; direct L0 p50 = 0.445 s; slow-tail p95 = 30.412 s under CPU queuing), with 0/40 fiscal amount hallucinations observed in Level 1 (95% bound <= 8.81%). On the benchmark, the system achieves 86.50% strict Top-1 accuracy (+10.00 pp over a binary neural gate, p = 0.00453, p_Holm = 0.01172), pairing a 93.00% conditional safe upper bound with a 70.87% dropout-adjusted effective resolution after accounting for 53.33% citizen drop-off in clarification menus.",
+   "authors": [
+    "Andres Cruz Degante"
+   ],
+   "org": null,
+   "published": "2026-10-27T03:09:12+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CY",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36561",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability",
+    "RAG & retrieval",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.8,
+   "tldr": "Evaluates a governed sovereign RAG architecture featuring a tripartite epistemic routing gate and a post-generation deterministic numeric verifier for citizen services.",
+   "why": "Valuable patterns for high-stakes enterprise RAG applications requiring strict hallucination guards and deterministic verification of numeric data.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35592": {
+   "id": "arxiv:2610.35592",
+   "title": "GEAR: Feature-Based Configuration and Code Generation for Agentic Systems",
+   "url": "https://arxiv.org/abs/2610.35592",
+   "abstract": "Engineering multi-agent systems (MAS) requires choosing agents, orchestration strategies, communication mechanisms, reasoning approaches, and memory configurations. These choices depend on framework-specific capabilities and abstractions, requiring developers to learn different APIs when exploring alternative implementations. We present GEAR, an open-source tool for configuring MAS and generating framework-specific implementations from a common specification. GEAR uses a feature-based representation to make configuration options and their constraints explicit, enabling users to validate specifications before code generation. Through connectors for ten agentic frameworks, users generate projects from the same specification and can then inspect reports describing framework-specific adaptations. A preliminary assessment of mapping feasibility identifies translation strategies for 271 of 320 evaluated feature-framework pairs (84.69%). GEAR supports developers prototyping agentic systems and researchers exploring MAS configurations across frameworks. GEAR is available as open-source software at https://github.com/brellsanwouo/gear-framework and a video demo is available at https://youtu.be/iwNi-oC2tCw.",
+   "authors": [
+    "Brell Sanwouo",
+    "Nada Zine",
+    "Paul Temple",
+    "Clément Quinton",
+    "Romain Rouvoy"
+   ],
+   "org": null,
+   "published": "2026-10-26T15:19:22+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.MA",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35592",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.7,
+   "tldr": "Introduces GEAR, a tool that uses feature-based representations to configure multi-agent systems and generate framework-specific code for 10 different agentic frameworks.",
+   "why": "Useful prototyping utility when evaluating multiple agent frameworks and standardizing agent configuration specifications.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34673": {
+   "id": "arxiv:2610.34673",
+   "title": "Agent Memory as Recommendation: Recommender-System Design for Long-Term Memory of LLM Agents",
+   "url": "https://arxiv.org/abs/2610.34673",
+   "abstract": "Large language model (LLM) agents that serve users across many sessions must choose, for every request, the few stored memories that enter a limited context window. This choice largely decides whether the agent answers correctly, and it runs on every request at Web scale. This selection faces three challenges: a large and growing store, a per-request cost budget, and multi-session questions that need all of their evidence. Many memory systems build notes or graphs with hundreds to thousands of LLM calls per history, and each is designed on its own, so it is unclear which component yields the accuracy. These challenges mirror the properties of recommendation, so we formalize agent memory as budgeted slate recommendation, with the request as the user, stored memories as items and the context window as a slate. The formalization places memory systems in one design space of recommender cascades and factorizes accuracy into the completeness that each stage controls. Guided by it, we propose AgentMemRec, which adapts candidate generation, learning to rank and slate construction from recommender systems and selects memories without any LLM call. On multi-session questions of LongMemEval, AgentMemRec outperforms memory and context-selection methods, including A-Mem, HippoRAG 2, DynamicRAG and T-Mem, by 10 to 31 points of accuracy. It matches an LLM reranker that makes 64 calls per query at 3.2 times lower serving cost, and on LoCoMo it outperforms Mem0 and Zep without any LLM call at write time. The factorization attributes the gains to slates that more often hold all of the evidence, so recommender-system design offers an effective and efficient foundation for the long-term memory of LLM agents.",
+   "authors": [
+    "Xinyu Zhang",
+    "Weiwei Sun"
+   ],
+   "org": null,
+   "published": "2026-10-26T01:05:20+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.IR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34673",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.85,
+   "tldr": "They formalized LLM agent long-term memory retrieval as budgeted slate recommendation, introducing AgentMemRec to handle candidate generation, learning-to-rank, and slate construction within per-request cost budgets.",
+   "why": "Directly applicable to improving retrieval, context windows, and cost efficiency in long-running production agent systems.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35966": {
+   "id": "arxiv:2610.35966",
+   "title": "EMMA: Structured Episodic Memory for Multi-Agent Workflow Synthesis",
+   "url": "https://arxiv.org/abs/2610.35966",
+   "abstract": "Deploying LLM agents in specialized domains often require fine-grained task-specific procedures and knowledge a general model lacks, yet parameter training is costly and non-interpretable, and hand-engineered agent systems shift the cost to expert labor. Episodic memory updates at context level, but single agent adaptation struggles to alleviate cross-task interference, especially with complex tasks such as multi-application navigation or data pool analysis. Although multi-agent evolution alleviates this problem, existing methods lack clear definitions on update rules and rely on the backbone model to decide where and how much the system changes. This ill-scoped evolution makes learning follow the backbone's structural preferences rather than the observed failures: one backbone accumulates skills while another spawns agents. We present EMMA (structured Episodic Memory for Multi-Agent workflow synthesis), which treats the configuration of a multi-agent system (controller routing memory, specialists inheriting a generalist prompt, and per-step procedural skills) as episodic memory. EMMA makes the ownership and admissibility of updates explicit: a reflector assigns each diagnosed failure to the scope owning its correction and proposes one edit within it, and backbone-independent guards keep every accepted edit scoped, incremental and bounded. Across KramaBench, AppWorld and BBEH with five backbones and four baselines (ACE, GEPA, EvoMAS and ADAS), EMMA attains the best overall performance on every benchmark, up to 32.5% over the strongest baseline, maintains consistent improvements across backbones, and uses 17-38% fewer training executions than the most efficient baseline.",
+   "authors": [
+    "Ruijia Niu",
+    "Kaiwen Liu",
+    "Rose Yu",
+    "Kristina Klinkner"
+   ],
+   "org": null,
+   "published": "2026-10-25T18:00:11+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.MA",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35966",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.8,
+   "tldr": "They introduced EMMA, treating multi-agent system configurations—including controller routing and procedural skills—as structured episodic memory to avoid cross-task interference without expensive parameter training.",
+   "why": "Provides concrete architectural patterns for organizing reliable, multi-agent workflows and managing state across sessions.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.33503": {
+   "id": "arxiv:2610.33503",
+   "title": "Novel or Not? PatEx-Gym: Agentic Prior-Art Search for Novelty Assessment in Patent Examination",
+   "url": "https://arxiv.org/abs/2610.33503",
+   "abstract": "Patent examination is a challenging real-world task that requires agents to discover sparse prior art, iteratively refine queries, inspect technical evidence, and produce novelty assessments documented in Office Actions (OAs) across heterogeneous scientific and technical domains. However, existing benchmarks largely focus on static and limited candidate sets, leaving the full search--reasoning--assessment process underexplored. We present PatEx-Gym, the first framework for developing and evaluating agents for patent examination, which integrates three components. First, PatEx-Bench provides 1K realistic examination tasks, two large-scale retrieval corpora containing over 1M patents and 52K scientific papers, and a harness runtime supporting iterative search, document visits, reasoning, and OA generation. Second, we introduce PASS, an annotation-free Prior-Art Agentic Search Trajectory Synthesis framework. Specifically, it exploits document visits as implicit relevance signals and evidence-acquisition anchors to model intra-turn query behavior, inter-turn search progression, and trajectory-level evidence and outcome quality, yielding PatEx-SynData. Third, we train PatEx-Agent at the 4B scale via supervised fine-tuning on the curated trajectories, establishing a lightweight baseline. Extensive experiments show that final decision accuracy alone does not fully reflect examination quality, while prior-art discovery remains difficult even for strong frontier models. Our PatEx-Agent achieves competitive performance against substantially larger general-purpose agents. These results show that training on PatEx-SynData enables a compact 4B model to serve as a competitive baseline for prior-art search and patent examination. We view patent examination as a demanding testbed for agentic search and deep research agents.",
+   "authors": [
+    "Qiyao Wang",
+    "Xinyi Chen",
+    "Hongbo Wang",
+    "Jiayuan Lu",
+    "Jianhang Li",
+    "Minghuan Tan",
+    "Yuan Lin",
+    "Min Yang"
+   ],
+   "org": null,
+   "published": "2026-10-24T07:21:41+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.IR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.33503",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.5,
+   "tldr": "They built PatEx-Gym, a benchmark and framework for agentic prior-art search in patent examination, along with an annotation-free trajectory synthesis method using document visits as implicit relevance signals.",
+   "why": "Narrow domain application (patent examination), though the trajectory synthesis and iterative search methods offer interesting background for complex RAG loops.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36980": {
+   "id": "arxiv:2610.36980",
+   "title": "AutoVend: Benchmarking LLM Agents on Long-Horizon Autonomous Vending Operations",
+   "url": "https://arxiv.org/abs/2610.36980",
+   "abstract": "Large language model (LLM) agents are extending agent-mediated commerce on the Web from shopping for consumers to operating businesses for sellers. In online-to-offline (O2O) commerce, decisions are issued through Web-based platforms but realized through costly physical execution. Evaluating such agents requires going beyond individual transactions to ask whether decisions made online turn into sustained economic returns. We introduce AutoVend, a benchmark in which one LLM agent manages 20 vending machines across five site types through a Web-based operating interface for 180 simulated days. Its data-grounded simulator combines a shared warehouse, procurement lead times, paid replenishment, inventory expiration, and recurring operating costs. We evaluate five LLM agents against a rule-based inventory-control baseline and diagnose their site coordination, execution, and performance over time. Four of five evaluated LLM agents fall short of this baseline, and returns per dollar of inference cost rank models differently from returns alone. Operational analyses show that gains in individual metrics do not consistently yield stronger economic growth, as inventory and execution costs erode these gains. Trajectory analysis further reveals difficulties in grounding feasible actions, managing inventory commitments, and converting feedback into effective policy revisions.",
+   "authors": [
+    "Qiming Shi",
+    "Yikun Li",
+    "Beidi Luan",
+    "Rui Sun",
+    "Yan Ma",
+    "Jing Li",
+    "Daxin Jiang",
+    "Zuo Bai"
+   ],
+   "org": null,
+   "published": "2026-10-27T10:33:06+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36980",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.6,
+   "tldr": "They introduced AutoVend, a long-horizon benchmark evaluating LLM agents on online-to-offline vending machine operations over 180 simulated days, showing that most models underperform rule-based baselines.",
+   "why": "Useful evaluation methodology for long-horizon agent loops, but focused on commerce operations rather than core enterprise search or RAG.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.35142": {
+   "id": "arxiv:2610.35142",
+   "title": "CalibraRL: Confidence-Calibrated Reinforcement Learning for Mitigating Hallucinations in RAG",
+   "url": "https://arxiv.org/abs/2610.35142",
+   "abstract": "Large language models (LLMs) often produce plausible but incorrect answers, motivating reinforcement learning methods that reward correct answers, penalize incorrect answers, and allow abstention. However, fixed outcome-based rewards do not distinguish incorrect responses with different confidence levels or account for differences in answering reliability across queries. Consequently, such rewards may inadequately penalize overconfident errors and fail to discourage unnecessary abstention. We propose CalibraRL, a reinforcement learning framework that incorporates response confidence and query-level answering evidence into reward design. For non-abstaining responses, CalibraRL combines correctness-based utility with a Brier-based penalty that encourages agreement between confidence and correctness. For abstentions, it estimates conditional answering reliability using a Beta posterior derived from the correctness of non-abstaining responses within each sampled group. The abstention reward increases with the posterior probability that the model's accuracy on non-abstaining responses is below a predefined threshold. CalibraRL reuses training rollouts without requiring additional annotations indicating whether the model knows the answer to each question. Experiments on three QA datasets demonstrate that CalibraRL improves answer precision and reduces hallucinations compared with strong baselines. Further analysis shows that CalibraRL reduces mean expected calibration error (ECE) by 30.8\\% across two backbone models and three datasets, highlighting its potential to improve the reliability of retrieval-augmented generation (RAG) in web search.",
+   "authors": [
+    "Qianchi Zhang",
+    "Hainan Zhang",
+    "Liang Pang",
+    "Hongwei Zheng",
+    "Zhiming Zheng"
+   ],
+   "org": null,
+   "published": "2026-10-26T10:11:24+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.35142",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability",
+    "RAG & retrieval",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.85,
+   "tldr": "They proposed CalibraRL, a reinforcement learning framework combining correctness utility with a Brier-based confidence penalty and Beta posterior abstention rewards to mitigate hallucinations in RAG.",
+   "why": "Directly tackles hallucination reduction, confidence calibration, and reliable abstention logic for production RAG pipelines.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34860": {
+   "id": "arxiv:2610.34860",
+   "title": "Semantic Atoms for Scalable Text Analysis in Data Analytics in the Era of LLM-Based Agents",
+   "url": "https://arxiv.org/abs/2610.34860",
+   "abstract": "Much of the information needed for data analysis is buried in text columns: an analyst may infer customer frustration from complaint text and use it to explain resolution time. We call workloads in which processing text columns is central to subsequent data analysis TADA (\\emph{Text Analysis in Data Analytics}). In an agentic setting, the user's query dynamically specifies this processing, and answering it interleaves LLM-based semantic steps with exact SQL or Python operations. This mixed execution raises two design questions: which work should be neural and which symbolic, and which semantic outputs later steps can reuse. We address them for agent-planned TADA workflows with two complementary, query-driven semantic atoms. Each atom takes a sequence of text items and a natural-language query specifying the semantic task: \\textbf{Tagging} returns one string per input item, while \\textbf{Categorization} returns $M$ category objects over $N$ input items. Tagging results are materialized as a row-aligned column and Categorization results as a category table; SQL or Python then performs exact computation over this exposed state. We realize this interface in TADA-Agent, whose atoms run inside generated Python programs and internally handle inputs beyond a reliable context window. We evaluate TADA-Agent on TABench, a benchmark of 40 complete analysis requests over spreadsheet tables spanning workflow composition, input--output structure, and literature-grounded analytical scenarios. Against a semantic-operator baseline and relative to a held-out TADA reference run, TADA-Agent delivers comparable row-level semantic quality, has higher complete-artifact preservation estimates, and uses over an order of magnitude fewer semantic-model requests under the evaluated native execution paths.",
+   "authors": [
+    "Jinxiang Xie",
+    "Zihao Li",
+    "Rui Ding",
+    "Bartuer Zhou",
+    "Shi Han",
+    "Dongmei Zhang"
+   ],
+   "org": null,
+   "published": "2026-10-26T05:24:00+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34860",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.8,
+   "tldr": "They defined Tagging and Categorization semantic atoms for LLM-based text analysis in data workflows, interleaving neural text steps with exact SQL or Python operations.",
+   "why": "Offers architectural patterns for mixing LLM text extraction with structured SQL/Python data pipelines in enterprise applications.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.34653": {
+   "id": "arxiv:2610.34653",
+   "title": "Heard Enough to Act: Early Tool Calling in Spoken Dialogue Systems",
+   "url": "https://arxiv.org/abs/2610.34653",
+   "abstract": "Latency-sensitive spoken agents must know not only which tool to call, but also when they have heard enough to act. Waiting for the turn to complete delays execution even when the request is already actionable. However, neither existing spoken agents nor spoken dialogue corpora define the earliest point at which a request becomes actionable. We introduce a synthetic spoken-dialogue pipeline that provides earliest-actionable-point supervision, marking when the observed speech grounds a tool and its required arguments. Through controlled task generation, speech synthesis and alignment, and gated annotation, we construct 26,694 dialogues totaling 786 hours across 48 domains, with disjoint training and test argument values. We additionally create an audio rendering of $τ^2$-bench for external evaluation. We train an omni-modal language model on this corpus, enabling causal, chunk-level decisions and partial-transcript generation for downstream call completion. The model achieves tool-state macro-F1 scores of 0.48 and 0.47 on held-out dialogues and the external benchmark, respectively. For correct calls, the estimated mean lead over a turn-end cascade, using the same formatter, is 1.8-2.0 seconds in-domain and 1.1 seconds on $τ^2$-bench. These results demonstrate a data-driven path toward spoken agents that act while listening. We will open-source the pipeline and the training scripts.",
+   "authors": [
+    "Yizhou Peng",
+    "Chen Chen",
+    "Donghang Wu",
+    "Hexin Liu",
+    "Eng Siong Chng"
+   ],
+   "org": null,
+   "published": "2026-10-26T00:34:30+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.34653",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.7,
+   "tldr": "They constructed a synthetic spoken-dialogue corpus with earliest-actionable-point supervision and trained a model for causal, chunk-level tool calling and partial transcript generation.",
+   "why": "Interesting techniques for reducing latency via early tool invocation, though specifically tailored for real-time spoken dialogue systems.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.37471": {
+   "id": "arxiv:2610.37471",
+   "title": "PerceptRL: Making Visual Perception Rewardable in MLLMs from Answers to Interactions",
+   "url": "https://arxiv.org/abs/2610.37471",
+   "abstract": "Fine-grained visual perception remains a bottleneck during post-training of multimodal large language models (MLLMs), as perceptual errors can constrain gains from reasoning-focused optimization. Although image-caption pre-training improves perception, its influence can weaken as subsequent stages change data mixtures and objectives. Continuing caption supervision during post-training is challenging because subjective, information-dense descriptions complicate verifiable reward design. We present PerceptRL, which strengthens perception at two complementary levels. Perception RL uses a multi-agent pipeline to extract verified errors from dense image captions and convert the corresponding visual facts into QA pairs with fixed answer labels and rule-based rewards. Chain QA links correlated errors, while multiple-choice QA combines unrelated errors. A specialized route targets high-error domains with tailored verification, and a domain-agnostic general route covers errors beyond these domains. Perception Agentic RL addresses fine-grained and dense cases unresolved by single-turn Perception RL through multi-turn inspection with visual tools. We observe coordinate drift even in models trained to use tools, where incorrect crops or annotations distort evidence and propagate errors. Coordinate Injection corrects spatial operations in cold-start trajectories, while a grounding-aware process reward supervises intermediate spatial fidelity alongside final-answer correctness. Training proceeds through shared cold-start SFT, single-turn Perception RL, and multi-turn Perception Agentic RL. Across seven benchmarks under a shared tool-use protocol, PerceptRL achieves 71.6% average accuracy, surpassing the base model with the same tools and the strongest evaluated frontier VLM by 15.7 and 5.2 percentage points, respectively.",
+   "authors": [
+    "Tongkun Guan",
+    "Zhibo Yang",
+    "Mingkun Yang",
+    "Haocheng Wang",
+    "Wei Shen",
+    "Xiaokang Yang"
+   ],
+   "org": null,
+   "published": "2026-10-27T16:04:10+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CV",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.37471",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.4,
+   "tldr": "They introduced PerceptRL to improve multimodal LLM visual perception by extracting verified errors from image captions into QA pairs with rule-based rewards.",
+   "why": "Too focused on multimodal visual perception and MLLM post-training rather than standard text-based RAG or agent orchestration.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.37195": {
+   "id": "arxiv:2610.37195",
+   "title": "Action-Value Calibration via Continuation Sharing for Long-Horizon Agentic Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2610.37195",
+   "abstract": "Reinforcement learning for long-horizon agents relies on feedback from sequences of interactions, making credit assignment to individual actions difficult. Existing methods such as GiGPO compare actions at shared states to compute relative advantages, but estimate each action's value from a single sampled continuation. The resulting local credit remains sensitive to decisions made later in the trajectory. To address this problem, we propose ConCal (Continuation Calibration), a recursive continuation-value estimator that incorporates continuation evidence already present in a rollout batch. ConCal matches visits from the same task by their incoming state-action-state transitions, combines shared continuation evidence with each visit's own transition estimate, and propagates calibrated values backward to refine earlier action-value estimates. This reduces dependence on individual sampled continuations and mitigates local credit distortions without additional rollouts. Held-out return diagnostics show lower error in within-group value differences and higher agreement with reference action orderings than estimates based on individual continuations. With Qwen2.5-1.5B-Instruct, ConCal improves success rates over GiGPO by 3.39 and 5.86 percentage points on ALFWorld and WebShop, respectively. Our code is available at https://github.com/Yingjian-Chen/ConCal.",
+   "authors": [
+    "Yingjian Chen",
+    "Lang Zhou",
+    "Zixin Zhao",
+    "Pingfan Li",
+    "Weishi Zheng",
+    "Zhilin Zhao"
+   ],
+   "org": null,
+   "published": "2026-10-27T13:16:08+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.37195",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.75,
+   "tldr": "They proposed ConCal, a recursive continuation-value estimator for long-horizon agentic reinforcement learning that matches transition visits to share evidence and reduce local credit assignment error.",
+   "why": "Provides methodological improvements for credit assignment in multi-step agent trajectories, useful if training proprietary agent policies.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  },
+  "arxiv:2610.36848": {
+   "id": "arxiv:2610.36848",
+   "title": "Evolving Agent Teams",
+   "url": "https://arxiv.org/abs/2610.36848",
+   "abstract": "The rapid progress of software engineering agents drives interest in applying them to open-ended problems such as GPU kernel optimization. However, we find that existing coding agents converge to local optima on real-world, expert-written kernels (e.g., FlashInfer). We introduce Evolving Agent Teams, a multi-agent framework that escapes such local optima. It features (1) a central supervisor that diagnoses each local optimum and restructures a team of agents; and (2) a persistent file system that comprises a learning document, an evolution history, and per-team artifacts, grounding restructuring with accumulated experience. Under a matched token budget, Evolving Agent Teams consistently outperforms strong coding-agent baselines. With an extended token budget, Evolving Agent Teams generates a CUDA kernel that reaches 1.2x mean speedup over the production FlashInfer MLA paged decode kernel from scratch and wins on 36 of 47 production workloads from FlashInfer-Bench (0.86-0.99x on the remaining 11). It also demonstrates superior performance on tasks such as KDA prefill on AMD MI350X (3.01x over vLLM) and NVIDIA B200 (3.44x over FlashKDA), MoE expert-offload serving on Apple silicon (30.3 tokens/s decode for Qwen3.8-Flash-Next in MLX 4-bit on a 48 GB M4 Pro), and RoboDojo robot manipulation (62.1 on held-out seeds vs. 55.3 for the best leaderboard entry). Code is available at https://github.com/caoshiyi/EAT.",
+   "authors": [
+    "Shiyi Cao",
+    "Ziming Mao",
+    "Dacheng Li",
+    "Joseph E. Gonzalez",
+    "Ion Stoica"
+   ],
+   "org": null,
+   "published": "2026-10-27T08:46:21+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2610.36848",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "RAG & retrieval",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.7,
+   "tldr": "They developed Evolving Agent Teams, using a central supervisor to restructure coding agent teams and a persistent file system based on accumulated experience to escape local optima.",
+   "why": "Useful multi-agent orchestration pattern for complex tasks, though demonstrated primarily on software engineering and GPU kernel optimization.",
+   "scored_by": "gemini:gemini-3.5-flash-lite",
+   "first_seen": "2026-10-28T02:59:20+00:00"
+  }
+ }
+}
