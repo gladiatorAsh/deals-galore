@@ -136,7 +136,11 @@ def fetch_all(sources: list[dict[str, Any]], get: Callable[[str], Any],
             report[label] = f"failed: {exc}"
             continue
         fresh = [p for p in items if not p.published or _parse_ts(p.published) >= cutoff]
-        report[label] = len(fresh)
+        if kind == "rss":  # one line per feed, so a dead feed shows up as 0
+            for name in entry.get("feeds") or {}:
+                report[name] = sum(1 for p in fresh if p.source == name)
+        else:
+            report[label] = len(fresh)
         for p in fresh:
             merged[p.id] = merged[p.id].merge(p) if p.id in merged else p
     return list(merged.values()), report

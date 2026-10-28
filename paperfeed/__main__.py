@@ -55,9 +55,11 @@ def read_store(path: Path) -> dict[str, Paper]:
     return {k: Paper.from_dict(v) for k, v in (raw.get("papers") or {}).items()}
 
 
-def write_store(path: Path, papers: dict[str, Paper], last_run: datetime) -> None:
+def write_store(path: Path, papers: dict[str, Paper], last_run: datetime,
+                report: dict[str, Any] | None = None) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps({"last_run": last_run.isoformat(timespec="seconds"),
+                                "last_report": report or {},
                                 "papers": {k: p.to_dict() for k, p in papers.items()}},
                                indent=1, ensure_ascii=False) + "\n")
 
@@ -76,7 +78,8 @@ def update(cfg: dict[str, Any], llm: LLMClient, get=None, now: datetime | None =
     topics = rank.Topics(cfg.get("topics") or [])
     new = [p for p in fetched if p.id not in known]
     picked = rank.prefilter(new, topics, cfg.get("exclude_title") or [],
-                            int(st.get("popular_upvotes", 25)), int(st.get("max_candidates", 60)))
+                            int(st.get("popular_upvotes", 25)), int(st.get("max_candidates", 60)),
+                            int(st.get("blog_slots", 8)))
     by_ai = rank.score(picked, cfg.get("reader", ""), topics, llm, int(st.get("batch_size", 10)))
     stamp = now.isoformat(timespec="seconds")
     for p in picked:
@@ -85,13 +88,14 @@ def update(cfg: dict[str, Any], llm: LLMClient, get=None, now: datetime | None =
     cutoff = now - timedelta(days=int(st.get("retention_days", 60)))
     known = {k: p for k, p in known.items()
              if datetime.fromisoformat(p.first_seen or stamp) >= cutoff}
-    write_store(store_path, known, now)
+    stats = {"sources": report, "fetched": len(fetched), "new": len(new), "added": len(picked),
+             "ai_scored": by_ai, "on_page": len(known)}
+    write_store(store_path, known, now, stats)
     page.render(list(known.values()), st.get("output", "docs/papers/index.html"), topics.names,
                 min_relevance=float(st.get("min_relevance", 0.45)), must_reads=int(st.get("must_reads", 5)),
                 retention_days=int(st.get("retention_days", 60)),
                 timezone_name=st.get("timezone", "America/Los_Angeles"), latest_run=now, now=now)
-    return {"sources": report, "fetched": len(fetched), "new": len(new), "added": len(picked),
-            "ai_scored": by_ai, "on_page": len(known)}
+    return stats
 
 
 def main(argv: list[str] | None = None) -> int:

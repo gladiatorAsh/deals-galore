@@ -50,8 +50,12 @@ class Topics:
 
 
 def prefilter(papers: list[Paper], topics: Topics, exclude_title: list[str],
-              popular_upvotes: int, limit: int) -> list[Paper]:
-    """Keep papers with topic keyword hits (or very popular ones), best first."""
+              popular_upvotes: int, limit: int, blog_slots: int = 8) -> list[Paper]:
+    """Keep papers with topic keyword hits (or very popular ones), best first.
+
+    Up to `blog_slots` lab blog posts are always considered, so a busy arXiv
+    day can't crowd them out.
+    """
     excl = [_kw_regex(x) for x in exclude_title]
     keep: list[tuple[float, Paper]] = []
     for p in papers:
@@ -65,7 +69,10 @@ def prefilter(papers: list[Paper], topics: Topics, exclude_title: list[str],
         rank = sum(hits.values()) + math.log1p(p.upvotes) * 1.5 + (0.5 if p.kind == "blog" else 0)
         keep.append((rank, p))
     keep.sort(key=lambda x: x[0], reverse=True)
-    return [p for _, p in keep[:limit]]
+    blogs = {id(p) for p in [p for _, p in keep if p.kind == "blog"][:blog_slots]}
+    rest = [p for _, p in keep if p.kind != "blog"][:max(0, limit - len(blogs))]
+    chosen = blogs | {id(p) for p in rest}
+    return [p for _, p in keep if id(p) in chosen]
 
 
 def heuristic(p: Paper) -> None:

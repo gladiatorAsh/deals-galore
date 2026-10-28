@@ -81,12 +81,14 @@ def test_prefilter_uses_topics_and_title_exclusions():
     assert not any("Cohomology" in t or "Oracle" in t for t in titles)  # off-topic
     assert any("sleep framework" in t for t in titles)           # lab blog post kept
     assert kept[0].topic in topics.names
+    assert [p.kind for p in rank.prefilter(items, topics, [], 25, 1)] == ["blog"]  # blog slot reserved
 
 
 def test_update_scores_with_ai_and_renders_page(tmp_path):
     c, llm = cfg(tmp_path), FakeLLM()
     stats = update(c, llm, get=fake_get, now=NOW)
     assert stats["added"] == 3 and stats["ai_scored"] == 3
+    assert json.loads((tmp_path / "papers.json").read_text())["last_report"]["sources"]["Google Research"] == 2
     store = read_store(tmp_path / "papers.json")
     mem = store["arxiv:2610.34073"]
     assert mem.relevance == 0.9 and mem.tldr.startswith("TLDR") and mem.scored_by == "groq:test"
