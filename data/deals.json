@@ -13038,7 +13038,7 @@
   },
   "17d105f974529936": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -13635,7 +13635,7 @@
   },
   "192f007b7fc79963": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -13968,7 +13968,7 @@
   },
   "1a1d4c341c4cc5f0": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -17492,7 +17492,7 @@
   },
   "209a5e432a520414": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-05T06:57:54+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -39029,7 +39029,7 @@
   },
   "48d94534a48bd7b6": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -44803,7 +44803,7 @@
   },
   "52d010d6d6e6ef3e": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -65929,7 +65929,7 @@
   },
   "7b61e432ce9db1b1": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -84765,7 +84765,7 @@
   },
   "9ed00e4a36376e5b": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-05T06:57:54+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -86342,7 +86342,7 @@
   },
   "a1834126e5caa2c2": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -87451,7 +87451,7 @@
   },
   "a3d67dc463b99d2c": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -99535,7 +99535,7 @@
   },
   "ba829858460e7e98": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -101834,7 +101834,7 @@
   },
   "be826a8ecce4fb87": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -107888,7 +107888,7 @@
   },
   "ca4cba2b71138347": {
    "candidate": true,
-   "digested": false,
+   "digested": true,
    "first_seen": "2026-11-04T23:45:57+00:00",
    "fp": "5f59248e2f",
    "gift_match": false,
@@ -135073,7 +135073,7 @@
   }
  },
  "meta": {
-  "updated": "2026-11-05T06:57:54+00:00"
+  "updated": "2026-11-05T07:49:04+00:00"
  },
  "prices": {
   "Designer purse or handbag": [
