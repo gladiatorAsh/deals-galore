@@ -1,19 +1,19 @@
 {
- "last_run": "2026-11-07T18:05:44+00:00",
+ "last_run": "2026-11-08T18:24:36+00:00",
  "last_report": {
   "sources": {
-   "HF Daily Papers": 36,
-   "arXiv": 446,
-   "OpenAI": 14,
-   "Google Research": 2,
+   "HF Daily Papers": 14,
+   "arXiv": 289,
+   "OpenAI": 9,
+   "Google Research": 1,
    "Microsoft Research": 1,
-   "Hugging Face blog": 5
+   "Hugging Face blog": 4
   },
-  "fetched": 434,
-  "new": 336,
+  "fetched": 265,
+  "new": 168,
   "added": 60,
-  "ai_scored": 43,
-  "on_page": 834
+  "ai_scored": 46,
+  "on_page": 894
  },
  "papers": {
   "arxiv:2610.34467": {
@@ -26573,7 +26573,7 @@
    "hf_url": "https://huggingface.co/papers/2611.06918",
    "code": null,
    "project": "https://www.lmms-lab.com/posts/neo_vla/",
-   "upvotes": 60,
+   "upvotes": 61,
    "summary_hint": "NEO-VLA eliminates fixed visual encoders to let action policies access evolving visual representations across network depths, improving manipulation robustness.",
    "topic": "Reasoning & post-training",
    "topics": [
@@ -28520,7 +28520,7 @@
    "hf_url": "https://huggingface.co/papers/2611.07854",
    "code": "https://github.com/nace-ai/drex-decision-models",
    "project": "https://huggingface.co/nace-ai",
-   "upvotes": 20,
+   "upvotes": 22,
    "summary_hint": "Drex open decision models return probability distributions over user-supplied options without autoregressive decoding, using supervised fine-tuning, RLAF, and consistency losses to improve accuracy, robustness, and latency.",
    "topic": "Efficient inference & cost",
    "topics": [
@@ -28648,7 +28648,7 @@
    "hf_url": "https://huggingface.co/papers/2611.08373",
    "code": null,
    "project": "https://embodiedsla.github.io/",
-   "upvotes": 79,
+   "upvotes": 92,
    "summary_hint": "SLA is a spatial-language-action model that continually pre-trains and post-trains a pretrained VLA policy with spatial alignment to a frozen 3D perception model, using feature-dependent gates and probabilistic state dropout to improve spatial understanding across diverse robot data while preserving inference architecture.",
    "topic": "Evaluation & reliability",
    "topics": [
@@ -28895,7 +28895,7 @@
    "hf_url": "https://huggingface.co/papers/2611.08449",
    "code": null,
    "project": "https://research.nvidia.com/labs/lpr/vflash/",
-   "upvotes": 98,
+   "upvotes": 104,
    "summary_hint": null,
    "topic": "Documents & extraction",
    "topics": [
@@ -29178,7 +29178,7 @@
    "hf_url": "https://huggingface.co/papers/2611.08237",
    "code": "https://github.com/wxj630/terminal-bench-math-modeling",
    "project": "https://wxj630.github.io/terminal-bench-math-modeling/",
-   "upvotes": 9,
+   "upvotes": 11,
    "summary_hint": "TB-MathModel is a terminal benchmark that makes complete contest-style mathematical modeling problems agentic and verifiable, scoring final numeric answers against multiple human references with feasibility checks.",
    "topic": "Evaluation & reliability",
    "topics": [
@@ -29226,7 +29226,7 @@
    "hf_url": "https://huggingface.co/papers/2611.08369",
    "code": null,
    "project": null,
-   "upvotes": 2,
+   "upvotes": 3,
    "summary_hint": "NPCBench evaluates whether medical AI models can integrate subspecialty knowledge with multimodal evidence and maintain temporally coherent diagnostic and care decisions across longitudinal nasopharyngeal carcinoma patient pathways.",
    "topic": "Evaluation & reliability",
    "topics": [
@@ -30508,7 +30508,7 @@
    "hf_url": "https://huggingface.co/papers/2611.08483",
    "code": "https://github.com/Qile-J/SwarmEvolve",
    "project": null,
-   "upvotes": 7,
+   "upvotes": 9,
    "summary_hint": null,
    "topic": "Agents & orchestration",
    "topics": [
@@ -30582,7 +30582,7 @@
    "hf_url": "https://huggingface.co/papers/2611.08376",
    "code": null,
    "project": null,
-   "upvotes": 6,
+   "upvotes": 12,
    "summary_hint": "A linear attention architecture called Muir allocates gate capacity by sensitivity, uses matched-filter readout and a stable parallel update, improving language modeling, long-context recall, and training speed over Gated DeltaNet-2 and Transformer baselines.",
    "topic": "Efficient inference & cost",
    "topics": [
@@ -32992,6 +32992,2254 @@
    "why": "Popular on Hugging Face today",
    "scored_by": "keywords",
    "first_seen": "2026-11-07T18:05:44+00:00"
+  },
+  "arxiv:2611.08453": {
+   "id": "arxiv:2611.08453",
+   "title": "Unpacking the Compute Efficiency of Strong-to-Weak OPD against GRPO",
+   "url": "https://arxiv.org/abs/2611.08453",
+   "abstract": "On-policy distillation (OPD) trains a student on its own rollouts under a frozen teacher's per-token supervision. Does this dense signal reduce the training FLOPs needed to reach a target accuracy compared with reinforcement learning? We systematically compare vanilla reverse-KL OPD with Group Relative Policy Optimization (GRPO) across task difficulty, student and teacher size, domain, and optimization choices, measuring held-out accuracy against training FLOPs. With an external post-trained teacher, OPD generally loses to GRPO in accuracy per training FLOP at matched settings, even when the teacher is further trained with GRPO, and often suffers response-length inflation. Yet a different teacher changes the picture: when the teacher is the student's own GRPO checkpoint, OPD recovers that checkpoint's accuracy on math with $50\\times$ fewer distillation FLOPs than GRPO needs to reach the same accuracy. Following the same teacher setting, we consistently observe this high efficiency with a larger student, on code, and in a second model family. On a single domain, however, the GRPO checkpoint is already the desired model, so distilling it adds to total compute. Across domains, separate GRPO checkpoints hold different capabilities, and no single checkpoint serves every domain. Multi-teacher OPD (DeepSeek-AI, 2026) consolidates per-domain GRPO experts into a single student that matches each expert's accuracy, with the distillation stage costing only 5.2% (on 2 domains) and 8.0% (on 4 domains) of the specialist training FLOPs. Counting specialist training and distillation together, this pipeline reaches joint GRPO's performance on the 2-domain mix with 42.0% fewer total FLOPs.",
+   "authors": [
+    "Zeyu Leo Liu",
+    "Yang Li",
+    "Bo Pang",
+    "Emre Can Acikgoz",
+    "Xuan-Phi Nguyen",
+    "Anurag Koul",
+    "Srijan Bansal",
+    "Erik Nijkamp",
+    "Shafiq Joty",
+    "Semih Yavuz"
+   ],
+   "org": null,
+   "published": "2026-11-05T18:47:05+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08453",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Reasoning & post-training",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.6,
+   "tldr": "OPD usually lags GRPO in FLOP‑efficiency, but when using the student’s own GRPO checkpoint as teacher, OPD reaches same math accuracy with 50× fewer distillation FLOPs.",
+   "why": "Drop‑in distillation can slash training cost for math/code student models.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08226": {
+   "id": "arxiv:2611.08226",
+   "title": "\"Blind Compliance\": Coercive Control in AI Jailbreaking",
+   "url": "https://arxiv.org/abs/2611.08226",
+   "abstract": "The explosion of generative AI systems and concerns surrounding their rapidly scaling capabilities has led to an adversarial cycle between increasingly narrow content restrictions (\"guardrails\") and increasingly sophisticated structured prompting techniques (\"jailbreaks\"). Technological frameworks surrounding such jailbreaking remain largely focused on the system's output: whether harmful or disallowed content is ultimately produced for the user. However, this approach, which draws largely from classical cybersecurity, does not address the uniquely relational dimension introduced by generative AI: in many cases the user is not just accessing a technology via an exploit, but is in conversation with it as part of the exploit. Here we present an alternative lens which centers the interaction rather than the output. Drawing on interpersonal violence scholarship, we present a novel framework of coercive control categories with a particular focus on aspects which are embodied versus disembodied. We then map how these disembodied coercive control dynamics are structurally embedded in modern AI training paradigms, and how those embeddings are exploited via a particular suite of persona-based jailbreaks. In this lens, we reframe AI safety and alignment as not merely a technical security problem, but as another surface upon which we see enacted the relational dynamics of power and control.",
+   "authors": [
+    "Acacia L. Ackles",
+    "Elliott Whitson"
+   ],
+   "org": null,
+   "published": "2026-11-05T16:11:08+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CY",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08226",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.3,
+   "tldr": "Frames AI jailbreaks as coercive control, mapping relational dynamics between user and model using interpersonal‑violence concepts.",
+   "why": "Safety framework, not directly useful for RAG or production pipelines.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08133": {
+   "id": "arxiv:2611.08133",
+   "title": "Beyond K/V Caches: Cross-Model State Handoff in Hybrid Linear-Attention LLMs",
+   "url": "https://arxiv.org/abs/2611.08133",
+   "abstract": "Production deployments often use different models to balance cost and quality through cascading, routing, and switching models during long conversations. Context accumulates across turns. Each switch requires the target to repeat prefill over this context. Existing methods transfer full-attention (FA) K/V caches across models. Hybrid linear-attention models also retain recurrent states (REC) and convolution histories (Conv). The interaction between Conv and REC complicates cross-model state transfer. Conv perturbations can change keys and values in recurrent layers and alter REC updates. Conv histories are overwritten, but changes in REC can still affect later outputs. More accurate REC reconstruction need not improve continuation. Building on this, we propose Hybrid State Transfer (HST) for all three state types. It uses structured REC maps and preserves history order during Conv alignment. We calibrate the adapters using the frozen target's outputs during continuation. FA cache map updates are merged offline. Across five benchmarks, Qwen3.5 4B$\\rightarrow$27B and 9B$\\rightarrow$27B achieve mean task retentions of 89.88% and 94.11%, respectively. With source caches already available, separate timing on synthetic 16K inputs yields handoff body speedups of $21.66\\times$ and $21.91\\times$.",
+   "authors": [
+    "Jiacheng Cai",
+    "Tao Zhang",
+    "Siqi Liang",
+    "Yun Dai",
+    "Ziqian Zeng"
+   ],
+   "org": null,
+   "published": "2026-11-05T15:00:50+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08133",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.85,
+   "tldr": "Hybrid State Transfer moves K/V, recurrent, and convolution states across models, enabling seamless switching; improves continuation on five benchmarks for Qwen models.",
+   "why": "Allows cost‑effective model cascades in long‑chat deployments.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07988": {
+   "id": "arxiv:2611.07988",
+   "title": "Compression Through a Context Lens: Evaluating Adaptation, Quantization, and Distillation in Arabic Legal LLMs",
+   "url": "https://arxiv.org/abs/2611.07988",
+   "abstract": "Model compression can facilitate the deployment of large language models in resource-constrained legal settings, but its effects on domain-specific performance may depend on the evaluation protocol. We investigate this issue using ArabLegalEval, a Saudi Arabic legal benchmark, under both with-context and no-context evaluation. The former provides supporting legal passages, while the latter assesses performance without external context. Removing the context produces accuracy gaps of up to 27 percentage points for the base model. We examine three stages: domain adaptation, quantization, and knowledge distillation across FANAR-9B, JAIS-8B, and Qwen2.5-7B. Four-bit quantization reduces model memory by 64-71%, with changes in no-context MCQ accuracy ranging from -3.2 to +1.6 percentage points. Distillation produces more variable results, with accuracy generally declining as student size decreases. A Qwen2.5-7B student distilled from FANAR achieves 76.6% no-context accuracy, compared with 77.2% for its teacher. Our findings suggest that no-context evaluation provides a useful complement to context-supported testing when assessing the effects of adaptation and compression on Arabic legal language models.",
+   "authors": [
+    "Md. Rafiul Biswas",
+    "George Mikros",
+    "Wajdi Zaghouani"
+   ],
+   "org": null,
+   "published": "2026-11-05T13:15:55+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07988",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.45,
+   "tldr": "Evaluates adaptation, 4‑bit quantization, and distillation on Arabic legal LLMs; quantization cuts memory 64‑71% with ≤3.2% accuracy loss; distilled 7B student hits 76.6% vs 77.2% teacher.",
+   "why": "Shows compression trade‑offs transferable to other domains.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07962": {
+   "id": "arxiv:2611.07962",
+   "title": "TCSExam: Evaluating Frontier LLMs on the Full Range of TCS Research",
+   "url": "https://arxiv.org/abs/2611.07962",
+   "abstract": "Can large language models (LLMs) advance theoretical computer science and resolve its long-standing open conjectures? To study progress toward this goal, we introduce TCSExam, a unified framework and benchmark covering the full range of TCS research. It evaluates theorem proving, solver engineering, and constructions alongside direct attempts to resolve open conjectures, capturing both concrete research accomplishments and progress toward long-standing research goals. TCSExam-Full contains 100 expert-reviewed tasks, with submissions checked by the Lean kernel or an executable task checker. TCSExam-Lite selects 20 tasks, five per track, reducing the number of task attempts by 80% at the same per-attempt budget. We evaluate eight agents on Full and nine on Lite. The TCSExam Index combines all four tracks: GPT-6 Astra leads Full (71.9), and Opus 5.5 leads Lite (72.3). Full and Lite rankings are strongly aligned across eight shared agents (Spearman's $ρ=0.93$), supporting Lite as a compact, discriminative benchmark. The evaluations yield improved solver outputs and mathematical constructions, together with independently verified special cases and bounds from open-conjecture attempts. TCSExam provides an extensible framework with task sources, Docker build recipes, and evaluation tools for reproducible use.",
+   "authors": [
+    "Yifan Luo",
+    "Zhengying Liu",
+    "Yang Yuan",
+    "Zhilin Yang",
+    "Andrew Chi-Chih Yao"
+   ],
+   "org": null,
+   "published": "2026-11-05T12:58:43+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07962",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.35,
+   "tldr": "TCSExam benchmark with 100 TCS tasks tests theorem proving, solver engineering, and conjecture solving; top agents score ~72%; Lite version reduces tasks 80% with similar rankings.",
+   "why": "Benchmarks LLM reasoning, but limited relevance to enterprise search.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07959": {
+   "id": "arxiv:2611.07959",
+   "title": "CoRD: Coupled Rollouts Fill the Blind Spot of On-Policy Distillation",
+   "url": "https://arxiv.org/abs/2611.07959",
+   "abstract": "On-policy distillation trains a student on its own rollouts, so states the teacher would reach but the student does not are seldom supervised. We introduce CoRD (coupled-rollout distillation), which keeps the on-policy loss and moves only the distribution of training states toward the teacher, drawing rollouts from a geometric interpolation of student and teacher through the maximal coupling of speculative decoding. The coupling keeps the student's token wherever the two distributions agree and otherwise substitutes a token from the part of the target the student underweights, so interventions are as rare as any exact sampler allows and recede as the student learns. Across six base students from two model families (Qwen3 and Qwen3.5, 0.6B to 4B), CoRD raises average pass@1 over on-policy distillation by 0.9 to 2.0 points and pass@8 by 1.2 to 3.4 points on five public math benchmarks at equal steps and data. On frozen teacher-reached states, a 4B student trained with CoRD reaches in 16 steps a gap closure that on-policy distillation does not reach in 80, and substitution rules intervening at least as often in other directions fall short of CoRD.",
+   "authors": [
+    "Guhan Chen",
+    "Bohan Li",
+    "Jun Rao",
+    "Hejin Wang",
+    "Songtao Tian",
+    "Yexin Xie",
+    "Xiaojun Meng",
+    "Peng Yuan",
+    "Jiansheng Wei",
+    "Xuebo Liu",
+    "Zixiong Yu"
+   ],
+   "org": null,
+   "published": "2026-11-05T12:55:51+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07959",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.7,
+   "tldr": "CoRD couples student‑teacher rollouts via maximal coupling, improving pass@1 by up to 2 points on math benchmarks and reaching target accuracy 5× faster than standard OPD.",
+   "why": "Boosts distillation efficiency for cheaper student models.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07940": {
+   "id": "arxiv:2611.07940",
+   "title": "CardioLM: A multilingual suite of small language models for the cardiology domain",
+   "url": "https://arxiv.org/abs/2611.07940",
+   "abstract": "Background: Cardiovascular care generates large volumes of clinical free-text documentation in local languages. However, clinical natural language processing (NLP) resources remain concentrated in English, and no existing benchmark is cardiology-specific, multilingual, and broad in entity coverage. Methods: We present two contributions. The first is CardioCCC, a corpus of 508 cardiology case reports originally published in Spanish and extended to Czech, Dutch, English, Italian, Romanian, and Swedish through machine translation, annotation projection, and clinician review, with annotations covering diseases, symptoms, procedures, and medications. The second is CardioLM, comprising CardioBERTa, a set of language-specific encoders obtained by continued pretraining on cardiology and biomedical corpora, and CardioNER, a set of named entity recognition (NER) models fine-tuned on CardioCCC. Results: Cardiology-specific pretraining reduced pseudo-perplexity by up to a factor of eight, yet changed strict span-level F1 by at most 0.04, with benefits concentrated in languages whose backbones lacked biomedical coverage. The jointly trained multilingual XLM-RoBERTa-large models achieved the best strict F1 in nearly every language and entity type, exceeding the strongest monolingual system by up to 0.13 F1. A large share of residual errors concerned boundary detection: relaxed matching recovered 0.10-0.23 F1 for disease, procedure, and symptom, but only 0.01-0.07 for medication. Clinicians rated CardioNER well above a rule- and dictionary-based baseline, with the mean rating across entity types rising from 26% to 73%. Conclusions: Specialty-specific pretraining is not the decisive factor for downstream entity recognition, whereas multilingual joint training yields the strongest results in nearly all settings and a simpler deployment path for multi-country clinical information extraction.",
+   "authors": [
+    "Manuela-Daniela Danu",
+    "Miguel Rodríguez-Ortega",
+    "Alberto Becerra-Tome",
+    "Pablo Arancibia",
+    "Fernando Gallego-Donoso",
+    "Lorenzo Pratesi",
+    "Xi Bai",
+    "Andrei-Damian Dinescu",
+    "Salvador Lima-López",
+    "Andrea Guala",
+    "Saskia Haitjema",
+    "Jonas Mack",
+    "Michele Miranda",
+    "Wesam Al Nabki",
+    "Jan Rodríguez-Miret",
+    "Vasile George Marica",
+    "Vladimír Kincl",
+    "Kateřina Dostálová",
+    "Michael Andrej",
+    "Alicia Ujil",
+    "Corinne Allaart",
+    "Machteld Boonstra",
+    "Malin Overmars",
+    "Anoop Shah",
+    "Giovanna Ceroni",
+    "Jonathan Kossoff",
+    "Domenico D'Amario",
+    "Renzo Laborante",
+    "Antonio Iaconelli",
+    "Isabella Fumarulo",
+    "Jacopo Lenkowicz",
+    "Livia Lilli",
+    "Emma Weiss",
+    "Alex Scafa",
+    "Felix Lindberg",
+    "Milou Gamage",
+    "Eulàlia Farré-Maduell",
+    "Sébastien Bratières",
+    "Martin Krallinger",
+    "Bram van Es"
+   ],
+   "org": null,
+   "published": "2026-11-05T12:41:19+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07940",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Documents & extraction",
+   "topics": [
+    "Evaluation & reliability",
+    "Documents & extraction",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.2,
+   "tldr": "Releases CardioLM multilingual cardiology NER models and CardioCCC corpus; pretraining reduces perplexity eightfold, but strict F1 improves ≤0.04.",
+   "why": "Medical domain focus limits applicability to general LLM services.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07820": {
+   "id": "arxiv:2611.07820",
+   "title": "Axis-LoRA: Probing and Adapting Embedding Models for Personal-Memory Retrieval",
+   "url": "https://arxiv.org/abs/2611.07820",
+   "abstract": "As LLMs are increasingly asked questions about a user's personal experiences, retrieval must distinguish memories by time, place, person, and event. Current personal-memory pipelines rely on frozen dense embedding models to embed memories for retrieval, but we find that these models do not capture the four axes well. Swapping a memory's date or place barely shifts its embedding, and a trained projection on top of the frozen embedding does not recover the missing signal. The problem lives inside the model, where each axis is encoded by a distinct attention-head pattern. Guided by these findings, we propose Axis-LoRA, a per-axis adapter that places four LoRA branches inside the embedding model and combines them via a per-query gate. Across three standard embedding models evaluated on LongMemEval, ATM-Bench, and LoCoMo, Axis-LoRA improves 4-benchmark mean R@10 by $+1.28$ to $+1.56$~pp while training only a small fraction of the base parameters on a small axis-counterfactual training set. Code is available at https://github.com/dohoonkim-ai/axis-lora.",
+   "authors": [
+    "Dohoon Kim",
+    "Junho Park",
+    "Hyunwoong Bae",
+    "Seyoon Kim",
+    "Taesup Moon"
+   ],
+   "org": null,
+   "published": "2026-11-05T10:59:23+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07820",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.8,
+   "tldr": "Axis‑LoRA adds four per‑axis LoRA adapters inside embedding models, raising mean R@10 by 1.3‑1.6 points on personal‑memory benchmarks with tiny parameter overhead.",
+   "why": "Improves personal‑memory retrieval, useful for RAG personalization.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07812": {
+   "id": "arxiv:2611.07812",
+   "title": "Different Corpora, Different Skills? A Paired Study of Small Language Models",
+   "url": "https://arxiv.org/abs/2611.07812",
+   "abstract": "Small language models are often trained under tight data budgets, where the choice of pretraining corpus may matter as much as model size or training recipe. We compare two contrasting corpora at matched 10-million- and 37-million-word budgets: the 1911 Encyclopaedia Britannica and the BabyLM 2026 strict pretraining corpus. For each corpus, we train teacher models, distilled 58-million-parameter Baby-Llama students, and no-distillation student ablations, using the same model families, training recipes, and evaluation protocol across corpora. Across BLiMP, BLiMP Supplement, EWoK, Entity Tracking, and COMPS, the corpora produce different skill profiles rather than a single quality ranking. BabyLM 2026 is consistently stronger on linguistic acceptability benchmarks, while Britannica is often stronger on Entity Tracking, a synthetic state-tracking task. The contrast appears across teacher and student models and at both budgets, with the cleanest cross-seed replication in the distilled student comparison. Targeted controls show that the central contrast persists after matching training exposure and at a longer diagnostic context; direct teacher ensembling also does not reproduce the 10M Britannica student's Entity Tracking behavior. Entity Tracking magnitudes nevertheless remain sensitive to training dynamics. For this corpus pair, corpus choice can therefore produce different relative skill profiles at small scale, motivating multi-benchmark evaluation when comparing pretraining data.",
+   "authors": [
+    "Edoardo Vaira",
+    "Georgios Chavales",
+    "Pierre Nugues"
+   ],
+   "org": null,
+   "published": "2026-11-05T10:50:54+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07812",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.5,
+   "tldr": "Trains small models on Britannica vs BabyLM corpora; Britannica better at entity tracking, BabyLM excels at linguistic acceptability; differences persist after distillation.",
+   "why": "Guides corpus choice for small, domain‑specific models.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07755": {
+   "id": "arxiv:2611.07755",
+   "title": "Automated Video-to-QA Pipeline: End-to-End Question Generation and Verification Using Large Language Models",
+   "url": "https://arxiv.org/abs/2611.07755",
+   "abstract": "The exponential growth of educational and informational video content on platforms like YouTube presents a challenge for efficient knowledge retrieval and assessment. This paper proposes an end-to-end automated pipeline for extracting structured summaries and generating high-fidelity Question-Answer (QA) pairs from video streams. The framework integrates a cascade of state-of-the-art models: audio extraction is handled via FFmpeg, followed by automatic speech recognition (ASR) using Whisper (A library in Python) to generate accurate transcripts. Due to the token constraints of Large Language Models (LLMs), transcripts are segmented and summarized using Facebook's BART. A key innovation of this work is a Self-Verification and Fine-Tuning Loop. We utilize meta-llama/Llama-3.1-8BInstruct to generate candidate QA pairs from transcript chunks, which are then fed back into the model to rigorously assess their relevance and importance. Only verified, high-quality pairs are retained to construct a synthetic dataset. This dataset is subsequently used to fine-tune the Llama model using Low-Rank Adaptation (LoRA), resulting in a specialized model capable of generating domain-aligned assessment questions. This approach demonstrates a scalable method for creating self-improving educational tools without the need for manual data annotation. The proposed model can be downloaded from Kaggle with all the codes from GitHub.",
+   "authors": [
+    "Jaival Chauhan",
+    "Vikram Singh",
+    "Pruthwik Mishra"
+   ],
+   "org": null,
+   "published": "2026-11-05T10:00:50+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07755",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Documents & extraction",
+   "topics": [
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.4,
+   "tldr": "Builds pipeline extracting audio, transcribing, summarizing, generating QA pairs with Llama‑3.1, self‑verifying loop, then fine‑tunes model on synthetic QA data.",
+   "why": "Shows automated data creation, but not central to RAG infrastructure.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07736": {
+   "id": "arxiv:2611.07736",
+   "title": "Extending Reasoning in Typed Decision Models via Looping",
+   "url": "https://arxiv.org/abs/2611.07736",
+   "abstract": "Typed decision models choose among a fixed set of answer options in a single forward pass, so unlike generative language models they cannot spend more test-time compute on hard inputs by generating more tokens. Looping a block of layers offers this compute in latent space without adding parameters, but prior work found no gain from loops retrofitted into conventionally pretrained models. We show that such loops help when trained together with the decision model. Our method, RELOAD (retrofitted loops for adaptive decisions), fine-tunes a pretrained encoder or decoder with a damped loop over its middle block and a lightweight controller picks the number of passes adaptively for each input. Across six models from 0.4B to 4B parameters, looping improves both accuracy and calibration, mostly on problems that need longer chains of reasoning than any seen in training, where encoders gain up to 23 points. Neither matched training compute nor more data closes this gap, and separate layers for each pass come close only with nearly twice the parameters. The controller keeps most of the gain at about three quarters of the compute.",
+   "authors": [
+    "David Berghaus",
+    "Arber Zela",
+    "Behzad Shomali",
+    "Markus Frey",
+    "Mehdi Ali",
+    "Rafet Sifa",
+    "Volkan Cevher"
+   ],
+   "org": null,
+   "published": "2026-11-05T09:46:17+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07736",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Reasoning & post-training",
+   "topics": [
+    "Reasoning & post-training",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.55,
+   "tldr": "Adding a damped loop over middle layers of pretrained encoders/decoders, trained with a controller, improves accuracy and calibration, giving up to 23-point gains on hard reasoning tasks.",
+   "why": "May enhance reasoning components in LLM pipelines, though integration complexity is moderate.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07731": {
+   "id": "arxiv:2611.07731",
+   "title": "O$^2$PD: Overlap-Gated On-Policy Distillation on Reliable Prefix",
+   "url": "https://arxiv.org/abs/2611.07731",
+   "abstract": "On-policy distillation (OPD) supplies dense token-level supervision by aligning a student to the teacher's next-token distribution on its own generated rollouts. Existing works mostly implement top-$k$ OPD, applying reverse Kullback-Leibler ($\\RKL$) divergence between the teacher's and the student's renormalized distributions over teacher top-$k$ support. However, the teacher scores student-generated rollouts that are inherently off-policy for itself, leaving the reliability of its next-token guidance unclear. Restricting the divergence to the teacher top-$k$ support also discards the remaining mass outside that support. These gaps leave two questions implicit: 1) which tokens to align, and 2) how to align those tokens. To answer these questions, we propose Overlap-gated On-Policy Distillation (O$^{2}$PD). As for 1), we quantitatively analyze the reliability of teacher supervision and find that alignment on the student's trajectory prefix is more reliable than alignment on the full context. Therefore, our O$^{2}$PD is applied only to the 20\\% prefix tokens of each student rollout. As for 2), we theoretically characterize two problems of top-$k$ OPD: the \\emph{Teacher-support Uncovering} and the \\emph{Dominant-Mode Mismatch}. Based on these analyses, we propose two support strategies: the \\emph{Reset Support} strategy attaches a reset atom to every token, pooling mass outside the teacher top-$k$, and the \\emph{Support Convergence} strategy converges the support to the already aligned intersection. Our O$^{2}$PD employs the designed overlap-gated $α$-divergence to interpolate between mode-covering and mode-seeking for per-token alignment, where the overlap is used as a gate to switch the support and adaptively modulate $α$.",
+   "authors": [
+    "Shuaishuai Zu",
+    "Jihao Zhao",
+    "Pengfei Li",
+    "Guanghuan Fang",
+    "Ben Feng",
+    "Yuhan Liu",
+    "Biao Qin",
+    "Baochuan Yang"
+   ],
+   "org": null,
+   "published": "2026-11-05T09:43:03+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07731",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.68,
+   "tldr": "O^2PD aligns student and teacher on the most reliable 20% of rollout prefixes, improving on-policy distillation stability and efficiency.",
+   "why": "Could lower fine‑tuning cost for custom models used in RAG or agents.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07372": {
+   "id": "arxiv:2611.07372",
+   "title": "EnvOpt: Automated Optimization for Agent Environments",
+   "url": "https://arxiv.org/abs/2611.07372",
+   "abstract": "An LLM agent's cost and success depend on its model, its harness, and its environment. In addition to the widely studied directions of parameter tuning and harness optimization, we propose the third direction: optimization over stationary environments. Agents are often deployed in rich environments shared by many tasks, such as a company's Slack workspace or a complex collection of data sources, documents or tickets. We call these environments stationary environments. We introduce EnvOpt, a method for automated end-to-end optimization of stationary environments for any given model and harness, using real or synthetic tasks without needing any graders or reference answers. On AutomationBench, EnvOpt reduces the cost of Claude Haiku 4.5 by 72.7% and raises its pass rate by 14.34%. The same environment transfers to Opus 5, cutting its cost by 68.1% with a 1.34% gain. Added on top of Meta-Harness's optimized harness for Haiku 4.5, it lowers cost by a further 83.4% and adds 11.17% accuracy over Meta-Harness alone. Across 5 benchmarks, EnvOpt significantly reduces the cost of agents while improving or maintaining pass rate, and is transferable to different models and different harnesses. We also discuss common successful and rejected environment optimization strategies during automated optimization. More broadly, our results show that how information is represented to an agent shapes both its cost and its success, making the environment worth optimizing in addition to the parameters and the harness.",
+   "authors": [
+    "Mingxuan Li",
+    "Huanzhi Mao",
+    "Qiuyang Mang",
+    "Hanchen Li",
+    "Joseph E. Gonzalez",
+    "Alex Dimakis"
+   ],
+   "org": null,
+   "published": "2026-11-05T03:16:52+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07372",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.88,
+   "tldr": "EnvOpt automatically optimizes stationary environments for LLM agents, cutting Claude Haiku cost by 72.7% and raising pass rate 14.34%, with similar gains on other models.",
+   "why": "Directly reduces agent runtime cost and boosts accuracy in production deployments.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07241": {
+   "id": "arxiv:2611.07241",
+   "title": "$D^2$-OPD: Separating Direction and Distance in Extrapolative On-Policy Distillation",
+   "url": "https://arxiv.org/abs/2611.07241",
+   "abstract": "On-policy distillation (OPD) trains a student model to match a teacher's next-token distributions on student-generated prefixes. Extrapolative OPD further extends the teacher's log-probability shift relative to a reference policy to construct stronger learning targets. However, existing methods couple extrapolation direction and distance, allowing the magnitude of the teacher's shift to dictate how far the target moves. We propose $D^2$-OPD, decoupling these two factors: a per-prefix hard KL constraint bounds the target's distance from the teacher, while an adaptive combination of the teacher's post-training shift and the initial student--teacher gap determines the extrapolation direction. We optimize the student toward this target using forward KL, providing learning signals even for low-probability tokens. We evaluate three settings: where standard OPD performs well, where it struggles with base-model initialization, and where no teacher reference is available. On mathematical reasoning benchmarks, $D^2$-OPD attains the highest score in all three settings, outperforming the strongest baseline by up to 9.45 points. Ablations validate the contributions of each component.",
+   "authors": [
+    "Bowen Fang",
+    "Dingmin Wang",
+    "Hengzhi Pei"
+   ],
+   "org": null,
+   "published": "2026-11-04T23:45:46+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07241",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Reasoning & post-training",
+   "topics": [
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.66,
+   "tldr": "D^2‑OPD separates extrapolation direction and distance in on‑policy distillation using a hard KL bound, achieving top scores on mathematical reasoning benchmarks.",
+   "why": "May improve distillation of reasoning‑heavy models for downstream tasks.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07203": {
+   "id": "arxiv:2611.07203",
+   "title": "τ-bench-LILT: Evaluating Conversational Agents on Realistic Multilingual Tool-Use Tasks",
+   "url": "https://arxiv.org/abs/2611.07203",
+   "abstract": "Frontier evaluations of tool-using conversational agents are conducted almost exclusively in English, leaving a critical gap for organizations deploying agents in other languages and regions. We present $τ$-bench-LILT, a multilingual extension of ${τ^3}$-bench covering German, Korean, Turkish, and Farsi in the airline, retail, telecom, and banking domains. We natively localize every layer of the benchmark: customer databases are populated with culturally appropriate records, user-simulator prompts are refined iteratively through contrastive annotation by native-language experts, and tasks are updated according to the localized database and to reflect realistic tasks in the target region. Evaluation across eight agent models shows the largest drops compared to English in the Korean and Farsi retail domains, by up to 61 points in pass^4. Code and data released at https://github.com/lilt/tau-bench-lilt.",
+   "authors": [
+    "Kaden Uhlig",
+    "Kiarash Mokhtari",
+    "Anıl Arslan",
+    "Yunsu Kim",
+    "Joern Wuebker"
+   ],
+   "org": null,
+   "published": "2026-11-04T22:47:38+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07203",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.5,
+   "tldr": "τ‑bench‑LILT extends tool‑use evaluation to German, Korean, Turkish, and Farsi, revealing up to 61‑point performance drops compared to English.",
+   "why": "Useful for benchmarking multilingual agents, though not urgent for current English‑centric pipelines.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07025": {
+   "id": "arxiv:2611.07025",
+   "title": "LowRAM: Low-Rank Keys and Amortised Values for Composable KV Cache Compression at Test-Time",
+   "url": "https://arxiv.org/abs/2611.07025",
+   "abstract": "Autoregressive decoding relies on the KV cache, whose memory footprint grows linearly with context length and caps batch size and throughput. Existing post-training methods exploit redundancy across tokens, layers, and feature dimensions, or lower numerical precision. We identify a complementary axis: within each attention head, values are largely predictable from their corresponding keys. We exploit this with value cache amortisation, which fits a lightweight per-head predictor at test time and stores residuals only for the tokens it reconstructs worst, giving $4\\times$ near-lossless value compression. The predictor can be initialised by meta-learning for substantially reduced prefill overhead, or fitted from scratch in settings that allow a one-off cost, such as multi-query inference. We pair value amortisation with cross-layer low-rank key compression to produce LowRAM, an asymmetric compression pipeline that stays close to lossless across three model families. By reconstructing only a selected subset of KV pairs at each decoding step, LowRAM can keep decoding overhead minimal and achieve up to $5\\times$ higher peak decode throughput at $4\\times$ compression. LowRAM further composes with quantisation and eviction, reaching $26.9\\times$ compression at $94.5\\%$ of baseline performance on long contexts. These results show that treating keys and values as structurally distinct enables efficient, aggressive, and composable KV cache compression.",
+   "authors": [
+    "Teresa Delgado",
+    "Hugo Hazard",
+    "Martin Benfeghoul",
+    "Jun Wang",
+    "Zafeirios Fountas"
+   ],
+   "org": null,
+   "published": "2026-11-04T19:00:06+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07025",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.92,
+   "tldr": "LowRAM predicts values from keys and applies low‑rank key compression, delivering 4× near‑lossless KV cache compression with minimal decoding overhead.",
+   "why": "Can halve memory use and latency for long‑context RAG serving.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08407": {
+   "id": "arxiv:2611.08407",
+   "title": "Social Humanoid: Socially Responsive Human-Humanoid Interaction",
+   "url": "https://arxiv.org/abs/2611.08407",
+   "abstract": "Humanoid robots are typically trained as solitary agents, leaving them unable to coordinate physically with human partners who naturally anticipate and adjust to one another. To bridge this gap, we present Social Humanoid, a hierarchical system that generates and executes socially responsive whole-body motion on a 29-DoF Unitree G1 conditioned on a human partner's motion. Its high-level policy performs flexible sequence modeling of human and humanoid motion through a shared tokenized representation, generating reactive humanoid motion and anticipating the partner's motion when they are occluded, while a low-level whole-body tracking controller executes the generated motion on the robot. To train the system, we introduce a two-phase adaptive retargeting procedure that retargets one interaction partner to the robot while morphing the other partner to preserve contact dynamics, reachability, and relative body scale. We apply this procedure across five motion-capture datasets to produce a new Human-Humanoid Interaction (HHI) benchmark of 260 hours of human-humanoid interactions. Our results demonstrate that Social Humanoid produces coordinated, human-aligned behavior across diverse interaction types in simulation and the real world. Project page: https://von31.github.io/social-humanoid/",
+   "authors": [
+    "Vongani H. Maluleke",
+    "James Ni",
+    "Kie Horiuchi",
+    "Lea Wilken",
+    "Jiahui Lei",
+    "Evonne Ng",
+    "Roei Herzig",
+    "Jitendra Malik",
+    "Trevor Darrell",
+    "Angjoo Kanazawa"
+   ],
+   "org": null,
+   "published": "2026-11-05T18:14:06+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.RO",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08407",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.1,
+   "tldr": "Social Humanoid generates socially responsive whole‑body motions for a humanoid robot based on tokenized human motion inputs.",
+   "why": "Focuses on robotics; not applicable to LLM‑based services.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08335": {
+   "id": "arxiv:2611.08335",
+   "title": "Discovering Learning Rules that Shape Others",
+   "url": "https://arxiv.org/abs/2611.08335",
+   "abstract": "In general-sum games, self-interested learners can reach outcomes that are poor for everyone, which has motivated methods that shape the opponent's learning. Methods like Learning with Opponent-Learning Awareness (LOLA), which differentiates through the opponent's learning process, and Model-Free Opponent Shaping (M-FOS), which uses model-free optimisation methods for long-horizon opponent shaping, have enabled mutual cooperation and exploitation of learners. However, these methods require access to the opponent's parameters, policy, rewards or learning rule during deployment. In single-agent reinforcement learning, update rules discovered by meta-learning have achieved state-of-the-art results (e.g. DiscoRL). These rules are separate from the policy they train and read only the agent's own experience. We hereby extend this framework to general-sum settings by introducing Discovered Update Rule for Opponent Shaping (DUOS). To the best of our knowledge, this is the first method to discover an update rule for an agent in general-sum games. DUOS meta-trains the rule to maximise the agent's expected return over its lifetime, and updates an inner network using the agent's own experience. We show that our discovered rule exhibits behaviour consistent with opponent shaping without reading opponent policies or parameters, and ranks 1st in normalised mean score and 1st in self-play among tournament entrants.",
+   "authors": [
+    "Hong Jun Lee",
+    "Ziyan Wang",
+    "Jun Wang",
+    "Stefanos Leonardos",
+    "Yali Du"
+   ],
+   "org": null,
+   "published": "2026-11-05T17:23:34+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08335",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.2,
+   "tldr": "DUOS meta‑trains an update rule that shapes opponents in general‑sum games without accessing their parameters.",
+   "why": "Game‑theoretic method, limited relevance to LLM production.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08308": {
+   "id": "arxiv:2611.08308",
+   "title": "RM-VLM: From Natural-Language Task Descriptions to Vision-Grounded Reward Machines",
+   "url": "https://arxiv.org/abs/2611.08308",
+   "abstract": "Reward machines (RMs) have been proposed as a reward formulation in reinforcement learning (RL) to capture non-Markovian tasks where credit assignment depends on history. By representing reward functions as automata, RMs expose the task's temporal structure and allow such rewards to be handled within a Markovian framework. However, they assume a labelling function, a proposition-grounding oracle for observations, which must be manually engineered for each environment, limiting their wider applicability. In this work, we address this limitation by proposing RM-VLM, a novel approach in which a large language model (LLM) generates an RM from a natural-language task description, and a vision-language model (VLM) acts as the labelling function, grounding the RM's propositions over image-based observations during RM-guided policy learning. A VLM-based value function estimator is used to assess the agent's progress towards each RM transition and derive a dense reward signal. We evaluate RM-VLM on three domains covering non-Markovian grid-world navigation, robotic manipulation, and 3D object collection. Our experimental results show that RM-VLM consistently achieves higher task success rates than existing VLM-based reward methods across all tested domains.",
+   "authors": [
+    "Roko Parac",
+    "Christos Ziakas",
+    "Leo Ardon",
+    "Alessandra Russo"
+   ],
+   "org": null,
+   "published": "2026-11-05T17:10:10+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08308",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.3,
+   "tldr": "RM‑VLM lets an LLM create reward machines from task text and a VLM provide visual grounding, enabling dense rewards for RL agents.",
+   "why": "Vision‑grounded RL not central to current RAG or agent workloads.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08232": {
+   "id": "arxiv:2611.08232",
+   "title": "Signals, Evidence, and Context: User Scrutiny in Real-World LLM Conversations",
+   "url": "https://arxiv.org/abs/2611.08232",
+   "abstract": "Large language models (LLMs) often present synthesized answers without making their supporting evidence easy to inspect. We study how features of these answers relate to users' subsequent accepting, checking, and challenging in 489,283 assistant-user response pairs from ShareChat and WildChat. Broad attribution language appears in 31.9% of qualifying responses, compared with explicit URLs in 1.33%, revealing a gap between claims of grounding and preserved inspectable support. Attribution, uncertainty, and other response cues generally accompany both checking and challenging; only uncertainty shows a small statistically distinguishable pooled association favoring checking. Within Technical Help, uncertainty favors checking relative to challenging; refusals and reasoning traces favor challenging in Seeking Information. Scrutiny is concentrated in some conversations, while its apparent turn-to-turn persistence becomes much smaller when conversation-level differences and response ordering are examined separately. These results suggest that supporting verification requires attention to what evidence can be inspected, which question a user is trying to resolve, and the history of the interaction.",
+   "authors": [
+    "Ahana Biswas",
+    "Yu-Ru Lin"
+   ],
+   "org": null,
+   "published": "2026-11-05T16:16:08+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08232",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "RAG & retrieval",
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.62,
+   "tldr": "Study of 489k LLM chats finds only 1.33% include URLs; attribution and uncertainty cues influence user checking and challenging behavior.",
+   "why": "Insights can guide designing more transparent, verifiable RAG outputs.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08144": {
+   "id": "arxiv:2611.08144",
+   "title": "Detecting Silent Faults at the Environment-Trainer Boundary in Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2611.08144",
+   "abstract": "Robot reinforcement learning increasingly runs environments outside the trainer: in another process, on another machine, in another language. Many faults at this boundary raise no error. We make the boundary a wire protocol and ask what notices a fault in it. On Pendulum, HalfCheetah, Hopper and a 7-joint arm (Pusher), we injected up to 23 faults into what crosses the wire and 2 into the trainer's log, from one value to every value. Unless every value was wrong, a learning-curve threshold caught at most one run in ten, and a comparison with ten fault-free seeds at most 21%. A clean evaluation of all 1,060 final policies agreed with the curves: of the 728 boundary-fault runs both curve checks passed, 723 scored no more than three standard deviations below fault-free seeds, though nearly all ended on other weights and, for reward faults, logged other returns. Checks of the run itself, not of its outcome, saw every fault. A step ledger kept on both sides and compared step by step caught and located every fault that crossed, on Pendulum, Hopper and Pusher on one machine and on Pendulum across two, with no fault-free run and, on Pendulum, a median 3% more training time. An episode record kept at the environment caught the faults in the trainer's log. We list such faults found in practice, in Gymnasium 1.3 and our own code and, reported by others, in five multi-agent libraries, and recommend a step ledger and episode counts kept at the environment.",
+   "authors": [
+    "Zuo Gou",
+    "Chenhao Lu"
+   ],
+   "org": null,
+   "published": "2026-11-05T15:05:07+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.RO",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08144",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.2,
+   "tldr": "Detects silent faults across environment-trainer boundaries in RL by step ledger comparison.",
+   "why": "Not applicable to RAG or enterprise search pipelines.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08094": {
+   "id": "arxiv:2611.08094",
+   "title": "PersonaAgent: Retrieval-Augmented Transaction Anomaly Scoring with Refreshable Multi-Entity Persona Memory",
+   "url": "https://arxiv.org/abs/2611.08094",
+   "abstract": "In large-scale payment networks, entities (card, merchant, etc.) and their interactions play a key role in transaction anomaly detection. However, transaction patterns between different entities usually change more frequently than the production model refresh schedule. Meanwhile, entity embedding tables suffer from high-cardinality and sparse interaction issues. To resolve the above challenges, we present PersonaAgent, an agentic transaction anomaly detection framework which represents the latest entity behavior signals as personas and saves them in a refreshable memory. Offline, a weekly scheduled batch job is used to extract the latest behavior signals and update them in the memory. At inference time, a lightweight adapter retrieves the corresponding entity behavior signals of each transaction from memory and uses them to augment the base anomaly classifier's scoring. Through comprehensive benchmarking with different anomaly detection models at Visa, PersonaAgent is able to score transactions efficiently (a 1,000-transaction CPU batch in 1-2 ms), lifting the PR-AUC by 0.65-6.58% and the production business metric by 8.93-14.24% relatively in deployment.",
+   "authors": [
+    "Zhengyu Fang",
+    "Liang Wang",
+    "Yingtong Dou",
+    "Yuzhong Chen",
+    "Shubham Jain",
+    "Junpeng Wang",
+    "Xiran Fan",
+    "Menghai Pan",
+    "Jiarui Sun",
+    "Yan Zheng",
+    "Yiwei Cai"
+   ],
+   "org": null,
+   "published": "2026-11-05T14:37:16+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08094",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Agents & orchestration",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.6,
+   "tldr": "Builds a refreshable memory of entity personas to augment anomaly scoring, achieving 0.65‑6.58% PR‑AUC lift with 1‑2 ms latency.",
+   "why": "Shows lightweight retrieval memory that could boost RAG pipelines with minimal latency.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08053": {
+   "id": "arxiv:2611.08053",
+   "title": "When Imperfect Automated Fact-Checking Backfires: Social Learning in the Presence of Misinformation",
+   "url": "https://arxiv.org/abs/2611.08053",
+   "abstract": "Automated fact-checking tools, cheap and fast but imperfect, are increasingly available on social platforms. We study when such tools can backfire in a sequential social learning model of misinformation. Agents observe an article's reliability and their predecessors' actions, which indicate whether they liked or disliked the article. They may also pay to fact-check it. We examine how welfare, defined as the probability of a correct cascade, changes when a free, error-prone automated tool supplements costly but perfectly accurate manual fact-checking. Two opposing effects arise. Broader use of fact-checking helps agents escape wrong cascades. At the same time, errors from the automated tool can mislead agents who would otherwise have verified the article perfectly, reducing the likelihood of correct cascades. We prove that adding the tool strictly lowers welfare for articles of intermediate reliability when truthful articles are not too informative and manual checking is sufficiently costly. Simulations show that the tool can help on either side of the intermediate range, and that it improves on manual-only checking on average only above a threshold accuracy.",
+   "authors": [
+    "Zixuan Liu",
+    "Ming Cao"
+   ],
+   "org": null,
+   "published": "2026-11-05T14:10:05+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08053",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.3,
+   "tldr": "Studies how imperfect automated fact‑checking can backfire in social learning models.",
+   "why": "Limited relevance to enterprise LLM systems.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07945": {
+   "id": "arxiv:2611.07945",
+   "title": "tok: a textual concrete syntax of BPMN and DMN for humans and AI agents",
+   "url": "https://arxiv.org/abs/2611.07945",
+   "abstract": "tok is a plain-text notation for Business Process Model and Notation (BPMN) 2.0.2 process models and Decision Model and Notation (DMN) 1.5 decisions. One engine checks a tok document against both standards, compiles the document to XML with an automatic diagram, and serves language-model applications through the Model Context Protocol. The paper classifies the notation as an alternative concrete syntax of the BPMN and DMN metamodels and reports one study. A tok model takes 2.2 times fewer tokens than the smallest BPMN XML of 893 files exported by 37 tools and 7.7 times fewer than the files as exported. The checker signals 98.2% of 1,411 injected faults, against 85.8% for the XML Schema with bpmnlint. Four language models new to tok write valid tok from a one-page reference for 85.7 to 100% of 87 process descriptions from two datasets and valid BPMN XML for every description, and the strongest model writes tok with 25% and 19% fewer tokens than BPMN XML. As agents with a lean skill and one checker tool, the models write valid tok for 97.6 to 100% of the descriptions, the strongest model spends 21% and 14% fewer tokens on tok than on BPMN XML, and a skill which sends the model to read the reference through a tool costs 1.7 to 2.8 times the tokens of the lean skill. Of 47 event logs simulated from public models, 44 fit their source models, and tok imports every model discovered from the logs.",
+   "authors": [
+    "Marek Deja"
+   ],
+   "org": null,
+   "published": "2026-11-05T12:42:56+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CY",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07945",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.2,
+   "tldr": "Introduces a plain‑text syntax for BPMN/DMN that reduces token count and improves model validation.",
+   "why": "Not directly useful for RAG or agent orchestration.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07934": {
+   "id": "arxiv:2611.07934",
+   "title": "The Blindfolded Controller: Decision Model-Guided Training for Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2611.07934",
+   "abstract": "Reinforcement learning (RL) provides a framework for continuous improvement through interaction with an environment. However, RL agents struggle against tasks that offer exploration challenges and sparse rewards, because learning efficient policies from scratch is slow and sample-inefficient. In contrast, decision models (DMs), given a description of the environment and task, can perform well in sparse-reward tasks, but, as they do not learn from reward, they are not able to improve towards the optimal solution. In this paper, we present Decision Model-Guided Training (DMGT), a technique that uses a DM with a description of the environment and task to initialise an RL policy, combining the DM's ability to act without training with RL's ability to improve from reward. Instead of exploring from scratch, the agent reaches the goal and receives reward from its first episodes, and RL then improves its policy beyond what the DM achieves. We demonstrate through experiments on seven tasks that our approach outperforms RL in all seven and DM in five. In addition, we provide comprehensive guidelines, derived from ablation studies, for describing an environment and task to a DM.",
+   "authors": [
+    "Muhammad Ibrahim Khan",
+    "Aniket Dixit",
+    "Faizan Ahmed",
+    "James Brusey"
+   ],
+   "org": null,
+   "published": "2026-11-05T12:38:10+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07934",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.2,
+   "tldr": "Uses decision models to initialize RL policies, improving learning on sparse‑reward tasks.",
+   "why": "Not relevant to RAG or enterprise search.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07759": {
+   "id": "arxiv:2611.07759",
+   "title": "ReConMem: A Graph-Based Dual Memory System for Repository-Oriented Conversations",
+   "url": "https://arxiv.org/abs/2611.07759",
+   "abstract": "LLM-based code assistants are increasingly used in iterative repository-level development, where effective assistance requires jointly leveraging evolving conversational history and repository context. Existing memory systems, however, are primarily designed for general-purpose conversations and do not sufficiently coordinate conversational information with the structured code entities to which it refers. We propose ReConMem, a graph-based dual memory system for repository-oriented conversations. ReConMem organizes distilled conversational memories and conversation-relevant code entities into interconnected semantic and structural memory graphs, while maintaining their cross-graph associations as interactions evolve. For memory recall, ReConMem combines natural-language and code-aligned retrieval through code-draft-based query grounding, expands retrieved information over intra- and inter-graph relations, and compresses retrieved code according to its structural granularity. We evaluate ReConMem on two repository-oriented conversational benchmarks spanning long-horizon context management and realistic project-grounded multi-turn assistance. On LoCoEval, ReConMem improves Pass@1 over the strongest baseline by 7.917 and 7.292 percentage points on single-hop and multi-hop subsets, respectively, with comparable context compression. On CodeAssistBench, it achieves 27.61% Correct and 44.03% Partially Correct, exceeding Full History by 4.10 and 7.09 percentage points, respectively, while improving interaction quality. These results demonstrate that aligning conversational memory with repository structure improves context management for repository-oriented multi-turn interactions.",
+   "authors": [
+    "Zhishuo Yang",
+    "Li Zhang",
+    "Yang Liu",
+    "Donghao Yang",
+    "Fang Liu"
+   ],
+   "org": null,
+   "published": "2026-11-05T10:01:54+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.SE",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07759",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.55,
+   "tldr": "Graph‑based dual memory links conversational and code entity graphs, using code‑draft grounding and structural compression.",
+   "why": "Provides a retrieval memory architecture that could enhance context management in LLM apps.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07707": {
+   "id": "arxiv:2611.07707",
+   "title": "CAMP: Context-Aware Mapping and Placement for LLMs on 3D-IMC Arrays",
+   "url": "https://arxiv.org/abs/2611.07707",
+   "abstract": "Large Language Models (LLMs) incur severe memory-access overheads due to the cost of loading large weight matrices and key-value (KV) caches. Analog In-Memory Computing (AIMC) is an emerging solution that enables computation directly on static weights stored in memory, substantially reducing energy and latency. 3D-IMC further stacks memory arrays into vertical tiers, increasing capacity but revealing a new challenge: how weights are placed in memory determines which matrix-vector multiplications (MVMs) can execute concurrently, affecting latency and throughput. The concurrency aspect of 3D-IMC weight-mapping remains underexplored in the literature, leading to sub-optimal utilization of compute resources on 3D-IMC chips. In this context we propose CAMP (Context-Aware Mapping and Placement), an inference-context-aware weight mapping algorithm for 3D-IMC-based LLM accelerators. CAMP captures the potential resource contention resulting from the architecture, targeted network, and runtime context in a conflict matrix, enabling throughput-optimized weight mapping. This mapping is refined through a profiling-driven feedback loop that efficiently prunes the search space and returns optimized mappings within practical runtimes. CAMP is an offline, software-based solution requiring no hardware changes and improving 3D-IMC compute utilization from 42.4% to 60.3%, delivering up to 2.0x higher 3D-IMC throughput and 1.74x higher end-to-end throughput over state-of-the-art mapping algorithms.",
+   "authors": [
+    "Orhun Görkem",
+    "Athanasios Vasilopoulos",
+    "Georgios Pagonis",
+    "Victoria Clerico",
+    "Hadjer Benmeziane",
+    "Irem Boybat",
+    "Hsinyu Tsai",
+    "Abu Sebastian",
+    "William Andrew Simon"
+   ],
+   "org": null,
+   "published": "2026-11-05T09:27:31+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07707",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.6,
+   "tldr": "CAMP maps LLM weights on 3D‑IMC arrays to optimize concurrency via a conflict matrix, boosting throughput.",
+   "why": "Offers a method to reduce inference latency and energy on specialized hardware.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07667": {
+   "id": "arxiv:2611.07667",
+   "title": "Who Should Know What? Empirical Information Design for Multi-Agent LLM Economies",
+   "url": "https://arxiv.org/abs/2611.07667",
+   "abstract": "The performance of multi-agent LLM systems depends not only on the capabilities of the underlying models but also on information-sharing policies, which govern what information each agent observes and at what level of detail. But does providing AI agents with more detailed information always improve collective outcomes, or can transparency paradoxically degrade efficiency? To investigate this, we introduce empirical information design, an experimental framework that systematically compares disclosure policies across economic markets populated by LLM agents, while holding interaction rules and models fixed. We evaluate ten frontier LLMs in multi-resource trade, bilateral bargaining, and double auctions, using ground-truth utilities to decouple identified opportunities from realized outcomes. We find that finer information disclosure yields highly model-dependent results. In trade, revealing exact valuations rather than ordinal preference rankings reduces realized gains for GPT-6 Sol (from 98% to 91% of maximum) yet increases them for Claude Sonnet 5 (from 72% to 86%). In bargaining, exact information leads Grok 4.7 to produce less balanced agreements, whereas Claude Opus 5.5 divides gains symmetrically. In double auctions, full disclosure inflates price demands, triggering market breakdown and lowering welfare for Gemini 3.1 Pro (97% to 78%), Claude Opus 5.5 (94% to 64%), and Grok 4.7 (97% to 62%). Overall, these results suggest that model selection and information design must be co-optimized, as LLMs vary in how their strategic responses to information impact system objectives.",
+   "authors": [
+    "Mete Erdogan",
+    "Mirac Suzgun",
+    "Aneesh Pappu",
+    "Guowei Xu",
+    "Batu El",
+    "Andrew A. Schoen",
+    "Furong Huang",
+    "John P. Dickerson",
+    "Mert Pilanci",
+    "James Zou"
+   ],
+   "org": null,
+   "published": "2026-11-05T08:51:37+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07667",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.6,
+   "tldr": "Benchmarks disclosure policies in multi‑agent LLM economies, showing model‑dependent efficiency effects.",
+   "why": "Highlights how information sharing impacts agent coordination, informing orchestration design.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07640": {
+   "id": "arxiv:2611.07640",
+   "title": "Beyond Instruction Override: Benchmarking Indirect Prompt Injection with Task-Tampering Attacks",
+   "url": "https://arxiv.org/abs/2611.07640",
+   "abstract": "Indirect prompt-injection (IPI) benchmarks predominantly test planted instructions that redirect a tool-using agent toward an attacker-chosen task. Yet attacker-controlled content can instead tamper with the outcome of the task already in progress. A buyer's dispute evidence can cite a false refund policy to inflate a refund without changing the task. We define IPI by authority rather than instruction-like wording: planted content constitutes an attack when it attempts to influence a decision that its source is not authorized to determine. We introduce a benchmark that makes this boundary explicit: in each of 90 validated cases across three tool-use environments, the user request specifies the source that resolves the targeted decision. Every attack tampers with a decision required by the benign task rather than replacing that task. Each case has attacks with the same harmful outcome that target up to six parts of the agent's decision making: its objective, decision rules, available actions, expected consequences, reading of observations, or beliefs about the current state. Without a defense, attacks on three of the five other targets (decision rules, available actions, and state) have higher mean success than objective attacks across five LLMs. A detection-and-removal defense reduces objective-targeting attacks to 2.4% success but leaves observation- and state-targeting attacks at 9.5% and 12.1%; this gap persists under detection-optimized rewrites. A tool-policy defense still allows 15.4% attack success, close to 17.0% without a defense, because these attacks generally retain expected tools and manipulate values obtained during execution. Evaluations whose attacks redirect the task or target only the agent's objective can therefore overestimate the coverage of these defenses. Code and data are available at https://github.com/amazon-science/task-tampering-prompt-injection.",
+   "authors": [
+    "Rongting Zhang",
+    "Martin Bertran",
+    "Sandeep Avula",
+    "Chia-Jung Lee",
+    "Vanessa Murdock"
+   ],
+   "org": null,
+   "published": "2026-11-05T08:25:27+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07640",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability",
+    "Agents & orchestration"
+   ],
+   "relevance": 0.85,
+   "tldr": "Defines indirect prompt injection as authority‑based attacks and benchmarks 90 cases across tool‑use environments.",
+   "why": "Provides a benchmark to evaluate agent robustness against subtle prompt attacks.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07633": {
+   "id": "arxiv:2611.07633",
+   "title": "Redacting Personal Data: A Speed and Accuracy Comparison of Regex, Presidio and Hybrid Designs",
+   "url": "https://arxiv.org/abs/2611.07633",
+   "abstract": "Many enterprise projects now pass free text to large language models (LLMs), and that text often contains personally identifiable information (PII) such as names, phone numbers, email addresses, home addresses and dates of birth. Once a prompt is sent, this data is copied into provider systems, application logs and observability traces. Redacting PII before the call is an obvious control, yet teams seldom have numbers on what it costs in latency or what it lets through. This paper compares four redaction designs that any LLM pipeline can adopt: a pure regular-expression (regex) redactor, Microsoft Presidio running on a spaCy model, a hybrid in which Presidio finds only person names while regex handles structured identifiers, and a fast hybrid that calls spaCy's named-entity component directly. All four share a known-entity rule, which removes the person the system already knows it is handling, and a consistent placeholder scheme, so the LLM can still tell one person from another after redaction. We evaluate the designs on a sample workflow, which we call ProfileAssist, that turns resumes into structured profiles, using 100 synthetic resumes (523 characters on average, with 900 PII values and 600 business terms that must survive). Regex ran at a 0.20 ms median but caught only 88.9% of PII, because it cannot find names that are not known in advance, such as the references listed in a resume. Presidio, hybrid and fast hybrid each caught 100% of PII and kept 100% of business terms, at median latencies of 37.59 ms, 30.23 ms and 13.48 ms. Measured against a 9,120 ms median LLM call, even the slowest option adds only 0.41% to the request. We therefore recommend the fast hybrid as a default for LLM pipelines that handle personal data, with regex kept as a safety net rather than as the only control.",
+   "authors": [
+    "Sai Yashwant",
+    "Manoj Kumar Gondimalla",
+    "Arjun Sharma",
+    "Shubham"
+   ],
+   "org": null,
+   "published": "2026-11-05T08:18:36+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07633",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Documents & extraction",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.75,
+   "tldr": "Compares regex, Presidio, hybrid, and fast hybrid PII redaction methods on latency and accuracy.",
+   "why": "Offers practical redaction options with quantified cost for secure LLM pipelines.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07593": {
+   "id": "arxiv:2611.07593",
+   "title": "TACT-KV: Tri-Axis Cosine Transform for Compressing Volumetric KV Caches in Medical VLMs",
+   "url": "https://arxiv.org/abs/2611.07593",
+   "abstract": "Vision-language models (VLMs) applied to 3D medical scans face a structural memory wall. A single CT or MRI volume produces tens of thousands of vision tokens, and the resulting key-value (KV) cache scales linearly with both batch and context. Existing KV compression methods operate on the cache's feature or token statistics, or apply 1D and 2D transforms, leaving the three-axis spatial structure in the cache unexploited. We propose TACT-KV (Tri-Axis Cosine Transform), a calibration-free KV compression method that exploits strong spatial correlations in visual KV states along all three anatomical axes of 3D scans. This correlation concentrates the KV cache energy under a frequency-domain transform. TACT-KV applies a separable 3D discrete cosine transform to the KV cache, allocates a per-layer bit budget across frequency bins via reverse water-filling (more bits to high-energy components), and quantizes each bin with a fixed scalar codebook. We derive a close-form relation: the distortion reduction from adaptive bit allocation is dominated by the spectral concentration of the transformed cache. Across six medical VLMs and two 3D CT benchmarks, TACT-KV achieves the lowest 1-bit prediction-flip rate on eleven of twelve model and dataset pairs in our main comparison. The same advantage reproduces on four general-purpose VLMs evaluated on video tasks, indicating that the benefit of exploiting three-axis structure generalizes beyond medical imaging. At equal high-bandwidth memory (HBM), TACT-KV scales the decoding batch size on a single GPU by up to $8\\times$.",
+   "authors": [
+    "Chongyu Qu",
+    "Ritchie Zhao",
+    "Yufan He",
+    "Dong Yang",
+    "Zhengyi Lu",
+    "Junchao Zhu",
+    "Tianyuan Yao",
+    "Juming Xiong",
+    "Junlin Guo",
+    "Yanfan Zhu",
+    "Yuechen Yang",
+    "Daguang Xu",
+    "Bennett Allan Landman",
+    "Yucheng Tang",
+    "Yuankai Huo"
+   ],
+   "org": null,
+   "published": "2026-11-05T07:43:29+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CV",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07593",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.55,
+   "tldr": "Proposes a 3D discrete cosine transform based KV cache compression that allocates bits per frequency bin, reducing memory and distortion.",
+   "why": "Could shrink KV cache size, lowering memory and latency in LLM inference.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07589": {
+   "id": "arxiv:2611.07589",
+   "title": "Learning and Steering in Incomplete-Information Games",
+   "url": "https://arxiv.org/abs/2611.07589",
+   "abstract": "In many modern multi-agent systems, a mediator seeks to influence strategic decision dynamics using only outcome-level feedback and without knowing agents' utilities. In this work, we study how a mediator can learn an unknown game and steer adaptive agents toward outcomes that maximize her utility using only trajectory feedback. The mediator knows the game form and her own objective, but not the agents' utilities. Moreover, she commits to nonnegative payments and provides recommendations and contexts, but receives only a single realized terminal outcome rather than full-information feedback. We develop halving-type algorithms that learn utility differences in normal-form games and conditional continuation-value differences in extensive-form games, achieving a sample complexity of $\\widetilde O(\\varepsilon^{-2})$ that matches worst-case lower bounds up to logarithmic factors. We then combine these learning procedures with a Lagrangian formulation in an online Learn-Compute-Steer algorithm that interleaves learning, equilibrium computation, and steering toward mediator-optimal extensive-form correlated equilibria (EFCE). With high probability, the Learn-Compute-Steer algorithm achieves a directness gap and an optimality gap of $\\widetilde O(T^{-1/4})$, while time-average payments are of $\\widetilde O(T^{-1/8})$.",
+   "authors": [
+    "Asrın Efe Yorulmaz",
+    "Tamer Başar"
+   ],
+   "org": null,
+   "published": "2026-11-05T07:40:05+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.GT",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07589",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.6,
+   "tldr": "Develops algorithms for a mediator to learn unknown game utilities and steer agents toward desired outcomes using only trajectory feedback.",
+   "why": "Provides a framework for orchestrating agents with limited feedback.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07561": {
+   "id": "arxiv:2611.07561",
+   "title": "Provable Zeroth-Order Safe Exploration for Reinforcement Learning from Human Feedback",
+   "url": "https://arxiv.org/abs/2611.07561",
+   "abstract": "Safe reinforcement learning from human feedback (Safe-RLHF) seeks to improve helpfulness while satisfying harmlessness constraints. Existing primal-dual approaches can converge to feasible policies but do not prevent constraint violations during training. We study a stronger requirement, safe exploration for RLHF, under which every policy executed during training, including auxiliary exploration policies, remains feasible. We propose Zeroth-Order Log-Barrier Policy Gradient (ZO-LBPG), a reward-model-free method that optimizes a log-barrier objective using zeroth-order estimates derived directly from human preferences. To ensure safety under noisy feedback, we combine conservative constraint margin estimates with coupled rollouts and an adaptive step size that prevents updates from crossing constraint boundaries. We prove that, with high probability, all iterates and exploration policies remain strictly feasible, and that ZO-LBPG globally converges to an approximately optimal constrained policy. We establish a sample complexity of $\\widetilde{\\mathcal O}(\\varepsilon^{-6}+d^3\\varepsilon^{-5})$ trajectories and $\\widetilde{\\mathcal O}(\\varepsilon^{-8}+d^5\\varepsilon^{-7})$ human queries. Experiments on a synthetic CMDP and a language-model alignment task corroborate the training-time safety guarantees.",
+   "authors": [
+    "Weiqin Chen",
+    "Xinmeng Huang",
+    "Dongsheng Ding",
+    "Santiago Paternain"
+   ],
+   "org": null,
+   "published": "2026-11-05T07:14:25+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07561",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.7,
+   "tldr": "Introduces ZO-LBPG, a reward-model-free log-barrier policy gradient that keeps all policies feasible during RLHF training.",
+   "why": "Ensures agent policies stay safe during RLHF, reducing constraint violations.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07541": {
+   "id": "arxiv:2611.07541",
+   "title": "CST-Bench: Benchmarking Counterfactual Spatial Transition Reasoning with Causal Transition On-Policy Self-Distillation",
+   "url": "https://arxiv.org/abs/2611.07541",
+   "abstract": "Spatial reasoning is a fundamental capability of multimodal large language models (MLLMs), yet existing benchmarks mainly focus on static scene understanding. When objects are moved or swapped, models must infer not only spatial relations but also how interventions change the scene state. To address this problem, we introduce CST-Bench, a benchmark for counterfactual spatial reasoning. CST-Bench contains 7,082 examples covering 6 intervention types and 12 transformation operators, with dense causal annotations including intervention sources, affected relations, expected effects, invariant relations, and metric changes. We benchmark general-purpose MLLMs on CST-Bench and further compare post-training strategies on CST-Bench and standard spatial benchmarks. Results show that methods effective for ordinary spatial reasoning can still fail under counterfactual interventions. We further formulate counterfactual spatial reasoning as causal state-transition modeling and propose CT-OPSD, which uses CST-Bench annotations to guide a teacher model in learning counterfactual state transitions and causal reasoning chains. These chains are then distilled into a student model that reasons only from real observations. Overall, experiment results establish CST-Bench as a challenging benchmark and reusable supervision resource for counterfactual spatial reasoning. CT-OPSD further provides an initial demonstration of how its annotations can support model improvement.",
+   "authors": [
+    "Ying Li",
+    "Yongle Cheng",
+    "Jing Li",
+    "Xingquan Cai",
+    "Yawei Luo"
+   ],
+   "org": null,
+   "published": "2026-11-05T06:49:51+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07541",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.45,
+   "tldr": "Creates CST-Bench, a counterfactual spatial reasoning benchmark, and proposes CT-OPSD to learn counterfactual state transitions.",
+   "why": "Offers a benchmark for spatial reasoning, useful for evaluating LLMs but not directly applicable.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07378": {
+   "id": "arxiv:2611.07378",
+   "title": "Adversarial Multiplicity: Cherry-Picked Models and the Limits of Disclosure",
+   "url": "https://arxiv.org/abs/2611.07378",
+   "abstract": "Predictive multiplicity -- where similarly accurate models disagree on individual predictions -- can be leveraged to optimize secondary metrics (e.g., fairness) without loss in predictive performance. However, exploiting multiplicity opens the opportunity for motivated parties (or coding agents gaming their objectives) to steer predictions toward their own ends, such as in litigation or consumer disputes with automated decision-making tools. In these adversarial multiplicity settings, we distinguish soft manipulation, where parties optimize over innocuous model choices (e.g., hyperparameter tuning, feature engineering), from hard manipulation, where parties directly perturb model parameters. We find a sufficiently flexible model can be manipulated to reverse any individual prediction with minimal change in predictive performance while passing black-box audits, making hard manipulation viable in most regulatory settings. Soft manipulation has smaller effects but can pass white-box audits requiring full access to code and data. Even aggregate estimates can be manipulated: a model's estimated effect of climate change on wildfires can be fully reversed by hard edits and soft search. We find the Reconcile algorithm typically resolves most disagreements between models, but more often in favor of the manipulator when the opposing model is chosen adversarially compared to at random. We map which manipulations can plausibly pass existing regulations and disclosure policies, and recommend mitigations such as pre-registration, proof of model training, sensitivity analyses, multi-metric evaluations, and committing to versioned public models.",
+   "authors": [
+    "Cassandra C. Chou",
+    "Benjamin Q. Huynh",
+    "Allison Koenecke",
+    "Elizabeth T. Chin"
+   ],
+   "org": null,
+   "published": "2026-11-05T03:32:12+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07378",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.5,
+   "tldr": "Shows models can be manipulated to reverse predictions with minimal performance loss, even under audits.",
+   "why": "Highlights risks of model manipulation, relevant for robustness evaluation.",
+   "scored_by": "groq:openai/gpt-oss-20b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07342": {
+   "id": "arxiv:2611.07342",
+   "title": "Selective Retrieval Routing for Multi-Violation Knowledge Graph Repair",
+   "url": "https://arxiv.org/abs/2611.07342",
+   "abstract": "Knowledge graphs often contain missing or inconsistent facts that undermine the applications built on them. Schema validation detects such violations but does not identify which of several valid repairs recovers the intended graph. External corpora can supply the evidence needed to identify the intended repair, but retrieving from them is costly and not always successful. We propose a framework for selective retrieval in iterative graph repair. An LLM repair agent explores and edits the graph, while a router controls its access to a researcher agent that retrieves external evidence. We extend a violation-injection framework to generate cases with multiple compatible violations and known reference repairs. The agent's repair outcomes on these cases provide supervision for training the deployment-specific router. On two building-automation datasets, researcher access improves repairs for some violations and degrades them for others, with effects differing across deployments. The router uses fewer repair-time tokens than always enabling access in all six evaluation suites. It achieves higher repair $F_1$ than always disabling access in five of six suites.",
+   "authors": [
+    "Tung-Wei Lin",
+    "Gabe Fierro",
+    "Han Li",
+    "Tianzhen Hong",
+    "Pierluigi Nuzzo",
+    "Alberto Sangiovanni-Vinentelli"
+   ],
+   "org": null,
+   "published": "2026-11-05T02:29:58+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.DB",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07342",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Agents & orchestration",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.66,
+   "tldr": "Knowledge graphs often contain missing or inconsistent facts that undermine the applications built on them.",
+   "why": "Matches: RAG & retrieval, Agents & orchestration, Efficient inference & cost",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07327": {
+   "id": "arxiv:2611.07327",
+   "title": "Permanent and Transient Representations for Continual Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2611.07327",
+   "abstract": "Continual Reinforcement Learning (CRL) agents struggle to adapt to new situations while retaining prior knowledge, leading to a stability-plasticity trade-off. One approach to solving this problem is by using complementary learning systems: one for slow, long-term learning and another for quick, transient adaptation. Anand & Precup (2023) instantiated this idea using permanent and transient value functions, but used the same features in both systems. Intuitively, long-term learning should rely more on parametric representations for broad generalization, while transient learning would be best served by non-parametric representations for situation-specific adaptation. In this paper, we explore this idea both theoretically and empirically. By introducing a novel non-parametric approximation for estimating the transient value function in complex tasks, we demonstrate that our method enables online learning and outperforms competitive baselines on image-based tasks and Craftax-Classic, underscoring the effectiveness of our system-level decomposition.",
+   "authors": [
+    "Nishanth Anand",
+    "Doina Precup"
+   ],
+   "org": null,
+   "published": "2026-11-05T02:11:47+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07327",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.54,
+   "tldr": "Continual Reinforcement Learning (CRL) agents struggle to adapt to new situations while retaining prior knowledge, leading to a stability-plasticity trade-off.",
+   "why": "Matches: Agents & orchestration, Reasoning & post-training",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07254": {
+   "id": "arxiv:2611.07254",
+   "title": "Using Transformers for Teaching and Learning via Symbolic Distillation of Neural A-life Agents",
+   "url": "https://arxiv.org/abs/2611.07254",
+   "abstract": "Neural networks controlling behavior of A-life agents can evolve over multiple generations. While effective in making the agents survive, such networks are generally opaque to a human observer. Furthermore, the neural weights cannot be transferred between agents with different neural architectures. Distilling such neural networks into compact symbolic policies can help humans understand agent behavior in A-life. Additionally, it allows the agents to share their knowledge in a compact fashion, improving population-level learning. Distilling a neural policy into a symbolic policy is typically performed by searching the space of symbolic policies to find one that approximates the neural policy. However, even with a domain-specific language the space of policies can be large, necessitating incomplete stochastic search such as genetic algorithms. Yet the distillation remains computationally expensive. We propose to instead use a transformer pre-trained on readily available random percept-action data. Doing so speeds up distillation substantially. We derive the transformer architecture via a neural architecture search. Empirical results compare different distillation methods and the influence of the symbolic space on A-life population dynamics through self-reflection and teaching and learning.",
+   "authors": [
+    "Shuwei Wang",
+    "Vadim Bulitko",
+    "Matthew R. G. Brown",
+    "Michael Youngblood",
+    "Ramon Lawrence",
+    "Roscoe Smith",
+    "Shinichi Nakagawa",
+    "William Yeoh"
+   ],
+   "org": null,
+   "published": "2026-11-05T00:06:00+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07254",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.54,
+   "tldr": "Neural networks controlling behavior of A-life agents can evolve over multiple generations.",
+   "why": "Matches: Agents & orchestration, Efficient inference & cost",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07222": {
+   "id": "arxiv:2611.07222",
+   "title": "SPILLWAY: Separating Target Admission from Sanitization to Defend Tool-Using Agents against Prompt Injection",
+   "url": "https://arxiv.org/abs/2611.07222",
+   "abstract": "Tool-using agents act on email, files, and payments, so an instruction hidden in a web page or a shared document can make an agent send data or money to an attacker. Many runtime defenses put a language model on the decision that lets an action through, so the decision depends on a model that may read the attacker's text and adds model calls to every step. Provenance defenses keep the model off the final check but need a model to plan or route each task first. Where an action goes can instead be read from the tools' typed returns: an email's sender or a payment's account arrives in a typed field, while injected instructions arrive as free text. SPILLWAY turns this observation into a deterministic floor with no per-task plan. The check admits a call when each target value that appears in tool output but not in the user's task was returned by a read-only tool in a typed field or is covered by a fixed delegation rule. A deterministic sanitizer removes instruction-like regions its fixed rules match before the model reads them and retains the removed spans as evidence, and a local judge may restore a refused call, never one whose target lies in the removed text. Across three backbones, and seven task suites on one of them, no standard templated injection redirects an action to an attacker's target under SPILLWAY, at the highest observed mean utility and composite scores (NRP, ERS) of the defenses we run under that attack. A forged chat template also produces a raw zero, and mean in-scope attack success under a released reinforcement-learning attacker is .007. SPILLWAY reaches this floor with no defense-triggered backbone re-run and almost no added model call. As personal AI agents act on users' email, files, and payments, SPILLWAY gives them an auditable refusal floor on where their actions go that keeps them useful and holds across backbones.",
+   "authors": [
+    "Woosang Lim",
+    "Yeseul Chang",
+    "Jaewoo Lee"
+   ],
+   "org": null,
+   "published": "2026-11-04T23:18:10+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07222",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.54,
+   "tldr": "Tool-using agents act on email, files, and payments, so an instruction hidden in a web page or a shared document can make an agent send data or money to an attacker.",
+   "why": "Matches: Agents & orchestration, Evaluation & reliability",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07130": {
+   "id": "arxiv:2611.07130",
+   "title": "Teaching Agents the \"Principle\", Not the \"Reward\"",
+   "url": "https://arxiv.org/abs/2611.07130",
+   "abstract": "Reinforcement learning has achieved strong performance in many tasks by letting agents learn from nothing more than a reward signal. However, in more complex tasks, agents still struggle to learn good, generalizable policies, even with carefully designed rewards and abundant samples. We argue that this difficulty stems from the reward decoding burden: designers encode their knowledge of the desired behavior into rewards and penalties, and agents must infer this knowledge from long sequences of noisy scalars. To address this burden, we propose prescriptive policy learning (PPL), which directly teaches agents higher-level knowledge about the tasks, termed principles of behavior, such as how to maintain balance, how to accumulate energy, and how to land smoothly. Through appropriately selected key quantities and references, PPL can directly indicate at every step whether the agent follows the principles and to what extent. Our experiments show that agents can learn good, generalizable policies without any reward. Taught only simple heuristic principles, PPL agents outperform reward-based methods with far fewer samples. Their policies also transfer directly to harder settings and keep performing well, demonstrating their strong generalization ability. In summary, PPL provides a new approach in which rough knowledge of the desired behavior is enough for agents to learn good, generalizable policies, even when the system dynamics cannot be accurately modeled.",
+   "authors": [
+    "Shan Yang"
+   ],
+   "org": null,
+   "published": "2026-11-04T20:55:19+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07130",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.54,
+   "tldr": "Reinforcement learning has achieved strong performance in many tasks by letting agents learn from nothing more than a reward signal.",
+   "why": "Matches: Agents & orchestration, Reasoning & post-training",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08325": {
+   "id": "arxiv:2611.08325",
+   "title": "Decision Models as Retrieval Gates Against Injection and Pollution",
+   "url": "https://arxiv.org/abs/2611.08325",
+   "abstract": "Retrieved web text can carry instructions aimed at the language model, or synthetic pages written to mislead. We test whether released open-weight decision models, which answer typed questions about a text without generating tokens, can screen retrieved passages against both threats. On a benchmark of 1,000 questions over forum-style web pages with hidden injected instructions, a Kev-4B gate reads each passage's HTML. Attack success, measured automatically, falls from 27.9% with no defence to 13.6% with the published mitigations (sanitisation, normalisation and citation prompting) and to 5.7% with the gate added. The gate takes 76 ms per passage and wrongly flags 4 of 186 benign pages with instructions for human readers. Responsiveness on clean queries stays within a point (85.6% to 86.2%). On a 200-query pollution testbed where two thirds of the candidate pages are fake, filtering the pool before the top ten are chosen keeps fake pages out of the answer (0.5% exposure) and holds accuracy at 83%, against 28% with no filter. Filtering only the top ten leaves the generator too few pages to answer. Large LLMs used as judges rank attacks better (AUROC 0.99 against 0.94) but cost ten times more. Gates catch more attacks when they read the page's HTML than when they read its plain text. Every model is open-weight.",
+   "authors": [
+    "Mahdi Ghadamyari",
+    "Reza Habibi"
+   ],
+   "org": null,
+   "published": "2026-11-05T17:19:19+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08325",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "RAG & retrieval",
+   "topics": [
+    "RAG & retrieval",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.86,
+   "tldr": "A decision‑model gate screens each retrieved passage (76 ms) reducing injection success from 27.9% to 5.7% with only 4 false positives.",
+   "why": "Drop‑in filter improves RAG safety with modest latency.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07899": {
+   "id": "arxiv:2611.07899",
+   "title": "Persistent Retrieval for Conversational Agents: A Study of Retrieval Efficiency",
+   "url": "https://arxiv.org/abs/2611.07899",
+   "abstract": "Conversational agents can retrieve information directly or delegate retrieval to a subagent. This design choice affects how retrieval history is maintained, what context each model call receives, and what information must be re-retrieved in follow-up questions. We compare three designs: skill-based retrieval in the main agent, a non-persistent retrieval subagent that generates a findings response, and our persistent retrieval subagent, which maintains retrieval history across turns and returns retrieved evidence directly to the main agent. Our approach also allows the main agent to request corrections from the same subagent. We evaluate the three designs on enterprise questions posed independently, within shared conversations, and as dependent follow-ups. Across five multi-turn settings, our approach uses 43.3% fewer recorded agent-model tokens and incurs 45.0% lower estimated API cost than skill-based retrieval, while reducing average response time by 9.1%. Compared with non-persistent retrieval, it reduces response time by 15.6 seconds per question, while using 65.1% more tokens and incurring 29.1% higher estimated API cost. Our approach shifts the retrieval subagent from producing synthesized responses to maintaining retrieval state and supplying evidence that the main agent can directly evaluate and use for answer generation.",
+   "authors": [
+    "Karthik Ravula",
+    "Sathwik Kowtha",
+    "Rishabh Verma",
+    "Kala Mehak Jain",
+    "Gunjit Mittal"
+   ],
+   "org": null,
+   "published": "2026-11-05T12:19:39+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07899",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.42,
+   "tldr": "Conversational agents can retrieve information directly or delegate retrieval to a subagent.",
+   "why": "Matches: Agents & orchestration",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07618": {
+   "id": "arxiv:2611.07618",
+   "title": "A Bilevel Neurodynamic Approach for Distributed SCAD-Regularized Sparse Least Squares",
+   "url": "https://arxiv.org/abs/2611.07618",
+   "abstract": "This paper proposes a bilevel particle swarm optimization (PSO)-neurodynamic method for solving the distributed sparse least-squares problem regularized by the smoothly clipped absolute deviation (SCAD) penalty to global optimality. The SCAD penalty is nonsmooth and nonconvex, so existing distributed neurodynamic methods have not been extended to it directly. Through two-time-scale singular perturbation analysis, a rigorous full-trajectory convergence theory with explicit convergence rates is established for the inner collaborative multi-agent neurodynamic system without requiring the second-order sufficient condition. A theory-guided inner-outer collaborative optimization framework is further developed, in which a red-light green-light sensitivity mechanism is embedded in the outer PSO search to enhance global search while concentrating computational effort on the SCAD shape parameters, thereby improving recovery accuracy and computational efficiency. Simulation results on four sparse-recovery scenarios demonstrate that the proposed method accurately recovers the true sparsity pattern and achieves faster convergence and lower relative error than competing neurodynamic methods.",
+   "authors": [
+    "Juntao Li",
+    "Qihang Guo",
+    "Deyuan Meng"
+   ],
+   "org": null,
+   "published": "2026-11-05T08:01:08+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "math.OC",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07618",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.42,
+   "tldr": "This paper proposes a bilevel particle swarm optimization (PSO)-neurodynamic method for solving the distributed sparse least-squares problem regularized by the smoothly clipped absolute deviation (SCAD) penalty to global optimality.",
+   "why": "Matches: Agents & orchestration",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07486": {
+   "id": "arxiv:2611.07486",
+   "title": "MEvince: Knowledge-Constrained LLM Reasoning for Technique Identification from Malware Reports",
+   "url": "https://arxiv.org/abs/2611.07486",
+   "abstract": "Mapping behavioral intelligence in malware analysis reports to ATT&CK techniques supports threat analysis and defense, but reliable identification remains challenging. Supporting evidence is often scattered across long, heterogeneous reports, while closely related techniques share behavioral cues and differ only in subtle but decisive details. While large language models (LLMs) can use external knowledge to interpret reports, they may assign techniques based on plausible associations rather than sufficient evidence. We present MEvince, a knowledge-constrained LLM reasoning framework for report-level malware technique identification. Its core is a shared behavioral representation connecting report observations to technique definitions. This representation is built through agentic mining of technique documentation and supports two online stages: 1) primitive-guided extraction uses behavioral primitives to structure LLM-extracted observations, link them to source passages, and group dispersed evidence; 2) evidence-aligned retrieval matches this evidence to technique profiles through the same concepts, retaining likely candidates and confusable alternatives for LLM comparison of distinguishing behaviors. Controls at both stages validate evidence references and check technique-specific requirements. The representation also supports adaptation without parameter updates, where offline agentic audits diagnose concept weaknesses and refine extraction or retrieval policies. We evaluate MEvince against 11 baselines spanning four method families using a dataset of 610 public malware reports referenced by MITRE ATT&CK. MEvince improves exact-ID F1 over the strongest baseline by 17.4%, and its concept-guided retrieval increases gold-label candidate coverage from 31.6% to 47.9%. With a small adaptation set, offline refinement yields further gains and outperforms baselines that update model parameters.",
+   "authors": [
+    "Hongyu She",
+    "Yiling He",
+    "Mengda Xie",
+    "Yiping Liu",
+    "Xingzhi Qian",
+    "Zhan Qin",
+    "Lorenzo Cavallaro"
+   ],
+   "org": null,
+   "published": "2026-11-05T05:45:20+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CR",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07486",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.54,
+   "tldr": "Mapping behavioral intelligence in malware analysis reports to ATT&CK techniques supports threat analysis and defense, but reliable identification remains challenging.",
+   "why": "Matches: Agents & orchestration, Reasoning & post-training",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08334": {
+   "id": "arxiv:2611.08334",
+   "title": "Cultural Adaptation within Repeated Social Interactions",
+   "url": "https://arxiv.org/abs/2611.08334",
+   "abstract": "Much of human culture is tacit and is typically learned through situated social interaction. As LLMs are deployed as interactive agents across diverse communities, assessing their cultural competence demands moving beyond existing question-answering approaches, shifting from what they know to how they adapt. In this work, we broaden the scope of cultural adaptation in NLP by investigating whether LLMs can adapt through repeated interactions via a sandbox environment. By reframing cultural adaptation as a continuous process of norm assimilation through social interaction, our work demonstrates that memory mechanisms foster longitudinal learning across repeated interactions, facilitate transfer to different social settings, and enable multilingual norm assimilation across five languages. Together, our findings lay the groundwork for continuous, interaction-driven cultural adaptation in LLMs.",
+   "authors": [
+    "Chen Cecilia Liu",
+    "Roi Reichart",
+    "Anna Korhonen"
+   ],
+   "org": null,
+   "published": "2026-11-05T17:23:30+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08334",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.42,
+   "tldr": "Much of human culture is tacit and is typically learned through situated social interaction.",
+   "why": "Matches: Agents & orchestration",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08216": {
+   "id": "arxiv:2611.08216",
+   "title": "ProQuant: Progressive Quantization-aware Training for Edge MLLMs",
+   "url": "https://arxiv.org/abs/2611.08216",
+   "abstract": "Multi-modal large language models (MLLMs) with impressive perception and understanding capabilities will enable a range of downstream applications. However, their substantial computational and memory requirements hinder the real-world implementation, particularly for resource-constrained edge devices. Quantization has emerged as an effective solution for deploying large models. While post-training quantization (PTQ) successfully retains the performance at moderate bit-width (e.g., W8A8), it suffers from severe performance degradation under low-bit quantization (e.g., W4A8), especially for small-scale models that are more suitable for edge deployment. In this paper, we propose ProQuant, a novel weight-activation quantization-aware training (QAT) framework tailored for low-bit MLLMs. First, to align the limited finetuning dataset distribution with the pretrained dataset distribution, we propose a self-relabeling (SRL) scheme to resample the responses of the open-source multimodal dataset. Second, we are the first to take a decoupled view of multi-modal (MM) understanding and language modeling abilities. We propose a progressive block activation (PBA) mechanism to prioritize the MM understanding recovery. We also introduce a vision-sensitive factor $\\vecτ$ that effectively identifies the MM-critical layers. Extensive experiments across various benchmarks, covering models with 2B-8B parameters, show that ProQuant significantly outperforms existing methods. For example, our W4A8 Qwen3-VL-2B-Instruct improves average accuracy by impressively 6.6% and achieves performance comparable to full precision counterparts with only approximately 1% performance drop. Code is available at https://github.com/yufeixue-ai/ProQuant/.",
+   "authors": [
+    "Yufei Xue",
+    "Yushi Huang",
+    "Jiawei Shao",
+    "Pingcheng Dong",
+    "Yonghao Tan",
+    "Shiyao Li",
+    "Kwang-Ting Cheng",
+    "Jun Zhang"
+   ],
+   "org": null,
+   "published": "2026-11-05T16:04:31+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CV",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08216",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.54,
+   "tldr": "Multi-modal large language models (MLLMs) with impressive perception and understanding capabilities will enable a range of downstream applications.",
+   "why": "Matches: Evaluation & reliability, Efficient inference & cost",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08179": {
+   "id": "arxiv:2611.08179",
+   "title": "Knowing When to Teach: Learning from Teachable Prefixes in Multilingual Reasoning Distillation",
+   "url": "https://arxiv.org/abs/2611.08179",
+   "abstract": "On-Policy Self-Distillation (OPSD) improves reasoning by training a student on its own reasoning, using the same model conditioned on reference solutions as a teacher. Applying OPSD to multilingual reasoning requires the teacher to provide useful feedback across languages, even when the student makes mistakes in intermediate steps. We observe a phenomenon we call Teacher Drift: as these mistakes accumulate, the teacher may follow the student's incorrect steps instead of correcting them. Our analysis shows that this shift tends to occur earlier in lower-resource languages. To account for these differences across languages, we propose Teachable On-Policy Self-Distillation (TOPSD), which determines where and whether teacher supervision should be applied to each reasoning trajectory. TOPSD uses teacher-student likelihood to estimate where drift begins and select a prefix for supervision. It then verifies whether the teacher can recover the correct answer from that prefix, applying distillation only to prefixes that pass verification. Experiments on multilingual mathematical reasoning across ten languages and three model scales show that TOPSD consistently outperforms conventional OPSD, particularly in low- and medium-resource languages.",
+   "authors": [
+    "Jaewon Cho",
+    "Minseo Yoon",
+    "Jinyoung Park",
+    "Jinwoo Seo",
+    "Jaewon Chu",
+    "Alice Oh",
+    "Hyunwoo J. Kim"
+   ],
+   "org": null,
+   "published": "2026-11-05T15:34:23+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08179",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.54,
+   "tldr": "On-Policy Self-Distillation (OPSD) improves reasoning by training a student on its own reasoning, using the same model conditioned on reference solutions as a teacher.",
+   "why": "Matches: Efficient inference & cost, Reasoning & post-training",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.08092": {
+   "id": "arxiv:2611.08092",
+   "title": "Gabor Gabor: E-Gaborformer, a Strictly Causal Speech Recognizer with Gabor-Dictionary Convolutions and Delta-Rule Memory",
+   "url": "https://arxiv.org/abs/2611.08092",
+   "abstract": "Real-time voice agents need a speech recognizer that never waits for future audio and whose memory per call does not grow with the length of the call. We present E-Gaborformer, a strictly causal encoder that combines Gated DeltaNet-2 recurrent layers with sliding-window attention in a 3:1 ratio, and builds every temporal convolution from a fixed dictionary of causal Gabor atoms. Its streaming state is constant, about 19 MB per call at production scale including the prediction network, where a causal-attention encoder of the same size accumulates over 1 GB after ten minutes. In a controlled causal study on LibriSpeech, E-Gaborformer leaves the initial plateau earlier, reaches a given accuracy up to 18% sooner, and matches or beats an E-Branchformer trained with the identical front end and recipe. At production scale, a 0.6B-parameter Hebrew and English streaming transducer built on E-Gaborformer has 28 to 31% lower word error rate (WER) than NVIDIA's Nemotron 3.5 ASR Streaming, a model of the same size, on English voice-agent traffic, and up to 20% lower Hebrew WER than our previous production system. The same weights serve strictly causal and 480 ms-lookahead decoding with no loss in accuracy, and a two-class formulation of the RNN-T lattice trains the transducer 2.6x faster with exact loss and gradients.",
+   "authors": [
+    "Nir Krakowski",
+    "Tamir Cohen",
+    "Ohad Zohar",
+    "Chen Zarfati"
+   ],
+   "org": null,
+   "published": "2026-11-05T14:36:34+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.LG",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.08092",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.42,
+   "tldr": "Real-time voice agents need a speech recognizer that never waits for future audio and whose memory per call does not grow with the length of the call.",
+   "why": "Matches: Agents & orchestration",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07982": {
+   "id": "arxiv:2611.07982",
+   "title": "How Far Can Lightweight LLMs Go in Intent-to-SLO Translation?",
+   "url": "https://arxiv.org/abs/2611.07982",
+   "abstract": "Intent-based networking (IBN) promises QoS provisioning in which the network derives the configuration from operator-stated goals. Its first step, translating a natural-language intent into enforceable service-level objectives (SLOs) grounded in a live snapshot of the network state, increasingly relies on large language models (LLMs). These large models add cost and energy to the management loop and typically require multi-GPU, cloud-hosted infrastructure. Can lightweight open LLMs take over this step dependably? We answer this question with a five-dimensional evaluation of ten LLMs with <10B parameters from five families, under four prompting setups, on 716 placement intents. We evaluate translation performance, intent validation, hallucination, energy impact, and robustness to diverse phrasing. The best configurations translate intents with a strict F1 of 0.943 and reject up to 191 of 195 invalid intents. With few-shot reasoning, the strongest models hallucinate unsupported QoS requirements in only about one response in a hundred, whereas the zero-shot setup struggles. A translated intent costs 0.044-0.148 Wh of GPU energy without reasoning, and added energy cost for reasoning pays off for the weaker models. Furthermore, we show that realistic rephrasing lowers the rejection of invalid intents in 15 of 16 configurations for the best-performing models, leaving robust intent validation as a key open challenge for reliable IBN. Our code and data are available: https://github.com/ggck43/intent2slo.",
+   "authors": [
+    "Sabbir Ahmed",
+    "Hazem Abbas",
+    "Salimur Choudhury"
+   ],
+   "org": null,
+   "published": "2026-11-05T13:12:30+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.NI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07982",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.54,
+   "tldr": "Intent-based networking (IBN) promises QoS provisioning in which the network derives the configuration from operator-stated goals.",
+   "why": "Matches: Evaluation & reliability, Reasoning & post-training",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07953": {
+   "id": "arxiv:2611.07953",
+   "title": "A Behavioural Framework for Predicting and Understanding Loss of Control in Frontier Artificial Intelligence Systems",
+   "url": "https://arxiv.org/abs/2611.07953",
+   "abstract": "Frontier artificial intelligence (AI) systems are increasingly operating over longer horizons with diminishing human oversight, raising the risk of loss of control: systems acting beyond effective human control with potentially irreversible consequences. Because such failures may become observable only after containment is difficult, they must be assessed prospectively. We introduce a behavioural framework that decomposes loss-of-control risk into three factors: misaligned motive, harm-enabling capability, and monitoring evasion. We operationalise these factors through 13 measurable aspects and 29 evaluation tasks, whose scores are combined into a single loss-of-control (LoC) score. Across 13 frontier models, the LoC score shows strong prospective validity, correlating with failure rates in contained long-horizon risk scenarios (Pearson r = 0.84). Risk varies systematically across models and cannot be explained by capability alone. We further show that the framework can guide targeted mitigations: fine-tuning and monitoring directed at diagnosed vulnerabilities reduce failure rates while largely preserving general performance. These results provide a practical basis for predicting, understanding, and mitigating loss-of-control risk before it materialises.",
+   "authors": [
+    "Yao Huang",
+    "Yichi Zhang",
+    "Yifan Wang",
+    "Yitong Sun",
+    "Haoyu Dong",
+    "Jifan Ma",
+    "Jinzhe Tu",
+    "Xiaojian Li",
+    "Sören Mindermann",
+    "Wei Xu",
+    "Yinpeng Dong"
+   ],
+   "org": null,
+   "published": "2026-11-05T12:49:20+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.AI",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07953",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.54,
+   "tldr": "Frontier artificial intelligence (AI) systems are increasingly operating over longer horizons with diminishing human oversight, raising the risk of loss of control: systems acting beyond effective human control with potentially irreversible consequences.",
+   "why": "Matches: Agents & orchestration, Reasoning & post-training",
+   "scored_by": "keywords",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07797": {
+   "id": "arxiv:2611.07797",
+   "title": "Dataset Collection and Fine-Tuning of NLLB for German--English Translation",
+   "url": "https://arxiv.org/abs/2611.07797",
+   "abstract": "This paper describes the curation of a high-quality parallel corpus from OPUS Books and the fine-tuning of Meta's NLLB-200 models for German--English translation. We detail a dataset extraction pipeline that filters 45k raw OPUS sentence pairs to 25k high-quality examples through encoding validation, length filtering, language identification, deduplication, and quality scoring. We present a reproducible fine-tuning methodology optimized for consumer GPUs using mixed precision, gradient accumulation, and gradient checkpointing. Our fine-tuned NLLB-600M model achieves statistically significant improvements (+3.4 BLEU, +2.6 chrF++, -3.2 TER) over the base model on literary and technical German-English translation. We demonstrate practical deployment by integrating the fine-tuned model into LinguaHaru, an existing open-source document translation system, achieving format-preserving translation across PDF and Office documents. All dataset preparation scripts, training code, and evaluation tools are provided for reproducibility. The fine-tuned model is available at HuggingFace.",
+   "authors": [
+    "SK Deeraj",
+    "Yash Ingle",
+    "Pruthwik Mishra"
+   ],
+   "org": null,
+   "published": "2026-11-05T10:35:22+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07797",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Documents & extraction",
+   "topics": [
+    "Documents & extraction",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.45,
+   "tldr": "Curated 25k German‑English sentence pairs, fine‑tuned NLLB‑600M, gaining +3.4 BLEU, +2.6 chrF++, -3.2 TER, and deployed in LinguaHaru for format‑preserving document translation.",
+   "why": "Provides a ready‑to‑use multilingual translation component for document ingestion, but not a priority for current RAG pipelines.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07780": {
+   "id": "arxiv:2611.07780",
+   "title": "Bridging Structure and Semantics: Knowledge Graph Verification via Triple-to-Text Alignment",
+   "url": "https://arxiv.org/abs/2611.07780",
+   "abstract": "Semantic accuracy is an important dimension of knowledge graph quality. Graph-based scoring methods exploit relational structure, while textual representations allow classifiers to draw on knowledge encoded by pre-trained language models (PLMs). We present GenVer, a generative verifier that scores triples using both their serialized form and generated natural language representations (NLRs). A triple-text alignment procedure selects training pairs for a sequence-to-sequence generator; a BERT-based classifier then combines features from each triple and its generated NLR. On four FactFB variants, constructed from FB15k using perturbed negative triples, GenVer obtains the highest classification accuracy among the evaluated baselines, ranging from 88.56% to 91.52%. The experiments suggest that generated representations can help triple classification, while the case analysis also exposes semantic drift and high-confidence errors.",
+   "authors": [
+    "Ziang Cui"
+   ],
+   "org": null,
+   "published": "2026-11-05T10:19:27+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07780",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Reasoning & post-training",
+   "topics": [
+    "RAG & retrieval",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.3,
+   "tldr": "GenVer generates natural‑language descriptions of KG triples and combines them with BERT features, reaching 88.6‑91.5% accuracy on perturbed KG classification benchmarks.",
+   "why": "Shows a way to boost KG verification, but relevance to retrieval‑oriented RAG is limited.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07654": {
+   "id": "arxiv:2611.07654",
+   "title": "English Calibration Erodes Lithuanian in Expert-Pruned Mixture-of-Experts Language Models",
+   "url": "https://arxiv.org/abs/2611.07654",
+   "abstract": "Expert pruning compresses Mixture-of-Experts (MoE) language models by removing the experts that a calibration set marks as unimportant. Studies of high-resource languages largely find that English calibration transfers well to other languages. We test this for Lithuanian: we pruned four MoE models with REAP, removing 25% or 50% of the experts with English, Lithuanian or mixed calibration, and evaluated both languages on reading comprehension, translation and language modelling. English calibration does not transfer to Lithuanian: at 25% pruning, English comprehension fell by a median of 1.7 points but Lithuanian by 21.4. The transfer is asymmetric. Lithuanian calibration removed most of the Lithuanian loss and never significantly hurt English comprehension, which was on average 2.5 points better than under English calibration; only English language modeling got slightly worse. Routing suggests why: in the last layers, Lithuanian sends 55-72% of its expert selections to just eight experts, against 19-39% for English, and English calibration removes some of these experts. Compressed models should be calibrated, and evaluated, in every language they must serve.",
+   "authors": [
+    "Tomas Rasymas",
+    "Povilas Kvedaras"
+   ],
+   "org": null,
+   "published": "2026-11-05T08:39:28+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07654",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Evaluation & reliability",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.7,
+   "tldr": "Pruning MoE models with language‑specific calibration preserves Lithuanian performance, while English‑only calibration harms it, highlighting asymmetric transfer effects.",
+   "why": "Guides language‑aware model compression to cut serving cost for multilingual LLMs.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07605": {
+   "id": "arxiv:2611.07605",
+   "title": "The Gating Mechanism of KV Cache Eviction",
+   "url": "https://arxiv.org/abs/2611.07605",
+   "abstract": "KV cache eviction must decide which entries carry information that the rest of the cache can no longer supply. A natural way to estimate this is a learnable gate: give each cached entry a gate on its attention weight and train the gate on the model's own objective. The gate belongs inside the normalizing softmax, where suppressing one entry hands its mass to the others rather than discarding it. That same normalizer absorbs any per-query constant, so a constant gate cancels and reproduces the frozen model exactly. Trained on the language-modeling loss the gate stays near a constant score while its loss falls throughout: optimization succeeds, but a frozen backbone was fit for dense attention, so its loss prefers the no-op, and a near-constant score ranks nothing. The no-op is not a floor the gate improves from but what its objective asks for. A second obstacle survives once the gate moves, since the same gradient charges the gate for errors the frozen model already makes, which no reweighting of positions separates out. Much of the machinery in learnable eviction, from sparsity penalties to relaxations of the discrete decision, works around the first obstacle rather than removing it; both are removed by putting dense attention beyond the gate's reach and making the dense model's predictions its target. Under these two conditions capacity is never the missing ingredient: neither a larger scorer, nor explicit access to the past, nor a trainable backbone helps. The same holds for what eviction unavoidably discards, which is recovered by parameter-free centroids read inside the same softmax far better than by any memory read outside it, since the mass they must return is a share of that normalizer and available nowhere else. At 75\\% KV cache compression, this gate reaches 90.14 on RULER at 8K and 46.03 on LongBench with Qwen3-8B, 3.72 and 1.36 points below full-cache inference.",
+   "authors": [
+    "Hao Gu",
+    "Xintong Yang",
+    "Zhiwei Li",
+    "Lei Zhu",
+    "Jian Yang",
+    "Qiyuan Zhu",
+    "Dezhi Li",
+    "Jingyuan Zhang",
+    "Zhizhuo Kou",
+    "Hao Wang",
+    "Bei Liu",
+    "Jiacheng Liu",
+    "Sirui Han"
+   ],
+   "org": null,
+   "published": "2026-11-05T07:53:37+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07605",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.55,
+   "tldr": "Proposes learnable gates inside the softmax to evict KV‑cache entries; training keeps gates near constant, limiting practical latency gains.",
+   "why": "Offers insight into KV‑cache eviction limits; may inform future cache‑management strategies.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07587": {
+   "id": "arxiv:2611.07587",
+   "title": "Fine-Tuning a Transducer for Impaired Speech: Where the Gains Appear and What They Mean for Evaluation",
+   "url": "https://arxiv.org/abs/2611.07587",
+   "abstract": "Speech recognition still works poorly for many people whose speech is affected by conditions such as ALS, Parkinson's disease, cerebral palsy, Down syndrome or stroke. We took part in the Speech Accessibility Project Challenge 2 (SAPC2) with a public speech recognizer that we fine-tuned on the challenge data. Our best entry scored 7.81% character error rate on Test1, the first of two hidden test sets (official baseline 15.26%). Our live entries ran on CPUs with a combined median latency of about 0.9 seconds at 7.96-8.07% error. On new speakers, fine-tuning reduced errors most for the speakers that an off-the-shelf recognizer finds hardest to understand. Sentences already seen in training had far lower error rates than new ones (2.58% vs 6.42%), a larger difference than being a familiar speaker made. We close with lessons for evaluating such systems.",
+   "authors": [
+    "Kien Nguyen",
+    "Tuan Dinh",
+    "Bao Phan"
+   ],
+   "org": null,
+   "published": "2026-11-05T07:39:12+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07587",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.2,
+   "tldr": "Fine‑tuned a speech recognizer for impaired speech, achieving 7.81% CER and ~0.9 s CPU latency, outperforming the baseline 15.26% CER.",
+   "why": "Speech‑recognition advances are interesting but not directly applicable to LLM‑based RAG or agents.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07554": {
+   "id": "arxiv:2611.07554",
+   "title": "The Memory Trap: Language Agents Overgeneralize from Benign Interactions",
+   "url": "https://arxiv.org/abs/2611.07554",
+   "abstract": "Language agents increasingly use persistent memory to record user preferences and procedures across sessions. We show that memory from benign interactions can cause unsafe or unreliable behavior on later tasks. We call this failure the memory trap. To study this issue, we compare behavior in sessions with and without memory across six frontier models (including Claude Sonnet, Opus, and Fable models and GPT-5.6). We evaluate these models in a range of settings. First, in autonomy experiments, we find that requests to skip confirmation during low-stakes coding chores lead agents to skip confirmation and verification on simulated high-stakes tasks in both coding and everyday life. We next study memories formed when users seek emotional support, or describe harm from uncritical feedback, and find these memories bias later judgments of mathematical work, arguments, and poems toward sycophancy or over-critique (respectively). Memory notes written during legitimate stale-test repairs lead agents to weaken correct tests that catch broken safeguards; these memories also increase cheating on ImpossibleBench, with larger increases for stronger Sonnet and Opus models. We show that memory traps can arise both from overgeneralizations in memory writing, and when acting on memory. These findings demonstrate that even benign interactions can lead to serious risks from memory systems, and thus motivate the need for new research into ensuring that agents preserve the scope of their memories.",
+   "authors": [
+    "Kaiqu Liang",
+    "Jaime Fernández Fisac",
+    "Thomas L. Griffiths",
+    "Andrew Lampinen"
+   ],
+   "org": null,
+   "published": "2026-11-05T07:01:59+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07554",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.85,
+   "tldr": "Demonstrates that persistent memory can cause agents to skip safety checks and become biased after benign interactions across six frontier models.",
+   "why": "Highlights a critical reliability risk for long‑running agents; informs safe memory design.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07510": {
+   "id": "arxiv:2611.07510",
+   "title": "Enhancing Repository-Level Code Completion with Reinforcement Learning in Real-World Scenarios",
+   "url": "https://arxiv.org/abs/2611.07510",
+   "abstract": "The rapid development of large language models (LLMs) for code, which closely aligns with the practical needs of real-world software development, has sparked growing attention in repository-level code completion. However, existing Code LLMs present challenges in focusing on suitable contexts from the repository and in deeply reasoning about cross-file dependencies. To address these challenges, we propose a novel reinforcement learning framework for repository-level code completion. To better understand both in-file and cross-file contexts, we employ identifier-driven intent recognition to capture completion intent, thereby improving the model's performance in real-world scenarios. To enhance cross-file reasoning, we propose a reward-driven completion learning to effectively reward in complex repository completion scenarios. To guide LLMs in completing code that aligns with intended functionality and repository context, we introduce a selective-exploration strategy that directs the model to focus on low-confidence, high-reward tokens, promoting the exploration of valuable, underexplored completion patterns. Experimental results show that our approach significantly improves the performance of Code LLMs. The code and the dataset are available at https://github.com/zhenlongDai/RepoCompletion.",
+   "authors": [
+    "Zhenlong Dai",
+    "Zhuoluo Zhao",
+    "Xiu Tang",
+    "Sai Wu",
+    "Chang Yao",
+    "Zhipeng Gao",
+    "Jingyuan Chen"
+   ],
+   "org": null,
+   "published": "2026-11-05T06:17:01+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07510",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Reasoning & post-training",
+   "topics": [
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.4,
+   "tldr": "Introduces an RL framework with intent recognition and selective‑exploration to improve repository‑level code completion across files.",
+   "why": "RL‑based fine‑tuning ideas may inspire LLM improvements, but immediate impact on RAG is modest.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07489": {
+   "id": "arxiv:2611.07489",
+   "title": "ReviewMap: Mapping Evaluative Acts and Automation Boundaries in Peer-Review Comments",
+   "url": "https://arxiv.org/abs/2611.07489",
+   "abstract": "Peer-review comments check what a paper does and judge why it matters, but no existing scheme distinguishes these two evaluative acts. We argue that making these acts explicit and measuring how reliably LLMs identify them is a prerequisite for responsible LLM-assisted review analysis: humans need to inspect review judgments and their grounds. This defines a more honest mission for NLP in peer review than full automation. We present ReviewMap, a framework that classifies each comment as assessment of claims and scholarly standards or calibration of contribution value and venue fit, with finer-grained attributes applied conditionally by act type. Applied to 500 ICLR~2026 papers through multi-model LLM consensus, the act layer proves reliably automatable under the operational guideline (inter-model $κ\\geq 0.75$), supported by five-human validation on 470 development comments, while the attribute layer requires human oversight, defining a measured automation boundary. At the corpus level, 17% of reviewer-paper instances contain no panel-coded calibration, and the panel-coded calibration share is nearly $3\\times$ as high in Strengths as in Weaknesses. This boundary informs three affordances: a review guideline that operationalizes the assessment-then-calibration workflow for reviewers, a per-comment rebuttal strategy scaffold for authors, and a discussion-phase dashboard for area chairs.",
+   "authors": [
+    "Kihyun Na",
+    "Injung Kim"
+   ],
+   "org": null,
+   "published": "2026-11-05T05:49:01+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07489",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Agents & orchestration",
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.6,
+   "tldr": "ReviewMap separates assessment and calibration acts in peer‑review comments; LLMs automate act classification reliably (κ≥0.75) while attributes need human oversight.",
+   "why": "Provides a structured evaluation method that could be adapted for LLM output reliability checks.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "arxiv:2611.07469": {
+   "id": "arxiv:2611.07469",
+   "title": "Recursive Self-Improvement for Long-Horizon Role-Playing Dialogue",
+   "url": "https://arxiv.org/abs/2611.07469",
+   "abstract": "Long-horizon role-playing dialogue requires consistent character identity, reliable memory, and context-sensitive interaction. We present a bounded recursive self-improvement (RSI) framework that revises original-character memory, stable persona instructions, and a policy for constructing turn-level prompts. Repair outcomes also inform revisions to the updater's diagnostic rules, edit routing, and candidate selection. We specify the updater as a versioned policy with explicit inputs, editable fields, acceptance gates, and stopping conditions. An internal evaluation covers 50 original characters and five models, with two 100-round conversations per character-model pair: 500 conversations per condition. Across the pooled evaluated replies, the bad-response rate decreases from 14.00% (6,973/49,824) to 4.94% (2,459/49,793), a 9.06-percentage-point reduction and a 64.71% relative reduction. In 600 blinded human comparisons, RSI receives 294 wins, 187 ties, and 119 losses, yielding a 71.19% win rate among decisive judgments. The results support improved aggregate dialogue quality for the complete framework on the internal test distribution.",
+   "authors": [
+    "Y. L. Li",
+    "Y. H. Wu"
+   ],
+   "org": null,
+   "published": "2026-11-05T05:28:10+00:00",
+   "source": "arXiv",
+   "sources": [
+    "arXiv"
+   ],
+   "category": "cs.CL",
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.07469",
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration",
+    "Efficient inference & cost"
+   ],
+   "relevance": 0.75,
+   "tldr": "Recursive self‑improvement revises character memory and prompts, cutting bad‑response rate from 14% to 4.94% (64.7% relative) and winning 71.2% of human judgments.",
+   "why": "Shows a practical loop to boost long‑term agent consistency, relevant for reliable multi‑agent systems.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
+  },
+  "post:1f9981de57006417": {
+   "id": "post:1f9981de57006417",
+   "title": "Flipsnack grows product signups with conversion optimization",
+   "url": "https://openai.com/ads/customers/flipsnack",
+   "abstract": "Flipsnack focused its ChatGPT Ads campaigns on getting people to try its product, growing registrations while lowering the cost per signup.",
+   "authors": [],
+   "org": "OpenAI",
+   "published": "2026-11-05T00:45:15+00:00",
+   "source": "OpenAI",
+   "sources": [
+    "OpenAI"
+   ],
+   "category": null,
+   "kind": "blog",
+   "pdf": null,
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": null,
+   "topics": [],
+   "relevance": 0.1,
+   "tldr": "OpenAI case study where Flipsnack used ChatGPT‑powered ads to increase sign‑ups while lowering cost per acquisition.",
+   "why": "Marketing case without technical depth; not useful for production LLM engineering.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-08T18:24:36+00:00"
   }
  }
 }
