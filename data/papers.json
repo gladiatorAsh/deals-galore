@@ -1,19 +1,19 @@
 {
- "last_run": "2026-11-22T20:24:08+00:00",
+ "last_run": "2026-11-24T01:01:36+00:00",
  "last_report": {
   "sources": {
-   "HF Daily Papers": 31,
-   "arXiv": 279,
-   "OpenAI": 9,
+   "HF Daily Papers": 2,
+   "arXiv": 0,
+   "OpenAI": 5,
    "Google Research": 2,
    "Microsoft Research": 0,
    "Hugging Face blog": 2
   },
-  "fetched": 262,
-  "new": 169,
-  "added": 60,
-  "ai_scored": 20,
-  "on_page": 1734
+  "fetched": 11,
+  "new": 8,
+  "added": 7,
+  "ai_scored": 7,
+  "on_page": 1741
  },
  "papers": {
   "arxiv:2610.34467": {
@@ -68001,6 +68001,227 @@
    "why": "Popular on Hugging Face today",
    "scored_by": "keywords",
    "first_seen": "2026-11-22T20:24:08+00:00"
+  },
+  "arxiv:2611.27915": {
+   "id": "arxiv:2611.27915",
+   "title": "StereoVLM: Binocular Vision-Language Models for Metric 3D Spatial Reasoning",
+   "url": "https://arxiv.org/abs/2611.27915",
+   "abstract": "Vision-language models (VLMs) exhibit strong semantic understanding but remain limited in their ability to reason about metric 3D space in the physical world. Existing VLMs typically infer 3D scene structure from one or more images without known camera calibration or cross-view geometric constraints. This makes metric 3D inference inherently ambiguous and leaves it unclear whether their spatial predictions are grounded in visual evidence or driven primarily by semantic priors. In contrast, calibrated stereo provides explicit cross-view geometry that resolves this ambiguity and offers a more reliable foundation for metric 3D perception and geometric generalization. We investigate how VLMs can learn transferable 3D representations directly from calibrated binocular observations. To this end, we introduce StereoVLM, the first geometry-aware binocular VLM for metric 3D spatial reasoning. StereoVLM follows a hierarchical learning paradigm spanning from cross-view correspondence and disparity estimation to calibration-conditioned metric depth perception and semantic spatial reasoning. We further find that disparity supervision generalizes substantially better than direct binocular depth supervision on unseen environments. To evaluate these capabilities, we introduce Stereo3D-Bench, a comprehensive benchmark across three levels, from point-level geometry to object-level spatial reasoning. StereoVLM-8B achieves 95.17% depth accuracy (δ_1) and a 66.98 average object-level score on Stereo3D-Bench. Intervention results further indicate that the model's performance on Stereo3D-Bench benefits from valid cross-view geometry and cannot be explained solely by additional visual tokens or semantic priors. Hierarchical geometric supervision also yields average gains of 3.54 points across five spatial benchmarks and 4.3 percentage points in RoboCasa manipulation success.",
+   "authors": [
+    "Chi Yan",
+    "Guoyang Zhao",
+    "Wentao Yuan",
+    "Yixiao Ge",
+    "Yanning Zhou",
+    "Dan Xu"
+   ],
+   "org": "xpeng-robotics",
+   "published": "2026-11-20T17:52:02+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.27915",
+   "hf_url": "https://huggingface.co/papers/2611.27915",
+   "code": null,
+   "project": "https://xpeng-robotics.github.io/stereovlm/",
+   "upvotes": 7,
+   "summary_hint": "StereoVLM is a geometry-aware binocular vision-language model trained with hierarchical supervision from calibrated stereo to enable metric 3D spatial reasoning, evaluated by Stereo3D-Bench.",
+   "topic": "Reasoning & post-training",
+   "topics": [
+    "Evaluation & reliability",
+    "Efficient inference & cost",
+    "Reasoning & post-training"
+   ],
+   "relevance": 0.2,
+   "tldr": "Introduces StereoVLM, a binocular vision-language model using calibrated stereo to learn metric 3D depth and spatial reasoning via hierarchical training.",
+   "why": "Vision-focused 3D reasoning unlikely to help LLM retrieval or agents soon.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-24T01:01:36+00:00"
+  },
+  "arxiv:2611.27398": {
+   "id": "arxiv:2611.27398",
+   "title": "Taking Apart and Putting Together: Tracking Objects Through Physical Transformations",
+   "url": "https://arxiv.org/abs/2611.27398",
+   "abstract": "We introduce Transformation Tracking and Understanding (TTU), extending video object tracking to environments where objects undergo physical assemblies and disassemblies. TTU requires continuously tracking objects through transformations, identifying new entities, maintaining a state graph of their relationships, and assigning semantic labels to transformations. While foundation models (e.g., SAM 2/3) maintain tracklets through appearance changes, they cannot update semantic identities as objects physically evolve. Prior work addresses only disassemblies, relying on expensive searches triggered only when tracking fails. We propose Tracking Instances via Proposals and Overlaps (TIPO), a training-free framework that continuously infers transformations via a generate-evaluate-judge pipeline. TIPO generates split and merge proposals from disjoint mask components, scores them against mask-decoder priors using inner and external overlap, and queries an MLLM on the top proposal for visual verification and semantic labeling. To benchmark TTU, we curate Video Instances, States, and Transformation Annotations (VISTA), a dataset including state graphs with 124 assembly and 132 disassembly events across 50 sequences and over 26,000 frames. TIPO achieves state-of-the-art tracking and state-graph accuracy on VISTA, while operating 6times to 15times faster than prior methods. Project page: https://davidegardenal.github.io/tipo-tracking",
+   "authors": [
+    "Davide Gardenal",
+    "Mingxuan Liu",
+    "Flavio Vella",
+    "Quentin Guimard",
+    "Elisa Ricci"
+   ],
+   "org": "Multimedia and Human Understanding Group",
+   "published": "2026-11-20T10:03:29+00:00",
+   "source": "HF Daily Papers",
+   "sources": [
+    "HF Daily Papers"
+   ],
+   "category": null,
+   "kind": "paper",
+   "pdf": "https://arxiv.org/pdf/2611.27398",
+   "hf_url": "https://huggingface.co/papers/2611.27398",
+   "code": null,
+   "project": "https://davidegardenal.github.io/tipo-tracking/",
+   "upvotes": 4,
+   "summary_hint": "A training-free framework tracks objects through physical assemblies and disassemblies by generating and evaluating split/merge proposals and querying a multimodal large language model for verification and labeling, achieving state-of-the-art accuracy and faster performance on a new benchmark.",
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Evaluation & reliability"
+   ],
+   "relevance": 0.15,
+   "tldr": "Proposes TIPO, a training‑free framework that generates split/merge proposals to track objects through physical transformations, using mask overlap and MLLM verification.",
+   "why": "Primarily video tracking; not applicable to LLM pipelines.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-24T01:01:36+00:00"
+  },
+  "post:680b35173b971311": {
+   "id": "post:680b35173b971311",
+   "title": "Richpanel helps companies automate 50% of support in 30 days",
+   "url": "https://openai.com/business/customer-stories/richpanel-ai-customer-support",
+   "abstract": "Richpanel uses GPT-6 Astra and GPT-6.1 Sol to equip its AI support agents with tools and procedures, and GPT-6 Luna for their conversations.",
+   "authors": [],
+   "org": "OpenAI",
+   "published": "2026-11-23T08:00:00+00:00",
+   "source": "OpenAI",
+   "sources": [
+    "OpenAI"
+   ],
+   "category": null,
+   "kind": "blog",
+   "pdf": null,
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.1,
+   "tldr": "Describes Richpanel’s use of GPT‑6 models to automate 50% of support tickets within 30 days via AI agents and tools.",
+   "why": "Marketing case study; no technical details to implement.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-24T01:01:36+00:00"
+  },
+  "post:f8a4e02f42124693": {
+   "id": "post:f8a4e02f42124693",
+   "title": "Connected intelligence for in-house legal",
+   "url": "https://openai.com/business/learn/connected-intelligence-for-in-house-legal",
+   "abstract": "Watch OpenAI’s Stacey Wang and Craig Bruney, Mary O’Carroll of LECG, and Cooley’s Richard Segal explore how AI can help in-house legal teams connect business context, build reusable workflows and get more from outside counsel.",
+   "authors": [],
+   "org": "OpenAI",
+   "published": "2026-11-23T08:00:00+00:00",
+   "source": "OpenAI",
+   "sources": [
+    "OpenAI"
+   ],
+   "category": null,
+   "kind": "blog",
+   "pdf": null,
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Agents & orchestration",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.1,
+   "tldr": "OpenAI discussion on AI assisting in‑house legal teams with context, reusable workflows, and counsel collaboration.",
+   "why": "Legal use case; no transferable techniques for RAG or agents.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-24T01:01:36+00:00"
+  },
+  "post:6fd4c32fe34a4cba": {
+   "id": "post:6fd4c32fe34a4cba",
+   "title": "How to build and maintain an agentic evaluation",
+   "url": "https://huggingface.co/blog/agentic-evals",
+   "abstract": "",
+   "authors": [],
+   "org": "Hugging Face blog",
+   "published": "2026-11-23T00:00:00+00:00",
+   "source": "Hugging Face blog",
+   "sources": [
+    "Hugging Face blog"
+   ],
+   "category": null,
+   "kind": "blog",
+   "pdf": null,
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Evaluation & reliability",
+   "topics": [
+    "Agents & orchestration"
+   ],
+   "relevance": 0.73,
+   "tldr": "Provides a step‑by‑step guide for building and maintaining evaluation frameworks for agentic systems, covering metrics, data pipelines, and continuous monitoring.",
+   "why": "Helps engineer assess reliability of multi‑agent pipelines.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-24T01:01:36+00:00"
+  },
+  "post:1d0c151fefed0dea": {
+   "id": "post:1d0c151fefed0dea",
+   "title": "OpenAI and Cisco introduce Shirudo",
+   "url": "https://openai.com/index/introducing-shirudo",
+   "abstract": "OpenAI and Cisco introduce Shirudo, an open-source runtime for Linux. It helps teams protect running systems while they roll out patches.",
+   "authors": [],
+   "org": "OpenAI",
+   "published": "2026-11-23T21:20:00+00:00",
+   "source": "OpenAI",
+   "sources": [
+    "OpenAI"
+   ],
+   "category": null,
+   "kind": "blog",
+   "pdf": null,
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": null,
+   "topics": [],
+   "relevance": 0.1,
+   "tldr": "Announces Shirudo, an open‑source Linux runtime from OpenAI and Cisco aimed at protecting systems during patch deployment.",
+   "why": "Security runtime unrelated to LLM retrieval or agents.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-24T01:01:36+00:00"
+  },
+  "post:bcf32450cab1acca": {
+   "id": "post:bcf32450cab1acca",
+   "title": "Supercharging transformer residual connections",
+   "url": "https://research.google/blog/supercharging-transformer-residual-connections/",
+   "abstract": "Algorithms & Theory",
+   "authors": [],
+   "org": "Google Research",
+   "published": "2026-11-23T17:21:12+00:00",
+   "source": "Google Research",
+   "sources": [
+    "Google Research"
+   ],
+   "category": null,
+   "kind": "blog",
+   "pdf": null,
+   "hf_url": null,
+   "code": null,
+   "project": null,
+   "upvotes": 0,
+   "summary_hint": null,
+   "topic": "Efficient inference & cost",
+   "topics": [],
+   "relevance": 0.58,
+   "tldr": "Introduces modified transformer residual connections that boost training efficiency and model performance, presented by Google Research.",
+   "why": "Potential to lower inference latency and cost in production LLMs.",
+   "scored_by": "groq:openai/gpt-oss-120b",
+   "first_seen": "2026-11-24T01:01:36+00:00"
   }
  }
 }
